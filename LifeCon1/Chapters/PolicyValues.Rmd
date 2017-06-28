@@ -1,0 +1,997 @@
+---
+title: "Policy Values"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Policy Values
+## Special Case: Whole Life Insurance Policy {#S:WLifeFoundations}
+
+We can illustrate many important concepts in terms of this basic policy.
+For concreteness, we assume the fully continuous case, that pays 1
+immediately upon the failure of the policyholder and where level
+premiums are payable continuously throughout the year until the moment
+of failure.
+
+As before, we assume that contract initiation age is $x$. We now wish to
+establish the value of the policy $t$ years later when the policyholder
+is age $x+t$ (if alive).
+
+![image](Figures\PV_FWholeLifeTimeLine.eps){width=".8\textwidth"}
+
+At (policy) time $t$, we define the *future (net) loss variable* (to the
+insurer) to be the excess of the present value of future insurance
+benefits (PVFB) over the present value of future net premiums (PVFNP)
+$$\begin{aligned}
+L_t^n = PVFB - PVFNP = v^{T-t} - P^n \bar{a}_{\overline{T-t}|}.\end{aligned}$$
+Because $T$ is random, $L_t^n$ is a random variable; although we focus
+on its mean, the variance and distribution function are also important
+for different applications.
+
+To get a step closer to reality, we can easily add expenses into the
+mix. As before, we think of a “gross premium,” $G$ or $P^G$, as an
+income that accounts for benefits and expenses. With this, define the
+*future gross loss variable* to be $$\begin{aligned}
+L_t^g = PVFB + PVFE - PVFGP,\end{aligned}$$ where PFVE represents the
+present value of future expenses and PVFGP represents the present value
+of future gross premiums.
+
+The *policy value*, also known as the reserve, is the expected future
+loss variable, typically denoted as $V = \mathrm{E~} L$. Sometimes we
+write $_t V = \mathrm{E~} (L_t | T>t)$ to emphasize the conditional
+expectation, that is, we are only computing policy values for
+individuals who have survived $t$ future years. In this basic case, the
+constant premium rate $P$ is determined at contract initiation, e.g., at
+$t=0$.
+
+**Policy Value.** Specifically, at time $t$, the EPV of future benefits
+is $\mathrm{E~} (v^{T-t}|T>t )= \bar{A}_{x+t}$. The EPV of future
+premiums is
+$\mathrm{E~} (P^n \bar{a}_{\overline{T-t}|}|T>t )= P^n \bar{a}_{x+t}$.
+With these, the net premium policy value is $$\begin{aligned}
+~_t V^n = \bar{A}_{x+t} - P^n \bar{a}_{x+t}.\end{aligned}$$ In the
+premium module, we learned that we could derive net premiums through the
+equivalence principle, that is, find $P^n$ such that
+$\mathrm{E~} L_0^n = ~_0 V^n = 0$. Thus, we have
+$P^n = \bar{A}_x/\bar{a}_x.$
+
+**Variance.** With the net premium and the relation
+$\bar{a}_{\overline{T-t}|}=(1-v^{T-t})/\delta$, we write the net premium
+loss variable as $$\begin{aligned}
+L_t^n =v^{T-t} - P^n \frac{1-v^{T-t}}{\delta}= \left(1+\frac{P}{\delta}\right) - \frac{P}{\delta}.\end{aligned}$$
+Thus, we have $$\begin{aligned}
+\textrm{Var}(L_t^n|T>t) &= \left(1+\frac{P}{\delta}\right)^2 \textrm{Var}(v^{T-t}|T>t) \\
+&= \left(1+\frac{P}{\delta}\right)^2 \left( ~^2 \bar{A}_{x+t} - \bar{A}_{x+t}^2 \right) .\end{aligned}$$
+Here, recall the notation $~^2 \bar{A}$ means compute the EPV of a whole
+life insurance at force of interest $2\delta$.
+
+**Example.** Suppose that mortality follows De Moivre’s law with
+limiting age $w=100$. Let $i=6\%$ and $x=35$. Then, $$\begin{aligned}
+\bar{A}_{35} = \int_0^{65} v^t ~_t p_{35} \mu_{35+t}~ dt = \frac{1}{65} \int_0^{65} v^t  dt = \frac{1}{65} \bar{a}_{\overline{65}|}\end{aligned}$$
+and $$\begin{aligned}
+P^n = \frac{\bar{A}_{35}}{\bar{a}_{35}} =\frac{\delta \bar{A}_{35}}{1-\bar{A}_{35}} =
+\frac{\delta \bar{a}_{\overline{65}|} /65}{1-\bar{a}_{\overline{65}|} /65} = 0.020266.\end{aligned}$$
+Similarly, we have $\bar{A}_{35+t}=\bar{a}_{\overline{65-t}|}/(65-t)$
+and $$\begin{aligned}
+\bar{a}_{35+t}= \frac{1-\bar{A}_{35+t}}{\delta} =\frac{1-\bar{a}_{\overline{65-t}|}/(65-t)}{\delta}\end{aligned}$$
+The policy value may be written as $$\begin{aligned}
+~_t V^n  = \frac{\bar{a}_{\overline{65-t}|}}{65-t} - (0.020266)\frac{65-t-\bar{a}_{\overline{65-t}|}}{\delta(65-t)}.\end{aligned}$$
+and its associated variability is $$\begin{aligned}
+\textrm{Var}(L_t^n|T>t)&= \left(1+\frac{0.020266}{\delta}\right)^2 \left( \frac{~^2 \bar{a}_{\overline{65-t}|}}{65-t} - \left[\frac{\bar{a}_{\overline{65-t}|}}{65-t}\right]^2 \right) \\
+&=
+1.813821 \left( \frac{~^2 \bar{a}_{\overline{65-t}|}}{65-t} - \left[\frac{\bar{a}_{\overline{65-t}|}}{65-t}\right]^2 \right)\end{aligned}$$
+using $\delta = \ln(1.06)$. Figure 1 summarizes these calculations. Note
+that the policy value is 0 at $t=0$. At $t=65$, the policy value becomes
+1. Also at $t=65$, there is no uncertainty about the value of the policy
+and so the standard deviation becomes 0.
+
+![image](Figures\PV_F1WholeLife.eps){width=".5\textwidth"}
+
+**Simulation**. With Monte Carlo, or stochastic, simulation, we can
+easily get additional insights. To illustrate ideas, we focus on the
+loss random variable at $t=10$.
+
+We let $U$ be a randomly generated uniform random number on $(0,1)$. In
+this case, the future (given $T>10$) remaining lifetime random variable
+$T -10 = 55*U$, that is, uniform on the interval $(0,55)$. For this
+randomly generated future lifetime, the corresponding loss random
+variable is $$\begin{aligned}
+L_t^n = v^{T-10} - (0.020266) \bar{a}_{\overline{T-10}|}.\end{aligned}$$
+We generated 100,000 replications of this loss random variable (taking
+less than two seconds on a moderately slow notebook). Figure 2
+summarizes the distribution of these replications. The average of this
+distribution turned out to be 0.055512; this is very close to the
+theoretically correct value determined above, 0.055701. The standard
+deviation from the Figure 2 sample is 0.3459959, close to 0.3466074 that
+was determined by theory. Figure 2 shows that the maximum value is 1.0
+(corresponding to $T=10$) and the minimum value is -0.29310,
+corresponding to $T=65$.
+
+![image](Figures\PV_F2WholeLifeDistn.eps){width=".5\textwidth"}
+
+The simulation gives a quick method to calculate the same values that we
+could determine from theory. Simulation also allows us to readily see
+the entire *distribution* of the loss random variable - for this simple
+example, we could determine the distribution from theory. Moreover,
+theoretical calculations allow us to readily visualize patterns over
+evolving time duration $t$. As we will see, the advantage of simulation
+methods is that they provide flexibility to easily modify design aspects
+such as timing of benefits and payments, as well as for discounting
+mechanisms such as variable interest rates. You will find it helpful to
+become facile in doing calculations using both theory and simulation
+approaches.
+
+**Try an animated display where the distribution changes by the policy
+duration**
+
+**Exercise**. Show that the probability density function for the loss
+random variable is
+
+$$\begin{aligned}
+\textrm{f}_{L_t}(y) &= \frac{1}{(65-t)(y \delta + P^n)}.\end{aligned}$$
+
+*Solution.*
+
+The distribution function of $L_t^n$ is $$\begin{aligned}
+\textrm{F}_{L_t}(y) &= \Pr(L_t^n \leq y) =  \Pr(v^{T-t} - P
+\left(\frac{1-v^{T-t}}{\delta}
+\right) \leq y) \\
+&= \Pr(v^{T-t} \leq \frac{y \delta +P}{\delta + P}) = \Pr(T-t \geq -\frac{1}{\delta} \ln \left(\frac{y \delta +P}{\delta + P}\right) )\end{aligned}$$
+Conditional on $T>t$, $T-t$ is uniform on $(0,65-t)$, so
+$$\begin{aligned}
+\textrm{F}_{L_t}(y) &= \frac{65-t -\frac{1}{\delta} \ln \left(\frac{y \delta +P}{\delta + P}\right) )}{65-t}\end{aligned}$$
+Taking a partial derivative with respect to $y$ yields $$\begin{aligned}
+\textrm{f}_{L_t}(y) &= \frac{\partial}{\partial y} \frac{65-t -\frac{1}{\delta} \ln \left(\frac{y \delta +P}{\delta + P}\right) )}{65-t} \\
+&= \frac{-1}{\delta (65-t)} \frac{\partial}{\partial y}  \ln (y \delta +P)  \\
+&= \frac{1}{(65-t)(y \delta + P)},\end{aligned}$$ as required.
+
+## Exercise: Fully Continuous *n* Year Endowment Policy
+
+In this policy, a benefit of 1 is payable immediately upon failure.
+Premiums are payable at a constant annual rate of $P$ per year that is
+determined at contract initiation by the equivalence principle. Assume a
+constant force of interest and no expenses. The policy valuation is at
+time $t<n$.
+
+1\. Express the (net) premium using standard actuarial notation.
+
+2\. Express the loss random variable using standard interest theory
+symbols.
+
+3\. Express the policy value using standard actuarial notation.
+
+4\. Express the standard deviation of the loss random variable using
+standard actuarial notation.
+
+5\. Suppose that $x=35$, $n=20$, $i=6\%$, $t=5$, and mortality follows
+deMoivre’s law with limiting age $w=100$. Calculate the policy value and
+standard deviation.
+
+*Solution.*
+
+1\. The net premium is $P =
+\frac{\bar{A}_{x:\overline{n}|}}{\bar{a}_{x:\overline{n}|}}$.
+
+2\. If $T<t$, then the policy is complete and we do not consider it
+further. If $T \ge n$ (exceeding the endowment period), then the loss
+random variable is $L_t = v^{n-t} - P
+\bar{a}_{\overline{n-t}|}$, where $P$ is from part (1). If $t \leq
+T<n$, then the loss random variable is $L_t = v^{T-t} - P
+\bar{a}_{\overline{T-t}|}$. We summarize this as $$\begin{aligned}
+L_t &=
+\left\{
+\begin{array}{cc}
+  v^{T-t} - P \bar{a}_{\overline{T-t}|} & t \leq T<n \\
+  v^{n-t} - P \bar{a}_{\overline{n-t}|} & T \ge n
+\end{array}
+ \right .\end{aligned}$$
+
+3\. Recall that the “$n-t$” single premium endowment issued to a life age
+$x+t$ has loss $$\begin{aligned}
+L_t^{Insurance} &=
+\left\{
+\begin{array}{cc}
+  v^{T-t}  & T<n \\
+  v^{n-t} & T \ge n
+\end{array}
+ \right .\end{aligned}$$ and expectation
+$\bar{A}_{x+t:\overline{n-t}|}$. Similarly, an “$n-t$” temporary life
+annuity issued to a life age $x+t$ has loss $$\begin{aligned}
+L_t^{Annuity} &=\left\{
+\begin{array}{cc}
+  \bar{a}_{\overline{T-t}|}  & T<n \\
+ \bar{a}_{\overline{n-t}|} & T \ge n
+\end{array}
+ \right .\end{aligned}$$ and expectation
+$\bar{a}_{x+t:\overline{n-t}|}$. Thus, the loss random variable is just
+$L_t = L_t^{Insurance} -P L_t^{Annuity}$ with expectation (policy value)
+$_t V =\bar{A}_{x+t:\overline{n-t}|}-P \bar{a}_{x+t:\overline{n-t}|}$.
+
+4\. Using the relation $\bar{a}_{\overline{n}|} = (1-v^{n})/\delta$, we
+have $$\begin{aligned}
+L_t &=
+\left\{
+\begin{array}{cc}
+  \left(1+\frac{P}{\delta}\right) v^{T-t} - \frac{P}{\delta}  & t<T<n \\
+  \left(1+\frac{P}{\delta}\right) v^{n-t} - \frac{P}{\delta}  & T \ge n
+\end{array}
+ \right .
+ = \left(1+\frac{P}{\delta}\right) L_t^{Insurance} - \frac{P}{\delta} .\end{aligned}$$
+From this, we have $$\begin{aligned}
+\textrm{Var}(L_t|T>t) &= \left(1+\frac{P}{\delta}\right)^2 \textrm{Var}(L_t^{Insurance}|T>t) \\
+&= \left(1+\frac{P}{\delta}\right)^2
+ \left(~^2 \bar{A}_{x+t:\overline{n-t}|}- \bar{A}_{x+t:\overline{n-t}|}^2 \right)\end{aligned}$$
+
+5\. We first compute the premium $$\begin{aligned}
+P &= \frac{\bar{A}_{35:\overline{20}|}}{\bar{a}_{35:\overline{20}|}} = \frac{\delta \bar{A}_{35:\overline{20}|}}{1- \bar{A}_{35:\overline{20}|}}\end{aligned}$$
+For our problem, we have $$\begin{aligned}
+\bar{A}_{35:\overline{20}|} &= \int_0^{20} v^t ~_t p_{35} \mu_{35+t} dt + v^{20} ~_{20} p_{35} \\
+&= \frac{1}{65} \bar{a}_{\overline{20|}} + v^{20} \frac{45}{65} = 0.39756 .\end{aligned}$$
+that yields $$\begin{aligned}
+P &=\frac{\ln(1.06) (0.39756)}{1- 0.39756} =  0.03845.\end{aligned}$$
+We can express the policy value as $$\begin{aligned}
+_5 V =\bar{A}_{40:\overline{15}|}-P \bar{a}_{40:\overline{15}|}\end{aligned}$$
+As before, $$\begin{aligned}
+\bar{A}_{40:\overline{15}|} &= \frac{1}{60} \bar{a}_{\overline{15|}} + v^{15} \frac{45}{60} = 0.479628\end{aligned}$$
+and $$\begin{aligned}
+\bar{a}_{40:\overline{15}|} &= \frac{1-\bar{A}_{\overline{40:15}|}}{\delta}= 8.930516 ,\end{aligned}$$
+so $$\begin{aligned}
+_5 V  =0.479628-(0.03845 )8.930516 = 0.11458.\end{aligned}$$ For the
+variance, we have $$\begin{aligned}
+\textrm{Var}(L_5|T>5)
+&= \left(1+\frac{P}{\delta}\right)^2
+ \left(~^2 \bar{A}_{\overline{40:15}|}- \bar{A}_{\overline{40:15}|}^2 \right) \\
+&= \left(1+\frac{0.03845}{\ln(1.06)}\right)^2
+ \left(0.24869- 0.479628^2 \right) =0.051378,
+ \end{aligned}$$ using
+$~^2 \bar{A}_{40:\overline{15}|}=\frac{1}{60} ~^2 \bar{a}_{\overline{15|}} + v^{2\times15} \frac{45}{60}=0.24869.$
+Thus, the standard deviation is $\sqrt{0.051378}=0.22667$.
+
+## Policy Values with Annual Cash Flows
+
+To develop intuition, it is helpful to begin with a traditional
+framework. Here, policies have premiums that are payable annually (at
+the beginning of the year, by convention) and have benefits that are
+payable at the end of the year of failure.
+
+**Special Case: $n$-Year Term Insurance**. For this policy, level
+premiums are payable at the beginning of each year up until failure, or
+$n$ years if sooner. A death benefit of 1 is payable at the end of the
+year of failure, if within $n$ years. When time point $t=h$ is an
+integer, the loss variable is $$\begin{aligned}
+L_h &=
+\left\{
+\begin{array}{cc}
+  v^{K+1-h} - P ~\ddot{a}_{\overline{K+1-h}|} & h \leq K<n \\
+  0 - P ~\ddot{a}_{\overline{n-h}|} & K \ge n
+\end{array}
+ \right .\end{aligned}$$ 
+ 
+ This has expectation, or policy value, $~_h V =
+A_{x+h:\overline{n-h|}}^{~~1} - P_{x:\overline{n|}}^{1}
+~\ddot{a}_{x+h:\overline{n-h|}}$.
+
+**See the animated display where the value changes by the interest
+rate**
+
+**Special Case: $m$-pay, $n$-Year Endowment Insurance**. For this
+policy, level premiums are payable at the beginning of each year up
+until failure, or $m$ years if sooner. A benefit of 1 is payable at the
+end of the year of failure or $n$ years, whichever is sooner.
+
+When the policy is in the premium payment period, time point $t=h <m$.
+The loss variable is $$\begin{aligned}
+L_h &=
+\left\{
+\begin{array}{cc}
+  v^{K+1-h} - P \ddot{a}_{\overline{K+1-h}|} & 0 \leq K<m \\
+  v^{K+1-h} - P \ddot{a}_{\overline{m-h}|} & m \leq K<n \\
+  v^{n-h} - P \ddot{a}_{\overline{m-h}|} & K \ge n
+\end{array}
+ \right .\end{aligned}$$ This has expectation, or policy value,
+$~_h V = A_{x+h:\overline{n-h|}} - P ~ \ddot{a}_{x+h:\overline{m-h|}}$.
+
+When the policy is past the premium payment period, time point
+$t=h \ge m$. In this case, the loss variable is $$\begin{aligned}
+L_h &=
+\left\{
+\begin{array}{cc}
+  v^{K+1-h} & h \leq K<n \\
+  v^{n-h} & K \ge n
+\end{array}
+ \right .\end{aligned}$$ This has expectation, or policy value,
+$~_h V = A_{x+h:\overline{n-h|}}$.
+
+**General Discrete Policy.** For a general discrete policy, we have
+(known) premiums $P_h$ payable at time $h$ and benefits payable at time
+$b_h$. The loss variable is $$\begin{aligned}
+L_h &=
+\left\{
+\begin{array}{cc}
+  0 & 0 \leq K < h \\
+  b_{K+1} v^{K+1-h} - \sum_{j=h}^K P_j v^{j-h} & K \geq  h \\
+\end{array}
+ \right .\end{aligned}$$ Using a summation by parts, this has
+expectation $$\begin{aligned}
+~_h V &= \sum_{j=0}^{\infty}
+\left(b_{h+j+1} v^{j+1} - \sum_{k=0}^y P_{h+k} v^k \right) ~_{j|} q_{x+h} \\
+&= \sum_{j=0}^{\infty}b_{h+j+1} v^{j+1} ~_{j|} q_{x+h}
+- \sum_{j=0}^{\infty} P_{h+j} v^j  ~_j p_{x+h} \\
+&= E (PVFB) - E(PVFP) .\end{aligned}$$
+
+## Recursive Calculations: Policy Values with Annual Cash Flows {#S:Recursive}
+
+Begin with the expression for the general discrete policy and split off
+the first year $$\begin{aligned}
+~_h V &=  b_{h+1} v  q_{x+h} - P_h+
+ \sum_{s=0}^{\infty} \left\{b_{h+s+1} v^{s+2} ~_{s+1|} q_{x+h} -  P_{h+s+1} v^{s+1}  ~_{s+1} p_{x+h} \right\}\end{aligned}$$
+where we have used $s=j-1$. Now, recall the relation
+$~_{s+1} p_{x+h}= p_{x+h} ~_s p_{x+h+1}$ and $$\begin{aligned}
+~_{s+1|} q_{x+h} &= ~_{s+1} p_{x+h} q_{x+h+s+1} \\
+&= p_{x+h} ~_s p_{x+h+1} q_{x+h+s+1} = p_{x+h} ~_{s|} q_{x+h+1}\end{aligned}$$
+With this, we have $$\begin{aligned}
+~_h V &=  b_{h+1} v  q_{x+h} - P_h+
+vp_{x+h} \sum_{s=0}^{\infty} \left\{b_{h+1+s} v^{s+1} ~_{s|} q_{x+h+1} -  P_{h+1+s} v^s  ~_s p_{x+h+1} \right\} \\
+&=  b_{h+1} v  q_{x+h} - P_h+ vp_{x+h} ~_{h+1} V.\end{aligned}$$ Put
+another way, we can express this as
+
+  --------------- ---------------------------- -----------------------
+   $~_h V + P_h$     $= v  q_{x+h} b_{h+1}$     $+vp_{x+h} ~_{h+1} V$
+   policy value    is sufficient to provide a   plus the policy value
+   plus premium      death benefit for the       for the proportion
+                     proportion that fails          that survives
+  --------------- ---------------------------- -----------------------
+
+**Special Case.** Consider a single pay whole life insurance so that
+$b_h=1$, $P_0 = A_x$, $P_h = 0$ for $h\ge 1$, and $~_h V = A_{x+h}$.
+Then, for $h=0$, $$\begin{aligned}
+A_x = v  q_{x+1} +vp_{x+1} A_{x+1} .\end{aligned}$$ For $h\ge 1$,
+$$\begin{aligned}
+A_{x+h}  = v  q_{x+h} +vp_{x+h} A_{x+h+1} .\end{aligned}$$ This is our
+familiar recursive insurance form.
+
+**Example.** Consider a special fully discrete 10- year endowment policy
+to (30). Level premiums are payable for 10 years. The maturity value is
+1 and a level $i=6\%$ interest is assumed. For simplicity, mortality is
+given as $~_k p_{30} = 0.98^k$. The death benefit is 1 plus the policy
+value. Calculate $~_3 V$.
+
+*Solution.*
+
+Using the recursive reserve formulation, we have $$\begin{aligned}
+(1.06)(~_h V + P) &=  b_{h+1}  q_{x+h} + p_{x+h} ~_{h+1} V\\
+&= (1+ ~_{h+1} V)  q_{x+h} + p_{x+h} ~_{h+1} V = 0.02 + ~_{h+1} V\end{aligned}$$
+because $q_{x+h}=1-p_{x+h}=1- \frac{~_{h+1} p_x}{~ _h p_x} = 0.02$. We
+re-write this as $$\begin{aligned}
+1.06 ~_h V - ~_{h+1} V  &=   q_{x+h} - 1.06 P\end{aligned}$$
+Multiplying each side by $v^{h+1}$ yields $$\begin{aligned}
+v^h ~_h V - v^{h+1} ~_{h+1} V  &=  v^{h+1} q_{x+h} - v^h P .\end{aligned}$$
+Summing both sides over $h=0, \ldots, 9$ yields $$\begin{aligned}
+v^0 ~_0 V - v^{10} ~_{10} V  &= \sum_{h=0}^9 \left( v^{h+1} q_{x+h} - v^h P \right)\\
+&= (v(0.02) - 1.06 P) \ddot{a}_{\overline{10|}} .\end{aligned}$$
+Because $~_0 V=0$ and $~_{10} V =1$, we have $$\begin{aligned}
+P &= \frac{v^{10}}{\ddot{a}_{\overline{10|}}} +0.02 v = 0.09044 .\end{aligned}$$
+
+## Expense Augmented Policy Values {#S:ExpenseAugment}
+
+We now add expenses to our benefit premiums ($P$) and call them expense
+augmented premiums ($G$, for “gross premiums”). In practice, there are
+several additional layers before $G$ is quoted to the public, for
+example, dividends for participating policies, profit loadings for
+nonparticipating policies, impact of nonforfeiture benefits, effects of
+competition, and so on.
+
+Expense rates vary significantly by company. Larger companies generally
+have lower expense rates but not as much as economies of scale would
+suggest. Expenses are usually broadly classified as insurance or
+investment expenditures. The latter are expressed as a percentage of
+return and thus, we use $i = 6\%$ in lieu of $6.5\%$ in our calculations
+($1/2\%$ for expenses). The former are classified by line of business
+(for example, ordinary versus group, life versus annuity, and so forth).
+
+The units of expense enter our calculations as:
+
+-   per policy
+
+-   percentage of premiums
+
+-   per \$1,000 death benefit (policy size)
+
+-   per claim (may vary by lapse, surrender, maturity).
+
+[ll]{}\
+\
+[**Classification**]{} & [**Components**]{}\
+& Analysis\
+& Costs of buying, selling and servicing\
+&\
+Acquisition & Selling expense, including agents commissions and
+advertising\
+& Risk classification (underwriting), including health examinations\
+& Preparing new policies and records\
+Maintenance & Premium collection and accounting\
+& Beneficiary change and settlement option preparation\
+& Policyholder correspondence\
+Settlement & Claim investigation and legal defense\
+& Costs of disbursing benefit payments\
+General & Research, Product Development\
+& Actuarial and general legal services\
+& General accounting and administration\
+& Taxes, licenses and fees\
+
+**Example.** Consider at 25-year endowment to a select life age \[30\].
+The insured amount is \$ 100,000. The insurer incurs initial expenses of
+\$2,000 plus 50% of first year premium, renewal expenses of 2.5% of
+premiums. Benefits are payable immediately. Use the Illustrative
+Mortality Table with $i=6\% $.
+
+a\) Provide an expression for the gross future loss random variable.
+
+b\) Calculate the expense-augment (gross) annual premium.
+
+*Solution.*
+
+a\) (i) The present value of benefit outgo is
+$100,000 v^{\min(T[30],25) }$.
+
+\(ii) The present value of gross premium income is
+$G \ddot{a}_{\overline{\min(K[30],25)|}}$.
+
+\(iii) The present value of expenses is
+$2000+0.025 G \ddot{a}_{\overline{\min(K[30],25)|}} + 0.475 G$
+
+The gross future loss random variable $L_0^g$ is (i)+(ii)+(iii).
+
+b\) (i) The EPV of benefit outgo is $$\begin{aligned}
+ &= 100,000 \bar{A}_{[30]:\overline{25|}} \\
+  &= 100,000 \left( \frac{i}{\delta} A_{[30]:\overline{25|}}^{~~1} +A_{[30]:\overline{25|}}^{~~~~~1}  \right)\\
+  &= 29,873.20 .\end{aligned}$$
+
+\(ii) The EPV of gross premium income is $$\begin{aligned}
+ &= G \ddot{a}_{[30]:\overline{25|}} = G (14.73113) .\end{aligned}$$
+
+\(ii) The EPV of expenses is $$\begin{aligned}
+ &= 2000 + 0.025 G \ddot{a}_{[30]:\overline{25|}} + 0.475 G \\
+  &= 2000 + (0.843278) G .\end{aligned}$$ Now, setting (i)+(iii)=(ii),
+we have $$\begin{aligned}
+G &= \frac{29,873.20 +2,000}{14.73113 - 0.843278} = 2,295.05 .\end{aligned}$$
+
+$\Box$
+
+**Example.** For a fully discrete whole life insurance of 100,000 on
+(x), you are given: (i) Expenses, paid at the beginning of the year, are
+as follows:
+
+[l|ccc]{}\
+& Percentage of & Per 1000 & Per Policy\
+Year & Premium Expenses & Expenses & Expenses\
+First Year & 50%&2.0& 150\
+2+ & 4% & 0.5 & 25\
+
+\(ii) $i = 0.04$ (iii) $\ddot{a}_x =10.8$.
+
+Calculate the expense-loaded premium using the equivalence principle.
+
+*Solution.*
+
+EPV Premium = $G \ddot{a}_x = G (10.8)$
+
+EPV Benefit = $100000 A_x$
+
+EPV Expenses $$\begin{aligned}
+&= 0.5 G + 200 + 150
++ (0.04 G + 50 + 25) a_x \\
+&= G (0.5 +0.04 a_x) + 350 + 75 a_x = G (0.892) + 1,085 .\end{aligned}$$
+Equating EPV Premium = EPV Benefit + EPV Expenses yields
+$$\begin{aligned}
+10.8 G &= 100000 A_x + 0.892 G + 1085 .\end{aligned}$$ Solving for G
+yields $$\begin{aligned}
+G &= \frac{100000 A_x + 1085}{10.8 - 0.892} = \frac{58462  1085}{9.908} = 6009.99 .\end{aligned}$$
+
+$\Box$
+
+**Example.** Consider at 10-year term life policy for \$ 100,000 to a
+life age (30). Benefits are payable immediately, premiums are payable at
+the beginning of the year. Use the Illustrative Mortality Table with
+$i=6\% $. Expenses are according to the following schedule:
+
+[l|ccc]{}\
+& Per & Per \$1000 of & Percent of\
+Type & Policy & Insurance& Premium\
+First Year & \$50 & 5.00 & 82%\
+Years 2-5 & 6 & 0.50 & 14.5\
+Years 6-10 & 6 & 0.50 & 7.0\
+Claim Settlement & 25 & 0.10\
+
+Calculate $G$, the gross annual premium.
+
+*Solution.*
+
+$$\begin{aligned}
+G \ddot{a}_{30:\overline{10|}}&=
+ 100,000 \bar{A}_{30:\overline{10|}}^{~1}
+ + (25+100(0.10)) \bar{A}_{30:\overline{10|}}^{~1}
+ + 550 \\
+ &~~~+& 0.82 G + 56 a_{30:\overline{9|}}
+ + 0.145 G a_{30:\overline{4|}}
+ + 0.07 G ~_{5|5} \ddot{a}_{30} .\end{aligned}$$
+
+Thus, $$\begin{aligned}
+G &=
+\frac{100,035 \bar{A}_{30:\overline{10|}}^{~1}
+ + 56 \ddot{a}_{30:\overline{10|}} + 494}
+{0.93 \ddot{a}_{30:\overline{10|}} - 0.075
+\ddot{a}_{30:\overline{5|}} - 0.675} \approx \$385.\end{aligned}$$
+
+**Example - Follow-up**
+
+-   Determine the net premium policy value at $t=5$.
+
+-   Determine the gross premium policy value at $t=5$.
+
+*Solution:* The net premium is $$\begin{aligned}
+P &=
+100000 \frac{ \bar{A}_{30:\overline{10|}}^{~1}}
+{\ddot{a}_{30:\overline{10|}}} \approx \$189.\end{aligned}$$
+
+The net premium policy value is $$\begin{aligned}
+_5 V^n &= \mathrm{E~}PVFB - \mathrm{E~}PVFNP  = 100000  \bar{A}_{35:\overline{5|}}^{~1} -
+P \ddot{a}_{35:\overline{5|}}  \approx \$144.\end{aligned}$$
+
+The gross premium policy value is $$\begin{aligned}
+_5 V^g &= \mathrm{E~}PVFB +\mathrm{E~}PVFE - \mathrm{E~}PVFGP \\
+&= (100000 + 25 + 100 \times 0.1)  \bar{A}_{35:\overline{5|}}^{~1} \\
+& & ~~~~~~~+ (6 + 100 \times .5 + 0.07G )  \ddot{a}_{35:\overline{5|}} -
+G \ddot{a}_{35:\overline{5|}}  \approx \$ - 363.\end{aligned}$$
+
+$\Box$
+
+## Policy Values with Continuous Cash Flows
+
+Let
+
+-   $P_t$ be the annual rate of premium payable at time $t$
+
+-   $e_t$ be the annual rate of premium-related expense payable at time
+    $t$
+
+-   $b_t$ be the benefit, or sum insured, payable at time $t$ for
+    failure at time $t$
+
+-   $E_t$ be the expense of paying the benefit at time $t$
+
+-   $\mu_{[x]+t}$ be the force of mortality at age $[x]+t$
+
+-   $\delta_t$ be the force of interest at time $t$
+
+-   $v(t) = \exp\left(-\int_0^t \delta_s ds \right)$ is the present
+    value (at time 0) of 1 at time $t$
+
+-   $~_t V$ be the policy value at time $t$
+
+At time $t$, the present value of future benefits is $$\begin{aligned}
+PVFB_t &= \int_0^{\infty} b_{t+s} \frac{v(t+s)}{v(t)} ~_s p_{[x]+t}~ \mu_{[x]+t+s} ~ds,\end{aligned}$$
+the present value of future expenses is $$\begin{aligned}
+PVFE_t &= \int_0^{\infty} E_{t+s} \frac{v(t+s)}{v(t)} ~_s p_{[x]+t}~ \mu_{[x]+t+s} ~ds
++ \int_0^{\infty} e_{t+s} \frac{v(t+s)}{v(t)} ~_s p_{[x]+t} ~ds,\end{aligned}$$
+and the present value of future premiums is $$\begin{aligned}
+PVFP_t &=  \int_0^{\infty} P_{t+s} \frac{v(t+s)}{v(t)} ~_s p_{[x]+t} ~ds.\end{aligned}$$
+Combining these, we have the policy value at time $t$ is
+$$\begin{aligned}
+~_t V &= PVFB_t + PVFE_t - PVFP_t \\
+ &= \int_0^{\infty} (b_{t+s}+E_{t+s}) \frac{v(t+s)}{v(t)} ~_s p_{[x]+t}~ \mu_{[x]+t+s} ~ds \\
+&~~~~~~-&  \int_0^{\infty} (P_{t+s}-e_{t+s}) \frac{v(t+s)}{v(t)} ~_s p_{[x]+t}~ ds\end{aligned}$$
+
+**Example. Inflation Indexed Benefits and Premiums.** Consider a fully
+continuous whole life insurance with both benefits and premiums indexed
+to inflation rates. Specifically, for failure at policy time $t$, the
+benefit payment is $b_t = b (1+r_b)^t$. Premiums also increased
+continuously, with premium payment rate at time $t$ being
+$P_t = P (1+r_P)^t$. Thus, we allow the premium rate increase ($r_P$) to
+differ from the benefit rate increase ($r_b$). Assuming a constant force
+of interest and no expenses, the policy value at time $t$ may be
+expressed as $$\begin{aligned}
+~_t V &=  \int_0^{\infty} b_{t+s} v^s ~_s p_{[x]+t} \mu_{[x]+t+s} ~ds -  \int_0^{\infty} P_{t+s} v^s ~_s p_{[x]+t} ~ds \\
+&=  b (1+r_b)^t \int_0^{\infty} (1+r_b)^s v^s ~_s p_{[x]+t} ~\mu_{[x]+t+s} ~ds -  P (1+r_P)^t \int_0^{\infty} (1+r_P)^s v^s ~_s p_{[x]+t}~ ds \\
+&=  b (1+r_b)^t \bar{A}_{[x]+t}^{b} -  P (1+r_P)^t\bar{a}_{[x]+t}^{P} ,\end{aligned}$$
+where $\bar{A}_{[x]+t}^{b}$ is evaluated at discount rate
+$v_b = (1+r_b)v$. This corresponds to a new force of interest
+$\delta_b = - \ln v_b = - \ln (v(1+r_b)) = \delta - \ln(1+r_b)$.
+Similarly, for $\bar{a}_{[x]+t}^{P}$, the new force of interest is
+$\delta_P = \delta - \ln(1+r_P)$.
+
+To illustrate, suppose that $i=6\%$, $r_b=3\%$, and $r_P= 1\%$. Then, we
+would calculate policy values as $$\begin{aligned}
+~_t V =  b (1.03)^t \bar{A}_{[x]+t}^{@i=2.92\%} -  P (1.01)^t \bar{a}_{[x]+t}^{@i=4.95\%} .\end{aligned}$$
+
+$\Box$
+
+To get an idea as to how policy values evolve over time, we write the
+policy value at time $t$ in a single equation as $$\begin{aligned}
+~_t V &=  \int_0^{\infty}
+ \left\{ (b_{t+s}+E_{t+s})\mu_{[x]+t+s} - (P_{t+s}-e_{t+s})
+ \right\}
+  \frac{v(t+s)}{v(t)} ~_s p_{[x]+t}  ds \\
+ &= \int_t^{\infty}
+ \left\{ (b_r+E_r)\mu_{[x]+r} - (P_r-e_r) \right\}
+  \frac{v(r)}{v(t)} \frac{~_r p_{[x]}}{~_t p_{[x]}}  ~dr\end{aligned}$$
+
+using $r=t+s$ and the relation
+$~_{r-t} p_{[x]+t}=\frac{~_r p_{[x]}}{~_t p_{[x]}}$. This yields
+$$\begin{aligned}
+v(t) ~_t p_{[x]} ~_t V
+ &= \int_t^{\infty} \left\{ (b_r+E_r)\mu_{[x]+r} - (P_r-e_r) \right\} v(r) ~_r p_{[x]}  dr\end{aligned}$$
+Now take a (partial) derivative with respect to $t$. On the right-hand
+side, by the fundamental theorem of calculus, we have $$\begin{aligned}
+\frac{\partial}{\partial t}RHS &= - \left\{ (b_t+E_t)\mu_{[x]+t} - (P_t-e_t) \right\} v(t) ~_t p_{[x]}.\end{aligned}$$
+On the left-hand side, by the chain-rule of differentiation (twice), we
+have $$\begin{aligned}
+\frac{\partial}{\partial t}LHS &=
+v(t) ~_t p_{[x]} \left\{ \frac{\partial}{\partial t}~_t V - (\delta_t + \mu_{[x]+t}) ~_t V \right\}.\end{aligned}$$
+Equating both sides yields *Thiele’s differential equation*
+
+[cccc]{}\
+$\frac{\partial}{\partial t} ~_t V$ & $=P_t-e_t$
+& $+(\delta_t + \mu_{[x]+t}) ~_t V$ & $-
+(b_t+E_t)\mu_{[x]+t}$\
+change in&= net premium & + increase in reserve & - benefit\
+reserve & income & due to interest and mortality & outgo\
+
+### Euler’s Method for Solving Ordinary Differential Equations
+
+Wish to evaluate a generic function f($t$). Suppose we know a starting
+value, for example, f(0) = $c$. We also know that we can express
+f($\cdot$) through the ordinary differential equation $$\begin{aligned}
+\frac{\partial}{\partial t} \textrm{f}(t) = \textrm{g}(\textrm{f}(t)),\end{aligned}$$
+where $\textrm{g}(\cdot)$ is a known function. Occasionally, we can
+solve the ordinary differential equation analytically. More often, a
+numerical solution is available. The easiest to explain and to implement
+is Euler’s method. To see this, consider a small $h$ and use a straight
+line approximation for the derivative $$\begin{aligned}
+\frac{\partial}{\partial t} \textrm{f}(t) \approx \frac{\textrm{f}(t+h)-\textrm{f}(t)}{h}.\end{aligned}$$
+With this, we have an approximation to the ordinary differential
+equation $$\begin{aligned}
+\textrm{f}(t+h) \approx  \textrm{f}(t) + h \textrm{g}(\textrm{f}(t))\end{aligned}$$
+that we can evaluate recursively.
+
+**Example - Interest Theory**. Suppose that $\textrm{g}(t) = 0.05 t$, a
+line, and f(0) = 1. Then, if $h=0.001$, we have $$\begin{aligned}
+\textrm{f}(t+h) \approx  \textrm{f}(t) + (0.001) (0.05) \textrm{f}(t) .\end{aligned}$$
+
+  $t$                               0          0.001          0.002          0.998          0.999              1
+  -------------------- -------------- -------------- -------------- -------------- -------------- --------------
+  Approximate f($t$)     1.0000000000   1.0000500000   1.0001000025   1.0511646632   1.0512172215   1.0512697823
+  Exact f($t$)           1.0000000000   1.0000500013   1.0001000050   1.0511659745   1.0512185341   1.0512710964
+  Error                  0.0000000000   0.0000000013   0.0000000025   0.0000013113   0.0000013127   0.0000013140
+
+$\Box$
+
+For this example, we can evaluate f($\cdot$) analytically, in that
+$$\begin{aligned}
+\frac{\partial}{\partial t} \textrm{f}(t) = 0.05 \textrm{f}(t)  \ \ \ \ \Rightarrow \ \ \ \ \frac{\partial}{\partial t} \ln \textrm{f}(t) = 0.05 ,\end{aligned}$$
+and so that, with f(0) = 1, we have $\textrm{f}(t) = e^{0.05 t}$.
+
+$\Box$
+
+**Example - Whole Life**. Consider a whole life insurance to ($x$) with
+a death benefit of 100,000 payable at the moment of failure that is paid
+up immediately. Using a constant force of interest $\delta$ and assuming
+no expenses, Thiele’s differential equation can be expressed as
+$$\begin{aligned}
+\frac{\partial}{\partial t} ~_t V  = (\delta + \mu_{[x]+t}) ~_t V -(100,000)\mu_{[x]+t},\end{aligned}$$
+because premiums $P_t = 0$ for $t>0$. In this case, the policy value can
+be computed using Thiele’s differential equation or via numerical
+integration because $$\begin{aligned}
+~_t V  = 100,000 \bar{A}_{[x]+t} = 100,000 \int_0^{\infty} e^{-\delta s}  ~_s p_{[x]+t} ~ \mu_{[x]+t+s} ds .\end{aligned}$$
+That is, because there are no future premiums, the policy value is
+simply the expected present value of future benefits.
+
+For mortality, we follow DHW and use the “Standard Ultimate Survival
+Model,” so that $$\begin{aligned}
+\mu_x = A + B c^x\end{aligned}$$ where $A = 0.00022$,
+$B=2.7 \times 10^{-6}$, and $c=1.124$ for ultimate mortality. Using the
+ordinary differential equation, we calculated the approximate policy
+value using the recursive expression $$\begin{aligned}
+100,000\bar{A}_{x+t+h} \approx  100,000\bar{A}_{x+t} + 0.001 \left((\ln(1.05) + \mu_{[x]+t}) (100,000)\bar{A}_{x+t} -(100,000)\mu_{[x]+t}\right),\end{aligned}$$
+beginning with $100,000 \bar{A}_{40} = 12,404$ from the DHW text. The
+following table is an excerpt of our results. The value for
+$\bar{A}_{60}$ agrees with DHW (Table 4.3, page 86).
+
+  -------- ------------- ---------------------
+                              Approximate
+    $x$       $\mu_x$     $100,000 \bar{A}_x$
+   40.000   0.000509745       12404.00000
+   40.001   0.000509779       12404.56054
+   40.002   0.000509813       12405.12111
+   40.003   0.000509847       12405.68170
+                         
+   59.999   0.003221177       29742.05101
+   60.000   0.003221528       29743.27582
+  -------- ------------- ---------------------
+
+## Retrospective Policy Values
+
+**General Discrete Policy.** For a general discrete policy, we have
+(known) premiums $P_h$ payable at time $h$ and benefits payable at time
+$b_h$. As we have seen in Section \[S:Recursive\], the policy value can
+be expressed recursively as $$\begin{aligned}
+~_h V  &=   v q_{x+h} b_{h+1} -  P_h + v p_{x+h} ~_{h+1} V.\end{aligned}$$
+Now, multiply each side by $v^h ~_h p_x$ to get $$\begin{aligned}
+v^h ~_h p_x  ~_h V  - v^{h+1} ~_h p_x ~ p_{x+h} ~_{h+1} V  &=   v^{h+1} ~_h p_x ~ q_{x+h} b_{h+1} -  P_h  v^h ~_h p_x\end{aligned}$$
+Note the relations $~_{h+1} p_x=~_h p_x ~ p_{x+h}$ and
+$~_{h|} q_x=~_h p_x ~ q_{x+h}$. Sum each side of the equation over
+$h=0, \ldots, k-1$. On the left-hand side, we have $$\begin{aligned}
+\sum_{h=0}^{k-1} \left\{v^h ~_h p_x  ~_h V  - v^{h+1} ~_{h+1} p_x ~_{h+1} V \right\} &=
+v^0 ~_0 p_x  ~_0 V - v^k ~_k p_x ~_k V =  -  ~_k E_x ~_k V,\end{aligned}$$
+recalling the relation $~_k E_x = v^k ~_k p_x$ and assuming that
+$~_0 V=0$. On the right-hand side, we have $$\begin{aligned}
+\sum_{h=0}^{k-1} \left\{v^{h+1} ~_{h|} q_x b_{h+1} -  P_h  ~ v^h ~_h p_x \right\} .\end{aligned}$$
+Thus, we may write $$\begin{aligned}
+~_k V &= \frac{\sum_{h=0}^{k-1} P_h  ~ v^h ~_h p_x }{ ~_k E_x}-
+\frac{\sum_{h=0}^{k-1} v^{h+1} ~_{h|} q_x b_{h+1}  }{ ~_k E_x} \\
+&= \textrm{Accumulated Value of Premium} - \textrm{Accumulated Cost of Insurance} .\end{aligned}$$
+
+**Example.** For a fully discrete policy for $x$, the first year benefit
+is 10,000 and the first year premium payable at the beginning of the
+year is 500. Calculate the policy value at duration 1, assuming $i=5\%$
+and $q_x = 0.03$.
+
+*Solution.*
+
+From the retrospective formula, we have $$\begin{aligned}
+~_1 V &= \frac{\sum_{h=0}^0 P_h  v^h ~_h p_x }{ ~_1 E_x}-
+\frac{\sum_{h=0}^0 v^{h+1} ~_{h|} q_x b_{h+1}  }{ ~_1 E_x} =
+ \frac{P_0}{ ~_1 E_x}-
+\frac{ v  q_x b_1  }{ ~_1 E_x} \\
+&= \frac{500}{ v p_x}-
+\frac{ v  q_x (10000)}{ v p_x} = \frac{500-10000\frac{1}{1.05}(0.03)}{\frac{1}{1.05} (1-0.03)} = 231.96 .\end{aligned}$$
+
+$\Box$
+
+**Application.** Consider two generic policies that have level premiums
+$P_1$ and $P_2$ and policy values $~_k V_1$ and $~_k V_2$, respectively.
+Suppose that they have the same accumulated cost of insurance, denoted
+as $~_k AC_x$, at policy duration $k$. Then, from the retrospective
+formula, we may express the difference in policy values as
+$$\begin{aligned}
+~_k V_1 - ~_k V_2 &= (P_1-P_2) \frac{\sum_{h=0}^{k-1}  v^h ~_h p_x }{ ~_k E_x}
+= (P_1-P_2) \ddot{s}_{x:\overline{k|}}.\end{aligned}$$ Here, the
+difference in accumulated values drops out because they are assumed
+equivalent. Thus, the difference in policy values is a simple function
+of the difference in premiums
+
+**Example 1.** Suppose that Policy 1 is a traditional $n$-year endowment
+policy and Policy 2 is a traditional $n$-year term life policy. Then, we
+may write the excess policy value of the $n$-year endowment over the
+$n$-year term as $$\begin{aligned}
+~_k V_1 - ~_k V_2 &= (P_{x:\overline{n|}}-P_{x:\overline{n|}}^{1}) \ddot{s}_{x:\overline{k|}}.\end{aligned}$$
+
+$\Box$
+
+**Example 2.** Suppose that Policy 1 is a traditional $n$-year endowment
+policy and Policy 2 is a traditional $n$-pay whole life policy. Then, we
+may write the excess premium of the $n$-year endowment over the $n$-pay
+whole as $$\begin{aligned}
+P_{x:\overline{n|}}- ~_n P_x &= \frac{1}{\ddot{s}_{x:\overline{h|}}}(~_k V_1 - ~_k V_2 ) \\
+&= P_{x:\overline{n|}}^{~~1}(~_k V_1 - ~_k V_2 ) .\end{aligned}$$ In
+particular, if we take $k=n$, then we get $$\begin{aligned}
+P_{x:\overline{n|}}- ~_n P_x &= P_{x:\overline{n|}}^{~~1}(1 - A_{x+n} ) .\end{aligned}$$
+
+$\Box$
+
+**Exercise.** (a) Use the same logic to check the relation
+$$\begin{aligned}
+P_x  &= P_{x:\overline{n|}}^{1}+ P_{x:\overline{n|}}^{~~1}~_n V_x  ,\end{aligned}$$
+where $~_n V_x$ is the policy value of a whole life policy at duration
+$n$. (b) Suppose that $~_n V_x = 0.08$, $P_x =0.024$, and
+$P_{x:\overline{n|}}^{~~1} = 0.02$. Calculate $P_{x:\overline{n|}}^{1}$.
+
+*Solution.* (a) Suppose that Policy 1 is a traditional whole life policy
+and Policy 2 is a traditional $n$-year term life policy. Then, we may
+write the excess policy value of the whole life over the term policy as
+$$\begin{aligned}
+~_k V_1 - ~_k V_2 &= (P_x -P_{x:\overline{n|}}^{1}) \ddot{s}_{x:\overline{k|}}.\end{aligned}$$
+At duration $k=n$, the term policy has value 0 and the right-hand side
+is $~_n V_x$. As before,
+$1/\ddot{s}_{x:\overline{n|}} = P_{x:\overline{n|}}^{~~1}$, yielding the
+desired result. (b) From part (a), we have $$\begin{aligned}
+0.024 = P_x  &= P_{x:\overline{n|}}^{1}+ P_{x:\overline{n|}}^{~~1}~_n V_x = P_{x:\overline{n|}}^{1} + (0.02)(0.08).\end{aligned}$$
+This yields $P_{x:\overline{n|}}^{1} = 0.008.$
+
+## Policies with Discrete Cash Flows other than Annual
+
+### Policy Valuation
+
+Why other than annual? It is common to assume that benefits are payable
+at the moment of failure and that premiums are payable at the beginning
+of the $m$thly period (e.g., $m =2,$ or $4$).
+
+Traditional actuarial symbols are based on discrete annual cash flows
+because mortality rates are typically available annually.
+
+The “UDD” assumption is the primary tool for developing survival
+probabilities at other than annual intervals. Recall that this means
+*uniform distribution of deaths* within a year. This is not the same as
+the De Moivre assumption which is uniform over the lifetime of an
+individual.
+
+**UDD Assumption**.
+
+Recall earlier relations. For a whole life policy with a benefit payable
+at the end of the $m$thly period, the expected present value is
+$$\begin{aligned}
+A_x^{(m)} = \frac{i}{i^{(m)}} A_x,\end{aligned}$$ where $i^{(m)}$ is the
+$m$thly nominal interest rate determined by
+$1+i= \left(1+\frac{i^{(m)}}{m}\right)^m$. Note that this is an $exact$
+relationship under the UDD assumption. As $m \rightarrow \infty$, this
+yields $$\begin{aligned}
+\bar{A}_x = \frac{i}{\delta} A_x .\end{aligned}$$ Further,
+$$\begin{aligned}
+\ddot{a}_x^{(m)} = \alpha(m) \ddot{a}_x - \beta(m),\end{aligned}$$ where
+$$\begin{aligned}
+\alpha(m) = \frac{id}{i^{(m)} d^{(m)}} \textrm{    and    } \beta(m) = \frac{i-d}{i^{(m)} d^{(m)}},\end{aligned}$$
+and $d^{(m)}$ is the $m$thly nominal discount rate determined by
+$1-d= \left(1-\frac{d^{(m)}}{m}\right)^m$. As $m \rightarrow \infty$,
+this yields $$\begin{aligned}
+\bar{a}_x^{(m)} = \alpha(\infty) \ddot{a}_x - \beta(\infty),\end{aligned}$$
+where $$\begin{aligned}
+\alpha(\infty) = \frac{id}{\delta^2} \textrm{    and    } \beta(\infty) = \frac{i-d}{\delta^2} .\end{aligned}$$
+For approximations, we often use $$\begin{aligned}
+\alpha(m) \approx 1 \textrm{    and    } \beta(m) \approx \frac{m-1}{2m} .\end{aligned}$$
+
+With these assumptions and approximations, one can readily handle common
+traditional policies.
+
+**Special Case 1. $n$-year Endowment Policy** Insurance benefits payable
+at the moment of failure and premiums payable at the beginning of the
+year. In this case, the policy value at duration $k$ is
+$$\begin{aligned}
+~_k V  &= \bar{A}_{x+k:\overline{n-k|}} -
+P(\bar{A}_{x:\overline{n|}}) \ddot{a}_{x+k:\overline{n-k|}} .\end{aligned}$$
+To evaluate this, under UDD we have $$\begin{aligned}
+\bar{A}_{x+k:\overline{n-k|}} &=
+\bar{A}_{x+k:\overline{n-k|}}^{~~1}
++A_{x+k:\overline{n-k|}}^{~~~~~~1} \\
+&= \frac{i}{\delta} A_{x+k:\overline{n-k|}}^{~~1}
++A_{x+k:\overline{n-k|}}^{~~~~~~1}\end{aligned}$$ and $$\begin{aligned}
+P(\bar{A}_{x:\overline{n|}})
+=\frac{\bar{A}_{x:\overline{n|}}}{\ddot{a}_{x:\overline{n|}}}
+&=
+\frac{\frac{i}{\delta} A_{x:\overline{n|}}^{1}
++A_{x:\overline{n|}}^{~~1} }{\ddot{a}_{x:\overline{n|}}}\\
+&= \frac{i}{\delta}P_{x:\overline{n|}}^{1}
++P_{x:\overline{n|}}^{~~1} .\end{aligned}$$ This yields
+$$\begin{aligned}
+~_k V   &= \frac{i}{\delta} A_{x+k:\overline{n-k|}}^{~~1}
++A_{x+k:\overline{n-k|}}^{~~~~~~1} - \left(
+\frac{i}{\delta}P_{x:\overline{n|}}^{1} +P_{x:\overline{n|}}^{~~1}
+\right) \ddot{a}_{x+k:\overline{n-k|}} \\
+&= \frac{i}{\delta} ~_k V_{x:\overline{n|}}^{1} + ~_k
+V_{x:\overline{n|}}^{~~1},\end{aligned}$$ where
+$~_k V_{x:\overline{n|}}^{1}$ is the policy value at duration $k$ of an
+$n$-year term policy and $~_k V_{x:\overline{n|}}^{~~1}$ is the policy
+value at duration $k$ of an $n$-year pure endowment policy.
+
+$\Box$
+
+**Special Case 2. Whole Life Policy.** Benefits are payable at the end
+of year of failure and premiums are payable at the beginning of the
+$m$thly period. In this case, the policy value at duration $k$ is
+$$\begin{aligned}
+~_k V   &= A_{x+k} - P_x^{(m)} \ddot{a}_{x+k}^{(m)} .\end{aligned}$$
+Let us denote the policy value for a traditional whole life policy (with
+annual premiums) as $$\begin{aligned}
+~_k V_x  &= A_{x+k} - P_x \ddot{a}_{x+k} = 1 - d\ddot{a}_{x+k}- P_x
+\ddot{a}_{x+k} \\
+&= 1- \frac{\ddot{a}_{x+k}}{\ddot{a}_x}.\end{aligned}$$ Then, we may
+write the difference between these as $$\begin{aligned}
+~_k V  - ~_k V_x  &= P_x \ddot{a}_{x+k} - P_x^{(m)}
+\ddot{a}_{x+k}^{(m)} \\
+&= \frac{A_x}{\ddot{a}_x^{(m)}} \frac{\ddot{a}_x^{(m)}}{\ddot{a}_x}
+ \ddot{a}_{x+k} - P_x^{(m)} \ddot{a}_{x+k}^{(m)} \\
+ &= P_x^{(m)} \frac{\alpha(m)\ddot{a}_x - \beta(m)}{\ddot{a}_x}
+ \ddot{a}_{x+k} - P_x^{(m)} (\alpha(m)\ddot{a}_{x+k}-\beta(m)) \\
+&= P_x^{(m)} \left( \frac{ - \beta(m)}{\ddot{a}_x}
+ \ddot{a}_{x+k} -  (-\beta(m))  \right) \\
+ &= P_x^{(m)}\beta(m) \left(
+ 1- \frac{\ddot{a}_{x+k}}{\ddot{a}_x}  \right) = P_x^{(m)}\beta(m) ~_k V_x .\\\end{aligned}$$
+We think about the $m$thly premium policy value as equal to the policy
+value for a traditional (annual premium) policy plus a reserve on an
+auxiliary policy to cover the premium loss in the year of death.
+
+$\Box$
+
+**Example. Whole Life Policy.** You are given $i=6\%$,
+$\ddot{a}_{65} = 9.9,$ and $\ddot{a}_{70} = 8.8.$ Assuming UDD,
+calculate the policy value for a whole life policy issued to a life (65)
+at duration $k=5$, assuming that premiums are payable at the beginning
+of each month.
+
+*Solution.*
+
+The policy value is $$\begin{aligned}
+~_5 V &= A_{70} - P_{65}^{(12)} \ddot{a}_{70}^{(12)} .\end{aligned}$$
+The whole life insurance net single premium is $$\begin{aligned}
+A_{70} = 1-d\ddot{a}_{70} = 1- \frac{0.06}{1.06} 8.8 = 0.501886792.\end{aligned}$$
+To calculate the monthly annuities, we first need the interest factors.
+With $1.06 = (1+\frac{i^{(12)}}{12})^{12},$ we have
+$i^{(12)}= 0.058410607.$ With
+$1-\frac{0.06}{1.06}=1-d = (1-\frac{d^{(12)}}{12})^{12},$ we have
+$d^{(12)}= 0.058127667.$ This yields $$\begin{aligned}
+\alpha(12) = \frac{id}{i^{(12)} d^{(12)}}=\frac{0.06 \frac{0.06}{1.06}}{(0.058410607) (0.058127667)} =1.000281005,\end{aligned}$$
+and $$\begin{aligned}
+\beta(12) = \frac{i-d}{i^{(12)} d^{(12)}}= \frac{0.06-\frac{0.06}{1.06}}{(0.058410607) (0.058127667)}=0.46811951.\end{aligned}$$
+Thus, $$\begin{aligned}
+\ddot{a}_{70}^{(12)} = \alpha(12) \ddot{a}_{70} - \beta(12) = (1.000281005)8.8-0.46811951=8.334353338.\end{aligned}$$
+and $$\begin{aligned}
+P_{65}^{(12)} &= \frac{A_{65}}{\ddot{a}_{65}^{(12)}} =
+\frac{1-d\ddot{a}_{65}}
+{ \alpha(12) \ddot{a}_{65} - \beta(12)}\\
+&=
+\frac{1-\frac{0.06}{1.06} 9.9}{
+(1.000281005)9.9-0.46811951}=0.046596542.\end{aligned}$$ With this, the
+policy value is $$\begin{aligned}
+~_5 V  &= A_{70} - P_{65}^{(12)} \ddot{a}_{70}^{(12)} = 0.501886792 - (0.046596542) 8.334353338= 0.11353475
+.\end{aligned}$$
+
+### Policy Values at Fractional Durations
+
+An insurance company takes on contracts continuously throughout the year
+yet has a single valuation date (e.g., 1 July 20xx). Thus, even for
+traditional policies with annual cash flows, one needs the policy value
+when the duration includes a fraction of a year. Of course, for a fully
+continuous policy value, no special adjustments need be made.
+
+TimeLine Here.
+
+Let $k$ denote the integer duration time and $s$ denote the fractional
+time, so that $0<s<1$ and the duration time is $k+s$. For a fully
+discrete policy, as we have seen in Section \[S:Recursive\], the policy
+value can be expressed recursively as $$\begin{aligned}
+~_k V  &=   v q_{x+k} b_{k+1} - P_k + v p_{x+k} ~_{k+1} V .\end{aligned}$$
+Now, for $0<s<1$, we define the policy value at fractional duration to
+be $$\begin{aligned}
+~_{k+s} V  &=   v^{1-s} ~_{1-s} q_{x+k+s} ~b_{k+1}  + v^{1-s} ~_{1-s} p_{x+k+s}  ~_{k+1} V .\end{aligned}$$
+To evaluate this, under UDD we have $$\begin{aligned}
+~_{1-s} q_{x+k+s}  &= \frac{(1-s) q_{x+k}}{1- s \times q_{x+k}}\end{aligned}$$
+and $$\begin{aligned}
+~_{1-s} p_{x+k+s}  &= \frac{p_{x+k}}{1- s \times q_{x+k}} .\end{aligned}$$
+Thus, $$\begin{aligned}
+~_{k+s} V  &=   \frac{v^{1-s}}{1- s \times q_{x+k}}
+\left( (1-s) \left\{q_{x+k} b_{k+1}\right\}   +  p_{x+k}  ~_{k+1} V \right) \\
+&=   \frac{v^{1-s}}{1- s \times q_{x+k}}
+\left( (1-s)\left\{ (P_k +~_k V)(1+i) - p_{x+k}  ~_{k+1} V
+\right\}  +  p_{x+k}  ~V_{k+1} \right) \\
+&=   \frac{v^{1-s}}{1- s \times q_{x+k}}
+\left( (1-s) (1+i)(P_k +~_k V) +s \times  p_{x+k}  ~_{k+1} V \right) \\
+&\approx &
+(1-s) (P_k +~_k V) +s \times  ~_{k+1} V .\end{aligned}$$ This
+approximation assumes a small mortality rate so that $q_{x+k} \approx 0$
+and small interest rate so that $v^{-s} \approx 1.$
+
+It is common to write this approximation as
+
+  --------------- ------------------------------- -------------------
+   $~_{k+s} V =$    $(1-s)~_k V +s  ~_{k+1} V$       + $(1-s) P_k$
+      reserve      interpolate terminal reserves   unearned premiums
+  --------------- ------------------------------- -------------------
+
+where $~_k V, ~_{k+1} V$ are known as “terminal reserves” and
+$(1-s) P_k$ is that portion of the annual premium that has been
+collected but “not earned’ by the valuation date.
+
+**Example.** (Act Mat, p. 219) Consider a 5-year term policy to (50)
+with $P = 1000 P_{50:\overline{5|}}^{~1} = 6.55692$, $~_2 V = 1.64$, and
+$~_3 V = 1.73$. Then, we may compute the policy value at duration
+$k+s=2.25$ as $$\begin{aligned}
+~_{2+0.25} V  &\approx &
+(1-0.25) (P_2 +~_2 V ) +0.25 \times  ~_3 V  \\
+&=  (1-0.25) (P6.55692 +1.64) +0.25 \times 1.73 = 6.58 .\end{aligned}$$
+For policies values at other fractional durations, see **Figure xxx**
+
+**Don’t know about fractional duration reserves for mthly policies. Hold
+for now.**

@@ -1,0 +1,885 @@
+# Single Lifetime Distribution Essentials
+
+## The Lifetime Random Variable, $X$
+
+We begin by considering a non-negative random variable, $X$. Typically,
+we think of $X$ as the age at death of a newborn child. We summarize the
+distribution of $X$ using the *distribution function* $$\begin{aligned}
+F(x)&=\Pr(X \le x)\\\end{aligned}$$ and the *survival function*
+$$\begin{aligned}
+S(x)&= 1-F(x) = \Pr(X>x).\\\end{aligned}$$ Recall the **defining
+properties of a distribution function**:
+
+1.  $F(-\infty)= \lim_{x \rightarrow -\infty} F(x) = 0$
+
+2.  $F(\infty)= \lim_{x \rightarrow \infty} F(x)  =1$
+
+3.  $F(x)$ is nondecreasing in $x$.
+
+**Example - A Distribution due to Makeham (1860).** This lifetime
+distribution provides a pleasant balance between complexity and
+practicality. It is more complex than simpler alternatives, such as the
+exponential distribution or a distribution due to Gompertz. Nonetheless,
+it can be (and is) used for selected actuarial applications.
+
+One way to define the distribution is through the distribution function,
+given as $$\begin{aligned}
+F(x)&=
+\left\{
+\begin{array}{cc}
+0 & x<0 \\
+1 - \exp\left(-Ax-m(c^x-1)\right) &  x \ge 0
+\end{array}
+\right.\end{aligned}$$ Here, $A$ and $m$ and $c$ are parameters that the
+analyst may specify to approximate experience under consideration.
+
+Both distribution and survival functions are bounded below by zero and
+above by one. Thus, we will not always write out the function over the
+entire domain, using these bounds to give implicit results. For
+examples, instead of writing out the function for $x<0$ and for
+$x \ge 0$, we will write $$\begin{aligned}
+S(x)&=\exp\left(-Ax-m(c^x-1)\right) .\end{aligned}$$
+
+$\Box$
+
+We begin with the distribution and survival functions because they
+summarize the distribution for any random variable. To summarize the
+distribution for *discrete* random variables, use the *probability mass
+function* (*pmf*). For example, for a uniform distribution on the
+integers from 1 to 100, we have, $$\begin{aligned}
+\Pr(X=x) = \frac{1}{100} & x=1,2,\ldots, 99,100.\\\end{aligned}$$ To
+summarize the distribution for *continuous* random variables, use the
+*probability density function* (*pdf*), defined as $$\begin{aligned}
+f(x) = \frac{\partial}{\partial x}F(x)=F^\prime (x) .\\\end{aligned}$$
+For non-negative random variables, we also use the *force of mortality*
+(also known as the *hazard rate* or *failure rate*) $$\begin{aligned}
+\mu(x)\equiv\frac{f(x)}{S(x)}=\frac{f(x)}{1-F(x)},\\\end{aligned}$$ to
+summarize the distribution.
+
+**Example - Makeham Distribution - continued.** The probability density
+function can be calculated using $f(x)=
+\frac{\partial}{\partial x} F(x)$. However, for this distribution the
+form is not intuitively appealing.
+
+Instead, we examine the force of mortality using the relation
+$$\begin{aligned}
+\mu(x)& = \frac{\frac{\partial}{\partial x}F(x)}{1-F(x)}
+=-\frac{\frac{\partial}{\partial x}S(x)}{S(x)}= -\frac{\partial}{\partial x}\ln(S(x)) .\\\end{aligned}$$
+For the Makeham distribution, we have $$\begin{aligned}
+\mu(x)& =  -\frac{\partial}{\partial x}\ln(S(x)) \\
+& =  -\frac{\partial}{\partial x} (-Ax - m (c^x-1)) \\
+& =   A + m c^x (\ln c)  =  A + B c^x ,\end{aligned}$$ where
+$B = m \ln c$.
+
+$\Box$
+
+<!-- ![image](ActMathCh3Figure9.pdf){width=".4\textwidth"} -->
+
+![\@ref(fig:Time)Timeline for Two Lives](Figures\JL_JointLifeTimeline.pdf){width=".75\textwidth"}
+
+
+
+**Interpretation of the Force of Mortality**. The force of mortality
+(*fom*) is the probability that a life aged $x$ fails in a tiny
+interval, per unit of time. See the following calculations:
+$$\begin{aligned}
+\mu(x)&=\frac{f(x)}{1-F(x)}=\lim_{\epsilon\downarrow 0}\frac{ \frac{F(x+\epsilon)-F(x)}{\epsilon}}{1-F(x)}\\
+&=\lim_{\epsilon\downarrow 0} \frac{\Pr(x<X\le x+\epsilon)}{\epsilon \: \Pr(X>x)}\\
+&=\lim_{\epsilon\downarrow 0} \frac{\Pr(x<X\le x+\epsilon |X>x)}{\epsilon}\end{aligned}$$
+
+To relate the force of mortality to the survival function, we begin with
+the relation $\mu(x)= -\frac{\partial}{\partial x}\ln(S(x)).$
+Integrating both sides, we have $$\begin{aligned}
+S(y)=\exp \left\{ -\int_0^{y}\mu(x)\:dx \right\},\\\end{aligned}$$
+assuming $S(0)=1$, or $F(0)=0$. This gives us a method to recover the
+survival function using the force of mortality.
+
+## The Future Remaining Lifetime, $T$
+
+Recall that $X$ is the age at death of an individual. Now we suppose
+that the individual survives to age $x$. Later, this will be the age at
+which the individual purchases an insurance contract. At age $x$, the
+individual’s future remaining lifetime is $$\begin{aligned}
+T=T(x)=X-x .\end{aligned}$$
+
+![image](Figures\JL_ActMathCh3Figure4.png){width=".5\textwidth"}
+
+### Summarizing the Distribution of $T$
+
+To discuss the distribution of $T$, we condition on the event
+$\{X \ge x \} = \{T\ge 0\}$. Motivation, for individuals who do not
+survive to age $x$, they do not purchase an insurance contract and so
+are not under consideration here. Recall:
+
+**Conditional Probabilities**. Let $A$ and $B$ be two generic events.
+Define the conditional probability $$\begin{aligned}
+\Pr(B|A)=\frac{\Pr(A\:\textrm{and}\:B)}{\Pr(A)} .\end{aligned}$$
+
+**Example - Uniform Distribution - continued.** Suppose that
+$X \sim \text{U}(0,100)$ and that $x=30$. The distribution function of
+$T=T(30) = X-30$ is $$\begin{aligned}
+F_x(t)=\Pr(T\le t)&=\Pr(X-30\le t| X\ge30)=\frac{\Pr(30\le X\le 30+t)}{\Pr(X\ge 30)}\\
+&=\frac{\frac{30+t-30}{100}}{1-\frac{30}{100}}=\frac{t}{70}\Rightarrow T\sim \text{U(0,70)}. \\\end{aligned}$$
+
+$\Box$
+
+In general, the distribution function of $T$ is $$\begin{aligned}
+F_x(t)=\Pr(T\le t)&=\Pr(T\le t|T\ge 0)=\Pr(X\le x+t|X\ge x)=\frac{\Pr(x<X\le x+t)}{\Pr(X\ge x)}\\
+&=\frac{F(x+t)-F(x)}{1-F(x)}=1-\frac{S(x+t)}{S(x)} .\end{aligned}$$
+That is, the distribution function $F_x(\cdot)$ is a conditional
+distribution function in terms of the random variable $X$, where one
+conditions on survival to age $x$.
+
+Similarly, the survival function of $T$ is $$\begin{aligned}
+S_x(t)=1-F_x(t)=\Pr(T>t|T \ge 0)=\frac{S(x+t)}{S(x)} .\end{aligned}$$
+
+### Actuarial Notation
+
+We write the distribution function as $$\begin{aligned}
+~_t q_x= F_x(t),
+ \end{aligned}$$ and interpret this to mean “the probability a life aged
+$(x)$ will die within $t$ years”.
+
+We write the survival function as $$\begin{aligned}
+~_tp_x= S_x(t) = 1-  F_x(t) =1- ~_t q_x
+ \end{aligned}$$ and interpret this to mean “the probability a life aged
+$(x)$ will survive $t$ years”.
+
+The probability density function of $T$ is $$\begin{aligned}
+\frac{\partial}{\partial t} F_x(t)&=&\frac{\partial}{\partial t}\left(1-\frac{S(x+t)}{S(x)}\right)
+=-\frac{S^{\prime} (x+t)}{S(x+t)}\frac{S(x+t)}{S(x)} \\
+&=& \mu_{x+t}~_tp_x\\\end{aligned}$$ The force of mortality of $T$ is\
+$$\begin{aligned}
+\frac{\text{p.d.f.}}{\text{s.f.}}&=&\frac{~_tp_x\:\mu_{x+t}}{~_tp_x}=\mu_{x+t}\end{aligned}$$
+This is the force of mortality of $x$ at time $t$, corresponding to age
+$x+t$.
+
+Note that this the same as force of mortality for the random variable
+$X$ but evaluated at time $t$, corresponding to age $x+t$.
+
+**Example - Uniform Distribution - Summary.** Suppose that
+$X \sim \text{U}(0,\omega)$. The (unconditional) distribution and
+survivor functions of $X$ are: $$\begin{aligned}
+F(x)&=&
+\left\{
+\begin{array}{cc}
+\frac{x}{\omega} & 0\le x \le \omega\\
+1 & 0> \omega \\
+\end{array}
+\right.\\
+S(x)&=&1-\frac{x}{\omega}=\frac{\omega-x}{\omega} .\end{aligned}$$ The
+survivor and distribution functions of $T$ (conditional on survivorship
+to age $x$) are: $$\begin{aligned}
+~_tp_x&=&\frac{S(x+1)}{S(x)}=\frac{\frac{\omega-(x+1)}{\omega}}{\frac{\omega-x}{\omega}}=1-\frac{t}{\omega-x}\\
+&&0\le t\le\omega-x \:\:\:\:\:\:\text{uniform(0,$\omega-x$)}\\
+~_tq_x&=&\frac{t}{\omega-x}\end{aligned}$$ The force of mortality is
+$$\begin{aligned}
+\mu_x&=&\frac{f(x)}{1-F(x)}=\frac{\frac{1}{\omega}}{1-\frac{x}{\omega}}=\frac{1}{\omega-x}.\end{aligned}$$
+
+$\Box$
+
+**Example - Makeham Distribution - Summary.** Suppose that $X$ has a
+Makeham distribution with parameters $A$, $m$ and $c$. Recall that the
+survival function of $X$ is $$\begin{aligned}
+S(x)&=&\exp\left(-Ax-m(c^x-1)\right) .\end{aligned}$$ and the force of
+mortality is $\mu(x)=A + B c^x$, where $B = m \ln c$.
+
+The survival function of $T$ (conditional on survivorship to age $x$) is
+$$\begin{aligned}
+~_tp_x&=\frac{S(x+t)}{S(x)}=
+\frac{\exp\left(-A(x+t)-m(c^{x+t}-1)\right)}{\exp\left(-Ax-m(c^x-1)\right)} \\
+&=\exp\left(-A t-mc^x(c^{t}-1)\right) .\end{aligned}$$ Note that you
+can think of this conditional survival function as having the same form
+as the original Makeham survival distribution with the parameter $m$
+replaced by $mc^x$.
+
+$\Box$
+
+### Successive Conditioning
+
+From the definition of the conditional survival function, we may write
+$$\begin{aligned}
+S(x+t) = S(x) \times S_x(t) .\end{aligned}$$ On the left-hand side, this
+is the probability that a person age (0) survives $x+t$ years. On the
+right-hand side, the first term is the probability that a person age (0)
+survives $x$ years. The second term is the probability that a person age
+($x$) survives an additional $t$ years. In actuarial notation, we may
+express this as $$\begin{aligned}
+~_{x+t} p_0 =  ~_x p_0  \times ~_t p_x .\end{aligned}$$
+
+An immediate extension of this idea is $$\begin{aligned}
+~_{r+t} p_x =  ~_r p_x  \times ~_t p_{x+r} .\end{aligned}$$ To check
+this, simply write down the definition of each actuarial symbol
+$$\begin{aligned}
+ S_x(r+t) =  S_x(r)  \times S_{x+r}(t)\end{aligned}$$ which is
+$$\begin{aligned}
+ \frac{S(x+r+t)}{S(x)} =   \frac{S(x+t)}{S(x)}   \times  \frac{S(x+r+t)}{S(x+t)}\end{aligned}$$
+that immediately establishes the relationship.
+
+We interpret the relation $~_{r+t} p_x =  ~_r p_x  ~_t p_{x+r} $ to mean
+that “the probability that a person age ($x$) survives an additional
+$r+t$ years” equals “the probability that a person age ($x$) survives an
+additional $r$ years” times “the probability that a person age ($x+r$)
+survives an additional $t$ years.”
+
+Note that the choices of $t, r,$ and $x$ depend on the problem. For
+example, you may wish to evaluate $~_{15} p_{30}$ as
+$~_{5} p_{30} ~_{10} p_{35}$ or as $~_{10} p_{30} ~_5 p_{40}$, depending
+on the problem. Further, in some applications, it is useful to the use
+the successive conditioning recursively. For example, we might write
+$$\begin{aligned}
+~_{15} p_{30} = p_{30} \times p_{31} \times \cdots \times p_{44} .\end{aligned}$$
+
+## The Curtate Future Remaining Lifetime, $K$
+
+Define $K=K(x)=$ greatest integer $\le T$, sometimes denoted as int($T$)
+or $[T]$. This is called the *curtate* future remaining lifetime. It is
+a discrete random variable and so we can discuss the probability mass
+function $$\begin{aligned}
+\Pr(K=k)&=&\Pr(k\le T<k+1)=~_kp_x-~_{k+1}p_x\\
+&=&~_kp_x\: q_{x+k}=~_{k|}q_x\\\end{aligned}$$ In this expression, we
+used successive conditioning to write $~_{k+1}p_x = ~_k p_x ~ p_{x+k}$ .
+
+*Important.* Note that we are still calculating the distribution
+function conditional on survivorship to age $x$. We could emphasize by
+writing $\Pr(K=k | K \ge 0)= \Pr(k\le T<k+1 |T \ge 0)$.
+
+Read the notation $~_{k|}q_x$ to mean “ the probability a life aged $x$
+dies within one year, *deferred* by $k$ years”. So, we define the
+**actuarial notation** $$\begin{aligned}
+~_{k|n}q_x&=&\Pr(x+k \le T<x+k+n|T>0)\\
+&=&\frac{S(x+k)-S(x+k+n)}{S(x)}=~_k p_x\:~_n q_{x+k}\end{aligned}$$ This
+is the probability a life aged $x$ survives $k$ years to age $x+k$ and
+then dies within $n$ years.
+
+![image](Figures\JL_ActMathCh3Figure6.png){width=".5\textwidth"}
+
+# Classic Joint Life Fundamentals
+
+## Joint Life Fundamentals
+
+We consider two lives who are ages $x$ and $y$, respectively, at
+contract initiation. The future remaining lifetimes are $T(x)$ and
+$T(y)$ at contract initiation. To aid with interpretation, we think of
+“$x$” has the “insured’s” and “$y$” as the “spouse’s” age because many
+joint life contracts are sold to married couples (although the theory
+clearly applies to many other situations of interest, e.g., an insured
+with a grandchild).
+
+We are interested in known functions of these future remaining lifetimes
+(e.g., “g”), $g(T(x), T(y))$; these functions are known as a $status$.
+Here are the two most important examples:
+
+**Joint Life Status**. In this case, the interest is in
+$g(T(x), T(y))= \min(T(x), T(y)) = T(xy)$, which is the time until the
+first of the two lives fails.
+
+**Last Survivor Status**. In this case, the interest is in
+$g(T(x), T(y))= \max(T(x), T(y)) = T(\overline{xy})$, which is the time
+until the second of the two lives fails.
+
+![image](Figures\JL_JointLifeTimeline.pdf){width=".75\textwidth"}
+
+To warm up, start by assuming that $T(x)$ and $T(y)$ are independent.
+
+### Joint-Life Probability Functions
+
+The distribution function of $T=T(xy)$ is $$\begin{aligned}
+F_T(t) &=& \Pr(T(xy) \leq t)= \Pr(\min(T(x), T(y)) \leq t) = 1- \Pr(\min(T(x), T(y)) > t) \\
+&=& 1- \Pr(T(x) > t) \Pr(T(y) > t) = 1 - ~_t p_x \times ~_t p_y .\end{aligned}$$
+We write the survivor function as $$\begin{aligned}
+~_t p_{xy} = 1 - F_T(t) = ~_t p_x \times ~_t p_y .\end{aligned}$$ From
+this, the density function is $$\begin{aligned}
+f_T(t) &=& F^{\prime}_T(t) = - \frac{\partial}{\partial t} (~_t p_x \times ~_t p_y) \\
+&=& - \left( ~_t p_x \frac{\partial}{\partial t} ~_t p_y +
+~_t p_y \frac{\partial}{\partial t} ~_t p_x \right) \\
+&=&   ~_t p_x ( ~_t p_y \mu_{y+t} )+
+~_t p_y (~_t p_x \mu_{x+t} ) \\
+&=&   ~_t p_x  ~_t p_y  (\mu_{x+t}+\mu_{y+t}) .\end{aligned}$$ Thus, the
+force of mortality is $$\begin{aligned}
+\mu_{xy}(t) = \frac{f_T(t)}{1-F_T(t)} = \mu_{x+t}+\mu_{y+t} .\end{aligned}$$
+
+### Last-Survivor Probability Functions
+
+The distribution function is $$\begin{aligned}
+F_T(t) &=& \Pr(T(\overline{xy}) \leq t)=  \Pr(\max(T(x), T(y)) \leq t) =  \Pr(T(x) \leq t, T(y) \leq t)\\
+&=_{IND}&  \Pr(T(x) \leq t)\Pr(T(y) \leq t)= ~_t q_x  ~_t q_x=(1 - ~_t p_x) \times (1- ~_t p_y) .\end{aligned}$$
+We write the survivor function as $$\begin{aligned}
+~_t p_{\overline{xy}} = 1 - F_T(t) =~_t p_x + ~_t p_y - ~_t p_x ~ ~_t p_y .\end{aligned}$$
+From this, the density function is $$\begin{aligned}
+f_T(t) &=& F^{\prime}_T(t) = - \frac{\partial}{\partial t} (~_t p_x + ~_t p_y - ~_t p_x ~ ~_t p_y) \\
+&=&
+~_t p_x \mu_{x+t} + ~_t p_y \mu_{y+t} -
+ ~_t p_x  ~_t p_y  (\mu_{x+t}+\mu_{y+t}) \\
+ &=& ~_t p_x \mu_{x+t} ~_t q_y +
+~_t p_y \mu_{y+t} ~_t q_x  .\end{aligned}$$ Thus, the force of mortality
+$\mu_{\overline{xy}}(t) = \frac{f_T(t)}{1-F_T(t)}$ does not have a
+straightforward expression.
+
+### Examples
+
+**1.** Suppose that $T(x)$ is uniformly distributed (DeMoivre) over
+$(0,w_x-x)$, $T(y)$ is uniformly distributed over $(0,w_y-y)$, and that
+$T(x)$ and $T(y)$ are independent. Let $w_x=100$, $x=30$, $w_y=110$, and
+$y=28$.
+
+Determine: a) $~_{20} p_{30:28}$ b) $\mu_{30:28}(20)$ c)
+$~_{20} p_{\overline{30:28}}$
+
+*Solution.*
+
+a\) For $T(x) \sim U(0,w_x-x)$ (DeMoivre), recall that $$\begin{aligned}
+~_t p_x = 1 -\frac{t}{w_x-x},  ~_t p_x \mu_{x+t} = \frac{1}{w_x-x}, \textrm{~and~} \mu_{x+t} = \frac{1}{w_x-x-t}.\end{aligned}$$
+Thus, $$\begin{aligned}
+~_{20} p_{30:28} &=& ~_{20} p_{30}^m ~_{20} p_{28}^f = \left(1-\frac{20}{100-30}\right)
+\left(1-\frac{20}{110-28}\right) = 0.54.\end{aligned}$$ b)
+$$\begin{aligned}
+\mu_{30:28}(20) = \mu_{30+20}^m + \mu_{28+20}(20)^f = \frac{1}{100-50}+\frac{1}{110-48} = 0.0361\end{aligned}$$
+c) $$\begin{aligned}
+~_{20} p_{\overline{30:28}} & =&
+~_{20} p_{30}^m + ~_{20} p_{28}^f - ~_{20} p_{30:28} \\
+& =& \frac{50}{70} + \frac{62}{82} - 0.54 = 0.930\end{aligned}$$
+
+$\Box$
+
+**2.** Suppose that $T(x)$ is exponentially distributed with force of
+mortality $\mu_x(t)=\mu_1=0.02$, $T(y)$ is exponentially distributed
+with force of mortality $\mu_y(t)=\mu_2=0.015$, and that $T(x)$ and
+$T(y)$ are independent.
+
+Provide expressions for: a) $~_t p_{xy}$ b) $\mu_{xy}(t)$ c)
+$~_t p_{\overline{xy}}$
+
+*Solution.*
+
+a\) For $T(x)$ is exponentially distributed with force of mortality
+$\mu_x(t)=\mu_1$, recall that $$\begin{aligned}
+~_t p_x = \exp(-\mu_1 t).\end{aligned}$$ Thus, $$\begin{aligned}
+~_t p_{xy} = ~_t p_x \times ~_t p_y = \exp(-\mu_1 t)\exp(-\mu_2 t) = \exp(-(0.02+0.15)t) = \exp(-0.035 t).\end{aligned}$$
+b) $$\begin{aligned}
+\mu_{xy}(t) = \mu_{x}(t)^m+\mu_{y}(t)^f = \mu_1 +\mu_2 = 0.035.\end{aligned}$$
+c) $$\begin{aligned}
+~_t p_{\overline{xy}} &=& ~_t p_x + ~_t p_y - ~_t p_x ~ ~_t p_y \\
+&=& \exp(-\mu_1 t) + \exp(-\mu_2 t) - \exp(-(\mu_1+\mu_2) t) \\
+&=& \exp(-0.02 t) + \exp(-0.015 t) - \exp(-0.035 t) .\end{aligned}$$
+
+$\Box$
+
+**3.** Recall that we can express the Gompertz force of mortality as
+$\mu_x = B c^x$. In this case, we may express the survival function as
+$S(x) = \exp(-m(c^x-1))$, where $m=B/ \ln c$ and the conditional
+survivor function for $T(x)$ as $$\begin{aligned}
+~_t p_x = \exp(-m(c^{x+t}-c^x))= \exp(-m c^x(c^t-1)) .\end{aligned}$$
+Assume that the Gompertz force governs mortality for males and females
+(with a common parameters $m$ and $c$).
+
+Determine the value of $w$ so that we may write $~_t p_{xy} = ~_t p_w$.
+That is, show that we can compute joint life probabilities using a
+single life table for the Gompertz case.
+
+*Solution.*
+
+The joint life survival probability is $$\begin{aligned}
+~_t p_{xy} &=&  ~_t p_x \times ~_t p_y \\
+&=&  \exp(-m c^x(c^t-1)) \exp(-m c^y(c^t-1))\\
+ &=&  \exp(-( c^x + c^y) \times m (c^t-1))  \\\end{aligned}$$ So, define
+$w$ to be the solution of $c^w = c^x + c^y$. With this, we may write
+$$\begin{aligned}
+~_t p_{xy} &=& \exp(-( c^x + c^y) \times m (c^t-1)) =\exp(- m c^w (c^t-1))= ~_t p_w,  \\\end{aligned}$$
+as required.
+
+### Relating Status Distributions
+
+It is possible to relate the joint life and last-survivor status without
+the assumption of independence. Consider the events $A =
+\{T(x) \leq t\}$ and $B = \{T(y) \leq t\}$. Now, $$\begin{aligned}
+A \textrm{~and~} B &=& \{T(x) \leq t,T(y) \leq t\} = \{T(\overline{xy}) \leq t\} \\\end{aligned}$$
+and $$\begin{aligned}
+A \textrm{~or~} B &=& \{T(xy) \leq t \} .\end{aligned}$$ Because
+$\Pr(A \textrm{~or~} B) = \Pr(A)+\Pr(B) - \Pr(A
+\textrm{~and~} B)$, we have $$\begin{aligned}
+\Pr(T(xy) \leq t) = \Pr(T(x) \leq t)+\Pr(T(y) \leq t) -
+\Pr(T(\overline{xy}) \leq t)\end{aligned}$$ so that $$\begin{aligned}
+~_t p_{\overline{xy}}  =~_t p_x + ~_t p_y - ~_t p_{xy}.\end{aligned}$$
+Note that this relationship holds without using the assumption of
+independence between lives.
+
+### Lifetime Moments
+
+For the expected survivor time of the joint life status, we have
+$$\begin{aligned}
+\dot{e}_{xy} = E ~ T(xy) &=& \int_0^{\infty} t f_T(xy)(t) dt =
+\int_0^{\infty} (1-
+F_T(xy)(t)) dt \\
+&=& \int_0^{\infty} ~_t p_{xy} dt .\end{aligned}$$ The third equality
+comes from an integration by parts.
+
+Similarly, for the expected last-survivor time, $$\begin{aligned}
+\dot{e}_{\overline{xy}} &=& E ~ T(\overline{xy}) = \int_0^{\infty}
+~_t p_{\overline{xy}} ~ dt \\
+&=& \int_0^{\infty}
+\left(~_t p_x + ~_t p_y - ~_t p_{xy}\right) dt \\
+&=& \dot{e}_{x}+\dot{e}_{y}-\dot{e}_{xy}.\end{aligned}$$ Note that this
+relation holds without regard to the independence between lives
+assumption.
+
+**Special Case - Exponential Distribution.** Suppose that $T(x)$ is
+exponentially distributed with force of mortality $\mu_x(t)=\mu_1$,
+$T(y)$ is exponentially distributed with force of mortality
+$\mu_y(t)=\mu_2$, and that $T(x)$ and $T(y)$ are independent. Then, for
+$x$, we have $~_t p_x = \exp(-\mu_1 t)$ and $$\begin{aligned}
+\dot{e}_x &=& E ~ T(x) = \int_0^{\infty} ~_t p_x ~ dt =
+\frac{1}{\mu_1}\end{aligned}$$ Similarly, for the joint-life status, we
+have $~_t p_{xy} = ~_t
+p_{xy} \times ~_t p_{xy} =  \exp(-(\mu_1+\mu_2) t)$ which is an
+exponential distribution with force of mortality $\mu_1+\mu_2$. This
+yields $\dot{e}_{xy}=1/(\mu_1+\mu_2)$.
+
+Now, for the last-survivor status, we have $$\begin{aligned}
+1 - ~_t p_{\overline{xy}} &=& F_{T(\overline{xy})}(t) = \Pr\left(
+\max(T(x),T(y)) \leq t \right) \\
+&=&\Pr\left( T(x) \leq t \right)\Pr\left( T(y) \leq t \right) \\
+&=& \left( 1-\exp(-\mu_1 t) \right)\Pr\left( 1-\exp(-\mu_2 t)\right)\end{aligned}$$
+and $$\begin{aligned}
+\dot{e}_{\overline{xy}} &=& \dot{e}_{x}+\dot{e}_{y}-\dot{e}_{xy}\\
+&=& \frac{1}{\mu_1} +\frac{1}{\mu_2} -\frac{1}{\mu_1+\mu_2} .\end{aligned}$$
+
+$\Box$
+
+**Example - Exponential Distribution.** Suppose in addition that
+$\mu_1 = 0.02$ and $\mu_2 = 0.015$. Then, $$\begin{aligned}
+\dot{e}_x  = \frac{1}{\mu_1} = 50,~~~~\dot{e}_y  = \frac{1}{\mu_2} =
+66.67, ~~~\dot{e}_{xy}  = \frac{1}{\mu_1+\mu_2} = 28.57 .\end{aligned}$$
+Further, $$\begin{aligned}
+\dot{e}_{\overline{xy}} &=& \dot{e}_{x}+\dot{e}_{y}-\dot{e}_{xy}\\
+&=& 50 + 66.67 -28.57 = 88.1 .\end{aligned}$$ Moreover, we have
+$$\begin{aligned}
+Cov(T(\overline{xy}),T(xy)) &=& \mathrm{E~} \left\{T(\overline{xy})
+\times T(xy)\right\} - \mathrm{E~} T(\overline{xy}) \times
+\mathrm{E~}
+T(xy)\\
+&=& \mathrm{E~} \left\{\max(T(x),T(y)) \times \min
+(T(x),T(y))\right\} - \dot{e}_{\overline{xy}} \times \dot{e}_{xy}\\
+&=& \mathrm{E~}\left\{ T(x) \times T(y)\right\}
+- \dot{e}_{\overline{xy}} \times \dot{e}_{xy}\\
+&=& \dot{e}_x \dot{e}_y - \dot{e}_{\overline{xy}} \times
+\dot{e}_{xy} = 50 \times 66.67 -  88.1 \times 28.57 = 816.48 .\end{aligned}$$
+
+$\Box$
+
+**Exercise.** Consider a population containing smokers ($s$) and
+non-smokers ($ns$) where their forces of mortality are related as
+$$\begin{aligned}
+\mu_x^{ns} = \frac{1}{2} \mu_x^s .\end{aligned}$$ For the non-smoking
+population, mortality is given as $l_x = 75 -
+x$, $x \ge 0$. Consider two lives, a non-smoker age 65 and a smoker age
+55, and assume lives are independent. Calculate $\dot{e}_{65:55}$.
+
+*Solution.*
+
+For non-smokers, the force of mortality is $\mu_x^{ns} =
+\frac{-d~l_x}{dx} \frac{1}{l_x} = \frac{1}{75-x}$. Thus, the conditional
+survival force is $~_t p_x^{ns} = 1 - \frac{t}{75-x}$.
+
+For smokers, the force of mortality is $\mu_x^s = \frac{2}{75-x}$ so
+that the conditional survival force is $$\begin{aligned}
+~_t p_x^s &=& \exp\left( - \int_0^t  \mu_{x+r}^s ~ dr \right) \\
+&=& \exp\left( -2 \int_0^t \frac{1}{75-x-r} ~ dr \right) \\
+&=& \exp\left( 2 \ln \left(75-x-r \right)|_0^t
+ \right) \\
+ &=& \exp \left( 2 \ln \frac{75-x-t}{75-x} \right)  \\
+  &=& \left(1- \frac{t}{75-x} \right)^2\end{aligned}$$ Thus,
+$$\begin{aligned}
+~_t p_{65:55} &=& ~_t p_{65}^{ns} ~_t p_{55}^s = \left(1-
+\frac{t}{10} \right)\left(1- \frac{t}{20} \right)^2\end{aligned}$$ and
+$$\begin{aligned}
+\dot{e}_{65:55}&=& \int_0^{10} ~_t p_{65:55} dt \\
+&=& \int_0^{10} \left(1- \frac{t}{10} \right)\left(1- \frac{t}{20}
+\right)^2 dt = 3.54 .\end{aligned}$$
+
+$\Box$
+
+As follow-ups, note that
+
+1\) $\dot{e}_{65}^{ns} =5 (=\frac{75-65}{2} )$.
+
+2\) $\dot{e}_{55}^s = \int_0^{20} \left(1- \frac{t}{20} \right)^2 dt
+= \frac{20}{3}$.
+
+3\) $$\begin{aligned}
+\dot{e}_{\overline{65:55}} &=& 5 + \frac{20}{3} - 3.54 = 8.12\\
+&\neq & \int_0^{10} ~ _t p_{\overline{65:55}} ~dt .\end{aligned}$$
+
+## Joint Life and Last-Survivor Annuities and Insurances
+
+### Continuous Case
+
+We are now in a position to express the expected present value (EPV) of
+several annuity and insurance contracts using traditional notation. It
+is convenient to begin with the continuous case when we know the exact
+moment of payment. You will see that the treatment is completely
+analogous to the single life case - thus, we will be brief in our
+presentation of different variations.
+
+To begin, a *joint life insurance* is a life insurance which pays a
+benefit of 1 immediately upon the first to die of $x$ and $y$. It is
+also known as a *first to die insurance*. In this case, the random
+present value of future benefits is $v^{T(xy)} = \exp(-\delta T(xy))$
+which has expected present value $$\begin{aligned}
+\bar{A}_{xy} =
+\int_0^{\infty}
+e^{-\delta t} ~_t p_x  ~_t p_x  \left(\mu_{x+t} + \mu_{y+t} \right) ~ dt .\end{aligned}$$
+
+Similarly, the EPV of last-survivor insurance, with pays a benefit of 1
+immediately upon the second death, is $$\begin{aligned}
+\bar{A}_{\overline{xy}} =
+\int_0^{\infty}
+e^{-\delta t} \left( ~_t q_y  ~_t p_x \mu_{x+t} + ~_t q_x  ~_t p_y \mu_{y+t} \right)~ dt .\end{aligned}$$
+
+As can be seen from the expressions, the integrals can be a little
+annoying to compute. Thus, it is often easier to work with the
+corresponding annuities and then use the relationship between insurances
+and annuities to evaluate the insurance quantities.
+
+To this end, define a *joint life annuity* to be an annuity payable
+until the first death of $x$ and $y$. That is, there is a continuous
+payment at the rate of 1 per year while both are alive. In this case,
+the EPV is $$\begin{aligned}
+\bar{a}_{xy} =
+\int_0^{\infty} e^{-\delta t} ~_t p_{xy} ~ dt.\end{aligned}$$
+
+The random variable underpinning the joint life annuity is
+$\bar{a}_{\overline{T(xy)|}} = \frac{1-\exp(-\delta T(xy))}{\delta}$.
+So, as with single life functions, we have $$\begin{aligned}
+\text{joint life annuity rv} = \frac{1 - \text{joint life insurance rv}}{\delta}\end{aligned}$$
+Taking expectations of each side yields $$\begin{aligned}
+\bar{a}_{xy} = \frac{1 - \bar{A}_{xy}}{\delta},\end{aligned}$$ a
+familiar relationship.
+
+Similarly, a *last survivor annuity* is an annuity payable where there
+is a continuous payment at the rate of 1 per year while at least one of
+$x$ and $y$ is alive. In this case, the EPV is $$\begin{aligned}
+\bar{a}_{\overline{xy}} = \bar{a}_x + \bar{a}_y - \bar{a}_{xy}\end{aligned}$$
+and can be related to last-survivor insurance through the expression
+$$\begin{aligned}
+\bar{a}_{\overline{xy}}  = \frac{1 - \bar{A}_{\overline{xy}} }{\delta}.\end{aligned}$$
+
+As we will see in subsequent exercises and modules, temporary and
+deferred annuities, as well as term, endowment and deferred insurances,
+can be defined in a fashion similar to single life functions.
+
+**Special Case: Premiums For Dependent Lives.** Consider a fully
+continuous life insurance for $x$ and $y$. Suppose that
+
+1\) premiums are payable until the first death
+
+2\) a benefit of 1 is payable at the second death.
+
+The joint mortality for $T(x)$ and $T(y)$ is not independent but given
+by $$\begin{aligned}
+~_t p_{xy} = r ~_t p_x + (1-r) ~_t p_x ~_t p_y.\end{aligned}$$ For
+simplicity, assume that the mortality for $T(x)$ and $T(y)$ follow a
+common exponential distribution, $$\begin{aligned}
+~_t p_x = e^{-\mu t} = ~_t p_y .\end{aligned}$$ Show that the annual
+premium is $\frac{\mu(2\mu+\delta)}{\delta + (1+r)\mu}.$
+
+Solution
+
+The premium $P$ is the solution of
+$\bar{A}_{\overline{xy}} = P \bar{a}_{xy}$. Now $$\begin{aligned}
+\bar{a}_{xy} &=& \int_0^{\infty} e^{-\delta t} ~_t p_{xy} ~ dt \\
+&=& \int_0^{\infty} e^{-\delta t} \left( r ~_t p_x + (1-r) ~_t p_x ~_t p_y \right) ~ dt \\
+&=& \int_0^{\infty} e^{-\delta t} \left( r e^{-\mu t} + (1-r) e^{-2\mu t} \right) ~ dt \\
+&=& \frac{r}{\mu+\delta} + \frac{1-r}{2\mu+\delta} = \frac{\delta+(1+r)\mu}{(\mu+\delta)(2\mu+\delta)}\end{aligned}$$
+Further $$\begin{aligned}
+\bar{A}_x &=& \int_0^{\infty} e^{-\delta t} ~_t p_{xy} \mu_{x+t}~ dt \\
+&=& \mu \int_0^{\infty} e^{-\delta t} e^{-\mu t} ~ dt = \frac{\mu}{\mu+\delta} = \bar{A}_y\end{aligned}$$and
+$$\begin{aligned}
+\bar{A}_{\overline{xy}} = \bar{A}_x + \bar{A}_y - \bar{A}_{xy} =2 \frac{\mu}{\mu+\delta} -
+\left( 1 - \delta \bar{a}_{xy} \right) .\end{aligned}$$ Thus
+$$\begin{aligned}
+P &=& \frac{\bar{A}_{\overline{xy}}}{\bar{a}_{xy}} = \frac{2 \frac{\mu}{\mu+\delta} -1}{\bar{a}_{xy}} - \delta \\
+&=& \frac{\mu(2\mu+\delta)}{\delta + (1+r)\mu}.\end{aligned}$$
+
+### Discrete Case
+
+Start with a generic time until failure $T$ that may be a function of
+one or more lives.
+
+Define the curtate time until failure $K = [T]$, where $[\cdot]$ denotes
+the greatest integer function.
+
+Then, $$\begin{aligned}
+\Pr(K=k) =  \Pr( k \le T < k+1) = F_T(k+1) - F_T(k).\end{aligned}$$
+
+**Special Case. Joint Life Status.** In this case $T=T(xy)$, and so $K$
+may be denoted as $K(xy) = [T(xy)]$. We may also think of the curtate
+random variable as $K(xy) = \min(K(x), K(y))$.
+
+This has probability mass function $$\begin{aligned}
+\Pr(K=k) &=&   ~_{k+1} q_{xy} - ~ _k q_{xy}  =  ~ _k p_{xy} - ~_{k+1} p_{xy}\\
+& =& ~ _k p_{xy} q_{x+k:y+k} \equiv ~_{k|} q_{xy} .\end{aligned}$$
+
+For insurances, we have the “first-to-die” insurance $$\begin{aligned}
+A_{xy} = \mathrm{E~} v^{K(xy)+1} = \sum_{k=0}^{\infty} v^{k+1}
+~_{k|} q_{xy} .\end{aligned}$$ This is the EPV for a payment of 1 at the
+end of the year of the first death among ($x$) and ($y$).
+
+For annuities, we have $$\begin{aligned}
+\ddot{a}_{xy} = \mathrm{E~} \ddot{a}_{\overline{K(xy)+1}|} =
+\sum_{k=0}^{\infty} v^k ~ _k p_{xy} .\end{aligned}$$ This is the EPV for
+a payment of 1 at the beginning of each year while both ($x$) and ($y$)
+are alive.
+
+$\Box$
+
+**Special Case: Recursive Calculation for Discrete Joint Life
+Annuities.** For a joint life annuity on lives $x$ and $y$ with payments
+of 1 per year in advance, the EPV can be written recursively as:
+$$\begin{aligned}
+\ddot{a}_{xy} = 1 +  v p_{xy} \ddot{a}_{x+1:y+1}.\end{aligned}$$
+
+*Check:* The EPV is $$\begin{aligned}
+\ddot{a}_{xy} = \sum_{k=0}^{\infty} v^k ~_k p_{xy} .\end{aligned}$$ By
+successive conditioning, we may write $$\begin{aligned}
+ ~_{k+1} p_{xy} =  p_{xy} ~_k p_{x+1:y+1} .\end{aligned}$$ Thus, using
+$k=j+1$, we have $$\begin{aligned}
+\ddot{a}_{xy} &=& 1 +  \sum_{k=1}^{\infty} v^k ~_k p_{xy} = 1 +  \sum_{j=0}^{\infty} v^{j+1} ~_{j+1} p_{xy} \\
+&=& 1 +  v p_{xy} \sum_{j=0}^{\infty} v^j ~_j p_{x+1:y+1} =1 +  v p_{xy} \ddot{a}_{x+1:y+1}.\end{aligned}$$
+
+$\Box$
+
+### Generic Statuses
+
+As with single life functions, one can readily extend fundamental
+principles to handle many practical contracts. We indicate how to do so
+in the discrete, with similar extensions to the continuous case
+analogous
+
+We will consider a generic status “$u$”.
+
+**Varying Benefits and Payments**. Let $K$ be the curtate failure time
+associated with that status. For an insurance benefit the pays $b_{K+1}$
+for failure in the $K^{th}$ period, the EPV is $$\begin{aligned}
+ \sum_{k=0}^{\infty} b_{k+1} v^{k+1}
+~_{k|} q_u .\end{aligned}$$
+
+For an annuity benefit that pays $\pi_h$ at the beginning of each year
+when the status $u$ has survived, the EPV is $$\begin{aligned}
+\mathrm{E~} \left( \sum_{h=0}^K \pi_h v^h \right)=
+\sum_{k=0}^{\infty} \pi_k v^k ~ _k p_u .\end{aligned}$$
+
+$\Box$
+
+**Generic Status - Insurance and Annuities**. Temporary and deferred
+annuities, as well as endowment and deferred insurances, can be defined
+in a fashion similar to single life functions.
+
+Consider two lives, $x$ and $y$ but let $T(y)=n$ with probability one.
+Then, for the joint life status, we have $$\begin{aligned}
+\ddot{a}_{xy} = \ddot{a}_{x:\overline{n|}}\end{aligned}$$ and
+$$\begin{aligned}
+A_{xy} = A_{x:\overline{n|}}\end{aligned}$$ Similarly for the
+last-survivor status, $$\begin{aligned}
+\ddot{a}_{\overline{xy}} = \ddot{a}_{\overline{x:\overline{n|}}}
+=\ddot{a}_x +\ddot{a}_{\overline{n|}} - \ddot{a}_{x:\overline{n|}}
+=\ddot{a}_{\overline{n|}} + ~_{n|} \ddot{a}_x\end{aligned}$$ an annuity
+that is payable for certain for $n$ years and as long as ($x$) survives
+thereafter.
+
+$\Box$
+
+**Generic Status - Multiple Lives**. We can allow multiples lives on a
+contract, say, $x$, $y$, and $z$, in the same fashion. For example,
+compute the survival function $$\begin{aligned}
+~_t p _{xyz} = ~_t p _x \times ~_t p _y \times ~_t p _z\end{aligned}$$
+assuming independence among lives.
+
+Further, we can one life, say $z$, but let $T(z)=n$ with probability
+one. Then, for example, the joint life annuity on the triple becomes
+$$\begin{aligned}
+\ddot{a}_{xyz} = \ddot{a}_{xy:\overline{n|}}\end{aligned}$$ a temporary
+joint life annuity on the joint status $xy$. In this way, we can
+introduce temporary and deferred annuities, as well as endowment and
+deferred insurances, for the joint life status and last-survivor status.
+
+$\Box$
+
+To summarize, here are some examples of different statuses we regularly
+consider:
+
+[cl|cl]{} Status ($u$) & Description & Status ($u$) & Description\
+\
+$xy$ & joint-life & $\overline{xy:\overline{n|}}$ & $n$-year guaranteed\
+$\overline{xy}$ & last-survivor & $~ _{x:\overline{n|}}^1$ &
+contingent\
+$xyz$ & joint lives & $~ _{xy}^1$ & contingent\
+$xy:\overline{n|}$ & temporary & $x|y$ & reversionary\
+
+## Common Shock Model for Dependent Lives
+
+Suppose that $T^{\ast}(x)$ and $T^{\ast}(y)$ are unobserved future
+lifetimes for $x$ and $y$ that are independent of one another. Let $Z$
+be a lifetime random variable that is common to both $x$ and $y$ for
+e.g., disasters such as earthquakes and hurricanes. Take $T^{\ast}(x)$,
+$T^{\ast}(y)$, $Z$ to be mutually independent.
+
+Let $T(x)= \min(T^{\ast}(x),Z)$ and $T(y)= \min(T^{\ast}(y),Z)$ be the
+observed future lifetimes for $x$ and $y$. Note that they are not
+independent because they share the common shock random variable $Z$.
+
+For convenience, assume that the distribution of $Z$ is exponential with
+constant force $\lambda$.
+
+Now, the survival function for $x$ is $$\begin{aligned}
+~_t p_x = \Pr(T(x) > t) = \Pr(\min(T^{\ast}(x),Z)>t) =
+\Pr(T^{\ast}(x)>t) \Pr(Z>t) = ~_t p_x^{\ast} e^{-\lambda t}\end{aligned}$$
+
+Similarly, $~_t p_y = ~_t p_y^{\ast} e^{-\lambda t}$. The joint survival
+probability is 
+$$\begin{aligned}
+~_t p_{xy} &= \Pr(\min(T(x),T(y)) > t) = \Pr(\min(T^{\ast}(x),T^{\ast}(y),Z)>t) \\
+&=\Pr(T^{\ast}(x)>t) \Pr(T^{\ast}(y)>t)\Pr(Z>t) = ~_t p_x^{\ast} ~_t p_y^{\ast} e^{-\lambda t}\\
+&= ~_t p_x ~_t p_y e^{\lambda t} .\end{aligned}$$
+
+From this, we can also calculate the joint force of mortality $$\begin{aligned}
+\mu_{xy}(t)  &= \frac{-\partial }{\partial t} \ln ~_t p_{xy}  \\
+&=
+= \frac{-\partial}{\partial t} \left(\ln~_t p_x+\ln ~_t p_y +\ln e^{\lambda t} \right) \\
+&=\mu_x(t) + \mu_y(t) - \lambda .\end{aligned}$$
+
+**Example.** You have calculated the expected present value of a last
+survivor life insurance of 1 on $x$ and $y$. You assumed:
+
+The death benefit is payable immediately on the second death.
+
+The future lifetimes of $x$ and $y$ are independent, and each life has a
+constant force of mortality with $\mu=0.06$.
+
+Assume $\delta = 0.05$.
+
+Your supervisor points out that these are not independent future
+lifetimes. Each mortality assumption is correct, but each includes a
+common shock component with constant force 0.02.
+
+Calculate the increase in the expected present value over what you
+originally calculated.
+
+*Solution.*
+
+We wish to calculate
+$\bar{A}_{\overline{xy}}^{CS} - \bar{A}_{\overline{xy}}^{IND}$. Under
+the independence model, we have $$\begin{aligned}
+\bar{A}_x  &=& \int_0^{\infty} e^{-\delta t} ~_t p_x \mu_{x+t} dt =\int_0^{\infty} e^{-\delta t} e^{-\mu t} \mu dt = \frac{\mu}{\mu+\delta} .\end{aligned}$$
+Thus, $$\begin{aligned}
+\bar{A}_x  = \frac{0.06}{0.06+0.05} = \frac{6}{11} = \bar{A}_y  .\end{aligned}$$
+Further, $$\begin{aligned}
+\bar{A}_{xy}  &=& \int_0^{\infty} e^{-\delta t} ~_t p_{xy} \mu_{xy}(t) dt =\int_0^{\infty} e^{-\delta t} e^{-2\mu t} 2\mu dt = \frac{2\mu}{2\mu+\delta} ,\end{aligned}$$
+so that $\bar{A}_{xy}  = \frac{0.12}{0.17} =  \frac{12}{17}$ and
+$$\begin{aligned}
+ \bar{A}_{\overline{xy}}^{IND} = \bar{A}_x +\bar{A}_y-\bar{A}_{xy} = 2 \frac{6}{11} -\frac{12}{17} = 0.385 .\end{aligned}$$
+For the common shock model, the original force of mortality was 0.06, so
+the new force of mortality is 0.04. Thus, $$\begin{aligned}
+\bar{A}_x  &=& \int_0^{\infty} e^{-\delta t} ~_t p_x \mu_{x+t} dt =\int_0^{\infty} e^{-0.05t} e^{-0.04 t} e^{-0.02 t}\mu dt = \frac{6}{11},\end{aligned}$$
+as before. The same is true for $\bar{A}_y$. The joint force of
+mortality is $\mu_{xy}(t) = 0.06+0.06-0.02 = 0.10$. Thus, the joint
+survival function is $~_t p_{xy} = e^{-0.10 t}$. This yields
+$$\begin{aligned}
+\bar{A}_{xy}^{CS}  = \frac{\mu_{xy}}{\mu_{xy}+\delta} =\frac{0.10}{0.10+0.05} = \frac{2}{3},\end{aligned}$$
+and $$\begin{aligned}
+ \bar{A}_{\overline{xy}}^{CS} = \bar{A}_x +\bar{A}_y-\bar{A}_{xy}^{CS}  = 2 \frac{6}{11} -\frac{2}{3} = 0.42423 .\end{aligned}$$
+Thus, the increase is $$\begin{aligned}
+\bar{A}_{\overline{xy}}^{CS} - \bar{A}_{\overline{xy}}^{IND} = 0.42423 - 0.385 = 0.0392.\end{aligned}$$
+
+## Additional Examples and Applications
+
+### First To Die with Mortality Adjustments
+
+The traditional “first to die” insurance pays 1 at the end of the year
+of death of either ($x$) or ($y$). The expected present value of this
+insurance is $$\begin{aligned}
+A_{xy}  = \sum_{k=0}^{\infty} v^{k+1} ~_k p_{xy} q_{x+k:y+k}\end{aligned}$$
+where $_k p_{xy}$ is the probability that both ($x$) and ($y$) survive
+$k$ years and $q_{x+k:y+k}$ is the probability that at least one of
+($x+k$) and ($y+k$) dies within the year. To evaluate this, it is
+customary to begin by assuming independent lives, so that
+$$\begin{aligned}
+A_{xy}^{IND}  = \sum_{k=0}^{\infty} v^{k+1} ~_k p_x  ~_k p_y (1- p_{x+k} \times p_{y+k}) .\end{aligned}$$
+From the formula for $A_{xy}^{IND}$, it is easy to see that as interest
+increases, the expected present value decreases.
+
+What about mortality? Let us think of ($x$) as a male life and ($y$) as
+a female life. Consider a mortality adjustment to male lives of the form
+$$\begin{aligned}
+q_x^{revised}  = (1-c) \times q_x^{base}.\end{aligned}$$ This is a
+coarse adjustment but will give us a flavor as to what happens to
+insurance prices as mortality increases or decreases. Viewers should
+verify that $A_{xy}^{IND}$ increases as the adjustment coefficient $c$
+decreases. (Although a separate exercise, at $c \approx 0.35$, male
+mortality is roughly equivalent to female mortality for our Indonesian
+data.)
+
+The dynamic graph shows values of $A_{xy}^{IND}$ plotted against
+interest rate $i$ and age, where for plotting purposes we use a common
+age $x=y$. The graph shows the dynamic effect over $c$ ranging from -0.5
+to 0.5. This graph shows that the expected present value $A_{xy}^{IND}$
+decreases as either $i$ or $c$ increases. Moreover, it also gives a feel
+for the amount of the increase. Based on the magnitude of these
+increases, one interpretation is that changes in interest rates have a
+greater effect than changes in mortality on the expected present value.
+
+### Reduction Factors for Joint and Surviving Annuities
+
+At retirement from employment, it is common for pension plan
+participants to have earned a lifetime annuity in the amount of $PEN$
+per year whose expected present value is $PEN \ddot{a}_x$. Suppose that
+the participant has a spouse (or other dependent) age ($y$) and wishes
+to purchase an annuity that continues to provide benefits even after
+($x$) has died to the survivor ($y$). For example, a joint and 75%
+survivor annuity makes an annual payment of 1 while both ($x$) and ($y$)
+are alive, a payment of 0.75 while only one of ($x$) and ($y$) are
+alive, and no payments following the death of both ($x$) and ($y$).
+Thus, expected present value of this annuity is
+$0.75 (\ddot{a}_x + \ddot{a}_y) - 0.50 \ddot{a}_{xy}$. To equate these
+values, we would require the new pension amount $PEN_{JS}$ to be that
+amount so that $PEN \ddot{a}_x = PEN_{JS}
+\left(0.75 \times (\ddot{a}_x + \ddot{a}_y) - 0.50 \ddot{a}_{xy}
+\right)$. More generally, define the annuity factor $$\begin{aligned}
+ANN~FACTOR = \frac{\ddot{a}_x}{RED (\ddot{a}_x + \ddot{a}_y) + (1-2RED) \ddot{a}_{xy}},\end{aligned}$$
+for the reduction factor $RED$.
+
+The dynamic graph shows values of $ANN~FACTOR$ plotted against the
+reduction factor $RED$ and age, where for plotting purposes we use a
+common age $x=y$. The graph shows the dynamic effect over interest rate
+$i$ ranging from 0 to 20%. The graph shows that it is difficult to
+provide a general interpretation for the reduction percentage and age.
+However, as the interest rate $i$ increases, the factor approaches one
+for all values of the reduction percentage and age.
+
+### Dependent Joint Life Annuities with Common Shock
+
+Using the common shock model, we can relate the joint survival
+probabilities to the marginal survival probabilities through the
+expression $$\begin{aligned}
+~_k p_{xy} &=  e^{\lambda k} ~_k p_x ~_k p_y  .\end{aligned}$$ With
+this, we may express the dependent joint life annuity as
+$$\begin{aligned}
+\ddot{a}_{xy}^{DEP} &= \sum_{k=0}^{\infty} e^{-\delta k} ~_k p_{xy}= \sum_{k=0}^{\infty} e^{-\delta k} e^{\lambda k} ~_k p_x ~_k p_y \\
+&= \ddot{a}_{xy}^{IND} @(\delta-\lambda) .\end{aligned}$$ Here,
+$\ddot{a}_{xy}^{IND} @(\delta-\lambda)$ is joint life annuity calculated
+assuming ($x$) and ($y$) are independent lives at a revised force of
+interest $\delta-\lambda$.
+
+This result means that the common shock model provides an easy method
+for incorporating dependencies among lives. In their study of data from
+a Canadian insurer, Frees, Valdez and Carrière (1996) established
+statistically significant dependence among annuitant lives using several
+models. For the common shock model, they estimated $\lambda$ to be
+0.00054, for a mean time of common shock that is about
+$1/0.00054 \approx 2,000$ years. This value of $\lambda$ is small
+relative to interest rates typically used in practice and so has a minor
+impact on annuity valuation. Frees et al. also pointed out that the
+common shock model does not seem to capture all aspects of dependencies
+among lives. Although it is commonly accepted that annuitant lives are
+not independent, the research literature has not yet reached a consensus
+on the best method for incorporating this dependence.

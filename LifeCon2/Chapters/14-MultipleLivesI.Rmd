@@ -1,0 +1,1120 @@
+---
+title: "Multiple Lives I"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Multiple Lives I
+
+-   Consider two lives, (x) and (y), with future lifetime random
+    variables $T_x$ and $T_y$, respectively. \vspace{2mm}
+
+-   In almost all problems, it is assumed that (x) and (y) are
+    independent, which means that $T_x$ and $T_y$ are independent (an
+    exception is the Common Shock Model). \vspace{4mm}
+
+## Multiple Life Functions
+
+\Large
+
+### Joint Distribution of $T_x$ and $T_y$
+
+-   The **joint probability density function of $T_x$ and $T_y$**:
+    $f_{T_x,T_y}(s, t)$ \vspace{4mm}
+
+-   The **joint survival function of $T_x$ and $T_y$**: \vspace{2mm}
+
+    $S_{T_x,T_y}(s, t)$ = $Pr[T_x > s, T_y > t]$ = $\int^{\infty}_s
+    \int^{\infty}_t f_{T_x,T_y}(u, v) dv du$ \vspace{2mm}
+
+    “The probability that (x) survives at least $s$ years and (y)
+    survives at least $t$ years.” \vspace{4mm}
+
+-   The **joint cumulative distribution function of $T_x$ and $T_y$**:
+    \vspace{2mm}
+
+    $F_{T_x,T_y}(s, t)$ = $Pr[T_x \le s, T_y \le t]$ = $\int^{s}_0
+    \int^{t}_0 f_{T_x,T_y}(u, v) dv du$ \vspace{2mm}
+
+    “The probability that (x) dies within $s$ years and (y) dies within
+    $t$ years.” \vspace{2mm}
+
+-   Also:
+    $\frac{\partial}{\partial t}$$\frac{\partial}{\partial s}$$F_{T_x,T_y}(s,
+    t)$ = $f_{T_x,T_y}(s, t)$ \vspace{4mm}
+
+-   $S_{T_x,T_y}(s, t)$ + $F_{T_x,T_y}(s, t)$ $\neq$ 1 \vspace{1mm}
+
+    “This is because we are not considering other possible events:
+    \vspace{1mm}
+
+    $\{T_x \le s, T_y > t\}$ and $\{T_x > s, T_y \le t\}$.”
+
+\newpage
+-   If (x) and (y) are independent $\implies$ \vspace{5mm}
+
+    $S_{T_x,T_y}(s, t)$ = (${}_{s}p_x$)(${}_{t}p_y$) \vspace{2mm}
+
+    $F_{T_x,T_y}(s, t)$ = (${}_{s}q_x$)(${}_{t}q_y$) \vspace{5mm}
+
+-   In general, joint probabilities for independent lives can be
+    expressed as products of probabilities involving each individual
+    life. \vspace{2mm}
+
+    For example, with independent lives (x) and (y), the probability
+    that (x) dies within 10 years and (y) survives 10 years is:
+    \vspace{2mm} $({}_{10}q_x)$$({}_{10}p_y)$.
+
+\newpage
+### Joint-Life Status $\mathbf{(xy)}$
+
+-   $T_{xy}$ = $T(xy)$ = time until the first death of (x) and (y).
+    \vspace{5mm}
+
+-   ${}_{t}p_{xy}$ = $S_{T_x,T_y}(t, t)$ \vspace{3mm}
+
+    “The probability that both (x) and (y) survive for at least $t$
+    years.” \vspace{5mm}
+
+    ${}_{u + t}p_{xy}$ = $({}_{u}p_{xy})$$({}_{t}p_{x + u:y + u})$
+    \vspace{3mm}
+
+    “The probability that both (x) and (y) survive $u + t$ years is
+    equal to the probability that both (x) and (y) first survive $u$
+    years to ages x + u and y + u, then survive another $t$ years to
+    ages x + u + t and y + u + t.” \vspace{5mm}
+
+    If (x) and (y) are independent $\implies$ ${}_{t}p_{xy}$ =
+    (${}_{t}p_x$)(${}_{t}p_y$) \vspace{5mm}
+
+-   ${}_{t}q_{xy}$ = 1 - ${}_{t}p_{xy}$ \vspace{3mm}
+
+    “The probability that the first death of (x) and (y) occurs within
+    $t$ years.” \vspace{3mm}
+
+    If (x) and (y) are independent $\implies$
+
+    ${}_{t}q_{xy}$ = 1 - (${}_{t}p_x$)(${}_{t}p_y$) = ${}_{t}q_{x}$ +
+    ${}_{t}q_{y}$ - (${}_{t}q_x$)(${}_{t}q_y$) \vspace{3mm}
+
+-   Note: ${}_{t}q_{xy}$ $\neq$ (${}_{t}q_x$)(${}_{t}q_y$) \vspace{5mm}
+
+-   The **force of failure at ages x + t and y + t**: \vspace{3mm}
+
+    $\mu_{xy}(t)$ = $\mu_{x + t:y + t}$ =
+    $-\frac{\frac{d}{dt}[{}_{t}p_{xy}]}{{}_{t}p_{xy}}$ \vspace{3mm}
+
+    ${}_{t}p_{xy}$ = $\exp[- \int^t_0 \mu_{xy}(s) ds]$ \vspace{3mm}
+
+    If (x) and (y) are independent $\implies$ $\mu_{xy}(t)$ =
+    $\mu_{x}(t)$ + $\mu_{y}(t)$ \vspace{5mm}
+
+-   ${}_{u|t}q_{xy}$ = ${}_{u + t}q_{xy}$ - ${}_{u}q_{xy}$ =
+    ${}_{u}p_{xy}$ - ${}_{u + t}p_{xy}$ = (${}_{u}p_{xy}$)(${}_{t}q_{x +
+    u:y + u}$) \vspace{3mm}
+
+    “The probability that the first death of (x) and (y) occurs after
+    $u$ years but before $u$ + $t$ years.”
+
+\newpage
+### Last-Survivor Status $\mathbf{(\overline{xy})}$
+
+\vspace{3mm}
+
+-   $T_{\overline{xy}}$ = $T(\overline{xy})$ = time until the second
+    death of (x) and (y). \vspace{3mm}
+
+-   ${}_{t}q_{\overline{xy}}$ = $F_{T_x,T_y}(t, t)$ \vspace{2mm}
+
+    “The probability that both (x) and (y) will die within $t$ years.”
+    \vspace{2mm}
+
+    If (x) and (y) are independent $\implies$ ${}_{t}q_{\overline{xy}}$
+    = (${}_{t}q_x$)(${}_{t}q_y$) \vspace{4mm}
+
+-   ${}_{t}p_{\overline{xy}}$ = 1 - ${}_{t}q_{\overline{xy}}$
+    \vspace{2mm}
+
+    “The probability that at least one of (x) and (y) will survive at
+    least $t$ years.” \vspace{2mm}
+
+    If (x) and (y) are independent $\implies$
+
+    ${}_{t}p_{\overline{xy}}$ = 1 - (${}_{t}q_x$)(${}_{t}q_y$) =
+    ${}_{t}p_{x}$ + ${}_{t}p_{y}$ - (${}_{t}p_x$)(${}_{t}p_y$)
+    \vspace{4mm}
+
+-   Note: ${}_{t}p_{\overline{xy}}$ $\neq$ (${}_{t}p_x$)(${}_{t}p_y$)
+    \vspace{4mm}
+
+-   ${}_{u|t}q_{\overline{xy}}$ = ${}_{u + t}q_{\overline{xy}}$ -
+    ${}_{u}q_{\overline{xy}}$ = ${}_{u}p_{\overline{xy}}$ - ${}_{u +
+    t}p_{\overline{xy}}$ \vspace{2mm}
+
+    “This is the probability that the second death of (x) and (y) occurs
+    after $u$ years but before $u$ + $t$ years.” \vspace{4mm}
+
+-   Note1: ${}_{u + t}p_{\overline{xy}}$ $\neq$
+    $({}_{u}p_{\overline{xy}})$$({}_{t}p_{\overline{x + u:y +
+    u}})$ \vspace{3mm}
+
+    “The right hand side is incorrect as it implies that both (x)
+    and (y) survive the first $u$ years
+    (${}_{t}p_{\overline{x + u:y + u}}$: we start with two lives here);
+    that does NOT have to be the case. That is,
+    ${}_{u}p_{\overline{xy}}$ is the probability that at least one
+    of (x) and (y) survives $u$ years - it is possible that both (x)
+    and (y) will not survive the $u$-year period.” \vspace{4mm}
+
+-   Note2: ${}_{u|t}q_{\overline{xy}}$ $\neq$
+    $({}_{u}p_{\overline{xy}})$$({}_{t}q_{\overline{x + u:y + u}})$
+    \vspace{3mm}
+
+    “The right hand side is incorrect for the same reason as indicated
+    in Note1; the implication is that both (x) and (y) survive the first
+    $u$ years ($q_{\overline{x + u:y + u}}$: we start with two lives
+    here) which is not guaranteed in ${}_{u}p_{\overline{xy}}$.”
+
+\newpage
+## Law of Addition
+
+-   **“Law of Addition”**: $T_{xy}$ + $T_{\overline{xy}}$ = $T_{x}$ +
+    $T_{y}$. \vspace{2mm}
+
+    This implies the following: \vspace{4mm}
+
+    -   $c^{T_{xy}}$ + $c^{T_{\overline{xy}}}$ = $c^{T_x}$ + $c^{T_y}$
+        for $c$ $>$ 0 \vspace{2mm}
+
+    -   ${}_{t}q_{xy}$ + ${}_{t}q_{\overline{xy}}$ = ${}_{t}q_{x}$ +
+        ${}_{t}q_{y}$ \vspace{2mm}
+
+    -   ${}_{t}p_{xy}$ + ${}_{t}p_{\overline{xy}}$ = ${}_{t}p_{x}$ +
+        ${}_{t}p_{y}$ \vspace{2mm}
+
+    -   ${}_{t}p_{xy}$$\mu_{xy}(t)$ +
+        ${}_{t}p_{\overline{xy}}$$\mu_{\overline{xy}}(t)$ =
+        ${}_{t}p_{x}$$\mu_{x}(t)$ + ${}_{t}p_{y}$$\mu_{y}(t)$
+        \vspace{2mm}
+
+    -   $K_{xy}$ + $K_{\overline{xy}}$ = $K_x$ + $K_y$ \vspace{2mm}
+
+    -   ${}_{k|}q_{xy}$ + ${}_{k|}q_{\overline{xy}}$ = ${}_{k|}q_{x}$ +
+        ${}_{k|}q_{y}$ \vspace{2mm}
+
+    -   **“Law of Multiplication”**: $(T_{xy})$$(T_{\overline{xy}})$ =
+        $(T_{x})$$(T_{y})$
+
+    \vspace{10mm}
+
+-   None of the Law of Addition relationships require independence
+    of (x) and (y): they are always true. \vspace{10mm}
+
+-   The Law of Addition relationships are useful for calculating a
+    quantity involving ($\overline{xy}$) from easier quantities
+    involving (x), (y), and (xy).
+
+\newpage
+## Moments
+
+-   Let $(s)$ denote any of the statuses: $(x)$, $(xy)$, or
+    $(\overline{xy})$. \vspace{2mm}
+
+-   $T_s$ denotes the future lifetime random variable; $K_s$ =
+    $\left\lfloor{T_s}\right\rfloor$ denotes the curtate future lifetime
+    random variable. \vspace{2mm}
+
+-   $\mathring{e}_s$ = $E(T_s)$ = $\int^{\infty}_0{}_{t}p_{s}dt$
+    \vspace{2mm}
+
+-   $e_s$ = $E(K_s)$ = $\sum^{\infty}_{k = 1}{}_{k}p_{s}$ \vspace{2mm}
+
+-   $\mathring{e}_{s :\lcroof{n}}$ = $E[min(T_s, n)]$ = $\int^{n}_0
+    {}_{t}p_sdt$ \vspace{2mm}
+
+-   $e_{s :\lcroof{n}}$ = $E[min(K_s, n)]$ = $\sum^{n}_{k =
+    1} {}_{k}p_s$ \vspace{2mm}
+
+-   $Var(T_s)$ = $\int^{\infty}_02t{}_{t}p_sdt$ - $(\mathring{e}_s)^2$
+    \vspace{2mm}
+
+-   $Var(K_s)$ = $\sum^{\infty}_{k = 1} (2k -
+    1){}_{k}p_s$ - $(e_s)^2$ \vspace{2mm}
+
+    Consider two lives each aged x with mortality that follows de
+    Moivre’s Law/uniform distribution with limiting age $\omega$:
+    \vspace{2mm}
+
+    -   $\mathring{e}_{xx}$ = $\frac{\omega - x}{3}$ \vspace{2mm}
+
+    -   $\mathring{e}_{\overline{xx}}$ = $\frac{2(\omega - x)}{3}$
+        \vspace{2mm}
+
+    -   For x $<$ y: $\mathring{e}_{xy}$ = ${}_{y -
+        x}p_x$$\mathring{e}_{yy}$ + ${}_{y - x}q_x$$\mathring{e}_{y}$
+        \vspace{2mm}
+
+    With constant forces of mortality for (x), (y), and (xy):
+    \vspace{2mm}
+
+    -   $\mathring{e}_{x}$ = $\frac{1}{\mu_x}$ and $\mathring{e}_{y}$ =
+        $\frac{1}{\mu_y}$ \vspace{2mm}
+
+    -   $\mathring{e}_{xy}$ = $\frac{1}{\mu_{xy}}$, with independence
+        of (x) and (y), = $\frac{1}{\mu_{x} + \mu_{y}}$ \vspace{2mm}
+
+-   $\mathring{e}_{xy}$ + $\mathring{e}_{\overline{xy}}$ =
+    $\mathring{e}_{x}$ + $\mathring{e}_{y}$ \vspace{2mm}
+
+-   $e_{xy}$ + $e_{\overline{xy}}$ = $e_{x}$ + $e_{y}$ \vspace{2mm}
+
+-   $Cov[T_{xy}, T_{\overline{xy}}]$ = $cov[T_x, T_y]$ +
+    ($\mathring{e}_x$ - $\mathring{e}_{xy}$)($\mathring{e}_y$ -
+    $\mathring{e}_{xy}$) \vspace{2mm}
+
+    If (x) and (y) are independent $\implies$ $cov[T_x, T_y]$ = 0
+    $\implies$ \vspace{2mm}
+
+    $Cov[T_{xy}, T_{\overline{xy}}]$ = ($\mathring{e}_x$ -
+    $\mathring{e}_{xy}$)($\mathring{e}_y$ - $\mathring{e}_{xy}$)
+    \vspace{2mm}
+
+\newpage
+## Insurance and Annuity Benefits
+
+-   $\bar{A}_s$ = $E(v^{T_s})$ = $\int^{\infty}_0v^t{}_{t}p_s\mu_s(t)dt$
+    \vspace{1mm}
+
+    “This is the expected present value of a life insurance which pays 1
+    at time $T_s$ years after issue.” \vspace{2mm}
+
+    -   $\bar{A}_x$ is the expected present value of a whole life
+        insurance which pays 1 at the moment of death of (x).”
+        \vspace{2mm}
+
+    -   $\bar{A}_{xy}$ is the expected present value of a **joint life
+        insurance** which pays 1 at the moment of the first death of (x)
+        and (y).” \vspace{2mm}
+
+    -   $\bar{A}_{\overline{xy}}$ is the expected present value of a
+        **last survivor insurance** which pays 1 at the moment of the
+        second death of (x) and (y).” \vspace{5mm}
+
+-   $\bar{a}_s$ = $E(\bar{a}_{\lcroof{T_s}})$ =
+    $\int^{\infty}_0v^t{}_{t}p_sdt$ \vspace{1mm}
+
+    “This is the expected present value of a life annuity which pays 1
+    per year continuously each year up until time $T_s$ years after
+    issue.” \vspace{2mm}
+
+    -   $\bar{a}_x$ is the expected present value of a whole life
+        annuity which pays 1 per year continuously each year while (x)
+        survives.” \vspace{2mm}
+
+    -   $\bar{a}_{xy}$ is the expected present value of a **joint life
+        annuity** which pays 1 per year continuously each year while
+        both (x) and (y) survive.” \vspace{2mm}
+
+    -   $\bar{a}_{\overline{xy}}$ is the expected present value of a
+        **last survivor annuity** which pays 1 per year continuously
+        each year while at least one of (x) and (y) survive.”
+        \vspace{5mm}
+
+-   $\bar{a}_s$ = $\frac{1 - \bar{A}_s}{\delta}$ \vspace{5mm}
+
+-   $\bar{P}(\bar{A}_s)$ = $\frac{\bar{A}_s}{\bar{a}_s}$ \vspace{1mm}
+
+    “This is the level annual benefit premium for a fully continuous
+    whole life insurance of 1 on (s).”
+
+\newpage
+-   $\bar{A}_{xy}$ + $\bar{A}_{\overline{xy}}$ = $\bar{A}_{x}$ +
+    $\bar{A}_{y}$ \vspace{10mm}
+
+-   $\bar{a}_{xy}$ + $\bar{a}_{\overline{xy}}$ = $\bar{a}_{x}$ +
+    $\bar{a}_{y}$ \vspace{10mm}
+
+    With constant forces of mortality for (x), (y), and (xy):
+    \vspace{2mm}
+
+    -   $\bar{A}_{xy}$ = $\frac{\mu_{xy}}{\mu_{xy} + \delta}$, with
+        independence, =
+        $\frac{\mu_{x} + \mu_y}{\mu_{x} + \mu_y + \delta}$ \vspace{2mm}
+
+    -   $\bar{a}_{xy}$ = $\frac{1}{\mu_{xy} + \delta}$, with
+        independence, = $\frac{1}{\mu_{x} + \mu_y + \delta}$
+        \vspace{10mm}
+
+-   BUT: $\bar{P}(\bar{A}_{xy})$ + $\bar{P}(\bar{A}_{\overline{xy}})$
+    $\neq$ $\bar{P}(\bar{A}_x)$ + $\bar{P}(\bar{A}_y)$, as each benefit
+    premium is a quotient of an insurance and an annuity. \vspace{2mm}
+
+    ALSO: ${}_{t}\bar{V}(\bar{A}_{xy})$ +
+    ${}_{t}\bar{V}(\bar{A}_{\overline{xy}})$ $\neq$
+    ${}_{t}\bar{V}(\bar{A}_x)$ + ${}_{t}\bar{V}(\bar{A}_y)$, as each
+    benefit reserve is an additive function involving insurances and
+    annuities. \vspace{10mm}
+
+-   $Var(v^{T_s})$ = $^2\bar{A}_s -
+    (\bar{A}_s)^2$ \vspace{1mm}
+
+    “This is the variance of the present value of a continuous whole
+    life insurance of 1 on (s).” \vspace{10mm}
+
+-   We can also consider insurances and annuities with terms. For
+    example: \vspace{2mm}
+
+    $\anncon{s}{n}$ = $\int^{n}_0v^t{}_{t}p_sdt$ \vspace{10mm}
+
+-   If (x) and (y) are independent $\implies$ $cov[v^{T_{xy}},
+    v^{T_{\overline{xy}}}]$ = $(\bar{A}_{x} - \bar{A}_{xy})(\bar{A}_{y}
+    - \bar{A}_{xy})$
+
+\newpage
+-   If $T_x$ $<$ $T_y$, the following hold: \vspace{2mm}
+
+    -   $\mathring{e}_{xy}$ $<$ $\mathring{e}_{x}$ $<$
+        $\mathring{e}_{y}$ $<$ $\mathring{e}_{\overline{xy}}$
+        \vspace{2mm}
+
+    -   $\bar{A}_{\overline{xy}}$ $<$ $\bar{A}_{y}$ $<$ $\bar{A}_{x}$
+        $<$ $\bar{A}_{xy}$ \vspace{2mm}
+
+    -   $\bar{a}_{xy}$ $<$ $\bar{a}_{x}$ $<$ $\bar{a}_{y}$ $<$
+        $\bar{a}_{\overline{xy}}$ \vspace{2mm}
+
+    The same relationships above hold if the circles are removed from
+    the e’s and the bars on the A’s and a’s are removed or replaced with
+    double dots. \vspace{10mm}
+
+-   **Reversionary Annuity**: This is a life annuity which provides
+    payments while specific lives are alive and other specific lives are
+    dead. \vspace{2mm}
+
+    For example, consider an annuity that pays 1 per year continuously
+    each year while (u) is alive and (v) is dead. The expected present
+    value of this reversionary annuity is: \vspace{1mm}
+
+    $\bar{a}_{v|u}$ = $\bar{a}_{u}$ - $\bar{a}_{uv}$ \vspace{2mm}
+
+    This formula makes sense: \vspace{2mm}
+
+    -   If (u) dies first, $\bar{a}_{v|u}$ = $\bar{a}_{u}$ -
+        $\bar{a}_{u}$ = 0; there are no payments. \vspace{2mm}
+
+    -   If (v) dies first, $\bar{a}_{v|u}$ = $\bar{a}_{u}$ -
+        $\bar{a}_{v}$ $>$ 0; there are payments while only (u) is alive.
+        \vspace{10mm}
+
+\newpage
+-   Consider a continuous life annuity on (x) and (y) that provides the
+    following payments: \vspace{4mm}
+
+    \(i) 300 per year while both are alive. \vspace{2mm}
+
+    \(ii) 400 per year while only (x) is alive. \vspace{2mm}
+
+    \(iii) 200 per year while only (y) is alive. \vspace{4mm}
+
+    There are two approaches for formulating the expected present value
+    of this annuity: \vspace{1mm}
+
+    -   Recognize this as the sum of a joint life annuity and two
+        reversionary annuities. Then, the expected present value is:
+        \vspace{2mm}
+
+        300$\bar{a}_{xy}$ + 400$\bar{a}_{y|x}$ + 200$\bar{a}_{x|y}$
+        \vspace{1mm}
+
+        = 300$\bar{a}_{xy}$ + 400[$\bar{a}_x$ - $\bar{a}_{xy}$] +
+        200[$\bar{a}_y$ - $\bar{a}_{xy}$] \vspace{1mm}
+
+        = 400$\bar{a}_x$ + 200$\bar{a}_y$ - 300$\bar{a}_{xy}$.
+        \vspace{5mm}
+
+    -   Recognize this as the sum of two single life annuities; when
+        considering just (x), 400 is payable each year and when
+        considering just (y), 200 is payable each year. When both (x)
+        and (y) are alive, the total payment is 600 per year; 300 more
+        per year than we want paid while both are alive. Adjusting for
+        the excess joint life payment each year of 300, the expected
+        present value can immediately be reasoned as: \vspace{2mm}
+
+        400$\bar{a}_x$ + 200$\bar{a}_y$ - 300$\bar{a}_{xy}$.
+        \vspace{10mm}
+
+-   The formulas in this section can also be easily adjusted for a
+    discrete insurance or annuity. For example:
+
+    -   $A_s$ = $\sum^{\infty}_{k = 0}v^{k + 1}{}_{k|}q_s$ \vspace{2mm}
+
+    -   $\ddot{a}_{xy}$ + $\ddot{a}_{\overline{xy}}$ = $\ddot{a}_{x}$ +
+        $\ddot{a}_{y}$ \vspace{2mm}
+
+    -   $a_{v|u}$ = $a_{u}$ - $a_{uv}$
+
+\newpage
+## Exercises
+
+\Large
+
+14.1. Consider two independent lives (35) and (45). Each life has
+mortality that follows the Illustrative Life Table. \vspace{2mm}
+
+Calculate the probability that (35) will survive ten years and (45) will
+not survive ten years. \vspace{4mm}
+
+\(A) 0.040 \hspace{0.2in} (B) 0.045 \hspace{0.2in} (C) 0.050
+\hspace{0.2in} (D) 0.055 \hspace{0.2in} (E) 0.060 \vspace{6mm}
+
+14.2. Consider two independent lives (x) and (y). \vspace{2mm}
+
+\(x) is subject to a constant force of mortality of 0.05, and (y) is
+subject to a constant force of mortality of 0.03. \vspace{2mm}
+
+Calculate the probability that exactly one of (x) and (y) dies in the
+fifth year. \vspace{4mm}
+
+\(A) 0.062 \hspace{0.2in} (B) 0.064 \hspace{0.2in} (C) 0.066
+\hspace{0.2in} (D) 0.068 \hspace{0.2in} (E) 0.070 \vspace{6mm}
+
+14.3. The time-until-death random variables $T(x)$ and $T(y)$ are
+independent and identically distributed, each with p.d.f: \vspace{4mm}
+
+$f_T(t)$ = $3(1 + t)^{-4}$ for $t$ $>$ 0. \vspace{4mm}
+
+Calculate the probability that the first death of (x) and (y) will occur
+during the second year from today. \vspace{4mm}
+
+\(A) 0.010 \hspace{0.2in} (B) 0.011 \hspace{0.2in} (C) 0.012
+\hspace{0.2in} (D) 0.013 \hspace{0.2in} (E) 0.014 \vspace{6mm}
+
+14.4. Consider two independent lives (60) and (65). You are given:
+\vspace{3mm}
+
+$\begin{array}{r|r|r|r|r|r|r|r|r|r|r|r|r}
+\hline
+\mathbf{x} & 60 & 61 & 62 & 63 & 64 & 65 & 66 & 67 & 68 & 69 & 70 & 71 \\
+\hline
+\mathbf{l_x} & 1000 & 982 & 963 & 943 & 922 & 900 & 877 & 853 & 828 & 802 & 775 & 747 \\
+\hline
+\end{array}$
+
+\vspace{3mm}
+
+Calculate the probability that the second death of (60) and (65) occurs
+during the third year. \vspace{4mm}
+
+\(A) 0.001 \hspace{0.2in} (B) 0.002 \hspace{0.2in} (C) 0.003
+\hspace{0.2in} (D) 0.004 \hspace{0.2in} (E) 0.005
+
+\newpage
+14.5. You are given: \vspace{4mm}
+
+\(i) Mortality follows de Moivre’s Law with $\omega$ = 100. \vspace{2mm}
+
+\(ii) (40) and (50) have independent future lifetimes. \vspace{4mm}
+
+Calculate the probability that the first death of (40) and (50) occurs
+in the tenth year. \vspace{4mm}
+
+\(A) 0.024 \hspace{0.2in} (B) 0.026 \hspace{0.2in} (C) 0.028
+\hspace{0.2in} (D) 0.030 \hspace{0.2in} (E) 0.032 \vspace{10mm}
+
+14.6. For two independent lives ages 30 and 34, you are given:
+
+$\begin{array}{r|r|r|r|r|r|r|r|r}
+\hline
+\mathbf{x} & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
+\hline
+\mathbf{q_x} & 0.10 & 0.20 & 0.30 & 0.40 & 0.50 & 0.60 & 0.70 & 0.80 \\
+\hline
+\end{array}$
+
+Calculate the increase in the value of ${}_{2}q_{\overline{30:34}}$ if
+$q_{31}$ is increased from 0.20 to 0.25. \vspace{4mm}
+
+\(A) 0.031 \hspace{0.2in} (B) 0.036 \hspace{0.2in} (C) 0.041
+\hspace{0.2in} (D) 0.046 \hspace{0.2in} (E) 0.051 \vspace{10mm}
+
+14.7. Suppose both (40) and (60) have independent future lifetimes and
+mortality where $l_x$ = 500(100 - $x$) for 0 $\le$ $x$ $\le$ 100.
+\vspace{2mm}
+
+Calculate: $\mathring{e}_{\overline{40:60}}$. \vspace{4mm}
+
+\(A) 32 \hspace{0.2in} (B) 33 \hspace{0.2in} (C) 34 \hspace{0.2in} (D) 35
+\hspace{0.2in} (E) 36 \vspace{10mm}
+
+14.8. Consider (x) and (y), with independent future lifetimes and
+constant forces of mortality equal to 0.03 and 0.05, respectively.
+\vspace{2mm}
+
+Calculate the expected time until the first death of (x) and (y).
+\vspace{4mm}
+
+\(A) 13 \hspace{0.2in} (B) 20 \hspace{0.2in} (C) 33 \hspace{0.2in} (D) 40
+\hspace{0.2in} (E) 57 \vspace{12mm}
+
+\newpage
+14.9. For independent lives (50) and (60) with identical expected
+mortality: ${}_{10|}q_{\overline{50:60}}$ = 0.011, ${}_{10}p_{50}$ =
+0.78, ${}_{10}p_{60}$ = 0.73, and $q_{70}$ = 0.03. \vspace{4mm}
+
+Find the probability that exactly one of (50) and (60) survives 11
+years. \vspace{4mm}
+
+\(A) 0.35 \hspace{0.2in} (B) 0.37 \hspace{0.2in} (C) 0.39 \hspace{0.2in}
+(D) 0.41 \hspace{0.2in} (E) 0.43 \vspace{6mm}
+
+14.10. For a certain population, some lives are infected with disease A:
+\vspace{4mm}
+
+\(i) For a life not infected with disease A: $l_x$ = 500(95 - $x$) for 0
+$\le$ $x$ $\le$ 95. \vspace{2mm}
+
+\(ii) For a life infected with disease A: $l_x$ = 500(95 -
+$x$)$^{\alpha}$ for 0 $\le$ $x$ $\le$ 95 and $\alpha$ $>$ 0.
+\vspace{2mm}
+
+\(iii) At age 40, the complete expectation of life for a life not
+infected with disease A is 15% higher than the complete expectation of
+life for a life infected with disease A. \vspace{2mm}
+
+\(iv) The complete expectation of life for a joint life status involving
+a 45 year old not infected with disease A and a 40 year old infected
+with disease A is 15.94. \vspace{4mm}
+
+Calculate the complete expectation of life for a last survivor status
+involving a 45 year old not infected with disease A and a 40 year old
+infected with disease A. \vspace{4mm}
+
+\(A) 31 \hspace{0.2in} (B) 32 \hspace{0.2in} (C) 33 \hspace{0.2in} (D) 34
+\hspace{0.2in} (E) 35 \vspace{6mm}
+
+14.11. For (60.6) and (62): \vspace{4mm}
+
+\(i) Each life has mortality such that:
+
+$\begin{array}{r|r|r|r|r|r|r|r}
+\hline
+\mathbf{x} & 60 & 61 & 62 & 63 & 64 & 65 & 66 \\
+\hline
+\mathbf{p_x} & 0.80 & 0.79 & 0.78 & 0.77 & 0.76 & 0.75 & 0.74 \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+\(ii) The two lives are independent. \vspace{2mm}
+
+\(iii) There is a uniform distribution of deaths within each year of age.
+\vspace{4mm}
+
+Calculate the probability that at least one life survives 5 years.
+\vspace{4mm}
+
+\(A) 0.46 \hspace{0.2in} (B) 0.47 \hspace{0.2in} (C) 0.48 \hspace{0.2in}
+(D) 0.49 \hspace{0.2in} (E) 0.50
+
+\newpage
+14.12. Consider two lives (40) and (50): \vspace{4mm}
+
+\(i) Both lives have independent future lifetimes. \vspace{2mm}
+
+\(ii) Each life is subject to: $\mu_x$ = $\frac{1}{90 - x}$ for 0 $\le$
+$x$ $\le$ 90. \vspace{4mm}
+
+Calculate the probability that both lives will survive a number of years
+equal to the expected time until the first death. \vspace{4mm}
+
+\(A) 0.43 \hspace{8mm} (B) 0.45 \hspace{8mm} (C) 0.47 \hspace{8mm} (D)
+0.49 \hspace{8mm} (E) 0.51 \vspace{6mm}
+
+14.13. Consider two independent lives (35) and (35): \vspace{4mm}
+
+\(i) Each life has mortality such that: $s(x)$ = $\frac{\omega -
+x}{\omega}$ for 0 $\le$ $x$ $\le$ $\omega$. \vspace{2mm}
+
+\(ii) $\mathring{e}_{35:35}$ = $\frac{70}{3}$. \vspace{4mm}
+
+Calculate $cov[T(35:35), T(\overline{35:35})]$. \vspace{4mm}
+
+\(A) 124 \hspace{0.2in} (B) 127 \hspace{0.2in} (C) 130 \hspace{0.2in} (D)
+133 \hspace{0.2in} (E) 136 \vspace{6mm}
+
+14.14. (i) There are two independent lives, each age 90. \vspace{2mm}
+
+\(ii) Each life has mortality such that: $l_{90+t}$ = $(10 - t)^2$ for 0
+$\le$ $t$ $\le$ 10. \vspace{4mm}
+
+Calculate the average time until the second death. \vspace{4mm}
+
+\(A) 3 \hspace{0.2in} (B) 4 \hspace{0.2in} (C) 5 \hspace{0.2in} (D) 6
+\hspace{0.2in} (E) 7 \vspace{12mm}
+
+14.15. For a population of smokers and non-smokers: \vspace{4mm}
+
+\(i) Smokers have force of mortality: $\mu_x$ = $3(2 + x)^{-1}$ for $x$
+$\ge$ 0. \vspace{2mm}
+
+\(ii) Non-smokers have force of mortality equal to one-third of the force
+of mortality for smokers at each age. \vspace{4mm}
+
+Consider two independent lives each age 40, one a smoker and the other a
+non-smoker. Calculate the probability that the first death occurs after
+6 years, but before 12 years. \vspace{4mm}
+
+\(A) 0.21 \hspace{0.2in} (B) 0.22 \hspace{0.2in} (C) 0.23 \hspace{0.2in}
+(D) 0.24 \hspace{0.2in} (E) 0.25
+
+\newpage
+14.16. Consider two independent lives ages 45 and 55, each with
+identical expected mortality: \vspace{4mm}
+
+\(i) ${}_{10}p_{45}$ = 0.8900 \vspace{2mm}
+
+\(ii) ${}_{15}q_{55}$ = 0.2518 \vspace{2mm}
+
+\(iii) ${}_{10}q_{\overline{45:55}}$ = 0.0154 \vspace{4mm}
+
+Calculate: ${}_{5}p_{65}$. \vspace{4mm}
+
+\(A) 0.8600 \hspace{0.2in} (B) 0.8650 \hspace{0.2in} (C) 0.8700
+\hspace{0.2in} (D) 0.8750 \hspace{0.2in} (E) 0.8800 \vspace{10mm}
+
+14.17. For two lives (x) and (y): \vspace{4mm}
+
+\(i) (x) and (y) have independent future lifetime random variables.
+\vspace{2mm}
+
+\(ii) $\mu_x(t)$ = $-\ln(0.90)$ for $t$ $\ge$ 0 \vspace{2mm}
+
+\(iii) $\mu_y(t)$ = $-\ln(0.85)$ for $t$ $\ge$ 0 \vspace{4mm}
+
+Calculate the probability that (x) and (y) both die in the same year.
+\vspace{4mm}
+
+\(A) 0.060 \hspace{0.2in} (B) 0.064 \hspace{0.2in} (C) 0.068
+\hspace{0.2in} (D) 0.072 \hspace{0.2in} (E) 0.076 \vspace{10mm}
+
+14.18. Jimmy and Jey are independent lives, each aged x: \vspace{4mm}
+
+\(i) Jimmy and Jey are each subject to the same constant force of
+mortality. \vspace{2mm}
+
+\(ii) $\delta$ = 0.06 \vspace{2mm}
+
+\(iii) $Z$ denotes the present value random variable for a whole life
+insurance policy of 1000 on Jimmy and Jey payable at the moment of the
+last death. \vspace{2mm}
+
+\(iv) $Pr[Z < 200]$ = 0.6039. \vspace{4mm}
+
+Calculate 1000 times the probability that the last death of Jimmy and
+Jey occurs in the fifth policy year. \vspace{4mm}
+
+\(A) 9.6 \hspace{0.2in} (B) 9.7 \hspace{0.2in} (C) 9.8 \hspace{0.2in} (D)
+9.9 \hspace{0.2in} (E) 10.0 \vspace{10mm}
+
+\newpage
+14.19. For a special insurance on independent lives (x) and (y):
+\vspace{4mm}
+
+\(i) The insurance pays 1000 at the moment of the first death and 2000 at
+the moment of the second death. \vspace{2mm}
+
+\(ii) Annual premiums of $\pi$ are payable continuously while both (x)
+and (y) are alive. After the moment of the first death, annual premiums
+of 0.6$\pi$ are payable continuously until the moment of the second
+death. \vspace{2mm}
+
+\(iii) $\delta_t$ = 0.06, $\mu_x(t)$ = 0.02, $\mu_y(t)$ = 0.04 for $t$
+$\ge$ 0.
+
+\vspace{4mm} Calculate $\pi$ using the equivalence principle.
+\vspace{4mm}
+
+\(A) 65 \hspace{0.2in} (B) 66 \hspace{0.2in} (C) 67 \hspace{0.2in} (D) 68
+\hspace{0.2in} (E) 69 \vspace{5mm}
+
+14.20. A fully discrete life insurance on two independent lives, ages 25
+and 35, pays 1000 at the end of the year of the first death and 2000 at
+the end of the year of the second death. Furthermore: \vspace{4mm}
+
+\(i) Level benefit premiums are payable at the beginning of the year
+while both are alive. \vspace{2mm}
+
+\(ii) Mortality for each life follows the Illustrative Life Table, and
+$i$ = 0.06 \vspace{4mm}
+
+Calculate the level annual benefit premium. \vspace{4mm}
+
+\(A) 17 \hspace{0.2in} (B) 18 \hspace{0.2in} (C) 19 \hspace{0.2in} (D) 20
+\hspace{0.2in} (E) 21 \vspace{5mm}
+
+14.21. For a special fully continuous last-survivor insurance of 1000 on
+independent lives (x) and (y): \vspace{4mm}
+
+\(i) The death benefit is payable at the moment of the second death.
+
+\vspace{2mm} (ii) The level annual benefit premium is $\pi$ while both
+(x) and (y) are alive and 0.75$\pi$ while exactly one of (x) and (y) is
+alive.
+
+\vspace{2mm} (iii) $\delta$ = 0.04, $\mu_x(t)$ = 0.02, $\mu_y(t)$ = 0.03
+for $t$ $>$ 0 \vspace{4mm}
+
+Calculate: $\pi$. \vspace{4mm}
+
+\(A) 12 \hspace{0.2in} (B) 13 \hspace{0.2in} (C) 14 \hspace{0.2in} (D) 15
+\hspace{0.2in} (E) 16
+
+\newpage
+14.22. Consider a special life insurance on John and Daniel, each aged
+30: \vspace{4mm}
+
+\(i) John and Daniel have independent future lifetimes. \vspace{2mm}
+
+\(ii) John and Daniel have identical expected mortality. \vspace{2mm}
+
+\(iii) 1000 is payable at the end of the year of death of John.
+\vspace{2mm}
+
+\(iv) 1000 is payable at the end of the year of death of Daniel.
+\vspace{2mm}
+
+\(v) Level annual benefit premiums are payable at the beginning of each
+year for as long as both John and Daniel are alive. \vspace{2mm}
+
+\(vi) $\ddot{a}_{31}$ = 14 and $\ddot{a}_{31:31}$ = 12. \vspace{2mm}
+
+\(vii) $p_{30}$ = 0.98 \vspace{2mm}
+
+\(viii) $d$ = 0.06 \vspace{4mm}
+
+Calculate the level annual benefit premium. \vspace{4mm}
+
+\(A) 22 \hspace{0.2in} (B) 24 \hspace{0.2in} (C) 26 \hspace{0.2in} (D) 28
+\hspace{0.2in} (E) 30 \vspace{20mm}
+
+14.23. You are given a fully discrete 2-year term insurance on
+independent lives (30) and (40): \vspace{4mm}
+
+\(i) The death benefit is 10,000, payable at the end of the year of the
+last death of (30) and (40). \vspace{2mm}
+
+\(ii) The level annual premium is 50, and is payable at the beginning of
+the year while at least one of (30) and (40) is alive. \vspace{2mm}
+
+\(iii) Each life has mortality that follows the Illustrative Life Table.
+\vspace{2mm}
+
+\(iv) $i$ = 0.06 \vspace{4mm}
+
+Calculate the expected loss-at-issue. \vspace{4mm}
+
+\(A) - 16 \hspace{0.2in} (B) - 9 \hspace{0.2in} (C) 0 \hspace{0.2in} (D)
+9 \hspace{0.2in} (E) 16 \vspace{10mm}
+
+\newpage
+14.24. A continuous annuity on (x) and (y) provides the payments:
+\vspace{2mm}
+
+\(i) 500 per year while both are alive. \vspace{1mm}
+
+\(ii) 400 per year while only (x) is alive. \vspace{1mm}
+
+\(iii) 150 per year while only (y) is alive. \vspace{2mm}
+
+The expected present value of this annuity is 6650. \vspace{2mm}
+
+If $\bar{a}_y$ = 9 and $\bar{a}_{xy}$ = 6, re-calculate the expected
+present value of the annuity if the 150 per year payment while only (y)
+is alive is reduced to 90 per year. \vspace{2mm}
+
+\(A) 6110 \hspace{0.2in} (B) 6230 \hspace{0.2in} (C) 6375 \hspace{0.2in}
+(D) 6470 \hspace{0.2in} (E) 6540 \vspace{6mm}
+
+14.25. John and Dwayne are independent lives, ages 30 and 40,
+respectively. They want to purchase a special life annuity-due that will
+pay (i) 1000 per year if just John is alive and over age 60, (ii) 1000
+per year if just Dwayne is alive and over age 60, and (iii) 1000 per
+year if both John and Dwayne are alive and over age 60. Assuming that
+mortality for each life follows the Illustrative Life Table and i =
+0.06, calculate the expected present value of this annuity. \vspace{2mm}
+
+\(A) 3500 \hspace{0.2in} (B) 3600 \hspace{0.2in} (C) 3700 \hspace{0.2in}
+(D) 3800 \hspace{0.2in} (E) 3900 \vspace{6mm}
+
+14.26. A husband, age 65, is retiring. He has the choice of one of two
+pension plans (Plan I and Plan II, respectively) that will provide
+annual retirement benefits to him and his wife, age 55, starting today:
+\vspace{2mm}
+
+\(i) **Plan I**: Payments of: 20,000 at the beginning of each year for as
+long as both the husband and wife are alive; 15,000 at the beginning of
+each year if the wife is alive and the husband is dead; 7500 at the
+beginning of each year if the husband is alive and the wife is dead.
+\vspace{1mm}
+
+\(ii) **Plan II**: Payments of: $R$ at the beginning of each year for as
+long as the wife is alive; 0.60$R$ at the beginning of each year for as
+long as the husband is alive. \vspace{1mm}
+
+\(iii) Mortality follows the Illustrative Life Table, and $i$ = 0.06. The
+husband and wife have independent future lifetimes. \vspace{1mm}
+
+Find $R$ so that the actuarial present values of Plan I and Plan II are
+equal. \vspace{2mm}
+
+\(A) 13,000 \hspace{0.2in} (B) 13,500 \hspace{0.2in} (C) 14,000
+\hspace{0.2in} (D) 14,500 \hspace{0.2in} (E) 15,000
+
+\newpage
+14.27. Consider two independent lives (35) and (45): \vspace{4mm}
+
+\(i) Mortality for each life follows the Illustrative Life Table.
+\vspace{2mm}
+
+\(ii) $i$ = 0.06 \vspace{4mm}
+
+Calculate the expected present value of an insurance on (35) and (45)
+that pays 5000 at the end of the year of the first death if the first
+death occurs after the first 10 years. \vspace{4mm}
+
+\(A) 900 \hspace{0.2in} (B) 910 \hspace{0.2in} (C) 920 \hspace{0.2in} (D)
+930 \hspace{0.2in} (E) 940 \vspace{6mm}
+
+14.28. Independent lives (50) and (60) purchase a special
+annuity-immediate with annual payments of: \vspace{4mm}
+
+\(i) 500 while both (50) and (60) are alive. \vspace{2mm}
+
+\(ii) 300 while (60) is alive and (50) is dead. \vspace{2mm}
+
+\(iii) $B$ while (50) is alive and (60) is dead. \vspace{4mm}
+
+The special annuity-immediate has the same actuarial present value as a
+whole life annuity-immediate on (50) with annual payments of 1.5$B$.
+
+\vspace{2mm} Mortality for each life follows the Illustrative Life
+Table, $i$ = 0.06.
+
+\vspace{2mm} Calculate $B$. \vspace{4mm}
+
+\(A) 260 \hspace{0.2in} (B) 280 \hspace{0.2in} (C) 300 \hspace{0.2in} (D)
+320 \hspace{0.2in} (E) 340 \vspace{6mm}
+
+14.29. You are pricing a special continuous life annuity on two
+independent lives, (x) and (y): \vspace{4mm}
+
+\(i) The annuity pays 30,000 each year while both lives survive, and
+20,000 each year while only one life survives. \vspace{2mm}
+
+\(ii) (x) and (y) have constant forces of mortality equal to 0.03 and
+0.05, respectively. \vspace{2mm}
+
+\(iii) $\delta$ = 0.06. \vspace{4mm}
+
+Calculate the expected present value of this annuity. \vspace{4mm}
+
+\(A) 331,600 \hspace{0.2in} (B) 332,100 \hspace{0.2in} (C) 332,600
+\hspace{0.2in} (D) 333,100 \hspace{0.2in} (E) 333,600
+
+\newpage
+14.30. You are given a special annuity on two independent people each
+aged x: \vspace{4mm}
+
+\(i) The annuity pays 40,000 at the beginning of the year while both
+people are alive and is 25,000 at the beginning of the year when only
+one person is alive. \vspace{2mm}
+
+\(ii) There is also a benefit of 20,000 payable at the end of the year of
+the first death. \vspace{2mm}
+
+\(iii) Both people have mortality: ${}_{k}p_x$ = (0.97)$^k$ for $k$ = 0,
+1, 2, .... \vspace{2mm}
+
+\(iv) $d$ = 0.04 \vspace{4mm}
+
+Calculate the actuarial present value of this special annuity.
+\vspace{4mm}
+
+\(A) 633,100 \hspace{0.2in} (B) 633,600 \hspace{0.2in} (C) 634,100
+\hspace{0.2in} (D) 634,600 \hspace{0.2in} (E) 635,100 \vspace{10mm}
+
+14.31. Consider a special continuous annuity on independent lives: a
+female aged 40 and a male aged 50. You are given: \vspace{4mm}
+
+\(i) The annual rate of payment is 30,000, only payable while exactly one
+of (40) and (50) is alive and is older than age 65. \vspace{2mm}
+
+\(ii) (40) is subject to a constant force of mortality of 0.02.
+\vspace{2mm}
+
+\(iii) (50) is subject to a constant force of mortality of 0.03.
+\vspace{2mm}
+
+\(iv) $\delta$ = 0.05 \vspace{4mm}
+
+Calculate the expected present value of this annuity. \vspace{4mm}
+
+\(A) 137,700 \hspace{0.2in} (B) 138,170 \hspace{0.2in} (C) 139,900
+\hspace{0.2in} (D) 140,300 \hspace{0.2in} (E) 141,100
+
+\newpage
+14.32. Consider a special fully discrete joint life insurance on
+independent lives (50) and (60): \vspace{4mm}
+
+\(i) 100,000 is payable at the end of the year of the first death of the
+two lives. \vspace{2mm}
+
+\(ii) The level annual gross premium ($G$) is payable at the beginning
+each year during the first ten years while both lives are alive.
+\vspace{2mm}
+
+\(iii) The following expenses, which are incurred at the beginning of the
+year while both lives are alive: \vspace{2mm}
+
+$\begin{array}{r|rr|rr|rr}
+\hline
+    & \multicolumn{2}{c}{\textbf{Year 1}} & \multicolumn{2}{c}{\textbf{Years 2-10}} &  \multicolumn{2}{c}{\textbf{Years 11+}}\\
+    & \% \text{G} & \text{Constant}   & \% \text{G} & \text{Constant} & \% \text{G} & \text{Constant} \\
+\hline
+\text{Sales Commission}   & 25\% & 0  & 5\% & 0 & 0 & 0 \\
+\text{Taxes}              & 5\%  & 0  & 5\% & 0 & 0 & 0 \\
+\text{Maintenance} & 0    & 60 & 0   & 15 & 0   & 15\\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+\(iv) There is a claims settlement expense of 100 payable at the same
+time as the death benefit. \vspace{2mm}
+
+\(v) Mortality for each life follows the Illustrative Life Table.
+\vspace{2mm}
+
+\(vi) $i$ = 0.06 \vspace{4mm}
+
+Calculate $G$ using the equivalence principle. \vspace{4mm}
+
+\(A) 6500 \hspace{0.2in} (B) 6900 \hspace{0.2in} (C) 7300 \hspace{0.2in}
+(D) 7700 \hspace{0.2in} (E) 8100 \vspace{10mm}
+
+14.33. Consider the setup in Exercise 14.32, except use $G$ = 7200.
+Calculate the probability that the loss-at-issue for the insurance is
+negative.
+
+\vspace{4mm}
+
+\(A) 0.61 \hspace{0.2in} (B) 0.63 \hspace{0.2in} (C) 0.65 \hspace{0.2in}
+(D) 0.67 \hspace{0.2in} (E) 0.69 \vspace{10mm}
+
+\newpage
+### Answers to Exercises
+
+\Large14.1. D \hspace{2in} 14.26. A \vspace{2mm}
+
+14.2. B \hspace{2in} 14.27. B \vspace{2mm}
+
+14.3. E \hspace{2in} 14.28. D \vspace{2mm}
+
+14.4. C \hspace{2in} 14.29. C \vspace{2mm}
+
+14.5. D \hspace{2in} 14.30. E \vspace{2mm}
+
+14.6. B \hspace{2in} 14.31. B \vspace{2mm}
+
+14.7. C \hspace{2in} 14.32. B \vspace{2mm}
+
+14.8. A \hspace{2in} 14.33. D \vspace{2mm}
+
+14.9. C \vspace{2mm}
+
+14.10. C \vspace{2mm}
+
+14.11. A \vspace{2mm}
+
+14.12. B \vspace{2mm}
+
+14.13. E \vspace{2mm}
+
+14.14. C \vspace{2mm}
+
+14.15. B \vspace{2mm}
+
+14.16. C \vspace{2mm}
+
+14.17. B \vspace{2mm}
+
+14.18. A \vspace{2mm}
+
+14.19. D \vspace{2mm}
+
+14.20. B \vspace{2mm}
+
+14.21. A \vspace{2mm}
+
+14.22. D \vspace{2mm}
+
+14.23. A \vspace{2mm}
+
+14.24. D \vspace{2mm}
+
+14.25. E \vspace{2mm}
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#5, 6 \vspace{2mm}
+
+-   Exam MLC, Spring 2015: \#13 \vspace{2mm}
+
+-   Exam MLC, Fall 2014: \#1, 6 \vspace{2mm}
+
+-   Exam MLC, Spring 2014: \#11 \vspace{2mm}
+
+-   Exam 3L, Fall 2013: \#4, 5 \vspace{2mm}
+
+-   Exam 3L, Spring 2013: \#4, 5 \vspace{2mm}
+
+-   Exam MLC, Spring 2013: \#6 \vspace{2mm}
+
+-   Exam 3L, Fall 2012: \#4, 5, 13 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#1 \vspace{2mm}
+
+-   Exam 3L, Spring 2012: \#4, 5 \vspace{2mm}
+
+-   Exam MLC, Spring 2012: \#16 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#1, 31, 57, 80, 91, 94, 123, 128, 150,
+    163, 191, 193, 195, 220, 269, 270, 272, 273, 278, 280 \vspace{2mm}
+
+-   Exam 3L, Fall 2011: \#3, 4, 5, 13 \vspace{2mm}
+
+-   Exam 3L, Spring 2011: \#4, 5, 13 \vspace{2mm}
+
+-   Exam 3L, Fall 2010: \#4, 5 \vspace{2mm}
+
+-   Exam 3L, Spring 2010: \#5, 6, 7 \vspace{2mm}
+
+-   Exam 3L, Fall 2009: \#4, 5, 6 \vspace{2mm}
+
+-   Exam 3L, Spring 2009: \#4, 5, 23 \vspace{2mm}
+
+-   Exam 3L, Fall 2008: \#15, 16, 17 \vspace{2mm}
+
+-   Exam 3L, Spring 2008: \#17, 18 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#26, 46, 49, 104, 112, 173, 233, 281,
+    282 \vspace{2mm}
+
+-   Exam MLC, Spring 2007: \#8 \vspace{2mm}

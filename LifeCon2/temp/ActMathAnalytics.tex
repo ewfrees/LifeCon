@@ -1,0 +1,4163 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Actuarial Mathematics Analytics},
+            pdfauthor={An open text authored by the Actuarial Community},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Actuarial Mathematics Analytics}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{An open text authored by the Actuarial Community}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2017-06-16}
+
+\usepackage{amssymb,amsmath}
+\usepackage{lifecon}
+%\usepackage{mathspec}
+%\makeatletter % undo the wrong changes made by mathspec
+%\let\RequirePackage\original@RequirePackage
+%\let\usepackage\RequirePackage
+%\makeatother
+
+\usepackage{booktabs}
+\setcounter{secnumdepth}{2}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\chapter*{Preface}\label{preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+\subsubsection*{Book Description}\label{book-description}
+\addcontentsline{toc}{subsubsection}{Book Description}
+
+\textbf{Actuarial Mathematics Analytics} is an interactive, online,
+freely available text.
+
+\begin{itemize}
+\item
+  The online version contains many interactive objects (quizzes,
+  computer demonstrations, interactive graphs, video, and the like) to
+  promote \emph{deeper learning}.
+\item
+  A subset of the book is available for \emph{offline reading} in pdf
+  and EPUB formats.
+\item
+  The online text will be available in multiple languages to promote
+  access to a \emph{worldwide audience}.
+\end{itemize}
+
+\subsubsection*{What will success look
+like?}\label{what-will-success-look-like}
+\addcontentsline{toc}{subsubsection}{What will success look like?}
+
+The online text will be freely available to a worldwide audience. The
+online version will contain many interactive objects (quizzes, computer
+demonstrations, interactive graphs, video, and the like) to promote
+deeper learning. Moreover, a subset of the book will be available in pdf
+format for low-cost printing. The online text will be available in
+multiple languages to promote access to a worldwide audience.
+
+\subsubsection*{How will the text be
+used?}\label{how-will-the-text-be-used}
+\addcontentsline{toc}{subsubsection}{How will the text be used?}
+
+This book will be useful in actuarial curricula worldwide. It will cover
+the loss data learning objectives of the major actuarial organizations.
+Thus, it will be suitable for classroom use at universities as well as
+for use by independent learners seeking to pass professional actuarial
+examinations. Moreover, the text will also be useful for the continuing
+professional development of actuaries and other professionals in
+insurance and related financial risk management industries.
+
+\subsubsection*{Why is this good for the
+profession?}\label{why-is-this-good-for-the-profession}
+\addcontentsline{toc}{subsubsection}{Why is this good for the
+profession?}
+
+An online text is a type of open educational resource (OER). One
+important benefit of an OER is that it equalizes access to knowledge,
+thus permitting a broader community to learn about the actuarial
+profession. Moreover, it has the capacity to engage viewers through
+active learning that deepens the learning process, producing analysts
+more capable of solid actuarial work. Why is this good for students and
+teachers and others involved in the learning process?
+
+Cost is often cited as an important factor for students and teachers in
+textbook selection (see a recent post on the
+\href{https://www.aei.org/publication/the-new-era-of-the-400-college-textbook-which-is-part-of-the-unsustainable-higher-education-bubble/}{\$400
+textbook}). Students will also appreciate the ability to ``carry the
+book around'' on their mobile devices.
+
+\subsubsection*{Why loss data analytics?}\label{why-loss-data-analytics}
+\addcontentsline{toc}{subsubsection}{Why loss data analytics?}
+
+Although the intent is that this type of resource will eventually
+permeate throughout the actuarial curriculum, one has to start
+somewhere. Given the dramatic changes in the way that actuaries treat
+data, loss data seems like a natural place to start. The idea behind the
+name \emph{loss data analytics} is to integrate classical loss data
+models from applied probability with modern analytic tools. In
+particular, we seek to recognize that big data (including social media
+and usage based insurance) are here and high speed computation s readily
+available.
+
+\subsubsection*{Project Goal}\label{project-goal}
+\addcontentsline{toc}{subsubsection}{Project Goal}
+
+The project goal is to have the actuarial community author our textbooks
+in a collaborative fashion.
+
+To get involved, please visit our
+\href{https://sites.google.com/a/wisc.edu/loss-data-analytics/}{Loss
+Data Analytics Project Site}.
+
+\chapter{Survival Models and Life
+Tables}\label{survival-models-and-life-tables}
+
+Let (x) denote a life aged x.
+
+\section{Future Lifetime}\label{future-lifetime}
+
+\begin{itemize}
+\item
+  \(T_x\) = \textbf{time-until-death for (x)}, a continuous random
+  variable (in years).
+
+  \(T_x\) is also called the \textbf{future lifetime random variable}.
+  \(T_x\) may also be written as \(T(x)\) or \(T\).
+
+  Special case: \(T_0\) = \textbf{age-at-death for (0)}, where (0)
+  denotes a newborn life. Note: \(T_0\) = x + \(T_x\), given survival to
+  age x.
+\item
+  \(F_x(t)\) = \({}_{t}q_x\) = \(Pr(T_x \le t)\)
+
+  This is the \textbf{cumulative distribution function of \(T_x\)},
+  ``the probability that (x) dies within \(t\) years.'' The
+  \(q\)-notation will be used most of the time.
+
+  \(F_0(t)\) can also be written more simply as \(F(t)\).
+\item
+  \(S_x(t)\) = \({}_{t}p_x\) = \(Pr(T_x > t)\)
+
+  This is the \textbf{survival function function of \(T_x\)},``the
+  probability that (x) survives for at least \(t\) years.'' The words
+  ``at least'' are often omitted. The \(p\)-notation will be used most
+  of the time.
+
+  \(S_0(t)\) can also be written more simply as \(S(t)\) or \(s(t)\).
+\item
+  From above: \({}_{t}q_x\) + \({}_{t}p_x\) = 1.
+
+  ``(x) will either survive or die within \(t\) years.''
+\item
+  \(S_0(x + t)\) = \(S_0(x)\)\({}_{t}p_x\)
+
+  ``The probability that (0) survives \(x + t\) years is equivalent to
+  (0) first surviving \(x\) years to age x, and then surviving \(t\)
+  additional years to age x + t.''
+\end{itemize}
+
+\begin{itemize}
+\item
+  \({}_{u + t}p_x\) = \(({}_{u}p_x)\)\(({}_{t}p_{x + u})\)
+
+  ``The probability that (x) survives \(u + t\) years is equivalent to
+  (x) first surviving \(u\) years to age x + u, and then surviving \(t\)
+  additional years to age x + u + t.''
+\item
+  Be careful: \({}_{u + t}q_x\) \(\neq\)
+  \(({}_{u}q_x)\)\(({}_{t}q_{x + u})\).
+
+  ``The right-hand side implies that it is possible for (x) to die
+  within \(u\) years, then somehow come back to life at age x + u in
+  order to die again within \(t\) years. This, of course, is not
+  possible and cannot be equal to the left-hand side which is the
+  probability (x) dies within \(u + t\) years.''
+\item
+  \({}_{u|t}q_x\) = \({}_{u + t}q_x\) - \({}_{u}q_x\) = \({}_{u}p_x\) -
+  \({}_{u + t}p_x\) = (\({}_{u}p_x\))(\({}_{t}q_{x + u}\))
+
+  This is a \(u\)-year deferred probability of death, ``the probability
+  that (x) dies between ages x + u and x + u + t.'' Note:
+  \({}_{0|t}q_x\) = \({}_{t}q_x\).
+\item
+  Note: \({}_{1}q_x\), \({}_{1}p_x\), and \({}_{u|1}q_x\) are written as
+  \(q_x\), \(p_x\), and \({}_{u|}q_x\), respectively.
+
+  \(q_x\) may be referred to as a \textbf{mortality rate} at age x, and
+  \(p_x\) may be referred to as a \textbf{survival rate} at age x.
+\end{itemize}
+
+\section{Force of Mortality}\label{force-of-mortality}
+
+\begin{itemize}
+\item
+  \(\mu_x\) = \(\mu(x)\) = \textbf{force of mortality at age x}, given
+  survival to age x. This is sometimes called the ``hazard rate'' or
+  ``failure rate.''
+
+  \(\mu_x\) = \(-\frac{\frac{d}{dx}[S_0(x)]}{S_0(x)}\) =
+  \(-\frac{d}{dx}[\ln S_0(x)]\)
+
+  ``This is the instantaneous death rate for a life at age x.''
+\item
+  \(\mu_{x + t}\) = \(\mu_x(t)\) = \textbf{force of mortality at age x +
+  t}, given survival to x + t.
+
+  \(\mu_{x + t}\) = \(-\frac{\frac{d}{dt}[{}_{t}p_x]}{{}_{t}p_x}\) =
+  \(-\frac{d}{dt}[\ln {}_{t}p_x]\)
+
+  ``This is the instantaneous death rate for a life at age x + t. Here,
+  the variable is time after age x. You could also obtain
+  \(\mu_{x + t}\) by replacing x in \(\mu_x\) with x + t.''
+\item
+  \({}_{t}p_x\) = \(\exp[-\int^{x + t}_x \mu_sds]\) =
+  \(\exp[-\int^{t}_0 \mu_{x + s}ds]\)
+\item
+  If \(c\) \(>\) 0, then \(\mu^{*}_{x + s}\) = \(c\mu_{x + s}\)
+  \(\implies\) \({}_{t}p^{*}_x\) = \(({}_{t}p_x)^{c}\).
+
+  For constant \(k\), then \(\mu^{*}_{x + s}\) = \(\mu_{x + s}\) + \(k\)
+  \(\implies\) \({}_{t}p^{*}_x\) = \((e^{-kt})({}_{t}p_x)\).
+
+  The constant \(k\) should be such that \(\mu^{*}_{x + s}\) \(>\) 0.
+\item
+  \(f_x(t)\) = \({}_{t}p_x\)\(\mu_{x + t}\) = \textbf{probability
+  density function of \(T_x\)}.
+
+  This comes from the above formula for \(\mu_{x + t}\), recognizing
+  that \(f_x(t)\) = \(\frac{d}{dt}[{}_{t}q_x]\) =
+  \(-\frac{d}{dt}[{}_{t}p_x]\).
+\item
+  \({}_{t}q_x\) = \(\int^t_0 {}_{s}p_x\)\(\mu_{x + s} ds\)
+\item
+  \({}_{t}p_x\) = \(\int^{\infty}_t {}_{s}p_x\)\(\mu_{x + s} ds\)
+\item
+  \({}_{u|t}q_x\) = \(\int^{u+t}_u {}_{s}p_x\mu_{x + s}ds\)
+\end{itemize}
+
+\section{Curtate Future Lifetime}\label{curtate-future-lifetime}
+
+\begin{itemize}
+\item
+  \(K_x\) = \textbf{curtate future lifetime for (x)}, a discrete random
+  variable.
+
+  \(K_x\) = \(\left\lfloor{T_x}\right\rfloor\) = integer part of
+  \(T_x\). That is, \(K_x\) represents the complete number of future
+  years survived by (x), where any fractional time survived in the year
+  of death is ignored. Note: \(K_x\) = 0, 1, 2\ldots{}
+
+  \(K_x\) may also be written as \(K(x)\) or \(K\).
+\item
+  \({}_{k|}q_{x}\) = \(Pr(K_x = k)\) = \(Pr(k \le T_x < k + 1)\) for
+  \(k\) = 0, 1, 2\ldots{}
+
+  This is the \textbf{probability mass function of \(K_x\)}, ``the
+  probability that (x) dies in the (\(k\) + 1)st year, between ages x +
+  k and x + k + 1.''
+\item
+  \({}_{k+1}q_{x}\) = \({}_{0|}q_{x}\) + \({}_{1|}q_{x}\) + \ldots{} +
+  \({}_{k|}q_{x}\)
+
+  ``The probability that (x) dies within \(k\) + 1 years is the sum of
+  the probabilities that (x) dies in the first year, the second year,
+  \ldots{}, the (\(k\) + 1)st year.''
+\end{itemize}
+
+\section{\texorpdfstring{Other Features of \(T_x\) and \(K_x\)
+Distributions}{Other Features of T\_x and K\_x Distributions}}\label{other-features-of-t_x-and-k_x-distributions}
+
+\begin{itemize}
+\item
+  \(\mathring{e}_x\) = \(E(T_x)\) =
+  \(\int^{\infty}_0 t({}_{t}p_x)(\mu_{x + t})dt\) =
+  \(\int^{\infty}_0 {}_{t}p_xdt\)
+
+  This is the \textbf{complete expectation of life for (x)}, the average
+  time-until-death for (x). That is, (x) is expected to die at age x +
+  \(\mathring{e}_x\).
+\item
+  \(Var(T_x)\) = \(E(T_x^2)\) - \([E(T_x)]^2\) =
+  \(2\int^{\infty}_0 t{}_{t}p_xdt\) - \([\mathring{e}_x]^2\)
+\item
+  \(\mathring{e}_{x :\overline{n}|}\) = \(E[min(T_x, n)]\) =
+  \(\int^{n}_0 {}_{t}p_xdt\)
+
+  This is the \textbf{n-year temporary complete life expectancy for
+  (x)}, the average number of years out of the next n years that (x)
+  survives.
+
+  This expectation helps define the recursion: \(\mathring{e}_x\) =
+  \(\mathring{e}_{x :\overline{n}|}\) +
+  \({}_{n}p_x\)\(\mathring{e}_{x + n}\).
+
+  ``The average number of future years that (x) survives is the average
+  number of years out of the first n years that (x) survives plus the
+  average number of years (x) survives after the first n years
+  (accounting for the probability that (x) survives the first n
+  years).''
+
+  Similarly: \(\mathring{e}_{x :\overline{m + n}|}\) =
+  \(\mathring{e}_{x :\overline{m}|}\) +
+  \({}_{m}p_x\)\(\mathring{e}_{x + m :\overline{n}|}\).
+\item
+  The \textbf{100\(\alpha\)-th percentile of the distribution of
+  \(T_x\)}, \(\pi_{\alpha}\), is such that:
+
+  \({}_{\pi_{\alpha}}q_x\) = \(\alpha\) for 0 \(\le\) \(\alpha\) \(\le\)
+  1.
+
+  Special case: \(\alpha\) = 0.50; \(\pi_{.50}\) is called the
+  \textbf{median future lifetime for (x)}.
+\end{itemize}
+
+\begin{itemize}
+\item
+  \(e_x\) = \(E(K_x)\) = \(\sum^{\infty}_{k = 0} k({}_{k|}q_x)\) =
+  \(\sum^{\infty}_{k = 1} {}_{k}p_x\)
+
+  This is the \textbf{curtate expectation of life for (x)}, the average
+  curtate future lifetime for (x).
+\item
+  \(\mathring{e}_x\) \(\approx\) \(e_x\) + \(\frac{1}{2}\)
+\item
+  \(Var(K_x)\) = \(E(K_x^2)\) - \([E(K_x)]^2\) =
+  \(\sum^{\infty}_{k = 1} (2k - 1){}_{k}p_x\) - \([e_x]^2\)
+\item
+  \(e_{x :\overline{n}|}\) = \(E[min(K_x, n)]\) =
+  \(\sum^{n}_{k = 1} {}_{k}p_x\)
+
+  This is the \textbf{n-year temporary curtate life expectancy for (x)}.
+
+  This expectation helps define the recursions: \(e_x\) =
+  \(e_{x :\overline{n}|}\) + \({}_{n}p_x\)\(e_{x + n}\) and
+
+  \(e_{x :\overline{m + n}|}\) = \(e_{x :\overline{m}|}\) +
+  \({}_{m}p_x\)\(e_{x + m :\overline{n}|}\).
+\end{itemize}
+
+\section{Special Mortality Laws}\label{special-mortality-laws}
+
+\subsection{de Moivre's Law}\label{de-moivres-law}
+
+\(T_x\) has a continuous uniform distribution.
+
+The limiting age is \(\omega\) such that 0 \(\le\) \(x\) \(\le\)
+\(x + t\) \(\le\) \(\omega\).
+
+\begin{itemize}
+\item
+  \(\mu_x\) = \(\frac{1}{\omega - x}\) (Note: \(x\) \(\neq\) \(\omega\))
+\item
+  \(S_0(x)\) = \(\frac{\omega - x}{\omega}\)
+\item
+  \(F_0(x)\) = \(\frac{x}{\omega}\)
+\item
+  \({}_{t}p_x\) = \(\frac{\omega - x - t}{\omega - x}\)
+\item
+  \({}_{t}q_x\) = \(\frac{t}{\omega - x}\)
+\item
+  \({}_{u|t}q_x\) = \(\frac{t}{\omega - x}\)
+\item
+  \(f_x(t)\) = \({}_{t}p_x\)\(\mu_{x + t}\) = \(\frac{1}{\omega - x}\)
+  (Note: \(x\) \(\neq\) \(\omega\))
+\item
+  \(\mathring{e}_x\) = \(\frac{\omega - x}{2}\)
+\item
+  \(\mathring{e}_{x :\overline{n}|}\) = \(n{}_{n}p_x\) +
+  \(\frac{n}{2}{}_{n}q_x\)
+
+  ``(x) can either survive \(n\) years with probability \({}_{n}p_x\),
+  or die within \(n\) years with probability \({}_{n}q_x\). Surviving
+  \(n\) years contributes \(n\) to the expectation. Dying within \(n\)
+  years contributes \(\frac{n}{2}\) to the expectation as future
+  lifetime has a uniform distribution - (x), on average, would die
+  halfway through the \(n\)-year period.''
+\item
+  \(Var(T_x)\) = \(\frac{(\omega - x)^2}{12}\)
+\item
+  \(e_x\) = \(\frac{\omega - x - 1}{2}\)
+\item
+  \(Var(K_x)\) = \(\frac{(\omega - x)^2}{12}\) - \(\frac{1}{12}\)
+\end{itemize}
+
+\subsection{Modified/Generalized de Moivre's
+Law}\label{modifiedgeneralized-de-moivres-law}
+
+\(T_x\) has a beta distribution.
+
+The limiting age is \(\omega\) such that 0 \(\le\) \(x\) \(\le\)
+\(x + t\) \(\le\) \(\omega\). Also, there is a parameter \(\alpha\)
+\(>\) 0.
+
+\begin{itemize}
+\item
+  \(\mu_x\) = \(\frac{\alpha}{\omega - x}\) (Note: \(x\) \(\neq\)
+  \(\omega\))
+\item
+  \(S_0(x)\) = \(\left(\frac{\omega - x}{\omega}\right)^{\alpha}\)
+\item
+  \(F_0(x)\) = 1 - \(\left(\frac{\omega - x}{\omega}\right)^{\alpha}\)
+\item
+  \({}_{t}p_x\) =
+  \(\left(\frac{\omega - x - t}{\omega - x}\right)^{\alpha}\)
+\item
+  \({}_{t}q_x\) = 1 -
+  \(\left(\frac{\omega - x - t}{\omega - x}\right)^{\alpha}\)
+
+  Note: \({}_{t}q_x\) \(\neq\)
+  \(\left(\frac{t}{\omega - x}\right)^{\alpha}\).
+\item
+  \(\mathring{e}_x\) = \(\frac{\omega - x}{\alpha + 1}\)
+\item
+  \(Var(T_x)\) =
+  \(\frac{\alpha(\omega - x)^2}{(\alpha + 1)^2(\alpha + 2)}\)
+
+  Note: \(\alpha\) = 1 results in uniform distribution/de Moivre's Law.
+\end{itemize}
+
+\subsection{Constant Force of
+Mortality}\label{constant-force-of-mortality}
+
+\(T_x\) has an exponential distribution, \(x\) \(\ge\) 0. There is
+another parameter that denotes the force of mortality: \(\mu\) \(>\) 0.
+
+\begin{itemize}
+\item
+  \(\mu_x\) = \(\mu\)
+\item
+  \(S_0(x)\) = \(e^{-\mu x}\)
+\item
+  \(F_0(x)\) = 1 - \(e^{-\mu x}\)
+\item
+  \({}_{t}p_x\) = \(e^{-\mu t}\) = \((p_x)^t\)
+\item
+  \({}_{t}q_x\) = 1 - \(e^{-\mu t}\)
+\item
+  \(\mathring{e}_x\) = \(\frac{1}{\mu}\)
+\item
+  \(\mathring{e}_{x :\overline{n}|}\) = \(\frac{1 - e^{-\mu n}}{\mu}\)
+\item
+  \(Var(T_x)\) = \(\frac{1}{\mu^2}\)
+\item
+  \(e_x\) = \(\frac{p_x}{q_x}\)
+\item
+  \(Var(K_x)\) = \(\frac{p_x}{(q_x)^2}\)
+
+  Note1: A constant force of mortality implies that ``age does not
+  matter.'' This can easily be seen from \({}_{t}p_x\) = \(e^{-\mu t}\);
+  x does not appear on the right-hand side.
+
+  Note2: \(T_x\) has an exponential distribution implies that \(K_x\)
+  has a geometric distribution.
+\end{itemize}
+
+\subsection{Gompertz's Law}\label{gompertzs-law}
+
+\begin{itemize}
+\item
+  \(\mu_x\) = \(Bc^x\) for \(x\) \(\ge\) 0, \(B\) \(>\) 0, \(c\) \(>\) 1
+\item
+  \(S_0(x)\) = \(\exp[-\frac{B}{\ln c}(c^x - 1)]\)
+\item
+  \(F_0(x)\) = 1 - \(\exp[-\frac{B}{\ln c}(c^x - 1)]\)
+\item
+  \({}_{t}p_x\) = \(\exp[-\frac{B}{\ln c}c^x(c^t - 1)]\)
+\item
+  \({}_{t}q_x\) = 1 - \(\exp[-\frac{B}{\ln c}c^x(c^t - 1)]\)
+\end{itemize}
+
+Note: \(c\) = 1 results in a constant force of mortality.
+
+\subsection{Makeham's Law}\label{makehams-law}
+
+\begin{itemize}
+\item
+  \(\mu_x\) = \(A\) + \(Bc^x\) for \(x\) \(\ge\) 0, \(A\) \(\ge\)
+  -\(B\), \(B\) \(>\) 0, \(c\) \(>\) 1
+\item
+  \(S_0(x)\) = \(\exp[-Ax - \frac{B}{\ln c}(c^x - 1)]\)
+\item
+  \(F_0(x)\) = 1 - \(\exp[-Ax - \frac{B}{\ln c}(c^x - 1)]\)
+\item
+  \({}_{t}p_x\) = \(\exp[-At - \frac{B}{\ln c}c^x(c^t - 1)]\)
+\item
+  \({}_{t}q_x\) = 1 - \(\exp[-At - \frac{B}{\ln c}c^x(c^t - 1)]\)
+\end{itemize}
+
+Note1: \(A\) = 0 results in Gompertz's Law.
+
+Note2: \(c\) = 1 results in a constant force of mortality.
+
+\subsection{Weibull's Law}\label{weibulls-law}
+
+\(T_x\) has a Weibull distribution.
+
+\begin{itemize}
+\item
+  \(\mu_x\) = \(k\)\(x^n\) for \(x\) \(\ge\) 0, \(k\) \(>\) 0, \(n\)
+  \(>\) 0
+\item
+  \(S_0(x)\) = \(\exp[-\frac{k}{n + 1}x^{n + 1}]\)
+\item
+  \(F_0(x)\) = 1 - \(\exp[-\frac{k}{n + 1}x^{n + 1}]\)
+\item
+  \({}_{t}p_x\) =
+  \(\exp[-\frac{k}{n + 1}((x + t)^{n + 1} - x^{n + 1})]\)
+\item
+  \({}_{t}q_x\) = 1 -
+  \(\exp[-\frac{k}{n + 1}((x + t)^{n + 1} - x^{n + 1})]\)
+\end{itemize}
+
+\section{Life Tables}\label{life-tables}
+
+Given a survival model with survival probabilities \({}_{t}p_x\), one
+can construct a \textbf{life table}, also called a \textbf{mortality
+table}, from some initial age \(x_0\) (usually age 0) to a maximum age
+\(\omega\) (a limiting age).
+
+\begin{itemize}
+\item
+  Let \(l_{x_0}\), the \textbf{radix} of the life table, represent the
+  number of lives age \(x_0\).
+
+  \(l_{x_0}\) is an arbitrary positive number.
+\item
+  \(l_{\omega}\) = 0.
+\item
+  \(l_{x + t}\) = \((l_x)({}_{t}p_x)\) for \(x_0\) \(\le\) \(x\) \(\le\)
+  \(x + t\) \(\le\) \(\omega\).
+
+  \(l_{x + t}\) represents the \textbf{expected number of survivors} to
+  age x + t out of \(l_x\) individuals aged x.
+\item
+  \({}_{t}d_x\) = \(l_x\) - \(l_{x + t}\) = \((l_x)({}_{t}q_x)\) for
+  \(x_0\) \(\le\) \(x\) \(\le\) \(x + t\) \(\le\) \(\omega\).
+
+  \({}_{t}d_x\) represents the \textbf{expected number of deaths}
+  between ages x and x + t out of \(l_x\) lives aged x.
+
+  Note 1: \({}_{1}d_x\) is written as \(d_x\).
+
+  Note 2: If \(n\) = 1, 2\ldots{}, then \({}_{n}d_x\) = \(d_x\) +
+  \(d_{x + 1}\) + \ldots{} + \(d_{x + n - 1}\).
+\item
+  \({}_{t}d_{x + u}\) = \(l_{x + u}\) - \(l_{x + u + t}\) =
+  \((l_x)({}_{u|t}q_x)\).
+\end{itemize}
+
+The \textbf{Illustrative Life Table} is the life table that is provided
+to the candidate taking Exam MLC. Some questions from either exam will
+involve Illustrative Life Table calculations. A web link to this table
+(and ALL exam tables) is provided for each exam in Appendix A of this
+study supplement.
+
+\section{Fractional Age Assumptions}\label{fractional-age-assumptions}
+
+Life Tables are usually defined for integer ages x and integer times t.
+For a quantity that involves fractional ages and/or fractional times,
+one has to make an assumption about the survival distribution between
+integer ages; that is, one has to interpolate the value of the quantity
+within each year of age. Two common interpolation assumptions follow.
+
+\subsection{Uniform Distribution of Deaths
+(UDD)}\label{uniform-distribution-of-deaths-udd}
+
+One linearly interpolates within each year of age. For integer age x and
+0 \(\le\) \(s\) \(\le\) \(s + t\) \(\le\) 1:
+
+\begin{itemize}
+\item
+  \(l_{x + s}\) = \(l_x\) - \(s\)\(d_x\) = \((1 - s)l_x\) +
+  \((s)l_{x + 1}\). This is a linear function of \(s\).
+\item
+  \({}_{s}q_x\) = \(s\)\(q_x\)
+\item
+  \({}_{s}p_x\) = 1 - \(s\)\(q_x\)
+\item
+  \(\mu_{x + s}\) = \(\frac{q_x}{1 - sq_x}\) (does not hold at \(s\) =
+  1)
+\item
+  \(f_x(s)\) = \({}_{s}p_x\)\(\mu_{x + s}\) = \(q_x\) (does not hold at
+  \(s\) = 1)
+\item
+  \({}_{s}q_{x + t}\) = \(\frac{sq_x}{1 - tq_x}\)
+\item
+  \(\mathring{e}_x\) = \(e_x\) + \(\frac{1}{2}\)
+\item
+  \(Var(T_x)\) = \(Var(K_x)\) + \(\frac{1}{12}\)
+\item
+  Note: uniform distribution/de Moivre's Law has the property of UDD
+  across all ages up to the limiting age \(\omega\).
+
+  Furthermore, uniform distribution/de Moivre's Law may be expressed as
+  \(l_x\) = \(k(\omega - x)\) for 0 \(\le\) \(x\) \(\le\) \(\omega\)
+  where \(k\) \(>\) 0.
+\end{itemize}
+
+\subsection{Constant Force of
+Mortality}\label{constant-force-of-mortality-1}
+
+One exponentially interpolates within each year of age. For integer age
+x and 0 \(\le\) \(s\) \(\le\) \(s + t\) \(\le\) 1:
+
+\begin{itemize}
+\item
+  \(l_{x + s}\) = \(l_x\)\(p^s_x\) \(\implies\) \(\ln[l_{x + s}]\) =
+  \((1 - s)\ln[l_x]\) + \(s\ln[l_{x + 1}]\). This is an exponential
+  function of \(s\).
+\item
+  \({}_{s}p_x\) = \(p^s_x\)
+\item
+  \({}_{s}q_x\) = 1 - \(p^s_x\)
+\item
+  \(\mu_{x + s}\) = -\(\ln p_x\) = \(\mu_x\) (does not hold at \(s\) =
+  1)
+\item
+  \(f_x(s)\) = \({}_{s}p_x\)\(\mu_{x + s}\) = -\(\ln p_x\)\((p^s_x)\)
+  (does not hold at \(s\) = 1)
+\item
+  \({}_{s}q_{x + t}\) = 1 - \(p^s_x\)
+\end{itemize}
+
+\section{Exercises}\label{exercises}
+
+1.1. Suppose: \(F_0(t)\) = 1 - \((1 + 0.00026t^2)^{-1}\) for \(t\)
+\(\ge\) 0.
+
+Calculate the probability that (30) dies between ages 35 and 40.
+
+(A) 0.056 (B) 0.058 (C) 0.060 (D) 0.062 (E) 0.064
+
+1.2. You are given: \(s(x)\) = \(\frac{10,000 - x^2}{10,000}\) for 0
+\(\le\) \(x\) \(\le\) 100.
+
+Calculate: \(q_{49}\).
+
+(A) 0.009 (B) 0.011 (C) 0.013 (D) 0.015 (E) 0.017
+
+1.3. Consider a population of newborns (lives aged 0). Each newborn has
+mortality such that:
+
+\(S_0(x)\) = \(\frac{x^2}{\omega^2}\) - \(\frac{2x}{\omega}\) + 1 for 0
+\(\le\) \(x\) \(\le\) \(\omega\).
+
+It is assumed that \(\omega\) varies among newborns, and is a random
+variable with a uniform distribution between ages 85 and 105.
+
+Calculate the probability that a random newborn survives to age 18.
+
+(A) 0.656 (B) 0.657 (C) 0.658 (D) 0.659 (E) 0.660
+
+1.4. Suppose: \(S_0(t)\) = \(\exp[-\frac{t^2}{2500}]\) for \(t\) \(\ge\)
+0.
+
+Calculate the force of mortality at age 45.
+
+(A) 0.036 (B) 0.039 (C) 0.042 (D) 0.045 (E) 0.048
+
+1.5. The probability density function of the future lifetime of a brand
+new machine is: \(f(x)\) = \(\frac{4x^3}{27c}\) for 0 \(\le\) \(x\)
+\(\le\) \(c\).
+
+Calculate: \(\mu(1.1)\).
+
+(A) 0.06 (B) 0.07 (C) 0.08 (D) 0.09 (E) 0.10
+
+1.6. You are given:
+
+(i) The probability that (30) will die within 30 years is 0.10.
+
+(ii) The probability that (40) will survive to at least age 45 and that
+another (45) will die by age 60 is 0.077638.
+
+(iii) The probability that two lives age 30 will both die within 10
+years is 0.000096.
+
+(iv) All lives are independent and have the same expected mortality.
+
+Calculate the probability that (45) will survive 15 years.
+
+(A) 0.90 (B) 0.91 (C) 0.92 (D) 0.93 (E) 0.94
+
+1.7. You are given:
+
+(i) \(e_{50}\) = 20 and \(e_{52}\) = 19.33
+
+(ii) \(q_{51}\) = 0.035
+
+Calculate: \(q_{50}\).
+
+(A) 0.028 (B) 0.030 (C) 0.032 (D) 0.034 (E) 0.036
+
+1.8. You are given:
+
+\(S_0(x)\) = \(\Big(\frac{1 + 0.005(1.1)^x}{1.005}\Big)\)\(^{-0.2098}\)
+for \(x\) \(>\) 0.
+
+Calculate the force of mortality at age 30.
+
+(A) 0.0012 (B) 0.0016 (C) 0.0020 (D) 0.0024 (E) 0.0028
+
+1.9. For a population of smokers and non-smokers:
+
+(i) Non-smokers have a force of mortality that is equal to one-half the
+force of mortality for smokers at each age.
+
+(ii) For non-smokers, mortality follows a uniform distribution with
+\(\omega\) = 90.
+
+Calculate the difference between the probability that a 55 year old
+smoker dies within 10 years and the probability that a 55 year old
+non-smoker dies within 10 years.
+
+(A) 0.20 (B) 0.22 (C) 0.24 (D) 0.26 (E) 0.28
+
+1.10. You are given:
+
+(i) The standard probability that (40) will die prior to age 41 is 0.01.
+
+(ii) (40) is now subject to an extra risk during the year between ages
+40 and 41.
+
+(iii) To account for the extra risk, a revised force of mortality is
+defined for the year between ages 40 and 41.
+
+(iv) The revised force of mortality is equal to the standard force of
+mortality plus a term that decreases linearly from 0.05 at age 40 to 0
+at age 41.
+
+Calculate the revised probability that (40) will die prior to age 41.
+
+(A) 0.030 (B) 0.032 (C) 0.034 (D) 0.036 (E) 0.038
+
+1.11. An actuary assumes that Jed, aged 40, has the force of mortality:
+
+\(\mu_x\) = \(\frac{x^2}{c^3 - x^3}\) for 0 \(\le\) \(x\) \(<\) \(c\).
+
+Using \(\mu_x\), the actuary calculates the probability that Jed dies
+within 20 years as 0.06844. However, \(\mu_x\) is only appropriate for a
+life with standard mortality. Jed is actually a substandard life with
+force of mortality:
+
+\(\mu^{*}_x\) = 3\(\mu_x\) = \(\frac{3x^2}{c^3 - x^3}\) for 0 \(\le\)
+\(x\) \(<\) \(c\).
+
+Using \(\mu^{*}_x\), calculate the correct value of the probability that
+Jed dies within 20 years.
+
+(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+1.12. You are given:
+
+(i) \(T_x\) denotes the time-until-death random variable for (x).
+
+(ii) Mortality follows de Moivre's Law with limiting age \(\omega\).
+
+(iii) The variance of \(T_{25}\) is equal to 352.0833.
+
+Calculate: \(\mathring{e}_{40: \overline{10}|}\).
+
+(A) 7.5 (B) 8.0 (C) 8.5 (D) 9.0 (E) 9.5
+
+1.13. You are given: \(\mu_x\) = \(\frac{1}{\sqrt{80 - x}}\) for 0
+\(\le\) \(x\) \(<\) 80.
+
+Calculate the median future lifetime for (40).
+
+(A) 4.0 (B) 4.3 (C) 4.6 (D) 4.9 (E) 5.2
+
+1.14. You are given:
+
+\[\mu_{x} = \left\{
+  \begin{array}{l l}
+    0.04 & \quad \text{for 0 $\le$ x $<$ 40}\\
+    0.05 & \quad \text{for 40 $\le$ x}\\
+  \end{array} \right.\]
+
+Calculate: \(\mathring{e}_{25}\).
+
+(A) 22 (B) 23 (C) 24 (D) 25 (E) 26
+
+1.15. You are given: \({}_{k|}q_0\) = 0.10 for \(k\) = 0, 1, \ldots{},
+9.
+
+Calculate: \({}_{5}p_2\).
+
+(A) 0.275 (B) 0.325 (C) 0.375 (D) 0.425 (E) 0.475
+
+1.16. For the current model of Zingbot:
+
+(i) \(s(x)\) = \(\frac{\omega - x}{\omega}\) for 0 \(\le\) \(x\) \(\le\)
+\(\omega\)
+
+(ii) \(var[T(5)]\) = 102.083333.
+
+For the proposed model of Zingbot, with the same \(\omega\) as the
+current model:
+
+(1) \(s^*(x)\) = \((\frac{\omega - x}{\omega})^{\alpha}\) for 0 \(\le\)
+\(x\) \(\le\) \(\omega\), \(\alpha\) \(>\) 0
+
+(2) \(\mu^*_{10}\) = 0.0166667.
+
+Calculate the difference between the complete expectation of life for a
+brand new proposed model of Zingbot and the complete expectation of life
+for a brand new current model of Zingbot.
+
+(A) 5.9 (B) 6.1 (C) 6.3 (D) 6.5 (E) 6.7
+
+1.17. Mortality for Frodo, age 33, is usually such that:
+
+\({}_{t}p_x\) = \(\left(\frac{110 - x - t}{110 - x}\right)^{2}\) for 0
+\(\le\) \(t\) \(\le\) \(110 - x\).
+
+However, Frodo has decided to embark on a dangerous quest that will last
+for the next three years (starting today). During these three years
+only, Frodo's mortality will be revised so that he will have a constant
+force of mortality of 0.2 for each year. After the quest, Frodo's
+mortality will once again follow the above expression for \({}_{t}p_x\).
+
+Calculate Frodo's revised complete expectation of life.
+
+(A) 15.2 (B) 15.4 (C) 15.6 (D) 15.8 (E) 16.0
+
+1.18. You are given:
+
+\[\mu_x = \left\{
+  \begin{array}{l l l}
+    0.020       & \quad \text{for 20 $\le$ $x$ $<$ 30}\\
+    0.025       & \quad \text{for 30 $\le$ $x$ $<$ 42}\\
+    0.030       & \quad \text{for 42 $\le$ $x$ $<$ 60}\\
+  \end{array} \right.\]
+
+Calculate the probability that (26) dies in the 19th year.
+
+(A) 0.015 (B) 0.017 (C) 0.019 (D) 0.021 (E) 0.023
+
+1.19. An actuary has developed a survival model for a widget, denoted by
+A, such that:
+
+\(S^A_0(x)\) = \(\frac{(10 - x)^2}{100}\) for 0 \(\le\) \(x\) \(\le\)
+10.
+
+The actuary's supervisor notes that the above survival model is
+incorrect. The correct survival model for a widget, denoted by B, is
+such that:
+
+\[S^B_0(x) = \left\{
+  \begin{array}{l l }
+    \frac{(10 - x)^2}{100}       & \quad \text{for 0 $\le$ $x$ $<$
+    5} \vspace{5mm}\\
+  e^{- 0.2\ln(4) x}            & \quad \text{for x $\ge$ 5}\\
+  \end{array} \right.\]
+
+Calculate: \(\mathring{e}^B_2\) - \(\mathring{e}^A_2\).
+
+(A) 0.70 (B) 0.72 (C) 0.74 (D) 0.76 (E) 0.78
+
+1.20. For a group of lives aged 40, consisting of 30\% smokers and 70\%
+non-smokers, you are given:
+
+(i) For non-smokers, \(\mu^N(x)\) = 0.05 for \(x\) \(\ge\) 40.
+
+(ii) For smokers, \(\mu^S(x)\) = 0.10 for \(x\) \(\ge\) 40.
+
+Calculate the 90th percentile of the distribution of the future lifetime
+of a randomly selected member from this population.
+
+(A) 40 (B) 42 (C) 44 (D) 46 (E) 48
+
+1.21. You are given:
+
+(i) \(T_x\) is the time-until-death for (x) random variable.
+
+(ii) The force of mortality is constant.
+
+(iii) \(e_x\) = 15.63
+
+Calculate the variance of \(T_x\).
+
+(A) 240 (B) 250 (C) 260 (D) 270 (E) 280
+
+1.22. Originally, mortality for Daniel, currently aged 30, is such that:
+
+(i) \(e_{30}\) = 40.78
+
+(ii) \(e_{30 :\overline{15}|}\) = 14.07
+
+(iii) \({}_{15}p_{30}\) = 0.8764 and \({}_{16}p_{30}\) = 0.8664
+
+(iv) The limiting age is 100.
+
+Now, it is believed that in the year of age between ages 45 and 46,
+Daniel will be subject to an additional risk such that the constant 0.15
+will be added to the force of mortality \(\mu_{45}(t)\) for 0 \(\le\)
+\(t\) \(<\) 1.
+
+Calculate the revised value of \(e_{30}\) for Daniel, accounting for the
+additional risk in the year of age between ages 45 and 46.
+
+(A) 36 (B) 37 (C) 38 (D) 39 (E) 40
+
+1.23. For (x):
+
+(i) \(K\) is the curtate future lifetime random variable.
+
+(ii) \[{}_{k|}q_{x} = \left\{
+  \begin{array}{l l}
+    0.20       & \quad \text{for $k$ = 0, 1, 2}\\
+    0.40       & \quad \text{for $k$ = 3 }\\
+  \end{array} \right.\]
+
+Calculate the standard deviation of \(K\).
+
+(A) 1.1 (B) 1.2 (C) 1.3 (D) 1.4 (E) 1.5
+
+1.24. You are given:
+
+(i) \(\mu(x)\) = \(B\)\((1.05)^{x}\) for \(x\) \(\ge\) 0, \(B\) \(>\) 0.
+
+(ii) \(p_{51}\) = 0.9877
+
+Calculate: \(B\).
+
+(A) 0.001 (B) 0.002 (C) 0.003 (D) 0.004 (E) 0.005
+
+1.25. You are given:
+
+(i) The force of mortality for Vivian is \(\mu^{V}_x\) = \(\mu\) for
+\(x\) \(\ge\) 0, \(\mu\) \(>\) 0.
+
+(ii) The force of mortality for Augustine is \(\mu^{A}_x\) =
+\(\frac{1}{90 - x}\) for 0 \(\le\) \(x\) \(<\) 90.
+
+Calculate \(\mu\) so that \({}_{10}p_{30}\) is the same for Vivian and
+Augustine.
+
+(A) 0.016 (B) 0.018 (C) 0.020 (D) 0.022 (E) 0.024
+
+1.26. Consider the following survival function:
+
+\(S_0(x)\) = \(0.0125\sqrt{k^2 - x^2}\) for 0 \(\le\) \(x\) \(\le\)
+\(k\).
+
+Calculate the force of mortality at age 46.
+
+(A) 0.011 (B) 0.013 (C) 0.015 (D) 0.017 (E) 0.019
+
+1.27. For a certain model of widget, the Widget T-1000:
+
+\(\mu_x\) = \(\frac{2x}{c^2 - x^2}\) for 0 \(\le\) \(x\) \(<\) \(c\).
+
+A brand new Widget T-1000 has a complete expectation of life equal to 8
+years. Calculate the probability that a one-year old Widget T-1000
+survives at least two years but no more than four years.
+
+(A) 0.11 (B) 0.12 (C) 0.13 (D) 0.14 (E) 0.15
+
+1.28. Actuary A and Actuary B are each trying to calculate the 3-year
+temporary curtate life expectancy for Miguel, aged 60.
+
+Both agree that a standard life has the following force of mortality:
+
+\(\mu^S_x\) = 0.00006 + 0.0000006\((1.15)^{x}\) for \(x\) \(\ge\) 0.
+
+Both also agree that Miguel has a force of mortality that exceeds the
+force of mortality for a standard life at all ages. However, Actuary A
+believes that Miguel has force of mortality 1.15\(\mu^S_x\), while
+Actuary B believes that Miguel has force of mortality \(\mu^S_x\) +
+1.15.
+
+Calculate the difference between Actuary A's 3-year temporary curtate
+life expectancy for Miguel and Actuary B's 3-year temporary curtate life
+expectancy for Miguel.
+
+(A) 2.1 (B) 2.3 (C) 2.5 (D) 2.7 (E) 2.9
+
+1.29. For a population of lives each aged 55 that consists of smokers
+and non-smokers:
+
+(i) For smokers, \(\mu_x\) = 0.0008\(x\) for \(x\) \(\ge\) 0.
+
+(ii) The force of mortality for a smoker is twice the force of mortality
+for a non-smoker at each age.
+
+Calculate the median future lifetime for a non-smoker from this
+population.
+
+(A) 24.0 (B) 24.5 (C) 25.0 (D) 25.5 (E) 26.0
+
+1.30. Suppose today is January 1, 2014, and Paul has just turned age 35.
+He has mortality such that:
+
+\({}_{t}p_{35}\) = \((0.95)^t\) for \(t\) \(\ge\) 0.
+
+Calculate the probability that Paul will die in an odd-numbered calendar
+year.
+
+(A) 0.48 (B) 0.49 (C) 0.50 (D) 0.51 (E) 0.52
+
+1.31. Consider the following life table, where missing entries are
+denoted by ``---'':
+
+\begin{longtable}[]{@{}rrrr@{}}
+\toprule
+\(\mathbf{x}\) & \(\mathbf{q_x}\) & \(\mathbf{l_x}\) &
+\(\mathbf{d_x}\)\tabularnewline
+\midrule
+\endhead
+48 & --- & 90,522 & ---\tabularnewline
+49 & 0.007453 & 89,900.9286 & ---\tabularnewline
+\bottomrule
+\end{longtable}
+
+Calculate the expected number of deaths between ages 48 and 50.
+
+(A) 1280 (B) 1290 (C) 1300 (D) 1310 (E) 1320
+
+1.32. You are given the following life table, where missing entries are
+denoted by ``---'':
+
+\begin{longtable}[]{@{}rrrr@{}}
+\toprule
+\(\mathbf{x}\) & \(\mathbf{l_{x}}\) & \(\mathbf{q_{x}}\) &
+\(\mathbf{e_{x}}\)\tabularnewline
+\midrule
+\endhead
+65 & 79,354 & 0.0172 & ---\tabularnewline
+66 & --- & 0.0186 & ---\tabularnewline
+67 & --- & --- & ---\tabularnewline
+68 & 74,993 & --- & 14.89\tabularnewline
+69 & --- & --- & 14.22\tabularnewline
+\bottomrule
+\end{longtable}
+
+Calculate the expected number of deaths between ages 67 and 69.
+
+(A) 2970 (B) 3020 (C) 3070 (D) 3120 (E) 3170
+
+1.33. You are given:
+
+(i) \(l_x\) = 1000(\(\omega\) - \(x\)) for 0 \(\le\) \(x\) \(\le\)
+\(\omega\)
+
+(ii) \(\mu_{30}\) = 0.0125
+
+Calculate: \(\mathring{e}_{40 :\overline{20}|}\).
+
+(A) 17.1 (B) 17.6 (C) 18.1 (D) 18.6 (E) 19.1
+
+1.34. You are given the following life table, where missing values are
+indicated by ``---'':
+
+\begin{longtable}[]{@{}rrrr@{}}
+\toprule
+\(\mathbf{x}\) & \(\mathbf{l_x}\) & \(\mathbf{d_x}\) &
+\(\mathbf{p_x}\)\tabularnewline
+\midrule
+\endhead
+0 & 1000.0 & --- & 0.875\tabularnewline
+1 & --- & 125.0 & ---\tabularnewline
+2 & --- & --- & ---\tabularnewline
+3 & --- & --- & 0.680\tabularnewline
+4 & --- & 182.5 & ---\tabularnewline
+5 & 200.0 & --- & ---\tabularnewline
+\bottomrule
+\end{longtable}
+
+Calculate: \({}_{2|}q_{0}\).
+
+(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+1.35. Woolhouse is currently age 40. Woolhouse's mortality follows 130\%
+of the Illustrative Life Table; that is, \(q_x\) for Woolhouse is 130\%
+of \(q_x\) in the Illustrative Life Table for x = 40, 41, \ldots{}, 110.
+
+Calculate Woolhouse's 4-year temporary curtate life expectancy.
+
+(A) 3.950 (B) 3.955 (C) 3.960 (D) 3.965 (E) 3.970
+
+1.36. Suppose mortality follows the Illustrative Life Table, and deaths
+are uniformly distributed within each year of age.
+
+Calculate: \({}_{4.5}q_{40.3}\).
+
+(A) 0.0141 (B) 0.0142 (C) 0.0143 (D) 0.0144 (E) 0.0145
+
+1.37. Suppose mortality follows the Illustrative Life Table, where
+deaths are assumed to be uniformly distributed between integer ages.
+
+Calculate the median future lifetime for (32).
+
+(A) 44.7 (B) 45.0 (C) 45.3 (D) 45.6 (E) 45.9
+
+1.38. Suppose mortality follows the Illustrative Life Table with the
+assumption that deaths are uniformly distributed between integer ages.
+
+Calculate: \({}_{0.9}q_{60.6}\).
+
+(A) 0.0130 (B) 0.0131 (C) 0.0132 (D) 0.0133 (E) 0.0134
+
+1.39. You are given the mortality rates:
+
+\(q_{30}\) = 0.020, \(q_{31}\) = 0.019, \(q_{32}\) = 0.018.
+
+Assume deaths are uniformly distributed over each year of age.
+
+Calculate the 1.4-year temporary complete life expectancy for (30).
+
+(A) 1.377 (B) 1.379 (C) 1.381 (D) 1.383 (E) 1.385
+
+1.40. Using the Illustrative Life Table, calculate:
+\({}_{11|17}q_{42}\).
+
+(A) 0.20 (B) 0.21 (C) 0.23 (D) 0.24 (E) 0.25
+
+1.41. Consider two survival models A and B:
+
+(i) For Model A: \(l_x\) = 1000(\(\omega_A\) - \(x\)) for 0 \(\le\)
+\(x\) \(\le\) \(\omega_A\)
+
+(ii) For Model B: \(l_x\) = 500\((\omega_B - x)^{\alpha}\) for 0 \(\le\)
+\(x\) \(\le\) \(\omega_B\), \(\alpha\) \(>\) 0
+
+Furthermore:
+
+(1) For Model B, the force of mortality at age 55 is 0.046.
+
+(2) The complete expectation of life for (40) under Model A is 39.615\%
+higher than the complete expectation of life for (40) under Model B.
+
+(3) For Model A, the probability that (45) survives the first 20 years
+and dies in the subsequent 10 years is 0.20.
+
+For Model B, calculate the probability that (45) dies between ages 65
+and 75.
+
+(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+1.42. Consider a population that consists of 600 lives aged 50 and 520
+lives aged 60.
+
+Each life has mortality that follows the Illustrative Life Table, and
+all lives have independent future lifetime random variables.
+
+Calculate the standard deviation of the total number of survivors to age
+80.
+
+(A) 14.7 (B) 15.2 (C) 15.7 (D) 16.2 (E) 16.7
+
+1.43. Suppose:
+
+(i) \(q_{70}\) = 0.04 and \(q_{71}\) = 0.05.
+
+(ii) Let UDD denote a uniform distribution of deaths assumption within
+each year of age, and let CF denote a constant force of mortality within
+each year of age.
+
+Calculate the probability that (70.6) will die within the next 0.5 years
+under UDD minus the probability that (70.6) will die within the next 0.5
+years under CF.
+
+(A) 0.00008 (B) 0.00010 (C) 0.00012 (D) 0.00014 (E) 0.00016
+
+1.44. You are given:
+
+(i) The force of mortality is constant between integer ages.
+
+(ii) \({}_{0.3}q_{x + 0.7}\) = 0.10
+
+Calculate: \(q_x\).
+
+(A) 0.24 (B) 0.26 (C) 0.28 (D) 0.30 (E) 0.32
+
+1.45. A life insurer issues Roderick, aged 40, a policy that will pay
+10,000 upon survival of a number of years equal to Roderick's median
+future lifetime. You are given:
+
+(i) \(d\) = 0.04
+
+(ii) For Roderick: \(q_{40 + k}\) = 0.05(1 + \(k\)) for \(k\) = 0, 1,
+\ldots{}, 19. (Roderick is a very unfortunate individual with respect to
+his future lifetime distribution.)
+
+(iii) The force of mortality is constant between integer ages.
+
+Calculate the expected present value of the 10,000 payment; that is,
+calculate the present value of 10,000 times the probability that the
+10,000 will be paid to Roderick.
+
+(A) 4100 (B) 4130 (C) 4160 (D) 4190 (E) 4220
+
+1.46. For a mortality table:
+
+(i) \(q_{70}\) = 0.058
+
+(ii) Deaths are uniformly distributed within each year of age.
+
+(iii) The probability that (71.25) dies within 0.4 years is 0.0252.
+
+Calculate the probability that (70) dies between ages 71.25 and 71.65.
+
+(A) 0.021 (B) 0.023 (C) 0.025 (D) 0.027 (E) 0.029
+
+1.47. Andy, aged 66, has mortality rates that are 3 times higher than
+mortality rates in the Illustrative Life Table. That is, for \(x\) = 66,
+67, \ldots{}, 110:
+
+\(q^{*}_x\) = 3\(q_x\),
+
+where \(q_x\) is a mortality rate in the Illustrative Life Table and
+\(q^{*}_x\) is Andy's corresponding mortality rate.
+
+Calculate the probability that Andy dies between ages 68 and 70.
+
+(A) 0.11 (B) 0.12 (C) 0.13 (D) 0.14 (E) 0.15
+
+\subsection{Answers to Exercises}\label{answers-to-exercises}
+
+1.1. E 1.26. A
+
+1.2. C 1.27. A
+
+1.3. A 1.28. C
+
+1.4. A 1.29. D
+
+1.5. B 1.30. B
+
+1.6. C 1.31. B
+
+1.7. B 1.32. E
+
+1.8. B 1.33. A
+
+1.9. A 1.34. D
+
+1.10. C 1.35. C
+
+1.11. D 1.36. E
+
+1.12. D 1.37. C
+
+1.13. B 1.38. A
+
+1.14. A 1.39. C
+
+1.15. C 1.40. C
+
+1.16. E 1.41. D
+
+1.17. D 1.42. E
+
+1.18. C 1.43. A
+
+1.19. D 1.44. D
+
+1.20. A 1.45. C
+
+1.21. C 1.46. B
+
+1.22. B 1.47. D
+
+1.23. B
+
+1.24. A
+
+1.25. B
+
+\section{Past Exam Questions}\label{past-exam-questions}
+
+\begin{itemize}
+\item
+  Exam MLC, Fall 2015: \#1, 2
+\item
+  Exam MLC, Spring 2015: \#1
+\item
+  Exam MLC, Spring 2014: \#1
+\item
+  Exam MLC, Fall 2013: \#24, 25
+\item
+  Exam 3L, Fall 2013: \#1, 2, 3
+\item
+  Exam MLC, Spring 2013: \#20
+\item
+  Exam 3L, Spring 2013: \#1, 2, 3
+\item
+  Exam MLC, Fall 2012: \#3
+\item
+  Exam 3L, Fall 2012: \#1, 2, 3
+\item
+  Exam MLC, Spring 2012: \#2 (MLC Only)
+\item
+  Exam 3L, Spring 2012: \#1, 2, 3
+\item
+  Exam MLC, Sample Questions: \#13, 21, 22, 28, 32, 59, 65, 98, 106,
+  116, 120, 131, 145, 155, 161, 171, 188, 189, 200, 201, 207, 219, 223,
+  267 (MLC Only), 276
+\item
+  Exam 3L, Fall 2011: \#1, 2
+\item
+  Exam 3L, Spring 2011: \#1, 2, 3
+\item
+  Exam 3L, Fall 2010: \#1, 2, 3
+\item
+  Exam 3L, Spring 2010: \#1, 2, 3, 4
+\item
+  Exam 3L, Fall 2009: \#1, 2, 3
+\item
+  Exam 3L, Spring 2009: \#1, 3
+\item
+  Exam 3L, Fall 2008: \#12, 13, 14
+\item
+  Exam 3L, Spring 2008: \#13, 14, 15, 16
+\item
+  Exam MLC, Spring 2007: \#1, 21
+\end{itemize}
+
+\chapter{Selection}\label{selection}
+
+\section{Key Concepts}\label{key-concepts}
+
+For a life table based on an insured population, one must consider for
+each individual both (i) the age of policy issue and (ii) the time that
+has elapsed since policy issue. This is because the insurer typically
+underwrites individuals that purchase a policy. Through the
+underwriting, the insurer learns additional information about the
+individual's survival distribution that the insurer would not know for a
+life randomly drawn from the general population. This additional
+information must be accounted for in the calculation of various
+quantities such as survival probabilities for the individual and the
+value of the individual's policy.
+
+\begin{itemize}
+\item
+  Consider an individual now aged x + t who purchased a policy at age x.
+  We say that the individual was \textbf{selected}, or \textbf{select},
+  at age x (and time \(t\) = 0).
+\item
+  The additional information gained from underwriting the above
+  individual, obtained by surveys and/or a medical examination, is
+  assumed to apply for a certain number of years after policy issue
+  called the \textbf{select period}.
+\item
+  Say the select period is \(d\) years. For \(t\) \(<\) \(d\), one
+  accounts for the initial selection of the above individual at age x;
+  the individual's current age would be written as \[x\] + t (the select
+  brackets \[ \] denote the initial age of selection). For \(t\) \(\ge\)
+  \(d\), one no longer accounts for the initial selection of the
+  individual at age x, and the individual's age would be written simply
+  as x + t (with no select brackets \[ \]).
+\item
+  An individual has \textbf{select mortality} for ages/times within the
+  select period that differs from the mortality of the general
+  population. An individual has \textbf{ultimate mortality} for
+  ages/times beyond the select period where their mortality is assumed
+  to be the same as a life from the general population.
+\item
+  A life table that accounts for both select and ultimate mortality is
+  called a \textbf{select-and-ultimate life table}.
+\item
+  A life table that ignores selection completely is called an
+  \textbf{aggregate life table}.
+\item
+  The previous formulas for the quantities considered so far, such as
+  survival probabilities, are still valid in the event of selection. One
+  simply has to use information from the select part of the
+  select-and-ultimate life table for ages/times within the select
+  period.
+\item
+  For example, with a select period of 3 years, \({}_{2}p_{[x]}\) =
+  \((p_{[x]})\)\((p_{[x] + 1})\) and \({}_{5}p_{[x]}\) =
+  \((p_{[x]})\)\((p_{[x] + 1)}\)\((p_{[x] + 2})\)\((p_{x + 3})\)\((p_{x + 4})\).
+  The p's with select brackets would come from the select part of the
+  select-and-ultimate life table, and the p's without select brackets
+  would come from the ultimate part.
+\item
+  An illustrative select-and-ultimate table is the
+
+  \textbf{Standard Select and Ultimate Survival Model}. This table is
+  provided in Appendix D of Dickson et al. For brevity, I will refer to
+  this table as the \textbf{Standard Select Survival Model}.
+\end{itemize}
+
+\section{Exercises}\label{exercises-1}
+
+2.1. Mortality follows the select-and-ultimate life table:
+
+Calculate: 10,000\({}_{1|}q_{[30]}\).
+
+(A) 1 (B) 2 (C) 3 (D) 4 (E) 5
+
+2.2. Suppose mortality follows the Standard Select Survival Model.
+
+Calculate: \({}_{1|2}q_{[70]+1}\).
+
+(A) 0.025 (B) 0.027 (C) 0.029 (D) 0.031 (E) 0.033
+
+2.3. Consider the following select-and-ultimate life table:
+
+\begin{longtable}[]{@{}rrrrrr@{}}
+\toprule
+\(\mathbf{x}\) & \(\mathbf{q_{[x]}}\) & \(\mathbf{q_{[x] + 1}}\) &
+\(\mathbf{q_{[x] + 2}}\) & \(\mathbf{q_{x + 3}}\) &
+\(\mathbf{x + 3}\)\tabularnewline
+\midrule
+\endhead
+60 & 0.09 & 0.11 & 0.13 & 0.15 & 63\tabularnewline
+61 & 0.10 & 0.12 & 0.14 & 0.16 & 64\tabularnewline
+62 & 0.11 & 0.13 & 0.15 & 0.17 & 65\tabularnewline
+63 & 0.12 & 0.14 & 0.16 & 0.18 & 66\tabularnewline
+64 & 0.13 & 0.15 & 0.17 & 0.19 & 67\tabularnewline
+\bottomrule
+\end{longtable}
+
+Assume that deaths follow the uniform distribution of deaths assumption
+between integer ages.
+
+Calculate: \({}_{1.6}q_{[61] + 0.75}\).
+
+(A) 0.1855 (B) 0.1856 (C) 0.1857 (D) 0.1858 (E) 0.1859
+
+2.4. A select-and-ultimate life table with a select period of 2 years is
+based on probabilities that satisfy the following relationship:
+
+\(q_{[x - i] + i}\) = \(\frac{3}{5 - i} \times q_x\) for \(i\) = 0, 1.
+
+You are given that \(l_{68}\) = 10,000, \(q_{66}\) = 0.026, and
+\(q_{67}\) = 0.028.
+
+Calculate: \(l_{[65] + 1}\).
+
+(A) 10,414 (B) 10,451 (C) 10,479 (D) 10,493 (E) 11,069
+
+2.5. Suppose mortality follows the Standard Select Survival Model.
+
+Calculate: \(e_{[60] :\overline{5}|}\).
+
+(A) 4.928 (B) 4.932 (C) 4.936 (D) 4.940 (E) 4.944
+
+2.6. Consider a select-and-ultimate life table with a 2-year select
+period.
+
+You are given:
+
+(i) \(l_{[35]}\) = 1500
+
+(ii) \(l_{36}\) = 1472.31
+
+(iii) \(q_{[35]}\) = 0.0240
+
+(iv) \(q_{[35] + 1}\) = 0.0255
+
+Calculate: \(l_{35}({}_{1|}q_{35})\).
+
+(A) 42 (B) 44 (C) 46 (D) 48 (E) 50
+
+2.7. Quinn is currently age 60. He was selected by the PlzDntDie Life
+Insurance Company one year ago. Quinn has mortality that follows a
+select-and-ultimate life table with a 2-year select period:
+
+(i) The ultimate part of the model is such that:
+
+\(\mu_x\) = 0.0002\((1.1)^x\) for \(x\) \(\ge\) 0.
+
+(ii) The select part of the model is such that:
+
+\(\mu_{[x] + s}\) = \((0.8)^{2 - s}\mu_{x + s}\) for \(x\) \(\ge\) 0, 0
+\(\le\) \(s\) \(\le\) 2.
+
+Calculate the probability that Quinn survives to age 61.
+
+(A) 0.938 (B) 0.944 (C) 0.950 (D) 0.956 (E) 0.962
+
+2.8. You are given:
+
+(i) Mortality follows the Standard Select Survival Model.
+
+(ii) Deaths are uniformly distributed over each year of age.
+
+Calculate: \(\mathring{e}_{[75] + 1 :\overline{1.3}|}\).
+
+(A) 1.277 (B) 1.280 (C) 1.283 (D) 1.287 (E) 1.290
+
+2.9. For a select and ultimate life table with a 1-year select period:
+
+(i) \(\mu_{[55] + t}\) = 0.5\(\mu_{55 + t}\) for 0 \(\le\) \(t\) \(\le\)
+1
+
+(ii) \(e_{55}\) = 18.02
+
+(iii) \(e_{[55]}\) = 18.33
+
+Calculate: \(e_{56}\).
+
+(A) 17.60 (B) 17.65 (C) 17.70 (D) 17.75 (E) 17.80
+
+2.10. Consider a population of lives each age 55 and selected at that
+age, where 70\% are non-smokers and 30\% are smokers.
+
+The force of mortality is:
+
+\(\mu_{[55] + t}\) = 0.009\(t\)(0.4 + 0.1\(S\)) for \(t\) \(\ge\) 0,
+
+where \(S\) = 0 for a non-smoker and \(S\) = 1 for a smoker.
+
+Calculate the probability that a randomly chosen life from the above
+population will die before age 75.
+
+(A) 0.51 (B) 0.52 (C) 0.53 (D) 0.54 (E) 0.55
+
+2.11. For a select-and-ultimate life table with a 2-year select period:
+
+(i) Ultimate mortality follows the Illustrative Life Table.
+
+(ii) \(q_{[x]}\) = 0.5\(q_x\), where \(q_x\) is from the Illustrative
+Life Table.
+
+(iii) \(q_{[x]+1}\) = 0.25\(q_{x + 1}\), where \(q_{x + 1}\) is from the
+Illustrative Life Table.
+
+Calculate the probability that a select life aged 70 will die after age
+75.
+
+(A) 0.79 (B) 0.81 (C) 0.83 (D) 0.85 (E) 0.87
+
+2.12. Consider the setup in Exercise 2.11. Calculate the 4-year
+temporary curtate expectation of life for a select life aged 70.
+
+(A) 3.79 (B) 3.81 (C) 3.83 (D) 3.85 (E) 3.87
+
+\subsection{Answers to Exercises}\label{answers-to-exercises-1}
+
+2.1. C
+
+2.2. B
+
+2.3. C
+
+2.4. D
+
+2.5. E
+
+2.6. C
+
+2.7. B
+
+2.8. C
+
+2.9. B
+
+2.10. D
+
+2.11. D
+
+2.12. A
+
+\section{Past Exam Questions}\label{past-exam-questions-1}
+
+\begin{itemize}
+\item
+  Exam MLC, Fall 2014: \#20
+\item
+  Exam MLC, Spring 2014: \#2
+\item
+  Exam MLC, Fall 2013: \#3
+\item
+  Exam MLC, Spring 2013: \#19
+\item
+  Exam MLC, Fall 2012: \#2
+\item
+  Exam MLC, Spring 2012: \#1, 13
+\item
+  Exam MLC, Sample Questions: \#66, 73, 136, 168
+\item
+  Exam MLC, Spring 2007: \#18
+\end{itemize}
+
+\chapter{Annuities I}\label{annuities-i}
+
+\section{Key Concepts}\label{key-concepts-1}
+
+A \textbf{life annuity} policy provides payments to an
+\textbf{annuitant} each period while that person survives.
+
+Annuities can be described as either (i) \textbf{continuous}: the
+payments are made continuously each year while the annuitant survives or
+(ii) \textbf{discrete}: the payments are made at the beginning or the
+end of each period while the annuitant survives. If the payments are
+made at the beginning of each period, the policy is an
+\textbf{annuity-due}; if the payments are made at the end of each
+period, the policy is an \textbf{annuity-immediate}.
+
+\textbf{Types of Life Annuities}:
+
+\begin{itemize}
+\item
+  \textbf{Whole Life Annuity:} Provides payments each period while the
+  annuitant survives.
+\item
+  \textbf{Temporary Life Annuity:} Provides payments each period while
+  the annuitant survives for at most \(n\) years after policy issue.
+  This is also called a \textbf{term annuity}.
+\item
+  \textbf{Deferred Life Annuity:} The annuitant must survive a
+  \(u\)-year deferral period after policy issue in order for any
+  payments to be made. A \textbf{deferred whole life annuity} provides
+  payments each period while the annuitant survives if the annuitant
+  first survives the \(u\)-year deferral period; that is, payments are
+  made after \(u\) years while the annuitant survives. A
+  \textbf{deferred temporary life annuity} provides payments each period
+  while the annuitant survives for at most \(n\) years after first
+  surviving the \(u\)-year deferral period; that is, payments are made
+  between \(u\) years and \(u + n\) years after policy issue while the
+  annuitant survives.
+\item
+  \textbf{Certain and Life Annuity:} Is guaranteed to provide payments
+  for the first \(n\) years after policy issue, regardless of whether
+  the annuitant survives or dies within the \(n\)-year period. If the
+  annuitant survives the first \(n\) years, the annuity continues to
+  provide payments each period for as long as the annuitant survives.
+  This is also called a \textbf{guaranteed annuity}.
+
+  For each of these annuities, the following will be considered:
+
+  \begin{itemize}
+  \item
+    The \textbf{present value of the annuity}, \(Y\), are the payments
+    discounted for interest between policy issue and each payment date.
+    This is a random variable, as the number of payments is a function
+    of the future lifetime of the annuitant.
+  \item
+    The \textbf{expected present value of the annuity}, \(E(Y)\), are
+    the payments discounted for both interest and survival between
+    policy issue and each potential payment date. \(E(Y)\) is with
+    respect to the distribution of the annuitant's future lifetime.
+
+    \(E(Y)\) will be written differently for each type of life annuity
+    considered. In addition, \(E(Y)\) can also be called the
+    \textbf{actuarial present value} \textbf{of the annuity}, the
+    \textbf{single premium}, the \textbf{net single premium}, or the
+    \textbf{single benefit premium}.
+  \item
+    Secondary characteristics of the distribution of \(Y\) that will be
+    of interest include the variance of \(Y\) and percentiles of the
+    distribution of \(Y\).
+  \end{itemize}
+\end{itemize}
+
+\section{Life Annuity Formulas}\label{life-annuity-formulas}
+
+This section provides key formulas for different life annuities. Note:
+
+\begin{itemize}
+\item
+  Life annuities have continuous and discrete versions. In the
+  continuous case, the payments are made continuously each year up until
+  the moment of death of the annuitant (\(T_x\) years after policy
+  issue). The discrete case can be : (i) annual or (ii) \(m\)-thly (Exam
+  MLC only). In (i), the payments are made at either the beginning of
+  each year (for a total of \(K_x\) + 1 payments), or payments are made
+  at the end of each year (for a total of \(K_x\) payments).
+
+  It is possible that the number of payments made could be subject to a
+  finite term and/or a deferral period. It is also possible that there
+  may be a guaranteed number of payments.
+\item
+  The general formula for the present value of a continuous life annuity
+  on (x) with payment rate \(\pi_t\) at time \(t\) (\(>\) 0) is:
+
+  \(Y\) = \(\int^{T_x}_0 \pi_t v^{t}dt\) =
+  \(\int^{T_x}_0 \pi_t e^{-\delta t}dt\).
+
+  The general formula for the expected present value of a continuous
+  life annuity on (x) with payment rate \(\pi_t\) at time \(t\) (\(>\)
+  0) is:
+
+  \(E(Y)\) = \(\int^{\infty}_0 \pi_t v^{t}{}_{t}p_xdt\) =
+  \(\int^{\infty}_0 \pi_t e^{-\delta t}{}_{t}p_xdt\) =
+  \(\int^{\infty}_0 \pi_t ({}_{t}E_x)dt\). Furthermore:
+
+  ``Say the payment rate is \(\pi_t\) at time \(t\). Then the present
+  value of this benefit at time \(t\) is \(\pi_t v^{t}dt\), and the
+  expected present value of this benefit is \(\pi_t v^{t}{}_{t}p_xdt\)
+  ((x) has to survive to time \(t\) in order for \(\pi_tdt\) to be made
+  at that time). Integrating over all possible payment times provides
+  the overall expected present value. This is the \textbf{current
+  payment approach.}''
+\end{itemize}
+
+\begin{itemize}
+\item
+  The general formula for the present value of an annual life
+  annuity-due that pays \(\pi_{k}\) at time \(k\) (\(k\) = 0, 1, 2,
+  \ldots{}) is:
+
+  \(Y\) = \(\sum^{K_x}_{k = 0} \pi_{k} v^{k}\).
+
+  The general formula for the expected present value of an annual life
+  annuity-due that pays \(\pi_{k}\) at time \(k\) (\(k\) = 0, 1, 2,
+  \ldots{}) is:
+
+  \(E(Y)\) = \(\sum^{\infty}_{k = 0} \pi_{k} v^{k}{}_{k}p_x\) =
+  \(\sum^{\infty}_{k = 0} \pi_{k} ({}_{k}E_x)\). Furthermore:
+
+  ``Say the payment is \(\pi_k\) at time \(k\). Then the present value
+  of this benefit is \(\pi_{k} v^{k}\), and the expected present value
+  of this benefit is \(\pi_{k} v^{k}{}_{k}p_x\). Summing over all
+  possible payment times provides the overall expected present value.
+  This is the current payment approach.''
+
+  Note: The general formulas for the present value and expected present
+  value of an annual life annuity-immediate on (x) are similar, expect
+  there would be no payment at \(k\) = 0.
+\item
+  The International Actuarial Notation for \(E(Y)\) often contains an
+  \(a\), which indicates that the expected present value is for a life
+  annuity. For example, \(\ddot{a}_x\) denotes the expected present
+  value of a whole life annuity-due of 1 per year on (x).
+\item
+  \(^2a\) is \(a\) evaluated at double the force of interest.
+\item
+  \(^2a\) is NOT equal to \(E(Y^2)\). This implies that \(Var(Y)\) is
+  NOT equal to \(^2a\) - \(a^2\) (which will usually be negative).
+\item
+  For each annuity, a (total) payment rate of 1 per year is assumed. If
+  the payment rate is \(R\), notation and formulas are adjusted. For
+  example, the expected present value of a continuous whole life annuity
+  of \(R\) per year on (x) is \(E(Y)\) = \(R\bar{a}_{x}\) =
+  \(\int^{\infty}_0 R({}_{t}E_x)\).
+\item
+  Recursion formulas take an expected present value and decomposes it
+  into the sum of two expected present values: the expected present
+  value of the annuity during the first period plus the expected present
+  value of the annuity if the annuitant survives the first period.
+
+  For example: \(\ddot{a}_x\) = 1 + \(vp_x\ddot{a}_{x + 1}\). ``The
+  right-hand side breaks up the expected present value of a whole life
+  annuity-due of 1 per year on (x) into the very first payment of 1 at
+  issue plus the expected present value of all of the remaining payments
+  of 1 at issue.''
+\item
+  For many annuities, \(Var(Y)\) is too difficult to calculate.
+  Therefore, \(Var(Y)\) is omitted for several of the following
+  annuities.
+\item
+  The \textbf{actuarial accumulated value} is the expected present value
+  of a payment or payments divided by a discount factor. For example:
+
+  \(\ddot{s}_{x :\overline{n}|}\) =
+  \(\frac{1}{{}_{n}E_x}\)\(\ddot{a}_{x:\overline{n}|}\)
+
+  = the actuarial accumulated value at time \(n\) of an \(n\)-year
+  temporary life annuity-due of 1 per year on (x).
+\end{itemize}
+
+\section{Level Annuities}\label{level-annuities}
+
+\subsection{Whole Life Annuity of 1 per Year on
+(x)}\label{whole-life-annuity-of-1-per-year-on-x}
+
+\textbf{Continuous Whole Life Annuity}:
+
+\begin{itemize}
+\item
+  \(Y\) = \(\bar{a}_{\overline{T_x}|}\) = \(\frac{1 - v^{T_x}}{\delta}\)
+
+  So: \(Y\) = \(\frac{1 - Z}{\delta}\), where \(Z\) is the present value
+  random variable for a continuous whole life insurance of 1 on (x).
+\item
+  \(E(Y)\) = \(\bar{a}_x\) = \(\int^{\infty}_{0} {}_{t}E_xdt\) =
+  \(\frac{1 - \bar{A}_x}{\delta}\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With a constant force of mortality: \(\bar{a}_x\) =
+    \(\frac{1}{\mu + \delta}\)
+  \end{itemize}
+\item
+  It is also true that: \(\bar{a}_x\) =
+  \(\int^{\infty}_{0} (\bar{a}_{\overline{t}|}){}_{t}p_x\mu_{x + t} dt\)
+
+  ``Say the moment of death of (x) occurs at time \(t\). Then the
+  present value of the payments is \(\bar{a}_{\overline{t}|}\), and the
+  expected present value of the payments is
+  \((\bar{a}_{\overline{t}|}){}_{t}p_x\mu_{x + t} dt\) ((x) has to
+  survive \(t\) years and then immediately die for the present value to
+  be \(\bar{a}_{\overline{t}|}\)). Integrating over all times of death
+  provides the overall expected present value.''
+\item
+  \(Var(Y)\) = \(\frac{^2\bar{A}_x - [\bar{A}_x]^2}{\delta^2}\)
+\item
+  \(F_Y(y)\) = \(Pr[Y \le y]\) = \(Pr[\bar{a}_{\overline{T_x}|} \le y]\)
+  = \({}_{c}q_x\) where \(c\) = -\(\frac{\ln(1 - \delta y)}{\delta}\)
+
+  \begin{itemize}
+  \item
+    For de Moivre's Law (Uniform Distribution):
+
+    \(F_Y(y)\) = -\(\frac{\ln(1 - \delta y)}{\delta (\omega - x)}\) for
+    0 \(\le\) \(y\) \(\le\) \(\bar{a}_{\overline{\omega - x}|}\). If the
+    annual payment is \(R\), replace \(y\) with \(\frac{y}{R}\).
+  \item
+    Constant force of mortality: \(F_Y(y)\) = 1 -
+    \((1 - \delta y)^\frac{\mu}{\delta}\) for 0 \(\le\) \(y\) \(\le\)
+    \(\frac{1}{\delta}\). If the annual payment is \(R\), replace \(y\)
+    with \(\frac{y}{R}\).
+  \end{itemize}
+
+  Note: The 100\(\alpha\)-th percentile of the distribution of \(Y\),
+  \(y_{\alpha}\), solves:
+
+  \(F_Y(y_{\alpha})\) = \(\alpha\) for 0 \(\le\) \(\alpha\) \(\le\) 1.
+\end{itemize}
+
+\textbf{Annual Whole Life Annuity}:
+
+\textbf{Whole Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  \(Y_d\) = \(\ddot{a}_{\overline{K_x + 1}|}\) =
+  \(\frac{1 - v^{K_x + 1}}{d}\)
+
+  So: \(Y_d\) = \(\frac{1 - Z}{d}\), where \(Z\) is the present value
+  random variable for an annual whole life insurance of 1 on (x).
+\item
+  \(E(Y_d)\) = \(\ddot{a}_x\) = \(\sum^{\infty}_{k = 0} {}_{k}E_x\) =
+  \(\frac{1 - A_x}{d}\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With a constant force of mortality: \(\ddot{a}_x\) =
+    \(\frac{1 + i}{q + i}\)
+  \end{itemize}
+\item
+  It is also true that: \(\ddot{a}_x\) =
+  \(\sum^{\infty}_{k = 0} (\ddot{a}_{\overline{k+1}|}){}_{k|}q_x\)
+\item
+  \(Var(Y_d)\) = \(\frac{^2A_x - [A_x]^2}{d^2}\)
+\item
+  Recursion: \(\ddot{a}_x\) = 1 + \(vp_x\ddot{a}_{x + 1}\)
+\end{itemize}
+
+\textbf{Whole Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  \(Y_i\) = \(a_{\overline{K_x}|}\) = \(\frac{1 - v^{K_x}}{i}\)
+
+  So: \(Y_i\) = \(\frac{1 - (1 + i)Z}{i}\), where \(Z\) is the present
+  value random variable for an annual whole life insurance of 1 on (x).
+\item
+  \(E(Y_i)\) = \(a_x\) = \(\sum^{\infty}_{k = 1} {}_{k}E_x\) =
+  \(\ddot{a}_x\) - 1
+\item
+  \(E(Y_i)\) = \(a_x\) = \(\frac{1 - (1 + i)A_x}{i}\)
+\item
+  \(Var(Y_i)\) = \(\frac{^2A_x - [A_x]^2}{d^2}\) (same as an annual
+  whole life annuity-due)
+\item
+  Recursion: \(a_x\) = \(vp_x(1 + a_{x + 1})\)
+\end{itemize}
+
+\subsection{Temporary Life Annuity of 1 per Year on
+(x)}\label{temporary-life-annuity-of-1-per-year-on-x}
+
+\textbf{Continuous Temporary Life Annuity}:
+
+\begin{itemize}
+\item
+  \[Y = \left\{
+    \begin{array}{l l}
+      \bar{a}_{\overline{T_x}|}   & \quad \text{for $T_x$ $\le$ n}\\
+      \bar{a}_{\overline{n}|}        & \quad \text{for $T_x$ $>$ n}\\
+    \end{array} \right.\]
+
+  = \(\frac{1 - Z}{\delta}\),
+
+  where \(Z\) is the present value random variable for a continuous
+  n-year endowment insurance of 1 on (x).
+\item
+  \(E(Y)\) = \(\bar{a}_{x:\overline{n}|}\) =
+  \(\int^{n}_{0} {}_{t}E_xdt\) =
+  \(\frac{1 - \bar{A}_{x:\overline{n}|}}{\delta}\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With a constant force of mortality: \(\bar{a}_{x:\overline{n}|}\) =
+    \(\frac{1}{\mu + \delta}\)\([1 - \exp[-(\mu + \delta)n]]\)
+  \end{itemize}
+\item
+  \(Var(Y)\) =
+  \(\frac{^2\bar{A}_{x:\overline{n}|} - [\bar{A}_{x:\overline{n}|}]^2}{\delta^2}\)
+\end{itemize}
+
+\textbf{Annual Temporary Life Annuity}:
+
+\textbf{Temporary Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l}
+      \ddot{a}_{\overline{K_x + 1}|}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+      \ddot{a}_{\overline{n}|}             & \quad \text{for $K_x$ = n, n + 1, ...}\\
+    \end{array} \right.\]
+
+  = \(\frac{1 - Z}{d}\),
+
+  where \(Z\) is the present value random variable for an annual n-year
+  endowment insurance of 1 on (x).
+\item
+  \(E(Y_d)\) = \(\ddot{a}_{x:\overline{n}|}\) =
+  \(\sum^{n - 1}_{k = 0} {}_{k}E_x\) =
+  \(\frac{1 - A_{x:\overline{n}|}}{d}\)
+\item
+  \(Var(Y_d)\) =
+  \(\frac{^2 A_{x:\overline{n}|} - [A_{x:\overline{n}|}]^2}{d^2}\)
+\item
+  Recursion: \(\ddot{a}_{x:\overline{n}|}\) = 1 +
+  \(vp_x\ddot{a}_{x + 1:\overline{n-1}|}\)
+\end{itemize}
+
+\textbf{Temporary Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  \[Y_i = \left\{
+    \begin{array}{l l}
+      a_{\overline{K_x}|}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+      a_{\overline{n}|}             & \quad \text{for $K_x$ = n, n + 1, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_i)\) = \(a_{x :\overline{n}|}\) = \(\sum^{n}_{k = 1} {}_{k}E_x\)
+  = \(\ddot{a}_{x:\overline{n}|}\) - 1 + \({}_{n}E_x\)
+\item
+  Note: \(\ddot{a}_{x:\overline{n}|}\) = 1 +
+  \(a_{x :\overline{n - 1}|}\)
+\item
+  \(Var(Y_i)\) =
+  \(\frac{^2 A_{x:\overline{n+1}|} - [A_{x:\overline{n+1}|}]^2}{d^2}\)
+\item
+  Recursion: \(a_{x :\overline{n}|}\) =
+  \(vp_x(1 + a_{x + 1 :\overline{n - 1}|})\)
+\end{itemize}
+
+\subsection{Deferred Whole Life Annuity of 1 per Year on
+(x)}\label{deferred-whole-life-annuity-of-1-per-year-on-x}
+
+\textbf{Continuous Deferred Whole Life Annuity}:
+
+\begin{itemize}
+\item
+  \[Y = \left\{
+    \begin{array}{l l}
+      0               & \quad \text{for $T_x$ $\le$ u}\\
+      v^u \bar{a}_{\overline{T_x - u}|}         & \quad \text{for $T_x$ $>$ u}\\
+    \end{array} \right.\]
+\item
+  \(E(Y)\) = \({}_{u|}\bar{a}_x\) = \(\int^{\infty}_u {}_{t}E_x\) =
+  \(\bar{a}_x\) - \(\bar{a}_{x:\overline{u}|}\) =
+  \({}_{u}E_x\)\(\bar{a}_{x + u}\)
+\end{itemize}
+
+\textbf{Annual Deferred Whole Life Annuity}:
+
+\textbf{Deferred Whole Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l}
+      0                       & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+      v^u \ddot{a}_{\overline{K_x + 1 - u}|}             & \quad \text{for $K_x$ = u, u + 1, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_d)\) = \({}_{u|}\ddot{a}_x\) =
+  \(\sum^{\infty}_{k = u} {}_{k}E_x\) = \(\ddot{a}_x\) -
+  \(\ddot{a}_{x:\overline{u}|}\) = \({}_{u}E_x\)\(\ddot{a}_{x + u}\)
+\item
+  Recursion: \({}_{u|}\ddot{a}_x\) = 0 +
+  \(vp_x({}_{u - 1|}\ddot{a}_{x + 1})\)
+\end{itemize}
+
+\textbf{Deferred Whole Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  \[Y_i = \left\{
+    \begin{array}{l l}
+      0                       & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+      v^u a_{\overline{K_x - u}|}             & \quad \text{for $K_x$ = u, u + 1, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_i)\) = \({}_{u|}a_x\) = \(\sum^{\infty}_{k = u + 1} {}_{k}E_x\)
+  = \(a_x\) - \(a_{x :\overline{u}|}\) = \({}_{u}E_x\)\(a_{x + u}\)
+\item
+  Note: \({}_{u|}\ddot{a}_x\) = \({}_{u|}a_x\) + \({}_{u}E_x\)
+\item
+  Recursion: \({}_{u|}a_x\) = 0 + \(vp_x({}_{u - 1|}a_{x + 1})\)
+\end{itemize}
+
+\subsection{Deferred Temporary Life Annuity of 1 per Year on
+(x)}\label{deferred-temporary-life-annuity-of-1-per-year-on-x}
+
+\textbf{Continuous Deferred Temporary Life Annuity}:
+
+\begin{itemize}
+\item
+  \[Y = \left\{
+    \begin{array}{l l l}
+      0                      & \quad \text{for $T_x$ $\le$ u}\\
+      v^u \bar{a}_{\overline{T_x - u}|}                 & \quad \text{for u $<$ $T_x$ $\le$ u + n}\\
+      v^u \bar{a}_{\overline{n}|}                       & \quad \text{for $T_x$ $>$ u + n}\\
+    \end{array} \right.\]
+\item
+  \(E(Y)\) = \({}_{u|n}\bar{a}_x\) =
+  \({}_{u|}\bar{a}_{x:\overline{n}|}\) = \(\int^{u + n}_u {}_{t}E_x dt\)
+  = \(\bar{a}_{x:\overline{u +n}|}\) - \(\bar{a}_{x:\overline{u}|}\) =
+  \({}_{u}E_x\)\(\bar{a}_{x + u:\overline{n}|}\)
+\end{itemize}
+
+\textbf{Annual Deferred Temporary Life Annuity}:
+
+\textbf{Deferred Temporary Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l l}
+      0                      & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+      v^u \ddot{a}_{\overline{K_x + 1 - u}|}                 & \quad \text{for $K_x$ = u, u + 1, ..., u + n - 1}\\
+      v^u \ddot{a}_{\overline{n}|}                       & \quad \text{for $K_x$ = u + n, u + n + 1, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_d)\) = \({}_{u|n}\ddot{a}_x\) =
+  \({}_{u|}\ddot{a}_{x:\overline{n}|}\) =
+  \(\sum^{u + n - 1}_{k = u} {}_{k}E_x\) =
+  \(\ddot{a}_{x:\overline{u +n}|}\) - \(\ddot{a}_{x:\overline{u}|}\) =
+  \({}_{u}E_x\)\(\ddot{a}_{x + u:\overline{n}|}\)
+\item
+  Recursion: \({}_{u|n}\ddot{a}_x\) = 0 +
+  \(vp_x({}_{u - 1|n}\ddot{a}_{x + 1})\)
+\end{itemize}
+
+\textbf{Deferred Temporary Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  \[Y_i = \left\{
+    \begin{array}{l l l}
+      0                      & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+      v^u a_{\overline{K_x - u}|}                 & \quad \text{for $K_x$ = u, u + 1, ..., u + n - 1}\\
+      v^u a_{\overline{n}|}                       & \quad \text{for $K_x$ = u + n, u + n + 1, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_i)\) = \({}_{u|n}a_x\) = \({}_{u|}a_{x :\overline{n}|}\) =
+  \(\sum^{u + n}_{k = u + 1} {}_{k}E_x\) = \(a_{x :\overline{u + n}|}\)
+  - \(a_{x :\overline{u}|}\) = \({}_{u}E_x\)\(a_{x + u :\overline{n}|}\)
+\item
+  Recursion: \({}_{u|n}a_x\) = 0 + \(vp_x({}_{u - 1|n}a_{x + 1})\)
+\end{itemize}
+
+\subsection{Certain and Life Annuity of 1 per Year on
+(x)}\label{certain-and-life-annuity-of-1-per-year-on-x}
+
+\textbf{Continuous Certain and Life Annuity}:
+
+\begin{itemize}
+\item
+  \[Y = \left\{
+    \begin{array}{l l}
+      \bar{a}_{\overline{n}|}               & \quad \text{for $T_x$ $\le$ n}\\
+      \bar{a}_{\overline{T_x}|}         & \quad \text{for $T_x$ $>$ n}\\
+    \end{array} \right.\]
+\item
+  \(E(Y)\) = \(\bar{a}_{\overline{x: \overline{n}|}}\) =
+  \(\bar{a}_{\overline{n}|}\) + \({}_{n|}\bar{a}_x\)
+\end{itemize}
+
+\textbf{Annual Certain and Life Annuity}:
+
+\textbf{Certain and Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l}
+      \ddot{a}_{\overline{n}|}               & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+      \ddot{a}_{\overline{K_x + 1}|}         & \quad \text{for $K_x$ = n, n + 1, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_d)\) = \(\ddot{a}_{\overline{x: \overline{n}|}}\) =
+  \(\ddot{a}_{\overline{n}|}\) + \({}_{n|}\ddot{a}_x\)
+\item
+  Recursion: \(\ddot{a}_{\overline{x: \overline{n}|}}\) = 1 +
+  \(vq_x\ddot{a}_{\overline{n - 1}|}\) +
+  \(vp_x\ddot{a}_{\overline{x + 1: \overline{n - 1}|}}\)
+\end{itemize}
+
+\textbf{Certain and Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  \[Y_i = \left\{
+    \begin{array}{l l}
+      a_{\overline{n}|}               & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+      a_{\overline{K_x}|}         & \quad \text{for $K_x$ = n, n + 1, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_i)\) = \(a_{\overline{x: \overline{n}|}}\) =
+  \(a_{\overline{n}|}\) + \({}_{n|}a_x\)
+\item
+  Recursion: \(a_{\overline{x: \overline{n}|}}\) = \(v\) +
+  \(vq_xa_{\overline{n - 1}|}\) +
+  \(vp_x a_{\overline{x + 1: \overline{n - 1}|}}\)
+\end{itemize}
+
+\section{Exercises}\label{exercises-2}
+
+5.1. Assume: \(\mu_x(t)\) = 0.02 for \(t\) \(>\) 0 and \(\delta\) =
+0.05.
+
+Calculate: \(\bar{a}_{x:\overline{15}|}\).
+
+(A) 8.70 (B) 8.90 (C) 9.10 (D) 9.30 (E) 9.50
+
+5.2. Assume mortality follows: \(l_x\) = 100(110 - \(x\)) for 0 \(\le\)
+\(x\) \(\le\) 110, and \(d\) = 0.05.
+
+Calculate: \({}_{15|}\ddot{a}_{45}\).
+
+(A) 4.40 (B) 4.60 (C) 4.80 (D) 5.00 (E) 5.20
+
+5.3. You are given:
+
+(i) \(\mu\) = \(\delta\) = \(c\), where \(c\) is a positive constant.
+
+(ii) \(^2\bar{a}_x\) = \(\frac{25}{3}\)
+
+Calculate: \(Var(\bar{a}_{\overline{T(x)}|})\).
+
+(A) 50 (B) 52 (C) 54 (D) 56 (E) 58
+
+5.4. You are given:
+
+(i) \({}_{k|}q_{35}\) = 0.005(\(k\) + 1) for \(k\) = 0, 1, 2, 3.
+
+(ii) \(i\) = 0.05
+
+Calculate the actuarial present value of a 4-year temporary life
+annuity-due of 100 per year on (35).
+
+(A) 350 (B) 360 (C) 370 (D) 380 (E) 390
+
+5.5. You are given:
+
+(i) \(\delta\) = 0.05
+
+(ii) \[\mu_x = \left\{
+  \begin{array}{l l}
+    0.05 & \quad \text{for 0 $\le$ x $<$ 50}\\
+    0.08 & \quad \text{for x $\ge$ 50}\\
+  \end{array} \right.\]
+
+Calculate the actuarial present value of a continuous whole life annuity
+of 1 per year on (30).
+
+(A) 9.10 (B) 9.30 (C) 9.50 (D) 9.70 (E) 9.90
+
+5.6. You are given:
+
+\[\delta_t = \left\{
+  \begin{array}{l l}
+    0.05 & \quad \text{for 0 $\le$ t $<$ 10}\\
+    0.07 & \quad \text{for t $\ge$ 10}\\
+  \end{array} \right.\]
+
+\[\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.02 & \quad \text{for 0 $\le$ t $<$ 10}\\
+    0.03 & \quad \text{for t $\ge$ 10}\\
+  \end{array} \right.\]
+
+Calculate the expected present value of a continuous 10-year certain and
+life annuity on (x) of 1 per year.
+
+(A) 11.60 (B) 11.90 (C) 12.20 (D) 12.50 (E) 12.80
+
+5.7. You are given:
+
+(i) \(\mu_x(t)\) = 0.02 for \(t\) \(>\) 0
+
+(ii) \(\delta\) = 0.06
+
+Calculate: Pr{[}\(\bar{a}_{\overline{T_{x}}|}\) \(>\)
+\(\bar{a}_{x}\){]}.
+
+(A) 0.42 (B) 0.55 (C) 0.63 (D) 0.84 (E) 0.91
+
+5.8. You are given:
+
+(i) The force of mortality is constant.
+
+(ii) \(\bar{A}_x\) = 0.428571
+
+(iii) \(\bar{A}_{x:\overline{10}|}^{1}\) = 0.215749
+
+(iv) \(Y\) is the present value random variable for a continuous 10-year
+temporary life annuity of 500 per year on (x).
+
+Calculate: \(E(Y)\).
+
+(A) 3550 (B) 3600 (C) 3650 (D) 3700 (E) 3750
+
+5.9. You are given:
+
+(i) Mortality for a standard life aged 40, denoted as \(S\), is such
+that:
+
+\(q^S_x\) = 0.032 for \(x\) = 40, 41, 42, \ldots{}
+
+(ii) Mortality for a certain life aged 40, denoted as \(C\), is such
+that:
+
+\(q^C_{40}\) = 0.048 and \(q^C_x\) = 0.032 for \(x\) = 41, 42, 43,
+\ldots{}
+
+(iii) \(d\) = 0.05
+
+Calculate: \(\ddot{a}^S_{40}\) - \(\ddot{a}^C_{40}\).
+
+(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+5.10. You are given:
+
+(i) \(\mu_x(t)\) is the force of mortality associated with the
+Illustrative Life Table.
+
+(ii) \(i\) = 0.05
+
+Calculate the single benefit premium for a 3-year temporary life
+annuity-immediate of 1000 per year on (30) payable annually, assuming
+that the force of mortality used is equal to \(\mu_{30}(t)\) + 0.20 for
+0 \(\le\) \(t\) \(\le\) 3.
+
+(A) 1860 (B) 1900 (C) 1940 (D) 1980 (E) 2020
+
+5.11. A fund is created such that:
+
+(i) There are 60 lives each age 30.
+
+(ii) Each life receives payments of 100 per year for life, payable
+annually, beginning immediately.
+
+(iii) Mortality follows the Illustrative Life Table.
+
+(iv) The lifetimes are independent.
+
+(v) \(i\) = 0.06
+
+(vi) The amount of the fund is determined, using the normal
+approximation, such that the probability that the fund is sufficient to
+make all payments is 99\%.
+
+Calculate the initial amount of the fund.
+
+(A) 98,000 (B) 98,500 (C) 99,000 (D) 99,500 (E) 100,000
+
+5.12. For a group of individuals all age x:
+
+(i) 35\% are smokers and 65\% are non-smokers.
+
+(ii) The constant force of mortality for smokers is 0.08.
+
+(iii) The constant force of mortality for non-smokers is 0.04.
+
+(iv) \(\delta\) = 0.06
+
+Calculate \(Var[\bar{a}_{\overline{T(x)}|}]\) for an individual chosen
+at random from this group.
+
+(A) 25 (B) 26 (C) 27 (D) 28 (E) 29
+
+5.13. Suppose \(Z\) is the present value random variable for a 2-year
+pure endowment of 1 on (x). You are given:
+
+(i) \(v\) = 0.95 and \(p_x\) = 0.98
+
+(ii) \(A_x\) = 0.45 and \(\ddot{a}_{x + 2}\) = 10.68
+
+Calculate: \(Var(Z)\).
+
+(A) 0.045 (B) 0.050 (C) 0.055 (D) 0.060 (E) 0.065
+
+5.14. Cody, age 25, and Ted, age 30, have each won the actuarial
+lottery:
+
+(i) Cody has decided to collect his winnings via a 20-year temporary
+life annuity-due, which pays 400,000 each year.
+
+(ii) Ted has decided to collect his winnings via a 20-year certain and
+life annuity-due, which pays \(K\) each year.
+
+(iii) Mortality for both Cody and Ted follows the Illustrative Life
+Table, and \(i\) = 0.06.
+
+The expected present values of Cody's annuity and Ted's annuity are both
+equal. Calculate: \(K\).
+
+(A) 281,000 (B) 286,000 (C) 291,000 (D) 295,000 (E) 299,000
+
+5.15. Consider a special whole life annuity on (x) which pays \(R\) at
+the beginning of the first year, \(2R\) at the beginning of the second
+year, and \(3R\) at the beginning of each year thereafter. You are also
+given:
+
+(i) The actuarial present value of this annuity is 3333.
+
+(ii) \(i\) = 0.05
+
+(iii) \(p_x\) = 0.98 and \(p_{x + 1}\) = 0.97
+
+(iv) \(\ddot{a}_{x + 2}\) = 31.105
+
+Calculate: \(R\).
+
+(A) 30 (B) 35 (C) 40 (D) 45 (E) 50
+
+5.16. Let \(Y\) denote the present value random variable for a whole
+life annuity on (x) of \(R\) per year payable continuously each year:
+
+(i) \(\delta\) = 0.050
+
+(ii) \(\mu_x(t)\) = 0.035 for \(t\) \(\ge\) 0
+
+(iii) The expected value of \(Y\) is 1.64\% of the variance of \(Y\).
+
+Calculate: \(R\).
+
+(A) 12 (B) 14 (C) 16 (D) 18 (E) 20
+
+5.17. You are given the following portfolio of mutually independent
+lives:
+
+(i) 50 lives age 65 purchase a whole life annuity-immediate with an
+annual payment of 30,000.
+
+(ii) 20 lives age 75 purchase a whole life annuity-immediate with an
+annual payment of 20,000.
+
+Mortality follows the Illustrative Life Table, and \(i\) = 0.06.
+
+Let \(S\) be the present value for the total payments on the portfolio.
+
+Calculate the 95th percentile of the distribution of \(S\), in millions,
+using the normal approximation.
+
+(A) 16.9 (B) 17.2 (C) 17.5 (D) 17.8 (E) 18.1
+
+5.18. You are given:
+
+(i) \(\mu_x\) = \(\frac{1}{90 - x}\) for 0 \(\le\) \(x\) \(<\) 90
+
+(ii) \(i\) = 0
+
+Calculate: \(\ddot{a}_{30}\).
+
+(A) 29.0 (B) 29.5 (C) 30.0 (D) 30.5 (E) 31.0
+
+5.19. Paul, aged 35, has just taken out a home mortgage loan where he
+will pay 12,000 at the end of each year for 25 years.
+
+Paul was also required to purchase a life insurance policy that will pay
+any remaining payments should he die within the 25-year period.
+
+Paul has mortality that follows the Illustrative Life Table. The
+effective annual interest rate is 6\%.
+
+Calculate the expected present value of the life insurance policy.
+
+(A) 5150 (B) 5250 (C) 5350 (D) 5450 (E) 5550
+
+5.20. You are given:
+
+(i) Mortality follows:
+
+(ii) \(d\) = 0.03
+
+Calculate the probability that the present value of a 5-year temporary
+life annuity-due of 500 per year on (30) exceeds its actuarial present
+value.
+
+(A) 0.45 (B) 0.50 (C) 0.55 (D) 0.60 (E) 0.65
+
+5.21. You are given:
+
+(i) \(\delta\) = 0.04
+
+(ii) \(\mu_x\) = 0.0003\((1.05)^x\) for \(x\) \(\ge\) 0
+
+Calculate the expected present value of a 2-year deferred 2-year
+temporary life annuity-immediate of 100 per year on (34).
+
+(A) 167 (B) 169 (C) 171 (D) 173 (E) 175
+
+5.22. For a 10-year deferred 10-year continuous temporary life annuity
+of 1000 per year on (x):
+
+(i) \[\delta_t = \left\{
+  \begin{array}{l l}
+    0.06 & \quad \text{for t $\le$ 6}\\
+    0.07 & \quad \text{for t $>$ 6}\\
+  \end{array} \right.\]
+
+(ii) \[\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.025 & \quad \text{for t $\le$ 6}\\
+    0.035 & \quad \text{for t $>$ 6}\\
+  \end{array} \right.\]
+
+Calculate the single benefit premium for this annuity.
+
+(A) 2320 (B) 2360 (C) 2400 (D) 2440 (E) 2480
+
+5.23. Consider a policy on (40) that provides the following benefits:
+
+(i) A whole life annuity-due of 500 per year payable annually.
+
+(ii) A death benefit of 5000 payable at the end of the year of death.
+
+Furthermore:
+
+(iii) \(i\) = 0.06
+
+(iv) Mortality follows the Illustrative Life Table.
+
+Calculate the standard deviation of the present value random variable
+for this policy.
+
+(A) 515 (B) 530 (C) 545 (D) 560 (E) 575
+
+5.24. You are given:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+\end{enumerate}
+
+(ii) \(i\) = 0.05
+
+Calculate the actuarial accumulated value at the end of the fifth year
+of a 5-year temporary life annuity-immediate of 100 per year payable
+annually on (70).
+
+(A) 310 (B) 425 (C) 540 (D) 665 (E) 785
+
+5.25. Consider a whole life annuity-due of 1 per year payable annually
+on (x):
+
+(i) \(v\) = 0.965
+
+(ii) \({}_{10}p_x\) = 0.920
+
+(iii) \(\ddot{a}_{x + 11}\) = 11.36
+
+Suppose \(q_{x + 10}\) is increased to \(q_{x + 10}\) + 0.100.
+
+Calculate the change in the expected present value of the annuity.
+
+(A) - 0.71 (B) - 0.41 (C) - 0.26 (D) 0.26 (E) 0.58
+
+5.26. Consider the following special annuity on (x) payable annually:
+
+(i) The payment at time \(k\), \(\pi_k\), is such that:
+
+\[\pi_k = \left\{
+  \begin{array}{l l}
+    1000vq_{x + k} & \quad \text{for $k$ = 0, 1, ..., 19}\\
+    0             & \quad \text{for $k$ = 20, 21, ...}\\
+  \end{array} \right.\]
+
+(ii) \(i\) = 0.045
+
+(iii) \({}_{20}p_x\) = 0.945
+
+(iv) \(a_x\) = 18.23
+
+(v) \(a_{x + 20}\) = 13.94
+
+Calculate the expected present value of this annuity.
+
+(A) 30 (B) 32 (C) 34 (D) 36 (E) 38
+
+5.27. Consider a policy on (x) that provides the following benefits:
+
+(i) 1000 per year payable continuously each year while (x) is alive.
+
+(ii) \(S\) payable at the moment of death of (x).
+
+Furthermore:
+
+(iii) \(\delta\) = 0.05
+
+(iv) \(\mu_x(t)\) = 0.03 for \(t\) \(>\) 0.
+
+(v) \(W\) denotes the present value random variable for this policy.
+
+Determine the value of \(S\) that minimizes the variance of \(W\).
+
+(A) 5000 (B) 10,000 (C) 15,000 (D) 20,000 (E) 25,000
+
+\subsection{Answers to Exercises}\label{answers-to-exercises-2}
+
+5.1. D 5.26. B
+
+5.2. B 5.27. D
+
+5.3. B
+
+5.4. C
+
+5.5. D
+
+5.6. E
+
+5.7. C
+
+5.8. B
+
+5.9. D
+
+5.10. A
+
+5.11. C
+
+5.12. A
+
+5.13. A
+
+5.14. E
+
+5.15. C
+
+5.16. E
+
+5.17. B
+
+5.18. D
+
+5.19. C
+
+5.20. B
+
+5.21. D
+
+5.22. D
+
+5.23. E
+
+5.24. E
+
+5.25. A
+
+\section{Past Exam Questions}\label{past-exam-questions-2}
+
+\begin{itemize}
+\item
+  Exam MLC, Spring 2015: \#7
+\item
+  Exam MLC, Fall 2014: \#5
+\item
+  Exam MLC, Spring 2014: \#6
+\item
+  Exam MLC, Fall 2013: \#1, 5
+\item
+  Exam 3L, Fall 2013: \#12, 13
+\item
+  Exam MLC, Spring 2013: \#21
+\item
+  Exam 3L, Spring 2013: \#12
+\item
+  Exam 3L, Fall 2012: \#12
+\item
+  Exam MLC, Spring 2012: \#15
+\item
+  Exam MLC, Sample Questions: \#11, 25, 35, 45, 55, 63, 67, 79, 86, 88,
+  113, 114, 126, 130, 140, 146, 166, 186, 192, 196, 209, 210, 229, 285
+\item
+  Exam 3L, Fall 2011: \#12
+\item
+  Exam 3L, Spring 2011: \#12
+\item
+  Exam 3L, Spring 2010: \#15
+\item
+  Exam 3L, Fall 2009: \#12
+\item
+  Exam 3L, Spring 2009: \#12, 13
+\item
+  Exam 3L, Fall 2008: \#20, 21
+\item
+  Exam MLC, Spring 2007: \#2, 17, 24, 29
+\end{itemize}
+
+\chapter{Annuities II}\label{annuities-ii}
+
+\section{m-thly Annuities-Due}\label{m-thly-annuities-due}
+
+Here, we consider a \textbf{discrete} life annuity where each payment is
+provided at the beginning of the \(m\)-th of a year, conditional on
+survival. The value of \(m\) is typically equal to 2 (half-year), 4
+(quarter of a year), or 12 (month).
+
+Note:
+
+\begin{itemize}
+\item
+  An \(m\)-thly life annuity-due is such that each payment is made at
+  the beginning of each \(m\)-th of a year (for a total of
+  \(m (K^{(m)}_x + \frac{1}{m})\) payments, in years).
+\item
+  The general exact formula for the expected present value of an
+  \(m\)-thly life annuity-due on (x) that pays \(\pi_{\frac{k}{m}}\) at
+  time \(\frac{k}{m}\) years (\(k\) = 0, 1, 2, \ldots{}) is:
+
+  \(E(Y_d)\) =
+  \(\sum^{\infty}_{k = 0} \pi_{\frac{k}{m}} v^{\frac{k}{m}}{}_{\frac{k}{m}}p_x\)
+  = \(\sum^{\infty}_{k = 0} \pi_{\frac{k}{m}} ({}_{\frac{k}{m}}E_x)\).
+  Furthermore:
+
+  ``Say the payment is \(\pi_{\frac{k}{m}}\) at time \(\frac{k}{m}\).
+  Then the present value of this benefit is
+  \(\pi_{\frac{k}{m}} v^{\frac{k}{m}}\), and the expected present value
+  of this benefit is
+  \(\pi_{\frac{k}{m}} v^{\frac{k}{m}}{}_{\frac{k}{m}}p_x\) ((x) has to
+  survive to time \(\frac{k}{m}\) in order for \(\pi_{\frac{k}{m}}\) to
+  be made at that time). Summing over all possible payment times
+  provides the overall expected present value.''
+\item
+  The International Actuarial Notation for \(E(Y_d)\) often contains an
+  \(\ddot{a}^{(m)}\), which indicates that the expected present value is
+  for an m-thly life annuity-due. For example, \(\ddot{a}^{(m)}_x\)
+  denotes the expected present value of a whole life annuity-due of 1
+  per year on (x), payable in equal installments of \(\frac{1}{m}\) at
+  the beginning of each \(m\)-th of the year.
+\item
+  \(^2\ddot{a}^{(m)}\) is \(\ddot{a}^{(m)}\) evaluated at double the
+  force of interest.
+\item
+  Often, we do not use the exact formulas to calculate expected present
+  values for an \(m\)-thly life annuity-due. Rather, we approximate
+  these expected present values from the corresponding annual life
+  annuity-due expected present values using one of two assumptions:
+
+  \begin{itemize}
+  \item
+    \textbf{UDD}: deaths are uniformly distributed within each year of
+    age. In UDD formulas that approximate \(m\)-thly life annuities-due,
+    we use the following functions:
+
+    \(\alpha(m)\) = \(\frac{id}{i^{(m)}d^{(m)}}\) and \(\beta(m)\) =
+    \(\frac{i - i^{(m)}}{i^{(m)}d^{(m)}}\)
+
+    Let \(m\) approach infinity. In UDD formulas that approximate
+    continuous life annuities, we use the following functions:
+
+    \(\alpha(\infty)\) = \(\frac{id}{\delta^2}\) and \(\beta(\infty)\) =
+    \(\frac{i - \delta}{\delta^2}\).
+
+    You are provided a table of \(\alpha(m)\) and \(\beta(m)\) for
+    various values of \(m\) at \(i\) = 0.06 during Exam MLC. Please
+    refer to the web link to Exam MLC tables provided in Appendix A of
+    this study supplement.
+  \item
+    \textbf{Woolhouse's Formula}: based on series expansions. For
+    example, Woolhouse's Formula with three terms for an \(m\)-thly
+    whole life annuity-due of 1 per year on (x) is:
+
+    \(\ddot{a}^{(m)}_x\) = \(\ddot{a}_x\) - \(\frac{m - 1}{2m}\) -
+    \(\frac{m^2 - 1}{12m^2}\)\((\delta + \mu_x)\), and
+
+    Woolhouse's Formula with two terms for an \(m\)-thly whole life
+    annuity-due of 1 per year on (x) is:
+
+    \(\ddot{a}^{(m)}_x\) = \(\ddot{a}_x\) - \(\frac{m - 1}{2m}\) (this
+    approximates the UDD formula).
+
+    Furthermore, \(\mu_x\) can be approximated as
+    -\(\frac{1}{2}\)\((\ln p_{x - 1} + \ln p_x)\).
+  \end{itemize}
+\item
+  Note: The formulas discussed below reduce to the corresponding annual
+  life annuity-due formulas in \textbf{Annuities I} when \(m\) = 1.
+\end{itemize}
+
+\begin{itemize}
+\item
+  Note: While unlikely, it is possible that \(m\)-thly life
+  annuities-immediate could be tested; each payment is made at the end
+  of each \(m\)-th of a year (for a total of \(m (K^{(m)}_x)\) payments,
+  in years).
+
+  You can use the following relations:
+
+  \begin{itemize}
+  \item
+    \(a^{(m)}_x\) = \(\ddot{a}^{(m)}_x\) - \(\frac{1}{m}\)
+  \item
+    \(a^{(m)}_{x :\overline{n}|}\) =
+    \(\ddot{a}^{(m)}_{x :\overline{n}|}\) - \(\frac{1}{m}\)(1 -
+    \({}_{n}E_x)\)
+  \item
+    \({}_{n|}a^{(m)}_x\) = \(a^{(m)}_x\) -
+    \(a^{(m)}_{x :\overline{n}|}\)
+  \item
+    \(a^{(m)}_{\overline{x :\overline{n}|}}\) =
+    \(a^{(m)}_{\overline{n}|}\) + \({}_{n|}a^{(m)}_x\)
+  \end{itemize}
+\end{itemize}
+
+\subsection{m-thly Whole Life Annuity-Due of 1 per Year on
+(x)}\label{m-thly-whole-life-annuity-due-of-1-per-year-on-x}
+
+\begin{itemize}
+\item
+  \(Y_d\) = \(\ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m}}| }\) =
+  \(\frac{1 - v^{K^{(m)}_x + \frac{1}{m}}}{d^{(m)}}\)
+
+  So: \(Y_d\) = \(\frac{1 - Z}{d^{(m)}}\), where \(Z\) is the present
+  value random variable for an m-thly whole life insurance of 1 on (x).
+\item
+  \(E(Y_d)\) = \(\ddot{a}^{(m)}_x\) =
+  \(\sum^{\infty}_{k = 0} \frac{1}{m}{}_{\frac{k}{m}}E_x\) =
+  \(\frac{1 - A^{(m)}_x}{d^{(m)}}\)
+\item
+  \(Var(Y_d)\) = \(\frac{^2A^{(m)}_x - [A^{(m)}_x]^2}{[d^{(m)}]^2}\)
+\item
+  Recursion: \(\ddot{a}^{(m)}_x\) = \(\frac{1}{m}\) +
+  \(v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x\ddot{a}^{(m)}_{x + \frac{1}{m}}\)
+\item
+  UDD: \(\ddot{a}^{(m)}_x\) = \(\alpha(m)\)\(\ddot{a}_x\) -
+  \(\beta(m)\); \(\bar{a}_x\) = \(\alpha(\infty)\)\(\ddot{a}_x\) -
+  \(\beta(\infty)\)
+\item
+  Woolhouse's Formula with 3 terms: \(\ddot{a}^{(m)}_x\) =
+  \(\ddot{a}_x\) - \(\frac{m - 1}{2m}\) -
+  \(\frac{m^2 - 1}{12m^2}\)\((\delta + \mu_x)\);
+
+  \(\bar{a}_x\) = \(\ddot{a}_x\) - \(\frac{1}{2}\) -
+  \(\frac{1}{12}\)\((\delta + \mu_x)\)
+\end{itemize}
+
+\subsection{m-thly Temporary Life Annuity-Due of 1 per Year on
+(x)}\label{m-thly-temporary-life-annuity-due-of-1-per-year-on-x}
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l}
+      \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m}}| }   & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., n - $\frac{1}{m}$}\\
+      \ddot{a}^{(m)}_{\overline{n}|}             & \quad \text{for $K^{(m)}_x$ = n, n + $\frac{1}{m}$, ...}\\
+    \end{array} \right.\] = \(\frac{1 - Z}{d^{(m)}}\)
+
+  where \(Z\) is the present value random variable for an m-thly n-year
+  endowment insurance of 1 on (x).
+\item
+  \(E(Y_d)\) = \(\ddot{a}^{(m)}_{x :\overline{n}|}\) =
+  \(\sum^{mn - 1}_{k = 0} \frac{1}{m} {}_{\frac{k}{m}}E_x\) =
+  \(\frac{1 - A^{(m)}_{x :\overline{n}|}}{d^{(m)}}\)
+\item
+  \(Var(Y_d)\) =
+  \(\frac{^2A^{(m)}_{x :\overline{n}|} - [A^{(m)}_{x :\overline{n}|}]^2}{[d^{(m)}]^2}\)
+\item
+  Recursion: \(\ddot{a}^{(m)}_{x :\overline{n}|}\) = \(\frac{1}{m}\) +
+  \(v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x\ddot{a}^{(m)}_{x + \frac{1}{m} :\overline{n - \frac{1}{m}}| }\)
+\item
+  UDD: \(\ddot{a}^{(m)}_{x :\overline{n}|}\) =
+  \(\alpha(m)\)\(\ddot{a}_{x:\overline{n}|}\) -
+  \(\beta(m)\)\((1 - {}_{n}E_x)\);
+
+  \(\bar{a}_{x:\overline{n}|}\) =
+  \(\alpha(\infty)\)\(\ddot{a}_{x:\overline{n}|}\) -
+  \(\beta(\infty)\)\((1 - {}_{n}E_x)\)
+\item
+  Woolhouse's Formula with 3 terms:
+
+  \(\ddot{a}^{(m)}_{x :\overline{n}|}\) = \(\ddot{a}_{x:\overline{n}|}\)
+  - \(\frac{m - 1}{2m}\)\((1 - {}_{n}E_x)\) -
+  \(\frac{m^2 - 1}{12m^2}\)\((\delta + \mu_x - {}_{n}E_x(\delta + \mu_{x + n}))\);
+
+  \(\bar{a}_{x:\overline{n}|}\) = \(\ddot{a}_{x:\overline{n}|}\) -
+  \(\frac{1}{2}\)\((1 - {}_{n}E_x)\) -
+  \(\frac{1}{12}\)\((\delta + \mu_x - {}_{n}E_x(\delta + \mu_{x + n}))\)
+
+  I would not memorize these UDD and Woolhouse's formulas. Just know the
+  \(m\)-thly whole life results and use:
+
+  \(\ddot{a}^{(m)}_{x :\overline{n}|}\) = \(\ddot{a}^{(m)}_{x}\) -
+  \({}_{n}E_x\)\(\ddot{a}^{(m)}_{x + n}\).
+\end{itemize}
+
+\subsection{m-thly Deferred Whole Life Annuity-Due of 1 per Year on
+(x)}\label{m-thly-deferred-whole-life-annuity-due-of-1-per-year-on-x}
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l}
+      0                       & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., u - $\frac{1}{m}$}\\
+      v^u \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m} - u}| }             & \quad \text{for $K^{(m)}_x$ = u, u + $\frac{1}{m}$, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_d)\) = \({}_{u|}\ddot{a}^{(m)}_x\) =
+  \(\sum^{\infty}_{k = mu} \frac{1}{m} {}_{\frac{k}{m}}E_x\) =
+  \(\ddot{a}^{(m)}_x\) - \(\ddot{a}^{(m)}_{x :\overline{u}|}\) =
+  \({}_{u}E_x\)\(\ddot{a}^{(m)}_{x + u}\)
+\item
+  Recursion: \({}_{u|}\ddot{a}^{(m)}_x\) = 0 +
+  \(v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x({}_{u - \frac{1}{m}|}\ddot{a}^{(m)}_{x + \frac{1}{m}})\)
+\item
+  UDD: \({}_{u|}\ddot{a}^{(m)}_x\) = \(\alpha(m)\)\({}_{u|}\ddot{a}_x\)
+  - \(\beta(m)\)\({}_{u}E_x\); \({}_{u|}\bar{a}_x\) =
+  \(\alpha(\infty)\)\({}_{u|}\ddot{a}_x\) -
+  \(\beta(\infty)\)\({}_{u}E_x\)
+\item
+  Woolhouse's Formula with 3 terms: \({}_{u|}\ddot{a}^{(m)}_x\) =
+  \({}_{u|}\ddot{a}_x\) - \(\frac{m - 1}{2m}\)\({}_{u}E_x\) -
+  \(\frac{m^2 - 1}{12m^2}\)\({}_{u}E_x(\delta + \mu_{x + u})\);
+
+  \({}_{u|}\bar{a}_x\) = \({}_{u|}\ddot{a}_x\) -
+  \(\frac{1}{2}\)\({}_{u}E_x\) -
+  \(\frac{1}{12}\)\({}_{u}E_x(\delta + \mu_{x + u})\)
+
+  I would not memorize these UDD and Woolhouse's formulas. Just know the
+  \(m\)-thly whole life results and use: \({}_{n|}\ddot{a}^{(m)}_{x}\) =
+  \({}_{n}E_x\)\(\ddot{a}^{(m)}_{x + n}\).
+\end{itemize}
+
+\subsection{m-thly Deferred Temporary Life Annuity-Due of 1 per Year on
+(x)}\label{m-thly-deferred-temporary-life-annuity-due-of-1-per-year-on-x}
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l l}
+      0                      & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., u - $\frac{1}{m}$}\\
+      v^u \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m} - u}| }                 & \quad \text{for $K^{(m)}_x$ = u, u + $\frac{1}{m}$, ..., u + n - $\frac{1}{m}$}\\
+      v^u \ddot{a}^{(m)}_{\overline{n}|}                       & \quad \text{for $K^{(m)}_x$ = u + n, u + n + $\frac{1}{m}$, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_d)\) = \({}_{u|n}\ddot{a}^{(m)}_x\) =
+  \(\sum^{m(u + n) - 1}_{k = mu} \frac{1}{m} {}_{\frac{k}{m}}E_x\) =
+  \(\ddot{a}^{(m)}_{x :\overline{u + n}|}\) -
+  \(\ddot{a}^{(m)}_{x :\overline{u}|}\) =
+  \({}_{u}E_x\)\(\ddot{a}^{(m)}_{x + u:\overline{n}|}\)
+\item
+  Recursion: \({}_{u|n}\ddot{a}^{(m)}_x\) = 0 +
+  \(v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x({}_{u - \frac{1}{m}|n}\ddot{a}^{(m)}_{x + \frac{1}{m}})\)
+\end{itemize}
+
+\subsection{m-thly Certain and Life Annuity-Due of 1 per Year on
+(x)}\label{m-thly-certain-and-life-annuity-due-of-1-per-year-on-x}
+
+\begin{itemize}
+\item
+  \[Y_d = \left\{
+    \begin{array}{l l}
+      \ddot{a}^{(m)}_{\overline{n}|}               & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., n - $\frac{1}{m}$}\\
+      \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m}}| }         & \quad \text{for $K^{(m)}_x$ = n, n + $\frac{1}{m}$, ...}\\
+    \end{array} \right.\]
+\item
+  \(E(Y_d)\) = \(\ddot{a}^{(m)}_{\overline{x: \overline{n}|}}\) =
+  \(\ddot{a}^{(m)}_{\overline{n}|}\) + \({}_{n|}\ddot{a}^{(m)}_x\)
+\item
+  Recursion: \(\ddot{a}^{(m)}_{\overline{x: \overline{n}|}}\) =
+  \(\frac{1}{m}\) +
+  \(v^{\frac{1}{m}}{}_{\frac{1}{m}}q_x\ddot{a}^{(m)}_{\overline{n - \frac{1}{m}}| }\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x\ddot{a}^{(m)}_{\overline{x + \frac{1}{m}: \overline{n - \frac{1}{m}}| }}\)
+  \end{itemize}
+\end{itemize}
+
+\section{Varying Annuities}\label{varying-annuities}
+
+\begin{itemize}
+\item
+  \textbf{Annually Increasing Annuity:} A life annuity where the annual
+  payment is increased arithmetically for each year the annuitant
+  survives. For example, an annually increasing temporary life
+  annuity-due pays \(R\) at the beginning of the first year, \(2R\) at
+  the beginning of the second year given survival of the
+  annuitant,\ldots{}, \(nR\) at the beginning of year \(n\) given
+  survival of the annuitant.
+\item
+  \textbf{Annually Decreasing Annuity:} A life annuity where the annual
+  payment is decreased arithmetically for each year the annuitant
+  survives. For example, an annually decreasing temporary life
+  annuity-due pays \(nR\) at the beginning of the first year,
+  \((n - 1)R\) at the beginning of the second year given survival of the
+  annuitant,\ldots{}, \(R\) at the beginning of year \(n\) given
+  survival of the annuitant.
+\item
+  \textbf{Geometrically Increasing Annuity:} A life annuity where the
+  annual payment is increased at a compound rate of \(j\) per year for
+  each year the annuitant survives. For example, a geometrically
+  increasing whole life annuity-due pays \(R\) at the beginning of the
+  first year, \(R(1 +j)\) at the beginning of the second year given
+  survival of the annuitant, \(R(1 +j)^2\) at the beginning of the third
+  year given survival of the annuitant, etc.
+\end{itemize}
+
+\subsection{Annually Increasing Whole Life Annuity on
+(x)}\label{annually-increasing-whole-life-annuity-on-x}
+
+\textbf{Continuous Annually Increasing Whole Life Annuity}:
+
+\begin{itemize}
+\item
+  Provides 1 continuously during the first year, 2 continuously during
+  the second year, 3 continuously during the third year, etc.
+\item
+  \(E(Y)\) = \((I\bar{a})_{x}\) =
+  \(\sum^{\infty}_{k = 0} (k + 1){}_{k|}\bar{a}_{x:\overline{1}|}\)
+\end{itemize}
+
+\textbf{Continuously Increasing Whole Life Annuity}:
+
+\begin{itemize}
+\item
+  The payment rate at time \(t\) is \(t\).
+\item
+  \(E(Y)\) = \((\bar{I}\bar{a})_{x}\) =
+  \(\int^{\infty}_0 t{}_{t}E_x dt\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With a constant force of mortality: \((\bar{I}\bar{a})_{x}\) =
+    \(\frac{1}{(\mu + \delta)^2}\).
+  \end{itemize}
+\end{itemize}
+
+\textbf{Annually Increasing Whole Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  Provides 1 at the beginning of the first year, 2 at the beginning of
+  the second year, 3 at the beginning of the third year, etc.
+\item
+  \(E(Y_d)\) = \((I\ddot{a})_{x}\) =
+  \(\sum^{\infty}_{k = 0} (k + 1){}_{k}E_x\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With a constant force of mortality: \((I\ddot{a})_{x}\) =
+    \(\frac{(1 + i)^2}{(q + i)^2}\)
+  \end{itemize}
+\item
+  Recursion: \((I\ddot{a})_x\) = \(\ddot{a}_x\) +
+  \(vp_x(I\ddot{a})_{x + 1}\)
+\end{itemize}
+
+\textbf{Annually Increasing Whole Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  Provides 1 at the end of the first year, 2 at the end of the second
+  year, 3 at the end of the third year, etc.
+\item
+  \(E(Y_i)\) = \((Ia)_{x}\) = \(\sum^{\infty}_{k = 1} k{}_{k}E_x\)
+\item
+  Recursion: \((Ia)_x\) = \(a_x\) + \(vp_x(Ia)_{x + 1}\)
+\end{itemize}
+
+\subsection{Annually Increasing Temporary Life Annuity on
+(x)}\label{annually-increasing-temporary-life-annuity-on-x}
+
+\textbf{Continuous Annually Increasing Temporary Life Annuity}:
+
+\begin{itemize}
+\item
+  Provides 1 continuously during the first year, 2 continuously during
+  the second year, \ldots{}, n continuously during year n.
+\item
+  \(E(Y)\) = \((I\bar{a})_{x: \overline{n}|}\) =
+  \(\sum^{n - 1}_{k = 0} (k + 1){}_{k|}\bar{a}_{x:\overline{1}|}\)
+\end{itemize}
+
+\textbf{Continuously Increasing Temporary Life Annuity}:
+
+\begin{itemize}
+\item
+  The payment rate at time \(t\) is \(t\) during the first n years.
+\item
+  \(E(Y)\) = \((\bar{I}\bar{a})_{x: \overline{n}|}\) =
+  \(\int^{n}_0 t{}_{t}E_x dt\)
+\end{itemize}
+
+\textbf{Annually Increasing Temporary Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  Provides 1 at the beginning of the first year, 2 at the beginning of
+  the second year, \ldots{}, n at the beginning of year n.
+\item
+  \(E(Y_d)\) = \((I\ddot{a})_{x: \overline{n}|}\) =
+  \(\sum^{n - 1}_{k = 0} (k + 1){}_{k}E_x\)
+\item
+  Recursion: \((I\ddot{a})_{x: \overline{n}|}\) =
+  \(\ddot{a}_{x: \overline{n}|}\) +
+  \(vp_x(I\ddot{a})_{x + 1: \overline{n - 1}|}\)
+\end{itemize}
+
+\textbf{Annually Increasing Temporary Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  Provides 1 at the end of the first year, 2 at the end of the second
+  year, \ldots{}, n at the end of year n.
+\item
+  \(E(Y_i)\) = \((Ia)_{x: \overline{n}|}\) =
+  \(\sum^{n}_{k = 1} k{}_{k}E_x\)
+\item
+  Recursion: \((Ia)_{x: \overline{n}|}\) = \(a_{x: \overline{n}|}\) +
+  \(vp_x(Ia)_{x + 1: \overline{n - 1}|}\)
+\end{itemize}
+
+\subsection{Annually Decreasing Temporary Life Annuity on
+(x)}\label{annually-decreasing-temporary-life-annuity-on-x}
+
+\textbf{Continuous Annually Decreasing Temporary Life Annuity}:
+
+\begin{itemize}
+\item
+  Provides n continuously during the first year, n - 1 continuously
+  during the second year, \ldots{}, 1 continuously during year n.
+\item
+  \(E(Y)\) = \((D\bar{a})_{x: \overline{n}|}\) =
+  \(\sum^{n - 1}_{k = 0} (n - k){}_{k|}\bar{a}_{x:\overline{1}|}\)
+
+  Also: \((I\bar{a})_{x: \overline{n}|}\) +
+  \((D\bar{a})_{x: \overline{n}|}\) =
+  \((n + 1)\bar{a}_{x:\overline{n}|}\).
+\end{itemize}
+
+\textbf{Continuously Decreasing Temporary Life Annuity}:
+
+\begin{itemize}
+\item
+  The payment rate at time \(t\) is \(n\) - \(t\) during the first n
+  years.
+\item
+  \(E(Y)\) = \((\bar{D}\bar{a})_{x: \overline{n}|}\) =
+  \(\int^{n}_0 (n - t){}_{t}E_x dt\)
+
+  Also: \((\bar{I}\bar{a})_{x: \overline{n}|}\) +
+  \((\bar{D}\bar{a})_{x: \overline{n}|}\) =
+  \(n\bar{a}_{x:\overline{n}|}\).
+\end{itemize}
+
+\textbf{Annually Decreasing Temporary Life Annuity-Due}:
+
+\begin{itemize}
+\item
+  Provides n at the beginning of the first year, n - 1 at the beginning
+  of the second year, \ldots{}, 1 at the beginning of year n.
+\item
+  \(E(Y_d)\) = \((D\ddot{a})_{x: \overline{n}|}\) =
+  \(\sum^{n - 1}_{k = 0} (n - k){}_{k}E_x\)
+
+  Also: \((I\ddot{a})_{x: \overline{n}|}\) +
+  \((D\ddot{a})_{x: \overline{n}|}\) =
+  \((n + 1)\ddot{a}_{x:\overline{n}|}\).
+\item
+  Recursion: \((D\ddot{a})_{x: \overline{n}|}\) = \(n\) +
+  \(vp_x(D\ddot{a})_{x + 1: \overline{n - 1}|}\)
+\end{itemize}
+
+\textbf{Annually Decreasing Temporary Life Annuity-Immediate}:
+
+\begin{itemize}
+\item
+  Provides n at the end of the first year, n - 1 at the end of the
+  second year, \ldots{}, 1 at the end of year n.
+\item
+  \(E(Y_i)\) = \((Da)_{x: \overline{n}|}\) =
+  \(\sum^{n}_{k = 1} (n - k + 1){}_{k}E_x\)
+
+  Also: \((Ia)_{x: \overline{n}|}\) + \((Da)_{x: \overline{n}|}\) =
+  \((n + 1)a_{x: \overline{n}|}\).
+\item
+  Recursion: \((Da)_{x: \overline{n}|}\) = \(nvp_x\) +
+  \(vp_x(Da)_{x + 1: \overline{n - 1}|}\)
+\end{itemize}
+
+\subsection{Geometrically Increasing Life Annuity on
+(x)}\label{geometrically-increasing-life-annuity-on-x}
+
+\begin{itemize}
+\item
+  Consider an annual whole life annuity-due where the payment at time 0
+  is 1, the payment at time 1 is \((1 + j)\), the payment at time 2 is
+  \((1 + j)^2\), etc. There is an effective annual interest rate of
+  \(i\).
+
+  Define the modified interest rate: \(i_{\pi}\) =
+  \(\frac{1 + i}{1 + j}\) - 1. Then:
+
+  The expected present value of the above annual whole life annuity-due
+  is \(\ddot{a}_x\) at \(i_{\pi}\).
+\item
+  Consider an annual n-year temporary life annuity-due where the payment
+  at time 0 is 1, the payment at time 1 is \((1 + j)\), the payment at
+  time 2 is \((1 + j)^2\), \ldots{}, the payment at time n - 1 is
+  \((1 + j)^{n - 1}\). There is an effective annual interest rate of
+  \(i\).
+
+  Define the modified interest rate: \(i_{\pi}\) =
+  \(\frac{1 + i}{1 + j}\) - 1. Then:
+
+  The expected present value of the above annual n-year temporary life
+  annuity-due is \(\ddot{a}_{x:\overline{n}|}\) at \(i_{\pi}\).
+\end{itemize}
+
+\section{Exercises}\label{exercises-3}
+
+6.1. You are given:
+
+(i) Mortality follows the Illustrative Life Table.
+
+(ii) Deaths are uniformly distributed over each year of age.
+
+(iii) \(i\) = 0.06
+
+Calculate: \(\ddot{a}_{35:\overline{20}|}^{(12)}\).
+
+(A) 11.0 (B) 11.2 (C) 11.5 (D) 11.8 (E) 12.0
+
+6.2. You are given:
+
+(i) Mortality follows a select-and-ultimate table, 3-year select period.
+
+(ii) \(\ddot{a}_{[40] + 1}\) = 19.2297
+
+(iii) \(i\) = 0.045
+
+(iv) \(p_{[40]}\) = 0.9987
+
+(v) \(\mu_{[40] + 1}\) = 0.001321
+
+Using Woolhouse's formula with three terms, calculate:
+\({}_{1|}\ddot{a}^{(4)}_{[40]}\).
+
+(A) 18.0 (B) 18.1 (C) 18.2 (D) 18.3 (E) 18.4
+
+6.3. Consider a special 20-year temporary life annuity-due on (30) with
+annual payments:
+
+(i) The payment for the beginning of year (\(k\) + 1) is: \(\pi_k\) =
+\((1.04)^k\) for \(k\) = 0, 1, 2, \ldots{}, 19.
+
+(ii) \(i\) = 0.06
+
+(iii) \(l_x\) = 100 - \(x\) for 0 \(\le\) \(x\) \(\le\) 100
+
+Calculate the single benefit premium.
+
+(A) 14.6 (B) 14.7 (C) 14.8 (D) 14.9 (E) 15.0
+
+6.4. You are given:
+
+(i) \(l_{62}\) = 8,982,404, \(l_{63}\) = 8,915,575, and \(l_{64}\) =
+8,842,735
+
+(ii) \(v\) = 0.9569
+
+(iii) \((I\ddot{a})_{62}\) = 158.94
+
+(iv) \((I\ddot{a})_{64}\) = 145.55
+
+Calculate: \(\ddot{a}_{63}\).
+
+(A) 13.2 (B) 13.4 (C) 13.6 (D) 13.8 (E) 14.0
+
+6.5. A fund is established to provide annuity benefits to 500
+independent lives all age 35.
+
+You are given:
+
+(i) On January 1, 2012, each life is issued a single premium whole life
+annuity. The total payment for each year is 12,000, which is payable in
+equal monthly installments in advance.
+
+(ii) Each life has mortality that follows the Illustrative Life Table.
+
+(iii) \(i\) = 0.06
+
+(iv) Deaths are uniformly distributed within each year of age.
+
+Calculate the amount needed in the fund on January 1, 2012, in millions,
+so that the probability, as determined by the normal approximation, is
+0.99 that the fund will be sufficient to provide these benefits.
+
+(A) 90.0 (B) 90.5 (C) 91.0 (D) 91.5 (E) 92.0
+
+6.6. Consider a special life annuity issued to Jenn, aged 37:
+
+(i) There is a deferral period of 10 years. If Jenn dies during the
+deferral period, 80\% of the net single premium is refunded without
+interest at the end of the year of death.
+
+(ii) During the 15-year period starting at the end of the deferral
+period, 1000 is payable at the beginning of each month while Jenn is
+alive. If Jenn is still alive 25 years after issue, 3000 is payable at
+the beginning of each month for life.
+
+(iii) Mortality follows the Illustrative Life Table.
+
+(iv) Deaths are uniformly distributed over each year of age.
+
+(v) \(i\) = 0.06
+
+Calculate the net single premium.
+
+(A) 135,500 (B) 136,100 (C) 136,700 (D) 137,300 (E) 137,900
+
+6.7. Consider a 15-year certain and life annuity-due of 24,000 per year
+on (65) payable monthly (actual payments are 2000 per month):
+
+(i) Mortality follows the Illustrative Life Table.
+
+(ii) \(i\) = 0.06
+
+(iii) Deaths are uniformly distributed over each year of age.
+
+Calculate the expected present value of this annuity.
+
+(A) 267,900 (B) 268,400 (C) 268,900 (D) 269,400 (E) 269,900
+
+6.8. You are given:
+
+(i) \(Y_1\) is the present value random variable for a 10-year temporary
+life annuity-due of 1 per year on a select life aged 40 payable
+quarterly.
+
+(ii) \(Y_2\) is the present value random variable for a 10-year certain
+and life annuity-due of 1 per year on a select life aged 40 payable
+quarterly.
+
+(iii) \(i\) = 0.05
+
+(iv) Mortality follows the Standard Select Survival Model.
+
+(v) Woolhouse's formula with three terms is used to approximate
+quarterly expected present values.
+
+Calculate the variance of the sum of \(Y_1\) and \(Y_2\).
+
+(A) 3.8 (B) 3.9 (C) 4.0 (D) 4.1 (E) 4.2
+
+6.9. Consider a special increasing 3-year temporary life annuity-due
+payable annually on (x):
+
+(i) The payment for the first year is 1000, the payment for the second
+year is 3000, and the payment for the third year is 7000.
+
+(ii) \({}_{k}p_x\) = \((0.97)^k\) for \(k\) = 0, 1, 2.
+
+(iii) \(i\) = 0.04
+
+(iv) \(Y\) is the present value random variable for this annuity.
+
+Calculate the standard deviation of \(Y\).
+
+(A) 1904 (B) 1920 (C) 1936 (D) 1952 (E) 1968
+
+6.10. You are given a life annuity-due on (55) payable monthly. 100 is
+payable each month during the first 10 years; 300 is payable each month
+after the first 10 years.
+
+Mortality follows the Illustrative Life Table, and \(i\) = 0.06.
+Woolhouse's formula with two terms is used to approximate monthly
+expected present values. Calculate the expected present value of this
+annuity.
+
+(A) 23,710 (B) 24,210 (C) 24,710 (D) 25,210 (E) 25,710
+
+6.11. For a special continuous 10-year deferred life annuity on (55):
+
+(i) Mortality follows the Illustrative Life Table, and \(i\) = 0.06.
+
+(ii) Woolhouse's formula with two terms is used to determine annuity
+expected present values.
+
+(iii) 36,000 is payable continuously each year between ages 65 and 75.
+
+(iv) 22,000 is payable continuously each year after age 75.
+
+Calculate the expected present value of this annuity.
+
+(A) 145,000 (B) 146,000 (C) 147,000 (D) 148,000 (E) 149,000
+
+6.12. You are given:
+
+(i) The following select-and-ultimate life table:
+
+(ii) \(v\) = 0.97
+
+Calculate the variance of the present value of a 3-year temporary life
+annuity-due of 1000 per year on {[}35{]} payable annually.
+
+(A) 4600 (B) 4700 (C) 4800 (D) 4900 (E) 5000
+
+\subsection{Answers to Exercises}\label{answers-to-exercises-3}
+
+6.1. C
+
+6.2. A
+
+6.3. B
+
+6.4. E
+
+6.5. C
+
+6.6. D
+
+6.7. C
+
+6.8. B
+
+6.9. A
+
+6.10. D
+
+6.11. B
+
+6.12. C
+
+\section{Past Exam Questions}\label{past-exam-questions-3}
+
+\begin{itemize}
+\item
+  Exam MLC, Fall 2012: \#19
+\item
+  Exam MLC, Spring 2012: \#30
+\item
+  Exam MLC, Sample Questions: \#7, 284
+\end{itemize}
+
+\chapter{Premium Calculation I}\label{premium-calculation-i}
+
+\section{Key Concepts}\label{key-concepts-2}
+
+The policyholder often pays for a life insurance or life annuity with
+multiple payments to the insurer over time called \textbf{premiums}.
+
+\subsection{Terminology}\label{terminology}
+
+\begin{itemize}
+\item
+  \textbf{Fully Continuous Insurance:} a continuous insurance that is
+  funded with a continuous annuity of premiums.
+\item
+  \textbf{Fully Discrete Insurance:} an annual insurance that is funded
+  by an annual annuity-due of premiums.
+\item
+  \textbf{Semi-Continuous Insurance:} a continuous insurance that is
+  funded by an annual annuity-due of premiums.
+\end{itemize}
+
+\textbf{Net Loss-at-Issue}:
+
+\begin{itemize}
+\item
+  The first step to determining the premiums that the policyholder
+  should pay to fund the benefits of a particular policy is to determine
+  the appropriate \textbf{net loss-at-issue random variable}, ignoring
+  policy expenses:
+
+  \(L_0\) = \({}_{0}L\) = \(L\) =
+
+  Present value of future benefits at issue - Present value of future
+  premiums at issue
+
+  = \(PVFB@0\) - \(PVFP@0\)
+\item
+  The net loss-at-issue may be written with a superscript, as \(L^n_0\).
+  ``Net'' will often be omitted if there is no expense information
+  provided.
+\item
+  Loss is random because \(PVFB@0\) and \(PVFP@0\) each depend on the
+  future lifetime of the policyholder.
+\item
+  There will be a \textbf{loss} on a policy if the amount the insurer
+  pays out in benefits is higher than the amount the insurer collects in
+  premiums; \(L_0\) \(>\) 0 if \(PVFB@0\) \(>\) \(PVFP@0\). There will
+  be a \textbf{profit} on a policy if the amount the insurer pays out in
+  benefits is smaller than the amount the insurer collects in premiums;
+  \(L_0\) \(<\) 0 if \(PVFB@0\) \(<\) \(PVFP@0\).
+\end{itemize}
+
+\subsection{Premium Principles}\label{premium-principles}
+
+\begin{itemize}
+\item
+  A \textbf{premium principle} is a rule that manipulates the
+  loss-at-issue random variable in some way to generate premiums.
+\item
+  Premiums calculated using net loss-at-issue random variable are called
+  \textbf{net premiums}.
+\item
+  A common premium principle is the \textbf{Equivalence Principle:}
+
+  \begin{itemize}
+  \item
+    Premiums are determined such that: \(E(L_0)\) = 0.
+  \item
+    Under this principle, the insurer charges premiums so that, on
+    average, there will be neither a loss or a profit on the policy.
+    Clearly, this is not the case in practice\ldots{}
+  \item
+    Using the formula for \(L_0\), the equivalence principle can also be
+    stated as: \(E(PVFB@0)\) = \(E(PVFP@0)\). This should be your
+    starting point for complicated problems involving the equivalence
+    principle.
+  \item
+    On Exam LC, and Exam MLC prior to 2014, net premiums determined via
+    the equivalence principle are called \textbf{benefit premiums}.
+    Starting in 2014, the term ``net premium'' will be equivalent to
+    ``benefit premium'' on Exam MLC unless otherwise indicated; that is,
+    a net premium is a premium calculated using the equivalence
+    principle without expenses. In this supplement, both ``benefit
+    premium'' and ``net premium'' will be used interchangeably.
+  \end{itemize}
+\end{itemize}
+
+\section{Equivalence Principle}\label{equivalence-principle}
+
+\textbf{Benefit Premiums}
+
+\subsection{Fully Continuous Insurance of 1 on
+(x)}\label{fully-continuous-insurance-of-1-on-x}
+
+\begin{itemize}
+\item
+  For each fully continuous insurance,
+
+  \(L^n_0\) = \(PVFB@0\) - (Benefit
+  Premium)\(\frac{PVFP@0}{\text{Benefit
+  Premium}}\), using the appropriate entries for a value of \(T_x\).
+\item
+  In the ``Benefit Premium'' column, the left hand side of the equals
+  sign gives the actuarial notation for the benefit premium. Those
+  taking Exam MLC do not have to know this notation, and can denote the
+  benefit premium in each row as \(P\).
+\item
+  Furthermore, if the face amount is \(S\), both sides of the equation
+  in the ``Benefit Premium'' column should be multiplied by \(S\).
+\item
+  For each fully continuous insurance, the benefit premium was
+  determined by \(E(L^n_0)\) = \(E(PVFB@0)\) - (Benefit
+  Premium)\(\frac{E(PVFP@0)}{\text{Benefit Premium}}\) = 0.
+\item
+  \(\bar{P}(\bar{A}_x)\) = \(\frac{\bar{A}_x}{\bar{a}_x}\) =
+  \(\frac{\delta \bar{A}_x}{1 - \bar{A}_x}\) = \(\frac{1}{\bar{a}_x}\) -
+  \(\delta\).
+\item
+  \(\bar{P}(\bar{A}_{x:\overline{n}|})\) =
+  \(\frac{\bar{A}_{x:\overline{n}|}}{\bar{a}_{x:\overline{n}|}}\) =
+  \(\frac{\delta \bar{A}_{x:\overline{n}|}}{1 - \bar{A}_{x:\overline{n}|}}\)
+  = \(\frac{1}{\bar{a}_{x:\overline{n}|}}\) - \(\delta\).
+\item
+  With a constant force of mortality: \(\bar{P}(\bar{A}_x)\) =
+  \(\bar{P}(\bar{A}_{x:\overline{n}|}^{1})\) = \(\mu\).
+\item
+  For a couple of the insurances in the table, there are analytic
+  formulas for the variance of the net loss-at-issue.
+
+  \begin{itemize}
+  \item
+    For a fully continuous whole life insurance of 1 on (x):
+
+    \(Var(L^n_0)\) =
+    \((1 + \frac{\bar{P}(\bar{A}_x)}{\delta})^2\)\((^2\bar{A}_x - [\bar{A}_x]^2)\).
+
+    \begin{itemize}
+    \tightlist
+    \item
+      With a constant force of mortality: \(Var(L^n_0)\) =
+      \(\frac{\mu}{\mu + 2\delta}\).
+    \end{itemize}
+  \item
+    For a fully continuous \(n\)-year endowment insurance of 1 on (x):
+
+    \(Var(L^n_0)\) =
+    \((1 + \frac{\bar{P}(\bar{A}_{x:\overline{n}|})}{\delta})^2\)\((^2\bar{A}_{x:\overline{n}|} - [\bar{A}_{x:\overline{n}|}]^2)\).
+  \item
+    If the benefit is \(S\), multiply each of the above \(Var(L^n_0)\)
+    formulas by \(S^2\).
+  \item
+    These formulas for \(Var(L^n_0)\) are true for any type of premium,
+    not just a benefit premium, \textbf{except} for the constant force
+    of mortality formula.
+  \item
+    For any other type of fully continuous insurance, use:
+    \(Var(L^n_0)\) = \(E[(L^n_0)^2]\) - \((E[L^n_0])^2\). If the
+    equivalence principle is used to determine premiums, then:
+    \(Var(L^n_0)\) = \(E[(L^n_0)^2]\).
+  \end{itemize}
+\item
+  The equivalence principle can also determine benefit premiums for
+  continuous annuities. For example:
+
+  \(\bar{P}({}_{n|}\bar{a}_x)\) =
+  \(\frac{{}_{n|}\bar{a}_x}{\bar{a}_{x:\overline{n}|}}\).
+\end{itemize}
+
+\subsection{Fully Discrete Insurance of 1 on
+(x)}\label{fully-discrete-insurance-of-1-on-x}
+
+\begin{itemize}
+\item
+  For each fully discrete insurance,
+
+  \(L^n_0\) = \(PVFB@0\) - (Benefit
+  Premium)\(\frac{PVFP@0}{\text{Benefit
+  Premium}}\), using the appropriate entries for a value of \(K_x\).
+\item
+  Recall, \(K_x\) can only take on non-negative integer values. So,
+  \(K_x\) \(<\) \(n\) \(\implies\) \(K_x\) = 0, 1, \ldots{}, \(n\) - 1.
+\item
+  In the ``Benefit Premium'' column, the left hand side of each equation
+  gives the actuarial notation for the benefit premium. Those taking
+  Exam MLC only have to know the notation for the whole life, \(n\)-year
+  term, \(n\)-year pure endowment, and \(n\)-year endowment rows; and
+  can denote other benefit premiums as \(P\).
+\item
+  Furthermore, if the face amount is \(S\), both sides of the equation
+  in the ``Benefit Premium'' column should be multiplied by \(S\).
+\item
+  For each fully discrete insurance, the benefit premium was determined
+  by \(E(L^n_0)\) = \(E(PVFB@0)\) - (Benefit
+  Premium)\(\frac{E(PVFP@0)}{\text{Benefit Premium}}\) = 0.
+\item
+  \(P_x\) (the benefit premium for a fully discrete whole life insurance
+  of 1 on (x)) should not be confused with \(p_x\) (the probability that
+  (x) survives to age x + 1).
+\item
+  \(P_x\) = \(\frac{A_x}{\ddot{a}_x}\) = \(\frac{d A_x}{1 - A_x}\) =
+  \(\frac{1}{\ddot{a}_x}\) - \(d\).
+\item
+  \(P_{x:\overline{n}|}\) =
+  \(\frac{A_{x:\overline{n}|}}{\ddot{a}_{x:\overline{n}|}}\) =
+  \(\frac{d A_{x:\overline{n}|}}{1 - A_{x:\overline{n}|}}\) =
+  \(\frac{1}{\ddot{a}_{x:\overline{n}|}}\) - \(d\).
+\item
+  With a constant force of mortality: \(P_x\) =
+  \({P}_{x:\overline{n}|}^{1}\) = \(v q\).
+\item
+  Argue that the following \textbf{3-Premium} equations are valid:
+
+  \begin{itemize}
+  \item
+    \({}_{n}P_x\) - \({P}_{x:\overline{n}|}^{1}\) = \(A_{x + n}\)
+    \({P}_{x:\overline{n}|}^{~~~~1}\)
+  \item
+    \(P_{x:\overline{n}|}\) - \({}_{n}P_x\) = {[}1 - \(A_{x + n}\){]}
+    \({P}_{x:\overline{n}|}^{~~~~1}\)
+  \item
+    \({P}_{x:\overline{n}|}^{1}\) + \({P}_{x:\overline{n}|}^{~~~~1}\) =
+    \(P_{x:\overline{n}|}\)
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item
+  For a couple of the insurances in the table, there are analytic
+  formulas for the variance of the net loss-at-issue.
+
+  \begin{itemize}
+  \item
+    For a fully discrete whole life insurance of 1 on (x):
+
+    \(Var(L^n_0)\) = \((1 + \frac{P_x}{d})^2\)\((^2A_x - [A_x]^2)\).
+
+    \begin{itemize}
+    \tightlist
+    \item
+      With a constant force of mortality: \(Var(L^n_0)\) =
+      \(\frac{pq}{q + i^2 + 2i}\).
+    \end{itemize}
+  \item
+    For a fully discrete \(n\)-year endowment insurance of 1 on (x):
+
+    \(Var(L^n_0)\) =
+    \((1 + \frac{P_{x:\overline{n}|}}{d})^2\)\((^2 A_{x:\overline{n}|} - [A_{x:\overline{n}|}]^2)\).
+  \item
+    If the benefit is \(S\), multiply each of the above \(Var(L^n_0)\)
+    formulas by \(S^2\).
+  \item
+    These formulas for \(Var(L^n_0)\) are true for any type of premium,
+    not just a benefit premium, \textbf{except} for the constant force
+    of mortality formula.
+  \item
+    For any other type of fully discrete insurance, use: \(Var(L^n_0)\)
+    = \(E[(L^n_0)^2]\) - \((E[L^n_0])^2\). If the equivalence principle
+    is used to determine premiums, then: \(Var(L^n_0)\) =
+    \(E[(L^n_0)^2]\).
+  \end{itemize}
+\item
+  The equivalence principle can also determine benefit premiums for
+  discrete annuities. For example:
+
+  \(P({}_{n|}\ddot{a}_x)\) =
+  \(\frac{{}_{n|}\ddot{a}_x}{\ddot{a}_{x:\overline{n}|}}\).
+\end{itemize}
+
+\subsection{Semi-Continuous Insurance of 1 on
+(x)}\label{semi-continuous-insurance-of-1-on-x}
+
+\begin{itemize}
+\item
+  You can obtain this table by taking the table for \textbf{Fully
+  Continuous Insurance of 1 on (x)} and replacing the continuous premium
+  annuity with an annual annuity-due.
+\item
+  For example, a semi-continuous \(n\)-year term insurance of 1 on (x)
+  is:
+\item
+  Those taking Exam MLC do NOT have to know the actuarial notation for
+  semi-continuous benefit premiums; \(P\) is sufficient.
+\item
+  Exam MLC Only: With a uniform distribution of deaths (UDD) in each
+  year of age:
+
+  \begin{itemize}
+  \item
+    \(P(\bar{A}_x)\) = \(\frac{i}{\delta}\)\(P_x\)
+  \item
+    \(P(\bar{A}_{x:\overline{n}|}^{1})\) =
+    \(\frac{i}{\delta}\)\({P}_{x:\overline{n}|}^{1}\)
+  \item
+    \(P(\bar{A}_{x:\overline{n}|})\) =
+    \(\frac{i}{\delta}\)\({P}_{x:\overline{n}|}^{1}\) +
+    \({P}_{x:\overline{n}|}^{~~~~1}\)
+  \end{itemize}
+\end{itemize}
+
+\section{Exercises}\label{exercises-4}
+
+7.1. On January 1, 2010, Pat purchases a 5-year deferred whole life
+insurance of 100,000 payable at the end of the year of death. Premiums
+of 4000 are payable at the beginning of each year for the first 5 years,
+and \(i\) = 0.05.
+
+Calculate the loss-at-issue if Pat dies on September 30, 2016.
+
+(A) 48,370 (B) 52,884 (C) 53,756 (D) 57,209 (E) 62,187
+
+7.2. Stefano, age 60, purchases a whole life insurance of 1,000,000:
+
+(i) The death benefit is payable at the moment of death.
+
+(ii) Premiums of 50,000 are payable at the beginning of each year for as
+long as Stefano is alive.
+
+(iii) \(i\) = 0.05
+
+(iv) \(L\) is the loss-at-issue random variable.
+
+Calculate the value of \(L\) if Stefano dies at age 61.5.
+
+(A) 764,059 (B) 809,410 (C) 819,138 (D) 831,810 (E) 879,429
+
+7.3. Consider a fully continuous whole life insurance of 1000 on (x).
+
+Assume \(\delta\) = 0.08 and \(\mu_x(t)\) = 0.04 for \(t\) \(\ge\) 0.
+
+Calculate the level annual benefit premium.
+
+(A) 30 (B) 35 (C) 40 (D) 45 (E) 50
+
+7.4. Paul, age 31, purchases a fully discrete 20-year endowment
+insurance of 1000. Assume mortality follows the Illustrative Life Table,
+and \(i\) = 0.06.
+
+Calculate: 1000\(P_{31 :\overline{20}|}\).
+
+(A) 21 (B) 23 (C) 25 (D) 27 (E) 29
+
+7.5. Consider the following special fully discrete whole life insurance
+on (50):
+
+(i) The death benefit is 80,000 before age 65; the death benefit is
+150,000 thereafter.
+
+(ii) The level annual net premium is \(2P\) before age 65; the level
+annual net premium is \(P\) thereafter.
+
+(iii) Mortality follows the Illustrative Life Table, and \(i\) = 0.06.
+
+Calculate the annual net premium payable before age 65.
+
+(A) 1300 (B) 1800 (C) 2300 (D) 2700 (E) 3200
+
+7.6. Consider a fully discrete 5-payment 10-year endowment insurance of
+1000 on (70):
+
+(i) Mortality follows the Illustrative Life Table.
+
+(ii) \(i\) = 0.06
+
+Calculate the level annual net premium.
+
+(A) 140 (B) 145 (C) 150 (D) 155 (E) 160
+
+7.7. For a fully continuous whole life insurance of 5000 on (x):
+
+(i) The force of mortality is a constant.
+
+(ii) \(\delta\) = 0.05
+
+(iii) \(L\) is the loss-at-issue random variable based on level annual
+benefit premiums.
+
+(iv) The standard deviation of \(L\) is 2236.07
+
+Calculate the level annual benefit premium.
+
+(A) 100 (B) 125 (C) 150 (D) 175 (E) 200
+
+7.8. A fully continuous whole life insurance of 10,000 on (x) is issued
+with premiums determined by the equivalence principle.
+
+You are also given:
+
+(i) \(\mu_x(t)\) = 0.02 for \(t\) \(\ge\) 0
+
+(ii) \(\delta\) = 0.05
+
+Calculate the probability that the loss-at-issue is positive.
+
+(A) 0.30 (B) 0.33 (C) 0.36 (D) 0.39 (E) 0.42
+
+7.9. An insurer has just issued each of 100 independent lives aged 35 a
+fully discrete 20-year endowment insurance of 1000 with level annual
+benefit premiums. Each life has mortality that follows the Illustrative
+Life Table. The effective annual interest rate is 0.06.
+
+Using the normal approximation, determine the fund amount at issue,
+\(h\), that is necessary so that the insurer is 99\% sure that the sum
+of the 100 loss-at-issue random variables associated with the endowment
+insurances will not exceed \(h\).
+
+(A) 2100 (B) 2200 (C) 2300 (D) 2400 (E) 2500
+
+7.10. For a special fully discrete whole life insurance on (35):
+
+(i) The death benefit is equal to 2000 plus the return of all benefit
+premiums paid in the past without interest.
+
+(ii) \(\ddot{a}_{35}\) = 19.93
+
+(iii) \((IA)_{35}\) = 5.58
+
+(iv) \(i\) = 0.045
+
+Calculate the level annual benefit premium for this insurance.
+
+(A) 20 (B) 22 (C) 24 (D) 26 (E) 28
+
+7.11. You are given:
+
+(i) The level annual benefit premium for a fully discrete 20-year term
+insurance of 5000 on (x) is 75.
+
+(ii) The level annual benefit premium for a fully discrete 20-year
+endowment insurance of 5000 on (x) is 200.
+
+(iii) The level annual benefit premium for a fully discrete 20-payment
+whole life insurance of 5000 on (x) is 150.
+
+Calculate the actuarial present value of a fully discrete whole life
+insurance of 5000 on (x + 20).
+
+(A) 2000 (B) 2500 (C) 3000 (D) 3500 (E) 4000
+
+7.12. For a life insurance on (x):
+
+(i) 1000 is payable at the end of the year of death if death occurs in
+the first ten years; 2000 is payable at the end of the year of death if
+death occurs in the next ten years; otherwise, the death benefit is 0.
+
+(ii) Level annual benefit premiums are payable at the beginning of each
+year for the first 20 years.
+
+(iii) \(d\) = 0.10, and \(q_x\) = 0.03 for all integer ages x.
+
+Calculate the level annual benefit premium.
+
+(A) 31 (B) 33 (C) 35 (D) 37 (E) 39
+
+7.13. For a special fully discrete 3-year term insurance on (x):
+
+(i) The death benefit: \(b_{k + 1}\) = 500(\(k\) + 1) for \(k\) = 0, 1,
+2
+
+(ii) \(q_{x + k}\) = 0.02(\(k\) + 1) for \(k\) = 0, 1, 2
+
+(iii) \(i\) = 0.03
+
+Use the equivalence principle to calculate the level annual premium for
+this insurance.
+
+(A) 41 (B) 42 (C) 43 (D) 44 (E) 45
+
+7.14. You are given:
+
+(i) \(l_x\) = 100\((110 - x)^2\) for 0 \(\le\) \(x\) \(\le\) 110
+
+(ii) \(i\) = 0
+
+Calculate the level annual benefit premium for a fully discrete
+5-payment 15-year term insurance of 1 on (30):
+\({}_{5} {P}_{30:\overline{15}|}^{1}\).
+
+(A) 0.06 (B) 0.07 (C) 0.08 (D) 0.09 (E) 0.10
+
+7.15. A fully discrete 5-year endowment insurance of 1000 was just
+issued to Math Mage, aged 30. In determining the level annual benefit
+premium, it was assumed that \(i\) = 0.06 and that Math Mage had
+mortality that follows the Illustrative Life Table.
+
+Shortly after issuing the 5-year endowment insurance, it was discovered
+that Math Mage had been cursed by Hattendorf. In calculating the level
+annual benefit premium, it should have been assumed that \(i\) = 0.06
+and that Math Mage had mortality such that the actual force of mortality
+was \(\mu_{30}(t)\) + 0.10 for 0 \(<\) \(t\) \(<\) 5, where
+\(\mu_{30}(t)\) is the force of mortality associated with the
+Illustrative Life Table.
+
+Calculate the difference between the benefit premium that Math Mage
+should be paying calculated using the correct mortality (based on
+\(\mu_{30}(t)\) + 0.10) and the benefit premium actually payable by Math
+Mage calculated using the incorrect mortality (Illustrative Life Table).
+
+(A) 40 (B) 50 (C) 60 (D) 70 (E) 80
+
+7.16. Consider a 5-year deferred whole life annuity-due on (60) with an
+annual payment of 10,000. You are given:
+
+(i) Benefit premiums are payable at the beginning of each year during
+the first five years. The benefit premium payable in each of years one
+and two is half of the benefit premium payable in each of years three,
+four, and five.
+
+(ii) \(d\) = 0.04306
+
+(iii) \(q_{60}\) = 0.006155 and \(q_{61}\) = 0.006765
+
+(iv) \({}_{5}E_{60}\) = 0.77282
+
+(v) \(\ddot{a}_{65}\) = 13.4662 and \(\ddot{a}_{62:\overline{3}|}\) =
+2.8513
+
+Calculate the benefit premium payable in each of years one and two.
+
+(A) 14,300 (B) 14,600 (C) 14,900 (D) 15,200 (E) 15,500
+
+7.17. Consider a fully continuous whole life insurance of 100,000 on
+(30):
+
+(i) If the level annual premium is \(\pi_1\), the standard deviation of
+the loss-at-issue random variable is 55,621.49.
+
+(ii) If the level annual premium is \(\pi_2\), the standard deviation of
+the loss-at-issue random variable is 49,441.32.
+
+(iii) \(\pi_1\) is 1.5 times \(\pi_2\).
+
+(iv) \(\delta\) = 0.04
+
+(v) \(Z\) is the present value random variable for the continuous whole
+life insurance of 100,000 on (30).
+
+Calculate the standard deviation of \(Z\).
+
+(A) 37,100 (B) 38,200 (C) 39,300 (D) 40,400 (E) 41,500
+
+7.18. Bruce and Lucius, both aged x, have each just purchased a fully
+discrete 3-year term insurance of 1000:
+
+(i) Bruce pays a benefit premium of 175.72 each year. If Bruce dies in
+the second year after policy issue, the loss-at-issue is 559.27.
+
+(ii) Lucius pays non-level annual benefit premiums. The first benefit
+premium is 100, the second benefit premium is 175, and the third benefit
+premium is \(P\).
+
+(iii) Each life has mortality such that: \({}_{k|}q_x\) =
+\((0.3)^{k + 1}\) for \(k\) = 0, 1, 2.
+
+(iv) The effective annual interest rate is \(i\).
+
+Calculate: \(P\).
+
+(A) 285 (B) 315 (C) 345 (D) 375 (E) 405
+
+7.19. Consider a special 20-year deferred whole life annuity-due of 5000
+per year on (45) payable annually:
+
+(i) Level annual benefit premiums are payable at the beginning of the
+year during the first 20 years after policy issue.
+
+(ii) There is a death benefit during the premium-paying period, payable
+at the end of the year of death, that is equal to the return of all
+benefit premiums previously paid with interest at 6\%.
+
+(iii) \(i\) = 0.06
+
+(iv) Mortality follows the Illustrative Life Table.
+
+Calculate the benefit premium.
+
+(A) 1180 (B) 1210 (C) 1240 (D) 1270 (E) 1300
+
+7.20. You are given:
+
+(i) A fully discrete 2-year deferred, 3-year term insurance of 1000 is
+issued to a life aged x.
+
+(ii) Level annual premiums are only payable during the first two years.
+
+(iii) The level annual premium is determined such that the average
+loss-at-issue is zero.
+
+(iv) \(v\) = 0.90
+
+(v) \({}_{k|}q_x\) = 0.05(1 + \(k\)) for \(k\) = 0, 1, 2, 3, 4;
+\({}_{5|}q_x\) = 0.25
+
+Calculate the median loss-at-issue.
+
+(A) 193 (B) 226 (C) 258 (D) 295 (E) 331
+
+7.21. Paul is attempting to determine the level annual benefit premium
+for a fully discrete 20-year endowment insurance of 10,000 on (55). Paul
+assumes the following:
+
+(i) \(i\) = 0.06
+
+(ii) Paul is not sure of the future lifetime distribution of (55). He
+believes there is an 80\% probability that the mortality of (55) follows
+the Illustrative Life Table, and that there is a 20\% probability that
+the mortality of (55) is such that \({}_{k|}q_{55}\) = 0.05 for \(k\) =
+0, 1, 2, \ldots{}, 19.
+
+Determine the level annual benefit premium.
+
+(A) 384 (B) 414 (C) 444 (D) 474 (E) 504
+
+7.22. Suppose today is January 1, 2014, and Paul has just turned age 35.
+He has mortality such that:
+
+\({}_{t}p_{35}\) = \((0.95)^t\) for \(t\) \(\ge\) 0.
+
+Paul has just been issued a special fully discrete whole life insurance:
+
+(i) \(i\) = 0.07
+
+(ii) The death benefit if Paul dies in an odd-numbered calendar year is
+5000.
+
+(iii) The death benefit if Paul dies in an even-numbered calendar year
+is 10,000.
+
+(iv) Benefit premiums are payable annually, where the benefit premium
+for an odd-numbered calendar year is double the benefit premium for an
+even-numbered calendar year.
+
+Calculate the benefit premium payable during an even-numbered calendar
+year.
+
+(A) 220 (B) 240 (C) 260 (D) 280 (E) 300
+
+\subsection{Answers to Exercises}\label{answers-to-exercises-4}
+
+7.1. B
+
+7.2. D
+
+7.3. C
+
+7.4. D
+
+7.5. D
+
+7.6. C
+
+7.7. B
+
+7.8. D
+
+7.9. E
+
+7.10. A
+
+7.11. C
+
+7.12. B
+
+7.13. D
+
+7.14. B
+
+7.15. A
+
+7.16. B
+
+7.17. A
+
+7.18. B
+
+7.19. D
+
+7.20. C
+
+7.21. B
+
+7.22. B
+
+\section{Past Exam Questions}\label{past-exam-questions-4}
+
+\begin{itemize}
+\item
+  Exam MLC, Fall 2015: \#10
+\item
+  Exam MLC, Spring 2015: \#8, 11
+\item
+  Exam MLC, Fall 2014: \#7
+\item
+  Exam MLC, Spring 2014: \#8
+\item
+  Exam MLC, Fall 2013: \#14, 15, 16
+\item
+  Exam MLC, Spring 2013: \#1, 3, 18
+\item
+  Exam 3L, Spring 2013: \#13, 14
+\item
+  Exam MLC, Fall 2012: \#20, 22
+\item
+  Exam 3L, Spring 2012: \#12
+\item
+  Exam MLC, Spring 2012: \#3, 6
+\item
+  Exam MLC, Sample Questions: \#6, 14, 29, 40, 47, 51, 76, 84, 92, 96,
+  97, 99, 111, 119, 127, 142, 154, 157, 172, 174, 184, 204, 221, 228,
+  309
+\item
+  Exam 3L, Spring 2010: \#16
+\item
+  Exam 3L, Fall 2008: \#22
+\item
+  Exam 3L, Spring 2008: \#23
+\item
+  Exam MLC, Spring 2007: \#4
+\end{itemize}
+
+\bibliography{packages,LDAReference}
+
+
+\end{document}

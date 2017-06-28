@@ -1,0 +1,479 @@
+---
+title: "Universal Life"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Universal Life
+## Introduction to Universal Life
+
+A **Universal Life** (UL) contract combines life insurance with an
+investment product in a transparent, flexible format. The policyholder
+may vary the amount and timing of premiums, within some constraints.
+Here is how it works:
+
+-   The **premium** is deposited into an account, which is used to
+    determine the death and survival benefits.
+
+-   The insurer credits **interest** to the account at regular intervals
+    (typically monthly).
+
+-   The account, made up of the premiums and credited interest, is
+    subject to deductions for management **expenses** and for the **cost
+    of life insurance** coverage.
+
+-   The account balance or **account value** (AV) is the balance of
+    funds in the account.
+
+The account value represents the insurer’s liability, analogous to the
+reserve under a traditional contract.
+
+-   Universal Life (UL) policies are sold as “permanent” life contracts
+    (with tax advantages)
+
+-   The AV represents the underlying value of the contract, and is used
+    to determined the cash value
+
+With the UL, the policyholder’s money is not associated with specific
+assets, they are held in “notional” accounts. Credited interest declared
+need not reflect actual earnings
+
+In contrast, the **Variable Universal Life** (VUL), monies are held in
+separate accounts. Interest credited is directly associated with the
+yields on these funds. This is studied in Chapter 12 of DHW (but not by
+us).
+
+![image](Figures\UL_LifeCycleExample.pdf){width="120.00000%"}
+
+**Origins of Universal Life**
+
+Universal Life (UL) account values are based on an accumulation
+(recursive) process - known for well over 100 years. The idea behind UL
+apparently came up in the 1960’s, was made public in the 1970’s, and
+took off as a product in the 1980’s. Here are some references from Black
+and Skipper on *Life Insurance*,
+
+-   George R. Dinney, “Universal Life,” *The Actuary*, Vol. XV,
+    supplement (September 1981). p. 1;
+
+-   Timothy Lynch, ”Universal Life Insurance: A Primer,” *The Journal of
+    the American Society of Chartered Life Underwriters*, Vol. XXXVI
+    (July 1982)
+
+According to Black and Skipper, the UL concept was at first not welcomed
+by most persons in the North American life insurance business. It was
+perceived as a threat to the orderly development of the industry, and as
+not being in consumers’ or agents’ best interests.
+
+Universal life policy sales in the United States had a meteoric rise
+from an effective zero market share of new sales in 1979 to over 38
+percent in 1985, its peak year. Since then, its share has declined to
+around a quarter of new individual life premiums-still a major
+proportion.
+
+## Design Features of a UL Policy
+
+We now review in more detail the key design features of a UL policy.
+
+-   **Death Benefit:** On the policyholder’s death the total benefit
+    paid is the account value of the policy, plus an **additional death
+    benefit** (ADB).
+
+    There are two types of death benefit:
+
+    -   **Type A** offers a *level* total death benefit $\equiv$ the
+        **Face Amount** of the policy. Here, Face Amount = AV + ADB. As
+        the account value (AV) increases, the ADB decreases.
+
+    -   **Type B** offers a *level ADB*. The amount paid on death would
+        be the AV plus the level ADB selected by the policyholder. The
+        policyholder may have the option to adjust the ADB to allow for
+        inflation.
+
+-   Corridor factor = $\frac{\text{AV + ADB}}{\text{AV}}$.
+
+-   The ADB is required to be significant, e.g., around 2.5 at age 40,
+    decreasing to 1.05 at age 90.
+
+![image](Figures\UL_VaryingBenefitAmounts.pdf){width="120.00000%"}
+
+-   **Premiums:** These may be subject to some minimum level, but
+    otherwise are highly flexible.
+
+-   **Expense Charges:** These are deducted from the account value. The
+    rates will be variable at the insurer’s discretion, subject to a
+    maximum specified in the original contract.
+
+-   **Credited Interest:** Usually the credited interest rate will be
+    decided at the insurer’s discretion, but it may be based on a
+    published exogenous rate, such as yields on government bonds. A
+    minimum guaranteed annual credited interest rate will be specified
+    in the policy document.
+
+<!-- -->
+
+-   **Cost of Insurance:** Each year the UL account value is subject to
+    a charge to cover the cost of the selected death benefit cover.
+
+    -   The charge is called the Cost of Insurance, or CoI.
+
+    -   Usually, the CoI is calculated using an estimate (perhaps
+        conservative) of the mortality rate for that period, so that, as
+        the policyholder ages, the mortality charge (per \$1 of ADB)
+        increases.
+
+    -   The CoI is then the single premium for a 1-year term insurance
+        with sum insured equal to the ADB.
+
+-   **Surrender Charge:** If the policyholder chooses to surrender the
+    policy early, the surrender value paid will be the policyholder’s
+    account balance reduced by a surrender charge.
+
+    -   The main purpose of the charge is to ensure that the insurer
+        receives enough to pay its acquisition expenses.
+
+    -   The total cash available to the policyholder on surrender is the
+        account value minus the surrender charge (or zero if greater),
+        and is referred to as the **Cash Value** of the contract at each
+        duration.
+
+<!-- -->
+
+-   **Secondary Guarantees:** A common feature is a no lapse guarantee
+
+    -   Coverage continues even if the account value declines to zero,
+        provided that the policyholder pays a pre-specified minimum
+        premium
+
+    -   This guarantee comes into play if expense and mortality charges
+        exceed the minimum premium
+
+-   **Policy Loans:** Option: policyholder takes out a loan using the
+    cash value as collateral.
+
+**Example: DHW SN 4.1: Type B UL Account Values**
+
+-   A universal life policy is sold to a 45 year old man. The initial
+    premium is \$2250 and the ADB is a fixed \$100,000. The policy
+    charges are: $$\begin{aligned}
+    \text{Cost of Insurance:}&&\text{120\% of the mortality of the Standard Select Mortality Model.}\\
+    &&\text{5\% per year interest.}\\
+    \text{Expense Charges:}&&\text{\$48 + 1\% of premium at the start of
+    each year.}\end{aligned}$$
+
+-   Surrender penalties at each year end are the lesser of the full
+    account value and the following surrender penalty schedule:
+
+  ------------------- ------ ------ ------ ------ ------ -------
+  Year of surrender        1      2    3-4    5-7   8-10   $>$10
+  Penalty               4500   4100   3500   2500   1200       0
+  ------------------- ------ ------ ------ ------ ------ -------
+
+-   Assume (i) the policy remains in force for 20-years, (ii) interest
+    is credited to the account at 5% per year, (iii) the policyholder
+    pays the full premium of \$2250 each year, (iv) all cash flows occur
+    at policy anniversaries.
+
+-   Project the account value and the cash value at each year end for
+    the 20-year projected term.
+
+<!-- -->
+
+-   Each year, the insurer deducts from the account value the expense
+    charge and the cost of insurance (which is the price for a 1-year
+    term insurance with sum insured equal to the ADB), and adds to the
+    account value any new premiums paid, and the credited interest for
+    the year.
+
+-   The first year is:
+
+      ------------------- ------------------------------------------------------
+      Premium             2250
+      Expense Charge      $48 + 0.01\times 2250 = 70.50$
+      CoI                 $100,000\times 1.2 \times 0.0006592\times v = 75.34$
+      Interest Credited   $0.05\times (2250-70.50-75.34) = 105.21$
+      Account Value       $2250-70.50-75.34+105.21=2209.37$
+      Cash Value          max$(2209.37-4500,0) = 0$
+      ------------------- ------------------------------------------------------
+
+-   The second year is:\
+
+  ------------------- ------------------------------------------------------
+  Premium             2250
+  Expense Charge      $48 + 0.01\times 2250 = 70.50$
+  CoI                 $100,000\times 1.2 \times 0.0007973\times v = 91.13$
+  Interest Credited   $0.05\times (2209.37+2250-70.50-91.13) = 214.89$
+  Account Value       $2209.37+2250-70.50-91.13+214.89=4512.63$
+  Cash Value          max$(4512.63-4100,0) = 412.63$
+  ------------------- ------------------------------------------------------
+
+![image](Figures\UL_UniversalLifeFigure1.png){width=".9\textwidth"}
+
+## Recursive Formulas for Universal Life
+
+### Review of Asset Shares and Emerging Profits
+
+Recall our recursive asset share formula $$\begin{aligned}
+(~_k AS + G_k - e_k)(1+i_k)  &= &
+q_{[x]+k}^{(d)} \left(b_{k+1} + E_{k+1}\right) \\
+&~~~~+& q_{[x]+k}^{(w)} ~_{k+1} CV  + p_{[x]+k}^{(\tau)} ~_{k+1} AS\end{aligned}$$
+
+Asset shares are calculated during the year (using experience or another
+basis). Then, the profit during the year (at time $k+1$) is
+$$\begin{aligned}
+Pr_{k+1}  &= & \left( _k AS + G_k -e_k\right) (1+ i_k) -
+q_{[x]+k}^{(d)} \left(b_{k+1} + E_{k+1}\right) \\
+&~~~~-& q_{[x]+k}^{(w)} ~_{k+1} CV  - p_{[x]+k}^{(\tau)} ~_{k+1} AS
+.\end{aligned}$$
+
+Define $\Pi_{k+1} = ~_k p_{[x]}^{(\tau)} Pr_{k+1}$ to be profits
+discounted for survivorship.
+
+To summarize profits, we might use the net present value
+$$\begin{aligned}
+NPV = \sum_k \left(\frac{1}{1+r} \right)^k \Pi_k\end{aligned}$$ or
+another summary measure.
+
+### Universal Life with Type B Death Benefit
+
+We can now apply these same basic principles to account value formulas.
+
+Use $AV$ for account value instead of AS, use $FA$ for face amount
+instead of benefit, and ignore lapsation. From the asset share formula,
+$$\begin{aligned}
+(~_k AV + G_k - e_k)(1+i_k^c)  &= &
+q_{[x]+k} \left(FA_{k+1} + E_{k+1}\right) +  p_{[x]+k} ~_{k+1} AV \\
+&= q_{[x]+k} \left(FA_{k+1} + E_{k+1} - ~_{k+1} AV \right) +~_{k+1}
+AV\end{aligned}$$
+
+With only one decrement (death), we have dropped the cause notation.
+Further, use $i_k^c$ for the interest credited. Now, we will define the
+Cost of Insurance to be $$\begin{aligned}
+CoI_{k}  =v_q q_{[x]+k} \left(FA_{k+1} + E_{k+1} - ~_{k+1} AV
+\right)\end{aligned}$$ where $v_q$ is a discount factor. In the prior
+example, we used 5% for both the interest credited and the CoI discount
+factor.
+
+With discount factor $v_q$, the Cost of Insurance is $$\begin{aligned}
+CoI_{k}  =v_q q_{[x]+k} \left(FA_{k+1} + E_{k+1} - ~_{k+1} AV
+\right) .\end{aligned}$$ With this, we define the account value
+$$\begin{aligned}
+~_{k+1} AV  = (~_k AV + G_k - e_k -CoI_k )(1+i_k^c)\end{aligned}$$
+
+For Type B UL, the additional death benefit is $$\begin{aligned}
+ ADB_{k+1} = FA_{k+1}  - ~_{k+1} AV = \text{constant}\end{aligned}$$ so
+the recursion as presented is easy to calculate. Not so for Type A. We
+can use account values (with a possibly different interest rate) to
+determine the profit during the year (at time $k+1$) $$\begin{aligned}
+Pr_{k+1}  &= & \left( _k AV + G_k -e_k\right) (1+ i_k) -
+q_{[x]+k}^{(d)} \left(FA_{k+1} + E_{k+1}\right) \\
+&~~~~-& q_{[x]+k}^{(w)} ~_{k+1} CV  - p_{[x]+k}^{(\tau)} ~_{k+1} AV
+.\end{aligned}$$
+
+**Example: DHW SN 4.2: Type B UL Profit Test**
+
+-   A universal life policy is sold to a 45 year old man, policy in
+    force for 20 years. Premium is \$2250 for six years and the ADB is a
+    fixed \$100,000.
+
+-   100% of the mortality of the Standard Select Mortality Model,
+
+-   interest on all funds is 7 %, interest credited is 5%
+
+-   Incurred expenses are \$2000 at inception, \$45 plus 1% of premium
+    at renewal, \$50 on surrender (even if no cash value is paid), \$100
+    on death.
+
+-   Surrender (withdrawal) rates are:\
+
+      ------ ------ ------ ------ ------ ------- ------
+      Year        1    2-5   6-10     11   12-19     20
+      Rate     0.05   0.02   0.03   0.10    0.15   1.00
+      ------ ------ ------ ------ ------ ------- ------
+
+-   Project the profits at each year end for the 20 years.
+
+<!-- -->
+
+-   The expense at policy initiation is 2,000, so $Pr_0 =-2000$.
+    $$\begin{aligned}
+    Pr_{k+1}  &= & \left( _k AV + G_k -e_k\right) (1+ i_k) -
+    q_{[x]+k}^{(d)} \left(FA_{k+1} + E_{k+1}\right) \\
+    &~~~~-& q_{[x]+k}^{(w)} ~_{k+1} CV  - p_{[x]+k}^{(\tau)} ~_{k+1} AV
+    .\end{aligned}$$
+
+-   The first year is:\
+
+      -------------------------------- ------------------------------------------------------
+      Account Value brought forward    0
+      Premium                          2250
+      Expenses                         0 (all accounted for in $Pr_0$)
+      Interest Earned                  0.07 $\times$ 2250 = 157.50
+      Expected Death Costs             0.0006592 $\times$ (100 000 + 2209.37 + 100) = 67.44
+      Expected Surrender Costs         0.999341 $\times$ 0.05 $\times$ (0 + 50) = 2.50
+      Expected Cost of AV              
+        for continuing policyholders   0.999341 $\times$ 0.95 $\times$ 2209.37 = 2097.52
+      $Pr_1$                           2250 + 157.50 - 67.44 - 2.50 - 2097.52 = 240.04
+      -------------------------------- ------------------------------------------------------
+
+-   $q^{(d)}=q^{\prime (d)}=0.0006592$,
+    $q^{(w)}=(1-q^{\prime (d)})q^{\prime (w)}=0.999341 \times  0.05$,
+    and $p^{(\tau)}=(1-q^{\prime (d)})(1-q^{\prime (w)})=(0.999341)
+    (0.95)$
+
+<!-- -->
+
+-   $$\begin{aligned}
+    Pr_{k+1}  &= & \left( _k AV + G_k -e_k\right) (1+ i_k) -
+    q_{[x]+k}^{(d)} \left(FA_{k+1} + E_{k+1}\right) \\
+    &~~~~-& q_{[x]+k}^{(w)} ~_{k+1} CV  - p_{[x]+k}^{(\tau)} ~_{k+1} AV
+    .\end{aligned}$$
+
+-   The second year is:\
+
+      -------------------------------- -------------------------------------------------------
+      Account Value brought forward    2209.37
+      Premium                          2250
+      Expenses                         45 + 0.01 $\times$ 2250 = 67.50
+      Interest Earned                  0.07 $\times$ (2209.37 + 2250 - 67.50) = 307.43
+      Expected Death Costs             0.0007973 $\times$ (100 000 + 4512.63 + 100) = 83.41
+      Expected Surrender Costs         0.9992027 $\times$ 0.02 $\times$ (412.63 + 50) = 9.25
+      Expected Cost of AV              
+        for continuing policyholders   0.9992027 $\times$ 0.98 $\times$ 4512.63 = 4418.85
+      $Pr_2$                           2209.37 + 2250 - 67.50 + 307.43 - 83.41
+                                               - 9.25 - 4418.85 =187.79
+      -------------------------------- -------------------------------------------------------
+
+![image](Figures\UL_Figs6,7DHWSN42TypeBULProfitTest.pdf){width=".9\textwidth"}
+
+![image](Figures\UL_Figs6,7DHWSN42TypeBULProfitTestB.pdf){width=".9\textwidth"}
+
+## Type A Universal Life
+
+We now modify our definition of the Cost of Insurance to accommodate
+Type A policies and the “corridor factor.” To simplify matters, drop
+settlement expenses and define the unmodified version to be
+$$\begin{aligned}
+CoI_{k}^f  =v_q q_{[x]+k} \left(FA_{k+1} - ~_{k+1} AV ^f \right)\end{aligned}$$
+and the associated account value $$\begin{aligned}
+~_{k+1} AV^f  = (~_k AV + G_k - e_k -CoI_k ^f )(1+i_k^c)\end{aligned}$$
+Recall that we can think of the corridor factor as
+$\frac{\text{AV + ADB}}{\text{AV}}=\frac{\text{ADB}}{\text{AV}}+1$. So,
+now suppose that the corridor factor $\gamma_{k+1}$ is (exogenously)
+given. Define a modified cost of insurance $$\begin{aligned}
+CoI_{k}^c  &=v_q q_{[x]+k} (\gamma_{k+1} -1)  \times ~_{k+1} AV ^c\end{aligned}$$
+and the associated account value $$\begin{aligned}
+~_{k+1} AV^c  = (~_k AV + G_k - e_k -CoI_k ^c )(1+i_k^c)\end{aligned}$$
+
+The account value is thus $$\begin{aligned}
+~_{k+1} AV  = \min \left(~_{k+1} AV^f ,  ~_{k+1} AV ^c \right) .\end{aligned}$$
+With $$\begin{aligned}
+~_{k+1} AV^f  &= (~_k AV + G_k - e_k -CoI_k ^f )(1+i_k^c)\\
+~_{k+1} AV^c  &= (~_k AV + G_k - e_k -CoI_k ^c )(1+i_k^c)\end{aligned}$$
+we can write this recursively as $$\begin{aligned}
+~_{k+1} AV  = (~_k AV + G_k - e_k -CoI_k )(1+i_k^c) ,\end{aligned}$$
+where $$\begin{aligned}
+CoI_k = \max \left(CoI_k ^f ,  CoI_k  ^c \right)\end{aligned}$$
+
+To use the recursive formula for the account value, we need to calculate
+the cost of insurance. To this end, we start with $$\begin{aligned}
+CoI_{k}^f  &=v_q q_{[x]+k} \left(FA_{k+1} - ~_{k+1} AV ^f \right) \\
+~_{k+1} AV^f  &= (~_k AV + G_k - e_k -CoI_k ^f )(1+i_k^c)\end{aligned}$$
+We can write $$\begin{aligned}
+CoI_{k}^f  = v_q q_{[x]+k} \left(FA_{k+1} - (~_k AV + G_k - e_k
+-CoI_k ^f )(1+i_k^c) \right)\end{aligned}$$ so $$\begin{aligned}
+CoI_{k}^f (1-v_q q_{[x]+k}(1+i_k^c)) = v_q q_{[x]+k} \left(FA_{k+1}
+- (~_k AV + G_k - e_k  )(1+i_k^c) \right)\end{aligned}$$ which yields
+$$\begin{aligned}
+CoI_{k}^f &=\frac{v_q q_{[x]+k} \left(FA_{k+1} - (~_k AV + G_k -
+e_k  )(1+i_k^c) \right)}{1-v_q q_{[x]+k}(1+i_k^c)}\end{aligned}$$
+
+Similarly, using $$\begin{aligned}
+CoI_{k}^c  &= v_q q_{[x]+k} (\gamma_{k+1} -1)  \times ~_{k+1} AV ^c \\
+~_{k+1} AV^c  &= (~_k AV + G_k - e_k -CoI_k ^c )(1+i_k^c)\end{aligned}$$
+We can write $$\begin{aligned}
+CoI_{k}^c  &= v_q q_{[x]+k} (\gamma_{k+1} -1) (~_k AV + G_k - e_k
+-CoI_k ^c )(1+i_k^c)\end{aligned}$$ so $$\begin{aligned}
+CoI_{k}^c (1+v_q q_{[x]+k} (\gamma_{k+1} -1)(1+i_k^c)) = v_q
+q_{[x]+k} (\gamma_{k+1} -1) (~_k AV + G_k - e_k  )(1+i_k^c)\end{aligned}$$
+which yields $$\begin{aligned}
+CoI_{k}^c &=\frac{v_q q_{[x]+k} (\gamma_{k+1} -1) (~_k AV + G_k -
+e_k  )(1+i_k^c)}{1+v_q q_{[x]+k}(\gamma_{k+1} -1)(1+i_k^c)}\end{aligned}$$
+
+**Example: DHW SN 4.3: Type A UL Profit Test** Consider the following UL
+policy issued to a life age 45:
+
+-   Face Amount \$100 000 and the policyholder surrenders the contract
+    after 20 years.
+
+-   Assume level premiums of \$3 500 are paid annually in advance
+
+-   Assume that the credited interest rate is 4% per year.
+
+-   Death Benefit Type A with corridor factors ($\gamma_k$)\
+
+      ------------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ -- --
+      $k$               1      2      3      4      5      6      7      8      9     10    
+      $\gamma_k$     2.15   2.09   2.03   1.97   1.91   1.85   1.78   1.71   1.64   1.57    
+      $k$              11     12     13     14     15     16     17     18     19     20    
+      $\gamma_k$     1.50   1.46   1.42   1.38   1.34   1.30   1.28   1.26   1.24   1.24    
+      ------------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ -- --
+
+-   CoI based on: 120% of SSSM, 4% interest; the CoI is calculated
+    assuming the fund earns 4% interest during the year.
+
+-   Expense Charge: 20% of first premium + \$200, 3% of subsequent
+    premiums.
+
+-   Surrender Penalties:
+
+      --------------------- ---------- ------ ------ ----- ---------
+      Year                           1      2    3-4   5-7   $\ge 8$
+      Surrender Penalties     \$ 2 500   2100   1200   600         0
+      --------------------- ---------- ------ ------ ----- ---------
+
+We wish to:
+
+-   \(a) Project the account and cash values for this policy.
+
+-   \(b) Profit test the contract using the basis below. Use annual steps,
+    and determine the NPV and DPP using a risk discount rate of 10% per
+    year.
+
+*Solution:* I will only go through the details for part (a). The study
+note provides information about the solution to part (b).
+
+To begin, we first note that the CoI discount rate equals the credited
+interest. This means $$\begin{aligned}
+ v_q (1+i_k^c)=1\end{aligned}$$ which simplifies our calculations.
+
+For the First Year ($k=0$), we have
+
+  ---------------- -------------------------
+  Premium          3500
+  Expense Charge   200 + (0.20) 3500 = 900
+  ---------------- -------------------------
+
+The CoI assuming the death benefit is Face Amount - Account Value
+$$\begin{aligned}
+CoI_0^f &=\frac{q_{[45]} \left(v_q FA_1 - (~_0 AV + G_0 - e_0  ) \right)}{1-q_{[45]}} \\
+&= \frac{(1.2) q_{[45]} (v_{.04}100 000  - (3500-900))} {1 - (1.2)
+q_{[45]}} = 74.07\end{aligned}$$ CoI assuming the death benefit is based
+on the corridor factor $$\begin{aligned}
+CoI_0^c &=\frac{q_{[45]} (\gamma_1 -1) (~_0 AV + G_0 - e_0  )}{1+(1.2 q_{[45]})(\gamma_1 -1)} \\
+&= \frac{1.2(0.0006592) (2.15 -1) (3500-900 )}{1+
+1.2(0.0006592)(2.15 -1)}=2.36\end{aligned}$$
+
+  --------------- ----------------------------------------
+  $CoI_0$         $\max(CoI_0^f, CoI_0^c) = 74.07$
+  Account Value   (3500 - 900 - 74.07) (1.04) = 2 626.97
+  Cash Value      max(2626.97 - 2500, 0) = 126.97
+  --------------- ----------------------------------------
+
+Example: DHW SN 4.3: Type A UL Profit Test
+
+![image](Figures\UL_Fig9DHWSN43TypeAULProfitTest.pdf){width=".9\textwidth"}

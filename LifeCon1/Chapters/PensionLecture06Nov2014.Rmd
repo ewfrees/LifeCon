@@ -1,0 +1,303 @@
+---
+title: "Pension Contingencies"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Pension Contingencies
+## Introduction
+
+We think of a pension plan as a type of deferred compensation scheme -
+an arrangement made by an employer wherein benefits are accrued during a
+working lifetime of an employee and are paid during retirement.
+
+Several *ancillary* (i.e., auxiliary, assisting) benefits are typically
+associated with such a scheme:
+
+-   survivor’s pension
+
+-   lump sum death benefit
+
+-   disability benefit
+
+-   withdrawal benefit.
+
+The main benefit is a life annuity payable at retirement.
+
+There are two major categories of pension plans
+
+-   *Defined Contribution Plans*. This type of plan specifies how much
+    the employer (and employee) will contribute into the plan.
+    Contributions are accumulated until withdrawal and then are
+    typically converted into a life annuity.
+
+-   *Defined Benefit Plans*. This type of plan specifies the level of
+    benefit promised by a plan. Although the plan may call for some
+    employee contributions, it is typically the responsibility of the
+    employer, as plan sponsor, to make sure that the plans has
+    sufficient funds to provide the promised benefits.
+
+When designing the plan, participants look to a desired *replacement
+ratio*, defined to be $$\begin{aligned}
+R = \frac{\text{pension income in the year after retirement}}{\text{salary in the year before retirement}} ,\end{aligned}$$
+e.g., 50-70%.
+
+Pension contingencies is similar to life contingencies but there are
+pragmatic (and theoretical) differences:
+
+-   Pension plans deal with smaller numbers of people. Hence, the
+    uncertainty takes on a greater role.
+
+-   Unlike life insurance, there is no real “underwriting” concept in
+    pension work. Thus, pension actuaries have less control over many
+    variables that go into projections, e.g., salary scales in benefit
+    formulas, demographic variables such as number of new entrants,
+    age/service composition of the workforce.
+
+-   There is a different attitude towards “conservatism.” In pricing,
+    the life actuary errs on the side of the company in setting
+    assumptions and uses dividends/bonuses to address equity
+    considerations. However, for the pension actuary, an error on the
+    low side can cause plan ruination while an error on the high side
+    means that the current profit of an employer is considerably
+    reduced.
+
+-   Because the employer is a major contributor to costs of a plan, we
+    tend to take a “macro” in lieu of a “micro” viewpoint. That is, a
+    plan’s overall ability to meet objectives may outweigh equity
+    concerns for each individual participant.
+
+Employers sponsor plans for a number of reasons, including:
+
+-   competitions for new employees;
+
+-   to facilitate turnover of older employees by ensuring that they can
+    retire
+
+-   retention - to provide incentive for employees to stay with the
+    employer
+
+-   pressure from trade unions
+
+-   tax efficient method of remunerating employees
+
+-   responsibility to employees who have contributed to the company.
+
+## Demographic Assumptions
+
+We assume we have available a (primary) multidecrement table with $T$ is
+the time to termination of employment. The cause of termination may
+include withdrawal, death in service, retirement for disability, or
+retirement for age-service. Recall our example discussed earlier:
+
+**Special Case 2. Pension Plan Termination and Retirement Model.** In
+this special case, we might let
+
+-   0 means Active
+
+-   1 means Retired
+
+-   2 means Disabled
+
+-   3 means Death
+
+-   4 means Termination
+
+-   5 means Withdraw for Other Reasons
+
+This model is relevant for certain retirement systems where benefit
+amounts vary by the reason for leaving employment.
+
+Source: 2003 *Society of Actuaries Pension Plan Turnover Study*.
+
+http://www.soa.org/research/experience-study/
+pension/research-2003-soa-pension-plan-turnover-study.aspx
+
+![Aggregate Turnover – Termination and Retirement. Termination estimated
+probabilities are smoothed via Whittaker-Henderson Type B whereas
+retirement estimated probabilities are unsmoothed. Estimated
+probabilities are in
+percent.](Figures\PC_RetirementSystemTurnoverL.pdf){width=".5\textwidth"}
+
+![Aggregate Turnover – Death, Disability and Other. All estimated
+probabilities are smoothed. The vertical scale indicates that
+probabilities of turnover from these sources are much smaller than
+retirement and termination. Estimated probabilities are in
+percent.](Figures\PC_RetirementSystemTurnoverR.pdf){width=".5\textwidth"}
+
+We may also have secondary decrement tables that summarize quantities
+such as $\bar{a}_x^r$ - a life annuity for a retiree aged $x$. This life
+annuity may follow a different mortality pattern than those in service
+and, indeed, may use a different interest rate for discounting present
+values.
+
+## Interest and Salary Assumptions
+
+Many plans, such as multiple employer plans, provide pension benefits in
+terms of \$*K* per month per year of service. So, for example, if an
+individual who has worked for 30 years receives $K=10$ \$, then that
+person receives $10 \times 30 = 300$ \$ per month at retirement.
+
+Further, it is also common for plans to provide a percent of salary at
+retirement. To this end, we may project salaries using
+
+$$\begin{aligned}
+(ES)_{x+k} = (AS)_x \frac{s_{x+k}}{s_x},\end{aligned}$$
+
+where
+
+-   $(ES)_{x+k}$ is the estimated or projected salary at age $x+k$,
+
+-   $(AS)_x$ is the actual salary at age $x$, and
+
+-   $s_x$ is the salary scale at age $x$.
+
+The salary scale $s_x$ may come from an integer age table or be based on
+a continuous mathematical function. For example, it is common to use
+$s_y = 1.04^y$ to represent a 4% salary escalation assumption.
+
+**Salary Rate**.\
+Let $\bar{s}_y$ be the annual rate of salary at age $y$ so that the
+salary received from age $y$ to $y+1$ is $$\begin{aligned}
+s_y = \int_0^1  \bar{s}_{y+t} dt ,\end{aligned}$$ Thus,
+$$\begin{aligned}
+\frac{s_y}{s_x} &= \frac{\int_0^1  \bar{s}_{y+t} dt}{\int_0^1  \bar{s}_{x+t} dt} \\
+&= \frac{\text{salary received from age y to y+1 }}{\text{salary received from age x to x+1 }} ,\end{aligned}$$
+Now, suppose that $\bar{s}_y = 1.04^{y-20}$. Then $$\begin{aligned}
+s_y &= \int_0^1  \bar{s}_{y+t} dt  = \int_0^1  1.04^{y-20+t} dt \\
+&= 1.04^{y-20} \int_0^1  1.04^t dt =1.04^{y-20} \times \text{constant}\end{aligned}$$
+Thus, $$\begin{aligned}
+\frac{s_y}{s_x} &= \frac{1.04^{y-20} \times \text{constant}}{1.04^{x-20} \times \text{constant}} \\
+&= \frac{1.04^{y-20}}{1.04^{x-20} } =\frac{\bar{s}_y}{\bar{s}_x}  \end{aligned}$$
+Using the rate or the salary scale gives the same result.
+
+**AMLCR Example 10.2.**
+
+The pension benefit final average salary is the average salary three
+years before retirement. Assume a salary scale $s_y = 1.04^y$. Members’
+salaries are increased each year, six months before the valuation date.
+
+-   a\) A member aged 35 received \$75,000 in the year before the valuation
+    date. Calculate the projected final average salary assuming retirement
+    at age 65.
+
+-   b\) A member aged 55 received was paid salary at a rate of \$100,000 per
+    year before at that time. Calculate the projected final average salary
+    assuming retirement at age 65.
+
+*Solution:* a) Received salary of 75,000 from age 34 to 35, so
+$(AS)_{34}=75000$. Thus, $$\begin{aligned}
+\text{Pred 3 Year Avg Salary}&= \frac{(ES)_{62}+(ES)_{63}+(ES)_{64}}{3} \\
+&= (AS)_{34} \frac{s_{62}+s_{63}+s_{64}}{3 s_{34}} \\
+&= (75000) \frac{1.04^{62}+1.04^{63}+1.04^{64}}{3 (1.04^{34})}  \\
+&= (75000) \frac{1.04^{28}+1.04^{29}+1.04^{30}}{3 } = 234,018.80.\end{aligned}$$
+
+b\) Using mid-year assumption, the actual salary from 54.5 to 55.5 is
+100,000. Thus, we have $$\begin{aligned}
+\text{Pred 3 Year Avg Salary} &= \frac{(ES)_{62}+(ES)_{63}+(ES)_{64}}{3} \\
+&= (AS)_{54.5} \frac{s_{62}+s_{63}+s_{64}}{3 s_{54.5}} \\
+&= (100000) \frac{1.04^{62}+1.04^{63}+1.04^{64}}{3 (1.04^{54.5})} = 139,638.80.\end{aligned}$$
+
+$\Box$
+
+## Defined Contribution Plans
+
+In a defined contribution plan, the actuarial present value is the
+accumulation under interest of contributions made by or for the
+participants. The benefit is an annuity that can be purchased by such
+accumulation. The accumulated valued is typically available upon death
+and, under certain conditions, upon withdrawal before retirement.
+
+One task is to set the contribution rate to meet the target replacement
+rate for a “model” employee.
+
+**Actuarial Mathematics Example 11.5.2.** The contribution rate, which
+is to be applied as a proportion of salary, is calculated for a new
+participant at age 30. Assume that contributions are made at mid-year
+and use the UDD assumption for active multiple decrements.
+
+-   Assume that there are no withdrawal benefits for the first 5 years
+    but after that the accumulated contributions are vested, that is,
+    become the property of the withdrawing participant, and will be
+    applied toward an annuity to start no earlier than age 60.
+
+-   Upon death after the end of the 5-year vesting period but before
+    retirement income has commenced, the accumulated contributions are
+    paid out.
+
+-   For age-retirement at age 65, the benefit is a 10-year certain and
+    life annuity with a benefit rate of 50% of the average salary over
+    the 5 years between ages 60 and 65.
+
+Find the contribution level to provide for this benefit.
+
+*Solution.*
+
+The expected present value of benefits is $$\begin{aligned}
+APVB = ~_5 p_{30}^{(\tau)} ~v^{35} (0.5) ~(ES)_{65} ~\bar{a}_{\overline{65:\overline{10|}}}^r\end{aligned}$$
+where $~\bar{a}_{\overline{65:\overline{10|}}}^r$ is the APV of a
+10-year certain and life annuity to a retiree and $$\begin{aligned}
+(ES)_{65} = \frac{s_{60}+s_{61}+s_{62}+s_{63}+s_{64}}{5 s_{30}}\end{aligned}$$
+is the projected (estimated) salary at age 65. Note that because
+contributions are as a percentage of salary, we may take the actual
+salary to equal 1. Thus,
+$(0.5) ~(ES)_{65} ~\bar{a}_{\overline{65:\overline{10|}}}^r$ is the
+present value of retirement benefit at age 65. We discount this for
+interest using $v^{35}$. Because those withdrawing after 5 years receive
+their full benefit, we need only consider the fraction that survive 5
+years, $~_5 p_{30}^{(\tau)}$.
+
+The expected present value of contributions for the first five years is
+$$\begin{aligned}
+APVC_1 &=
+c \sum_{k=0}^4 v^{k+1/2} ~ \frac{s_{30+k}}{s_{30}} ~_{k+1/2} p_{30}^{(\tau)}  \\
+&=
+c \sum_{k=0}^4 v^{k+1/2} ~ \frac{s_{30+k}}{s_{30}} ~_k p_{30}^{(\tau)} \left(1-0.5 q_{30+k}^{(\tau)} \right) ,\end{aligned}$$
+using the UDD assumption. The expected present value of contributions
+for the next 30 years is $$\begin{aligned}
+APVC_2 =
+c  ~_5 p_{30}^{(\tau)} \sum_{k=5}^{34} v^{k+1/2}~  \frac{s_{30+k}}{s_{30}}  .\end{aligned}$$
+Thus, we determine the contribution rate $c$ through equating
+$APVC_1 +APVC_2 = APVB$.
+
+$\Box$
+
+## Valuation of Benefits
+
+### Final Salary Plans
+
+$$\begin{aligned}
+Benefit = (Yrs Of Service)\times(Final Average Salary)\times (Accrual Rate)\end{aligned}$$
+
+Accrual Rate - $\alpha$, typically 1-2%, Wisconsin Retirement System is
+1.6%.
+
+Entry age $x$, current age $y$, Retirement age 60. You could decompose
+this as: $$\begin{aligned}
+(60-x) (FAS) (AR) = (y-x) (FAS) (AR) +(60-y) (FAS) (AR)\end{aligned}$$
+think of $(y-x) (FAS) (AR)$ as from past service, the accrued benefit.
+This is the part that the plan has agreed to fund based on past service
+and so is a liability of the plan (for valuation purposes).
+
+**Withdrawal Pension** Similarly, $(y-x) (FAS) (AR)$ is the amount that
+a person is due when he/she leaves the plan, except that $FAS$ is
+replaced by actual salary.
+
+This is sometimes adjusted by cost of living (inflation) increases
+(mandatory in the UK).
+
+-   Projected Unit Credit - salaries are projected to exit date
+
+-   Traditional (Current) Unit Credit - salaries are not projected
+
+### Career Average Earnings Plans
+
+$$\begin{aligned}
+Benefit = (Yrs Of Service)\times(Career Average Salary)\times(Accrual Rate)\end{aligned}$$
+
+*Career average revalued plan*, inflation adjustment is made before
+averaging salaries.

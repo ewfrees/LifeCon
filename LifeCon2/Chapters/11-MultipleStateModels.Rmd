@@ -1,0 +1,1228 @@
+---
+title: "Multiple State Models"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Multiple State Models
+
+## Markov Representation
+
+Consider a **multiple state model** or **multi-state model**. This is a
+model with ($n$ + 1) states, typically numbered 0, 1, ..., $n$. At any
+given time, an individual can be in exactly one of the ($n$ + 1) states.
+It is possible over time for an individual to transition between states.
+\vspace{4mm}
+
+Examples of common multi-state models are provided in
+
+**Examples of Multiple State Models** from Chapter 8 of Dickson et al.;
+provided in Appendix B of this study supplement. \vspace{4mm}
+
+Multiple decrement and multiple life models are special types of
+multiple state models encountered in actuarial science. \vspace{4mm}
+
+Let: $i$, $j$ = 0, 1, 2, ..., $n$: \vspace{2mm}
+
+-   $\mu^{ij}_x(t)$ = $\mu^{ij}_{x + t}$ denotes the **force of
+    transition** from State $i$ to State $j$ at age x + t. It is always
+    true that $\mu^{ii}_x(t)$ = 0. \vspace{4mm}
+
+-   ${}_{t}p^{ij}_x$ denotes the **transition probability** that someone
+    in State $i$ at age x will be in State $j$ at age x + t.
+
+    \newpage
+-   Multi-state models are subject to the following assumptions (these
+    are called the “standard assumptions”), unless otherwise indicated:
+    \vspace{4mm}
+
+    -   The state process is a Markov process; that is, ${}_{t}p^{ij}_x$
+        does not depend on the states the life was in prior to age x.
+        \vspace{2mm}
+
+    -   The probability of 2 or more transitions in any period of length
+        $h$ years is $o(h)$. A function $g(h)$ is said to be $o(h)$ if:
+        \vspace{2mm}
+
+        $\frac{g(h)}{h}$ $\to$ 0 as $h$ $\to$ $0$. \vspace{2mm}
+
+    -   ${}_{t}p^{ij}_x$ is a differentiable function of $t$, and for
+        $i$ $\neq$ $j$: \vspace{2mm}
+
+        $\mu^{ij}_x$ = $\lim_{h\to0^{+}}\frac{{}_{h}p^{ij}_x}{h}$
+        $\implies$ ${}_{h}p^{ij}_x$ = $h\mu^{ij}_x$ + $o(h)$.
+        \vspace{4mm}
+
+-   If ${}_{t}p^{ij}_x$ does not depend on x, the model is
+    **homogeneous**. Otherwise, the model is **non-homogeneous**.
+    \vspace{4mm}
+
+-   ${}_{0}p^{ii}_x$ = 1 and ${}_{0}p^{ij}_x$ = 0 for $i$ $\neq$ $j$
+    \vspace{1mm}
+
+    “If (x) is in State $i$, (x) must be in State $i$ 0 years from now.”
+    \vspace{4mm}
+
+-   ${}_{t}p^{i0}_x$ + ${}_{t}p^{i1}_x$ + $\cdots$ ${}_{t}p^{in}_x$ = 1
+    \vspace{1mm}
+
+    “If (x) is in State $i$ (which is one of States 0, 1, ..., $n$),
+    then (x) must be in one of the ($n$ + 1) States $t$ years from now.
+    \vspace{4mm}
+
+<!-- -->
+
+-   Transition probability calculations can be handled discretely:
+    \vspace{2mm}
+
+    ${}_{u + t}p^{ij}_x$ = $\sum^n_{k = 0}
+    ({}_{u}p^{ik}_x)({}_{t}p^{kj}_{x + u})$. \vspace{4mm}
+
+    The above are called the **Chapman-Kolmogorov equations** for
+    integer times $t$ and $u$. \vspace{4mm}
+
+-   ${}_{t}p^{\overline{ii}}_x$ denotes the **occupancy probability**:
+    the probability that someone in State $i$ at age x will
+    **continuously** be in State $i$ up to and including age x + t.
+    \vspace{4mm}
+
+-   ${}_{t}p^{\overline{ii}}_x$ = $\exp[- \int^t_0 \sum^n_{j = 0, j \neq
+    i} \mu^{ij}_{x + s}ds]$ \vspace{4mm}
+
+    \newpage
+-   Note: ${}_{t}p^{\overline{ii}}_x$ is not necessarily equal to
+    ${}_{t}p^{ii}_x$. ${}_{t}p^{ii}_x$ is the probability that (x) in
+    State $i$ will be in State $i$ at age x + t; it is possible that (x)
+    could leave State $i$ and then re-enter it by age x + t which is not
+    allowed in the probability ${}_{t}p^{\overline{ii}}_x$. Thus:
+    \vspace{2mm}
+
+    ${}_{t}p^{ii}_x$ = ${}_{t}p^{\overline{ii}}_x$ + $o(t)$ $\implies$
+    ${}_{t}p^{\overline{ii}}_x$ $\leq$ ${}_{t}p^{ii}_x$. \vspace{4mm}
+
+-   Furthermore: \vspace{2mm}
+
+    1 - ${}_{h}p^{\overline{ii}}_x$ = $h\sum^n_{j = 0, j \neq i}
+    \mu^{ij}_{x}$ + $o(h)$. \vspace{2mm}
+
+    Both sides of the above equation are equivalent to the probability
+    that the process does leave State $i$ at some time between ages x
+    and x + h, possibly returning to State $i$ prior to age x + h.
+    \vspace{4mm}
+
+-   Consider the Permanent Disability Model in Examples of Multiple
+    State Models.\vspace{4mm}
+
+    -   By conditioning on the state the life is in at age x + t:
+        \vspace{4mm}
+
+        ${}_{t + h}p^{01}_x$ =
+        ${}_{t}p^{01}_x$${}_{h}p^{\overline{11}}_{x +
+        t}$ + ${}_{t}p^{00}_x$$h\mu^{01}_{x + t}$ + $o(h)$ \vspace{4mm}
+
+        $\implies$ ${}_{t + h}p^{01}_x$ =
+        ${}_{t}p^{01}_x$${}_{h}p^{\overline{11}}_{x + t}$ +
+        ${}_{t}p^{\overline{00}}_x$$h\mu^{01}_{x + t}$ + $o(h)$
+        \vspace{4mm}
+
+        $\implies$ ${}_{u}p^{01}_x$ =
+        $\int^u_0{}_{t}p^{\overline{00}}_x(\mu^{01}_{x + t}){}_{u -
+        t}p^{\overline{11}}_{x + t}dt$. \vspace{4mm}
+
+        “The probability that a healthy life aged x is disabled at age x
+        + u can be obtained by picking a time $t$ within the $u$ years.
+        (x) needs to remain healthy until time $t$ (with probability
+        ${}_{t}p^{\overline{00}}_x$), immediately transition from
+        healthy to disabled at age x + t (at rate $\mu^{01}_{x + t}$),
+        and then remain disabled for the remaining $u - t$ years (until
+        age x + u, with probability
+        ${}_{u - t}p^{\overline{11}}_{x + t}$). Considering all possible
+        times $t$ within $u$ years via integration yields the desired
+        probability.” \vspace{4mm}
+
+    -   With constant forces of transition: \vspace{4mm}
+
+        ${}_{u}p^{01}_x$ =
+        $\mu^{01}e^{-\mu^{12}u}\frac{1 - e^{-(\mu^{01} +
+        \mu^{02} - \mu^{12})u}}{\mu^{01} + \mu^{02} - \mu^{12}}$, where
+        $\mu^{01} + \mu^{02}$ $\neq$ $\mu^{12}$.
+
+\newpage
+## Kolmogorov’s Forward Equations
+
+\Large
+
+-   **Kolmogorov’s Forward Equations** are differential equations for
+    the transition probabilities of a multi-state model: \vspace{4mm}
+
+    $\frac{d}{dt}[{}_{t}p^{ij}_x]$ = $\sum^n_{k = 0, k \neq j}
+    [{}_{t}p^{ik}_x\mu^{kj}_{x + t} - {}_{t}p^{ij}_x\mu^{jk}_{x + t}]$.
+    \vspace{6mm}
+
+    “The left hand side is the change in the probability, or the rate,
+    that (x) in State $i$ will be in State $j$ at age x + t. The right
+    hand side is the net rate of entry of (x) in State $i$ into State
+    $j$ by age x + t. (1) ${}_{t}p^{ik}_x\mu^{kj}_{x + t}$ is the rate
+    at which (x) in State $i$ is in State $k$ at age x + t and then
+    immediately transitions into State $j$; this is the entry rate
+    of (x) in State $i$ into State $j$ at age x + t. (2)
+    ${}_{t}p^{ij}_x\mu^{jk}_{x + t}$ is the rate at which (x) in State
+    $i$ is in State $j$ at age x + t and then immediately transitions
+    into State $k$; this is the exit rate of (x) in State $i$ out of
+    State $j$ at age x + t. Then, summing (1) - (2) over all feasible
+    States $k$ $\neq$ $j$ provides the net rate of entry of (x) in State
+    $i$ into State $j$ at age x + t (i.e., the rate of being in State
+    $j$ at age x + t. \vspace{10mm}
+
+-   Euler’s forward method provides a discrete approximation:
+    \vspace{4mm}
+
+    ${}_{t + h}p^{ij}_x - {}_{t}p^{ij}_x$ $\approx$ $h\sum^n_{k = 0, k
+    \neq j} [{}_{t}p^{ik}_x\mu^{kj}_{x + t} - {}_{t}p^{ij}_x\mu^{jk}_{x
+    + t}]$. \vspace{6mm}
+
+    By picking small time intervals for $h$ (an $m$-th of a year), we
+    can approximate other transition probabilities given one transition
+    probability.
+
+\newpage
+## Expected Present Values
+
+\Large
+
+-   **Cash Flows While Continuously in a State: Annuities** \vspace{4mm}
+
+    -   Consider an annuity on a life in State $i$ at age x which
+        provides payments of $R$ per year continuously each year while
+        the life is in State $j$. The expected present value of this
+        annuity is: \vspace{2mm}
+
+        $R\bar{a}^{ij}_x$ =
+        $R\int^{\infty}_0 e^{- \delta t}{}_{t}p^{ij}_x
+        dt$. \vspace{5mm}
+
+    -   Consider an annuity on a life in State $i$ at age x which
+        provides payments of $R$ per year at the beginning of each year
+        while the life is in State $j$. The expected present value of
+        this annuity is: \vspace{2mm}
+
+        $R\ddot{a}^{ij}_x$ = $R\sum^{\infty}_{k = 0} v^k{}_{k}p^{ij}_x$.
+        \vspace{10mm}
+
+-   **Cash Flows Upon Transition Between States: Insurance**
+    \vspace{4mm}
+
+    -   Consider an insurance on a life in State $i$ at age x which
+        provides a payment of $S$ at the moment of transition into State
+        $j$. The expected present value of this insurance is:
+        \vspace{2mm}
+
+        $S\bar{A}^{ij}_x$ =
+        $S\sum_{j \neq k} \int^{\infty}_0 e^{- \delta
+        t}{}_{t}p^{ik}_x \mu^{kj}_{x + t}dt$. \vspace{5mm}
+
+    -   Consider an insurance on a life in State $i$ at age x which
+        provides a payment of $S$ at the end of the year of transition
+        into State $j$. The expected present value of this insurance is:
+        \vspace{2mm}
+
+        $S A^{ij}_x$ = $S\sum_{j \neq k} \sum^{\infty}_{t = 0} v^{t +
+        1}{}_{t}p^{ik}_x p^{kj}_{x + t}$. \vspace{2mm}
+
+        This formula really only makes sense if we assume that if (x)
+        enters State $j$, (x) has to remain in State $j$ until the end
+        of the year in order for $S$ to be payable at that time. We
+        usually assume that State $j$ is an absorbing state (once you
+        enter that state you can never leave it, for example, death)
+        and/or that at most one transition between states can occur
+        during a year.
+
+\newpage
+-   The expected present value formulas can easily be adjusted for a
+    finite $n$-year term. For example: \vspace{2mm}
+
+    $R\bar{a}^{ij}_{x :\lcroof{n}}$ = $R\int^{n}_0 e^{- \delta
+    t}{}_{t}p^{ij}_x dt$. \vspace{10mm}
+
+-   Level annual net premiums can be calculated using the equivalence
+    principle: \vspace{2mm}
+
+    $E[PVFB@0]$ = $E[PVFP@0]$.
+
+    \vspace{2mm} $E[PVFB@0]$ and $E[PVFP@0]$ will consider the future
+    states in the model, and each will be calculated using the
+    appropriate expected value formulas. We also usually assume that
+    policies are issued to healthy or active lives unless otherwise
+    indicated. \vspace{10mm}
+
+-   The net premium reserve at time $t$ for a life in State $i$ at that
+    time can be calculated using: \vspace{2mm}
+
+    ${}_{t}V^{(i)}$ = $E[PVFB@0|i]$ - $E[PVFP@0|i]$.
+
+    \vspace{2mm} $E[PVFB@0|i]$ and $E[PVFP@0|i]$ will consider the
+    future states in the model, and each will be calculated using the
+    appropriate expected value formulas. Note that we can have a
+    different reserve at time $t$ depending on the assumed state of the
+    life at that time.
+
+\newpage
+## Thiele’s Differential Equation - Multiple State Model Version
+
+-   Consider a fully continuous policy on (x), who can be in one of
+    ($n$ + 1) possible states at any given time. Let $i$, $j$ = 0, 1,
+    ..., $n$. For $t$ $>$ 0; let: \vspace{2mm}
+
+    -   $b^{(ij)}_t$ = benefits and expenses payable upon transition
+        from State $i$ to State $j$ at time $t$. \vspace{2mm}
+
+    -   $B^{(i)}_t$ = benefits and expenses payable while in State $i$
+        at time $t$ minus the gross premium payable while in State $i$
+        at time $t$. \vspace{2mm}
+
+    -   $\delta_t$ = the force of interest at time $t$. \vspace{2mm}
+
+    -   $\mu^{ij}_{x + t}$ = the force of transition between States $i$
+        and $j$ at age x + $t$. \vspace{2mm}
+
+    -   ${}_{t}V^{(i)}$ = gross premium reserve for a policy in State
+        $i$ at time $t$. \vspace{2mm}
+
+    -   ${}_{t}V^{(j)}$ = gross premium reserve for a policy in State
+        $j$ at time $t$.\vspace{5mm}
+
+-   Thiele’s Differential Equation - Multiple State Model Version is the
+    following: \vspace{2mm}
+
+    $\frac{d}{dt}[{}_{t}V^{(i)}]$ = $\delta_t$${}_{t}V^{(i)}$ -
+    $B^{(i)}_t$ - $\sum^n_{j = 0, j \neq i} (b^{(ij)}_t + {}_{t}V^{(j)}
+    - {}_{t}V^{(i)})$$\mu^{ij}_{x + t}$. \vspace{2mm}
+
+-   There is a very logical interpretation of Thiele’s Differential
+    Equation - Multiple State Model Version: \vspace{1mm}
+
+    “The change in the value of the reserve in State $i$ at time $t$ is
+    due to interest earned, the net benefits payable while in State $i$,
+    and the benefits and expenses payable and change in the reserve upon
+    transition from State $i$ to State $j$ (accounting for the
+    transition between states via $\mu^{ij}_{x + t}$ when necessary).”
+    \vspace{5mm}
+
+-   Euler’s backward method provides a discrete approximation:
+    \vspace{1mm}
+
+    ${}_{t}V^{(i)} - {}_{t - h}V^{(i)}$ $\approx$
+    $h$ [$\delta_t{}_{t}V^{(i)} - B^{(i)}_t - \sum^n_{j = 0, j \neq i}
+    (b^{(ij)}_t + {}_{t}V^{(j)} - {}_{t}V^{(i)})\mu^{ij}_{x + t}$ ].
+    \vspace{2mm}
+
+    By picking small time intervals for $h$ (an $m$-th of a year), we
+    can approximate other reserve values given one reserve value.
+    \vspace{5mm}
+
+\newpage
+## Exercises
+
+\Large
+
+11.1. A 4-state model is used to model the status of a resident in a
+Continuing Care Retirement Community (CCRC), with states: \vspace{4mm}
+
+\(i) State 0: Independent Living \vspace{2mm}
+
+\(ii) State 1: Temporary Health Care \vspace{2mm}
+
+\(iii) State 2: Permanent Health Care \vspace{2mm}
+
+\(iv) State 3: Gone from the CCRC \vspace{4mm}
+
+If a resident is in Permanent Health Care, that resident can never
+return to Independent Living or Temporary Health Care. If a resident is
+Gone from the CCRC, that resident can never return to Independent
+Living, Temporary Health Care, or Permanent Health Care. \vspace{4mm}
+
+You are given the following transition intensities: \vspace{4mm}
+
+$\mu^{01}$ = 0.02, $\mu^{02}$ = 0.01, $\mu^{03}$ = 0.005, \vspace{2mm}
+
+$\mu^{10}$ = 0.02, $\mu^{12}$ = 0.02, $\mu^{13}$ = 0.01, $\mu^{23}$ =
+0.03 \vspace{4mm}
+
+Calculate the probability that a resident who is in Permanent Health
+Care will be Gone from the CCRC within four years. \vspace{4mm}
+
+\(A) 0.11 \hspace{0.2in} (B) 0.12 \hspace{0.2in} (C) 0.13 \hspace{0.2in}
+(D) 0.14 \hspace{0.2in} (E) 0.15 \vspace{15mm}
+
+\newpage
+11.2. The number of dollars Sam wins in successive games follows a
+3-state model: \vspace{4mm}
+
+\(i) States 0, 1, 2 correspond to 0, 1, or 2 dollars won in a game.
+\vspace{2mm}
+
+\(ii) For $k$ = 0, 1, 2,...; the transition probabilities are:
+\vspace{4mm}
+
+$\begin{array}{r|r|r|r}
+\hline
+i & p^{i0}_{x + k} & p^{i1}_{x + k} & p^{i2}_{x + k} \\
+\hline
+0 & 0.2 & 0.5 & 0.3   \\
+1 & 0.1 & 0.6 & 0.3   \\
+2 & 0.1 & 0.5 & 0.4   \\
+\hline
+\end{array}$
+
+\(iii) Sam won zero dollars in the first game today. \vspace{4mm}
+
+Calculate the probability that Sam will win at least three dollars in
+the next two games today. \vspace{4mm}
+
+\(A) 0.36 \hspace{0.2in} (B) 0.38 \hspace{0.2in} (C) 0.40 \hspace{0.2in}
+(D) 0.42 \hspace{0.2in} (E) 0.44 \vspace{15mm}
+
+11.3. The Complicated Insurance Company classifies its policyholders
+with a 3-state model based on each policyholder’s credit rating, as one
+of Preferred (State 0), Standard (State 1), or Poor (State 2). You are
+provided the following annual transition probabilities, for $k$ = 0, 1,
+2,...: \vspace{4mm}
+
+$\begin{array}{r|r|r}
+\hline
+i & p^{i0}_{x + k} & p^{i1}_{x + k}  \\
+\hline
+0 & 0.95 & 0.04 \\
+1 & 0.15 & 0.80 \\
+2 & 0.00 & 0.25 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Calculate the probability that a policyholder classified as Preferred at
+age x will be classified as Standard at age x + 3. \vspace{4mm}
+
+\(A) 0.06 \hspace{0.2in} (B) 0.07 \hspace{0.2in} (C) 0.08 \hspace{0.2in}
+(D) 0.09 \hspace{0.2in} (E) 0.10
+
+\newpage
+11.4. Consider the Disability Income Insurance Model in Examples of
+Multiple State Models. You are given: \vspace{4mm}
+
+$\mu^{01}_x$ = 0.010$x$, $\mu^{02}_x$ = 0.002$x$, $\mu^{10}_x$ =
+0.006$x$, $\mu^{12}_x$ = 0.004$x$ \vspace{4mm}
+
+Calculate: ${}_{10}p^{\overline{11}}_{25}$. \vspace{4mm}
+
+\(A) 0.050 \hspace{0.2in} (B) 0.055 \hspace{0.2in} (C) 0.060
+\hspace{0.2in} (D) 0.065 \hspace{0.2in} (E) 0.070 \vspace{10mm}
+
+11.5. In a Continuing Care Retirement Community (CCRC), a resident may
+be in one of four possible states: Independent Living (State 1),
+Temporarily in the Health Center (State 2), Permanently in the Health
+Center (State 3), or Gone (State 4). The probabilities of a resident
+transitioning between these states are as follows for $k$ = 0, 1, 2,
+...: \vspace{4mm}
+
+\(i) $p^{11}_{x + k}$ = 0.60, $p^{12}_{x + k}$ = 0.15, $p^{13}_{x +
+k}$ = 0.15 \vspace{2mm}
+
+\(ii) $p^{21}_{x + k}$ = 0.50, $p^{22}_{x + k}$ = 0.20, $p^{23}_{x +
+k}$ = 0.20 \vspace{2mm}
+
+\(iii) $p^{33}_{x + k}$ = 0.90, $p^{34}_{x + k}$ = 0.10, $p^{44}_{x +
+k}$ = 1 \vspace{4mm}
+
+Calculate the probability that a resident currently in Independent
+Living will be in Independent Living at the end of three years.
+\vspace{4mm}
+
+\(A) 0.30 \hspace{0.2in} (B) 0.32 \hspace{0.2in} (C) 0.34 \hspace{0.2in}
+(D) 0.36 \hspace{0.2in} (E) 0.38 \vspace{10mm}
+
+11.6. Consider the Permanent Disability Model in Examples of Multiple
+State Models. You are given: \vspace{4mm}
+
+$\mu^{01}$ = 0.06, $\mu^{02}$ = 0.02, $\mu^{12}$ = 0.03 \vspace{4mm}
+
+Calculate the probability that a healthy life will be dead at the end of
+five years without ever becoming disabled. \vspace{4mm}
+
+\(A) 0.073 \hspace{0.2in} (B) 0.076 \hspace{0.2in} (C) 0.079
+\hspace{0.2in} (D) 0.082 \hspace{0.2in} (E) 0.085 \vspace{10mm}
+
+\newpage
+11.7. Consider the Disability Income Insurance Model in Examples of
+Multiple State Models. You are given: \vspace{4mm}
+
+$\mu^{01}$ = 0.06, $\mu^{02}$ = 0.02, $\mu^{10}$ = 0.04, $\mu^{12}$ =
+0.03 \vspace{4mm}
+
+Calculate the probability that a healthy life will die within 10 years,
+where the healthy life will first become sick and then remain sick until
+death. \vspace{4mm}
+
+\(A) 0.052 \hspace{0.2in} (B) 0.056 \hspace{0.2in} (C) 0.060
+\hspace{0.2in} (D) 0.064 \hspace{0.2in} (E) 0.068 \vspace{10mm}
+
+11.8. Consider the following 3-state model for the career progression of
+an actuary: Analyst (0), Associate (1), Fellow (2). Furthermore:
+\vspace{4mm}
+
+\(i) The only possible transitions: State 0 to State 1, State 1 to State
+2. \vspace{2mm}
+
+\(ii) $\mu^{01}$ = 0.8 and $\mu^{12}$ = 0.6 \vspace{4mm}
+
+Calculate the probability that an Analyst will not be a Fellow at the
+end of 5 years. \vspace{4mm}
+
+\(A) 0.10 \hspace{0.2in} (B) 0.12 \hspace{0.2in} (C) 0.14 \hspace{0.2in}
+(D) 0.16 \hspace{0.2in} (E) 0.18 \vspace{10mm}
+
+11.9. For a homogeneous Markov model with three states: Healthy (H),
+Sick (S), and Dead (D), the monthly transition probabilities are:
+\vspace{4mm}
+
+$\begin{array}{r|r|r|r}
+\hline
+ & \textbf{H} & \textbf{S} & \textbf{D}\\
+\hline
+\textbf{H}  & 0.75 & 0.20 & 0.05 \\
+\textbf{S}  & 0.30 & 0.50 & 0.20 \\
+\textbf{D}  & 0.00 & 0.00 & 1.00 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Calculate the probability that a healthy life will die within the first
+three months. \vspace{4mm}
+
+\(A) 0.20 \hspace{0.2in} (B) 0.21 \hspace{0.2in} (C) 0.22 \hspace{0.2in}
+(D) 0.23 \hspace{0.2in} (E) 0.24 \vspace{20mm}
+
+\newpage
+11.10. For a 3-state model: Healthy (0), Disabled (1), and Dead (2):
+\vspace{4mm}
+
+\(i) $p^{00}_{x + k}$ = 0.7 for $k$ = 0, 1, ... \vspace{2mm}
+
+\(ii) $p^{01}_{x + k}$ = 0.2 for $k$ = 0, 1, ... \vspace{2mm}
+
+\(iii) $p^{10}_{x + k}$ = 0.1 for $k$ = 0, 1, ... \vspace{2mm}
+
+\(iv) $p^{11}_{x + k}$ = 0.6 for $k$ = 0, 1, ... \vspace{2mm}
+
+\(v) There are 1000 Healthy independent lives at time 0. \vspace{4mm}
+
+Calculate the expected number of lives who will survive the first two
+years. \vspace{4mm}
+
+\(A) 710 \hspace{0.2in} (B) 730 \hspace{0.2in} (C) 750 \hspace{0.2in} (D)
+770 \hspace{0.2in} (E) 790 \vspace{10mm}
+
+11.11. Johnson Inc.’s financial status is modeled using a 3-state model
+with states: Healthy (H), Distressed (D), and Liquidated (L).
+Transitions between states occur annually according to the following
+transition probability matrix: \vspace{2mm}
+
+$\begin{array}{r|r|r|r}
+\hline
+ & \textbf{H} & \textbf{D} & \textbf{L}\\
+\hline
+\textbf{H}  & 0.85 & 0.10 & 0.05 \\
+\textbf{D}  & 0.15 & 0.70 & 0.15 \\
+\textbf{L}  & 0.00 & 0.00 & 1.00 \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+Currently, Johnson Inc. is Healthy, and has just issued a three-year
+zero coupon bond. The face amount of the bond is: \vspace{4mm}
+
+\(i) 100,000, if Johnson Inc. is Healthy three years from now.
+\vspace{2mm}
+
+\(ii) uniformly distributed between 30,000 and 100,000, if Johnson Inc.
+is Distressed three years from now. \vspace{2mm}
+
+\(iii) 30,000 if Johnson Inc. is Liquidated three years from now.
+\vspace{4mm}
+
+If Johnson Inc. is Distressed one year from now, calculate the
+probability that the face amount exceeds 50,000. \vspace{4mm}
+
+\(A) 0.55 \hspace{0.2in} (B) 0.57 \hspace{0.2in} (C) 0.59 \hspace{0.2in}
+(D) 0.61 \hspace{0.2in} (E) 0.63 \vspace{10mm}
+
+\newpage
+11.12. A 4-state heterogeneous discrete-time Markov model is used to
+model an employee’s eligibility for employee benefits, with states:
+Active (0), Temporarily Disabled (1), Permanently Disabled (2), and
+Inactive (3). \vspace{4mm}
+
+\(i) The annual probability transition matrices are: \vspace{2mm}
+
+$\begin{array}{r|r|r|r|r}
+\hline
+i & p^{i0}_{x} & p^{i1}_{x} & p^{i2}_{x} & p^{i3}_{x}  \\
+\hline
+0 & 0.82 & 0.08 & 0.06 & 0.04  \\
+1 & 0.17 & 0.63 & 0.14 & 0.06  \\
+2 & 0.00 & 0.00 & 0.79 & 0.21  \\
+3 & 0.00 & 0.00 & 0.00 & 1.00  \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+$\begin{array}{r|r|r|r|r}
+\hline
+i & p^{i0}_{x + 1} & p^{i1}_{x + 1} & p^{i2}_{x + 1} & p^{i3}_{x + 1}  \\
+\hline
+0 & 0.80 & 0.10 & 0.05 & 0.05  \\
+1 & 0.11 & 0.65 & 0.16 & 0.08  \\
+2 & 0.00 & 0.00 & 0.77 & 0.23  \\
+3 & 0.00 & 0.00 & 0.00 & 1.00  \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+$\begin{array}{r|r|r|r|r}
+\hline
+i & p^{i0}_{x + 2} & p^{i1}_{x + 2} & p^{i2}_{x + 2} & p^{i3}_{x + 2}  \\
+\hline
+0 & 0.79 & 0.11 & 0.05 & 0.05  \\
+1 & 0.08 & 0.66 & 0.17 & 0.09  \\
+2 & 0.00 & 0.00 & 0.75 & 0.25  \\
+3 & 0.00 & 0.00 & 0.00 & 1.00  \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+\(ii) Transitions between states can only occur at the end of the year.
+\vspace{4mm}
+
+Consider a group of 80 active employees each aged x. Their future states
+are independent. Calculate the variance of the number of the 80 active
+employees that will be temporarily disabled at the end of three years.
+\vspace{4mm}
+
+\(A) 7 \hspace{0.2in} (B) 8 \hspace{0.2in} (C) 9 \hspace{0.2in} (D) 10
+\hspace{0.2in} (E) 11 \vspace{10mm}
+
+\newpage
+11.13. Consider the Permanent Disability Model in Examples of Multiple
+State Models. You are given the following transition intensities:
+\vspace{4mm}
+
+$\mu^{01}_{x}$ = 0.0001$x^2$, $\mu^{02}_{x}$ = 0.00005$x^3$,
+$\mu^{12}_{x}$ = 0.005$(1.08)^x$ \vspace{4mm}
+
+Transition probabilities are estimated using Kolmogorov’s forward
+equations solved numerically with Euler’s forward method. A step of $h$
+= 0.1 is used. \vspace{2mm}
+
+Estimate the probability that a healthy life aged 10 is disabled at age
+10.2. \vspace{4mm}
+
+\(A) 0.001 \hspace{0.2in} (B) 0.002 \hspace{0.2in} (C) 0.003
+\hspace{0.2in} (D) 0.004 \hspace{0.2in} (E) 0.005 \vspace{10mm}
+
+11.14. Consider the Disability Income Insurance Model in Examples of
+Multiple State Models. You are given the following transition
+intensities: \vspace{4mm}
+
+$\mu^{01}_{x}$ = $0.000003e^{0.1382x}$, $\mu^{02}_{x}$ =
+$0.000076e^{0.0875x}$, $\mu^{10}_{x}$ = 0.1$\mu^{01}_{x}$,
+$\mu^{12}_{x}$ = $\mu^{02}_{x}$ \vspace{4mm}
+
+Transition probabilities are estimated using Kolmogorov’s forward
+equations solved numerically with Euler’s forward method using a step of
+$h$ = 0.1. \vspace{2mm}
+
+Find the probability a healthy life aged 45 is dead at age 45.1.
+\vspace{4mm}
+
+\(A) 0.0001 \hspace{0.2in} (B) 0.0002 \hspace{0.2in} (C) 0.0003
+\hspace{0.2in} (D) 0.0004 \hspace{0.2in} (E) 0.0005 \vspace{10mm}
+
+11.15. Consider a 3-state model on (x) with States 0, 1, and 2:
+\vspace{4mm}
+
+\(i) The only possible transitions are from State 0 to State 1 and State
+0 to State 2. \vspace{2mm}
+
+\(ii) $\mu^{01}_x$ = 0.002$x$ + 0.00001$x^2$ \vspace{2mm}
+
+\(iii) $\mu^{02}_x$ = 0.05 \vspace{4mm}
+
+Calculate the derivative of ${}_{t}p^{00}_{35}$ with respect to $t$
+evaluated at $t$ = 5.7. \vspace{4mm}
+
+\(A) - 0.07 \hspace{0.2in} (B) -0.03 \hspace{0.2in} (C) - 0.01
+\hspace{0.2in} (D) 0.05 \hspace{0.2in} (E) 0.08 \vspace{10mm}
+
+\newpage
+11.16. Professors at a university can be in: \vspace{4mm}
+
+State 0: Non-tenured professor \vspace{2mm}
+
+State 1: Tenured professor \vspace{2mm}
+
+State 2: Dismissed from the university \vspace{4mm}
+
+Paul joins the university as a non-tenured professor at age 30. You are
+given: \vspace{4mm}
+
+\(i) $$\mu^{01}_{30 + t} = \left\{
+  \begin{array}{l l}
+    0.10 & \quad \text{for $t$ $\le$ 6}\\
+    0.00             & \quad \text{for $t$ $>$ 6}\\
+  \end{array} \right.$$ \vspace{2mm}
+
+\(ii) $$\mu^{02}_{30 + t} = \left\{
+  \begin{array}{l l}
+    0.05 & \quad \text{for $t$ $\le$ 6}\\
+    0.20             & \quad \text{for $t$ $>$ 6}\\
+  \end{array} \right.$$ \vspace{2mm} \vspace{2mm}
+
+\(iii) $\mu^{12}_{30 + t}$ = 0.001 for $t$ $>$ 0 \vspace{2mm}
+
+\(iv) Tenured professors can never return to the non-tenured professor
+state. \vspace{2mm}
+
+\(v) Professors dismissed from the university can never get rehired.
+\vspace{2mm}
+
+\(vi) Paul has mortality such that: $\mu_{30 + t}$ = 0.006$(1.02)^{30
++ t}$ for $t$ $>$ 0, regardless of state. \vspace{4mm}
+
+Calculate the probability that Paul will be a tenured professor at the
+university at age 40. \vspace{4mm}
+
+\(A) 0.35 \hspace{0.2in} (B) 0.39 \hspace{0.2in} (C) 0.43 \hspace{0.2in}
+(D) 0.47 \hspace{0.2in} (E) 0.50 \vspace{10mm}
+
+\newpage
+11.17. A life aged x follows the Disability Income Insurance Model in
+Examples of Multiple State Models. The constant forces of transition
+are: \vspace{4mm}
+
+$\mu^{01}$ = 0.020, $\mu^{02}$ = 0.010, $\mu^{10}$ = 0.015, $\mu^{12}$ =
+0.035. \vspace{2mm}
+
+Using Euler’s forward method with a step size of $h$ = 0.1 to
+numerically solve Kolmogorov’s forward equations, it has been determined
+that ${}_{0.1}p^{01}_x$ is equal to 0.002. \vspace{2mm}
+
+Using Euler’s forward method with a step size of $h$ = 0.1 to
+numerically solve Kolmogorov’s forward equations, calculate
+10,000${}_{0.2}p^{02}_x$.\vspace{4mm}
+
+\(A) 20.0 \hspace{0.2in} (B) 20.1 \hspace{0.2in} (C) 20.2 \hspace{0.2in}
+(D) 20.3 \hspace{0.2in} (E) 20.4 \vspace{5mm}
+
+11.18. Consider the following 3-state model for the career progression
+of an actuary: Analyst (0), Associate (1), Fellow (2). Furthermore:
+\vspace{4mm}
+
+\(i) The only possible transitions: State 0 to State 1, State 1 to State
+2. \vspace{2mm}
+
+\(ii) $\mu^{01}$ = 0.8 and $\mu^{12}$ = 0.6 \vspace{4mm}
+
+Estimate the probability that an Analyst aged x will be an Associate at
+age x + 0.4 using Euler’s forward method with step size 0.2 to
+numerically solve Kolmogorov’s forward equations. \vspace{4mm}
+
+\(A) 0.26 \hspace{0.2in} (B) 0.28 \hspace{0.2in} (C) 0.30 \hspace{0.2in}
+(D) 0.32 \hspace{0.2in} (E) 0.34 \vspace{5mm}
+
+11.19. Consider a special 5-year term insurance: \vspace{4mm}
+
+\(i) The multiple state model underlying this insurance is the Permanent
+Disability Model in Examples of Multiple State Models, with transition
+intensities: $\mu^{01}$ = 0.03, $\mu^{02}$ = 0.01, and $\mu^{12}$ =
+0.05. \vspace{2mm}
+
+\(ii) The insurance is only issued to healthy individuals. \vspace{2mm}
+
+\(iii) The insurance pays 5000 at the moment of death. \vspace{2mm}
+
+\(iv) $\delta$ = 0.06 \vspace{4mm}
+
+Calculate the net single premium for this insurance. \vspace{4mm}
+
+\(A) 260 \hspace{0.2in} (B) 280 \hspace{0.2in} (C) 300\hspace{0.2in} (D)
+320 \hspace{0.2in} (E) 340 \vspace{10mm}
+
+11.20. Consider the Permanent Disability Model in Examples of Multiple
+State Models. You are given: (i) $\mu^{01}$ = 0.07, $\mu^{02}$ = 0.05,
+$\mu^{12}$ = 0.12 and (ii) $\delta$ = 0.04. \vspace{4mm}
+
+A 10-year insurance issued on a healthy life aged x pays a benefit of
+5000 at the moment of transition to disabled. Benefit premiums are
+payable continuously while the policyholder is healthy. \vspace{4mm}
+
+Calculate the annual rate of benefit premium. \vspace{4mm}
+
+\(A) 250 \hspace{0.2in} (B) 300 \hspace{0.2in} (C) 350 \hspace{0.2in} (D)
+400 \hspace{0.2in} (E) 450 \vspace{10mm}
+
+11.21. You are given: \vspace{4mm}
+
+\(i) Paul, aged 36, is subject to the Permanent Disability Model: a
+3-state model with states Healthy (State 0), Disabled (State 1), and
+Dead (State 2). \vspace{2mm}
+
+The only possible transitions between states are: State 0 to State 1,
+State 0 to State 2, and State 1 to State 2. \vspace{4mm}
+
+\(ii) You are given the following annual transition probabilities:
+\vspace{4mm}
+
+$p^{00}_{36}$ = 0.70, $p^{01}_{36}$ = 0.20, $p^{11}_{36}$ = 0.30
+\vspace{4mm}
+
+$p^{00}_{37}$ = 0.65, $p^{01}_{37}$ = 0.25, $p^{11}_{37}$ = 0.35
+\vspace{4mm}
+
+$p^{00}_{38}$ = 0.60, $p^{01}_{38}$ = 0.30, $p^{11}_{38}$ = 0.40
+\vspace{4mm}
+
+\(iii) Paul is currently healthy (at age 36). \vspace{4mm}
+
+\(iv) $i$ = 0.04 \vspace{4mm}
+
+Calculate the expected present value of 10,000 payable at the end of
+three years if Paul is disabled at the end of three years (at age 39).
+\vspace{4mm}
+
+\(A) 2000 \hspace{0.2in} (B) 2020 \hspace{0.2in} (C) 2040 \hspace{0.2in}
+(D) 2060 \hspace{0.2in} (E) 2080 \vspace{10mm}
+
+\newpage
+11.22. An insurer has just issued a special policy on a life using the
+Permanent Disability Model in Examples of Multiple State Models. The
+policy has a ten-year term, and pays 100,000 at the moment the life
+exits the healthy state. \vspace{4mm}
+
+Furthermore: \vspace{4mm}
+
+\(i) The life is healthy when the policy is issued. \vspace{2mm}
+
+\(ii) $\delta$ = 0.06 \vspace{2mm}
+
+\(iii) You are given the following constant transition intensities:
+\vspace{4mm}
+
+$\mu^{01}$ = 0.020, $\mu^{02}$ = 0.005, $\mu^{12}$ = 0.035. \vspace{4mm}
+
+Calculate the expected present value of the benefits of the
+policy.\vspace{4mm}
+
+\(A) 16,200 \hspace{0.2in} (B) 16,400 \hspace{0.2in} (C) 16,600
+\hspace{0.2in} (D) 16,800 \hspace{0.2in} (E) 17,000 \vspace{20mm}
+
+11.23. Consider the Permanent Disability Model in Examples of Multiple
+State Models: \vspace{4mm}
+
+\(i) $\mu^{01}$ = 0.05, $\mu^{02}$ = 0.08, $\mu^{12}$ = 0.06 \vspace{2mm}
+
+\(ii) $\delta$ = 0.03 \vspace{4mm}
+
+An annuity issued on a healthy life aged x pays a benefit of 30,000 per
+year continuously each year while the life is in the disabled state. Net
+premiums are payable continuously each year while the life is in the
+healthy state. \vspace{4mm}
+
+Calculate the annual rate of net premium. \vspace{4mm}
+
+\(A) 16,000 \hspace{0.2in} (B) 16,400 \hspace{0.2in} (C) 16,700
+\hspace{0.2in} (D) 17,000 \hspace{0.2in} (E) 17,500 \vspace{10mm}
+
+\newpage
+11.24. Consider the Disability Income Insurance Model in Examples of
+Multiple State Models: The annual transition probabilities are:
+\vspace{2mm}
+
+$p^{00}_{x + k}$ = 0.7, $p^{01}_{x + k}$ = 0.2, $p^{10}_{x + k}$ = 0.5,
+$p^{11}_{x + k}$ = 0.3 for $k$ = 0, 1, 2, ..., \vspace{2mm}
+
+Consider a special 3-year insurance issued on a healthy individual:
+\vspace{4mm}
+
+\(i) 1000 is payable at the end of the year of death. \vspace{2mm}
+
+\(ii) Level benefit premiums of $P$ are paid at the beginning of the year
+while the individual is healthy, and level benefit premiums of $0.5P$
+are paid at the beginning of the year while the individual is sick.
+\vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{4mm}
+
+Calculate the benefit reserve at time 2 assuming the individual is
+healthy at that time. \vspace{4mm}
+
+\(A) - 30 \hspace{0.2in} (B) - 20 \hspace{0.2in} (C) - 10 \hspace{0.2in}
+(D) 0 \hspace{0.2in} (E) 10 \vspace{5mm}
+
+11.25. Consider a three-year disability income insurance policy on Jake:
+\vspace{4mm}
+
+\(i) Jake’s status is modeled using a 3-state model with states: Healthy
+(H), Sick (S), and Dead (D), with annual transition probabilities:
+\vspace{4mm}
+
+$\begin{array}{r|r|r|r}
+\hline
+ & \textbf{H} & \textbf{S} & \textbf{D}\\
+\hline
+\textbf{H}  & 0.75 & 0.20 & 0.05 \\
+\textbf{S}  & 0.30 & 0.50 & 0.20 \\
+\textbf{D}  & 0.00 & 0.00 & 1.00 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+\(ii) Jake is healthy when the policy is issued. \vspace{2mm}
+
+\(iii) 50,000 is payable at the beginning of the year if Jake is sick.
+100,000 is payable at the end of the year of death of Jake. \vspace{2mm}
+
+\(iv) Level net premiums are payable at the beginning of the year if Jake
+is healthy. \vspace{4mm}
+
+\(v) $i$ = 0.05 \vspace{4mm}
+
+Calculate the net premium. \vspace{4mm}
+
+\(A) 16,600 \hspace{0.2in} (B) 17,000 \hspace{0.2in} (C) 17,400
+\hspace{0.2in} (D) 17,800 \hspace{0.2in} (E) 18,200 \vspace{6mm}
+
+\newpage
+11.26. A life insurer is planning to issue whole life disability income
+policies. Each of these policies has the following features:
+\vspace{4mm}
+
+\(i) A policy will be issued on (x). \vspace{4mm}
+
+\(ii) (x) is subject to a 3-state model: Healthy (0), Disabled (1), and
+Dead (2). \vspace{4mm}
+
+The only possible transitions are: \vspace{2mm}
+
+-   State 0 to State 1, with $\mu^{01}$ = 0.03, \vspace{2mm}
+
+-   State 0 to State 2, with $\mu^{02}$ = 0.01, \vspace{2mm}
+
+-   State 1 to State 2, with $\mu^{12}$ = 0.05. \vspace{4mm}
+
+\(iii) A disability benefit of 20,000 per year is payable continuously
+each year while (x) is disabled. \vspace{4mm}
+
+\(iv) Level premiums of $P$ per year are payable continuously each year
+while (x) is healthy. \vspace{4mm}
+
+\(v) A policy will only be issued on a healthy (x). \vspace{4mm}
+
+\(vi) $i$ = 0.05 \vspace{4mm}
+
+\(vii) It is assumed that the life insurer will incur no expenses while a
+policy is in force. \vspace{4mm}
+
+Calculate $P$ using the equivalence principle. \vspace{4mm}
+
+\(A) 6100 \hspace{0.2in} (B) 6200 \hspace{0.2in} (C) 6300 \hspace{0.2in}
+(D) 6400 \hspace{0.2in} (E) 6500 \vspace{6mm}
+
+\newpage
+11.27. Consider a special 3-year policy on Leonard aged x: \vspace{4mm}
+
+\(i) The multiple state model underlying this policy is the Disability
+Income Insurance Model in Examples of Multiple State Models, with:
+\vspace{4mm}
+
+$p^{00}_{x}$ = 0.70, $p^{01}_{x}$ = 0.20, $p^{10}_{x}$ = 0.50,
+$p^{11}_{x}$ = 0.30 \vspace{4mm}
+
+$p^{00}_{x + 1}$ = 0.65, $p^{01}_{x + 1}$ = 0.25, $p^{10}_{x + 1}$ =
+0.45, $p^{11}_{x + 1}$ = 0.35 \vspace{4mm}
+
+$p^{00}_{x + 2}$ = 0.60, $p^{01}_{x + 2}$ = 0.30, $p^{10}_{x + 2}$ =
+0.40, $p^{11}_{x + 2}$ = 0.40 \vspace{4mm}
+
+\(ii) Transitions between states occur only once per year. \vspace{2mm}
+
+\(iii) 5000 is payable at the beginning of the year if Leonard is sick.
+\vspace{2mm}
+
+\(iv) Level net premiums are payable at the beginning of the year only if
+Leonard is healthy. \vspace{2mm}
+
+\(v) $i$ = 0.04 \vspace{2mm}
+
+\(vi) Leonard is in the healthy state at policy issue. \vspace{4mm}
+
+Calculate the net premium reserve at time 1 assuming Leonard is sick at
+that time. \vspace{4mm}
+
+\(A) 5100 \hspace{0.2in} (B) 5400 \hspace{0.2in} (C) 5700 \hspace{0.2in}
+(D) 6000 \hspace{0.2in} (E) 6300 \vspace{6mm}
+
+\newpage
+11.28. Finn, aged 55, is an employee at Johnson Inc. \vspace{2mm}
+
+Finn’s status at Johnson Inc. follows a heterogeneous 3-state model with
+states: Employed (0), Dead (1), and Permanent Exit Due to All Other
+Causes Than Death (2). Some of Finn’s annual transition probabilities
+are: \vspace{4mm}
+
+-   $p^{00}_{55 + k}$ = 0.95(1 - 0.01$k$) for $k$ = 0, 1, 2
+
+-   $p^{01}_{55 + k}$ = 0.03(1 + 0.005$k$) for $k$ = 0, 1, 2
+    \vspace{4mm}
+
+Johnson Inc. offers two policies to Finn: Plan I and Plan II.
+\vspace{2mm}
+
+Each plan is a special 3-year term insurance, and for each plan:
+\vspace{4mm}
+
+-   Finn receives 100,000 at the end of the year of death. \vspace{2mm}
+
+-   Finn pays level annual net premiums at the beginning of the year
+    while he is employed. \vspace{2mm}
+
+-   $i$ = 0.05 \vspace{4mm}
+
+Furthermore: \vspace{4mm}
+
+\(i) Under the Plan I policy, Finn receives zero benefit at the end of
+the year if he enters State 2 during the year.\vspace{2mm}
+
+\(ii) Under the Plan II policy, Finn receives a refund of 50% of all
+premiums previously paid, each accumulated with interest at an annual
+effective rate of 3%, at the end of the year if he enters State 2 during
+the year. \vspace{4mm}
+
+Calculate the extra amount of premium that Finn would pay each year if
+he chooses the Plan II policy over the Plan I policy. \vspace{4mm}
+
+\(A) 80 \hspace{0.2in} (B) 82 \hspace{0.2in} (C) 84 \hspace{0.2in} (D) 86
+\hspace{0.2in} (E) 88
+
+\newpage
+11.29. For a multi-state model of a special 3-year term insurance on
+(x): \vspace{4mm}
+
+\(i) Insureds may be in one of three states at the beginning of each
+year: active (State 0), disabled (State 1), or dead (State 2). The
+annual transition probabilities are as follows for $k$ = 0, 1, 2:
+\vspace{4mm}
+
+$\begin{array}{r|r|r|r}
+\hline
+\textbf{State i} & \mathbf{p^{i0}_{x+k}} & \mathbf{p^{i1}_{x+k}} & \mathbf{p^{i2}_{x+k}}  \\
+\hline
+0 & 0.8 & 0.1 & 0.1  \\
+1 & 0.1 & 0.7 & 0.2  \\
+2 & 0.0 & 0.0 & 1.0  \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+\(ii) A 100,000 benefit is payable at the end of the year of death
+whether the insured was active or disabled. \vspace{2mm}
+
+\(iii) Premiums of 10,695 are paid at the beginning of each year when
+active. Insureds do not pay any annual premiums when they are disabled
+at the start of the year. \vspace{2mm}
+
+\(iv) All insureds are active (State 0) at issue. \vspace{2mm}
+
+\(v) $v$ = 0.90 \vspace{4mm}
+
+Calculate the reserve at time 1 for a disabled life at that time.
+\vspace{4mm}
+
+\(A) 28,000 \hspace{0.2in} (B) 28,500 \hspace{0.2in} (C) 29,000
+\hspace{0.2in} (D) 29,500 \hspace{0.2in} (E) 30,000 \vspace{5mm}
+
+11.30. Consider the Permanent Disability Model in Examples of Multiple
+State Models: \vspace{4mm}
+
+$\mu^{01}$ = 0.04, $\mu^{02}$ = 0.02, and $\mu^{12}$ = 0.05, $\delta$ =
+0.05 \vspace{4mm}
+
+A special 15-year policy is issued on (x). This policy pays a benefit of
+20,000 per year continuously each year while (x) is disabled, and pays
+100,000 at the moment of death of (x). A premium of 8000 per year is
+payable continuously each year while (x) is healthy. \vspace{2mm}
+
+Calculate the reserve in the disabled state at time 14.6 using Euler’s
+backward method with $h$ = 0.2 to numerically solve Thiele’s
+Differential Equation. \vspace{4mm}
+
+\(A) 5000 \hspace{0.2in} (B) 6225 \hspace{0.2in} (C) 7450 \hspace{0.2in}
+(D) 8675 \hspace{0.2in} (E) 9900 \vspace{10mm}
+
+\newpage
+11.31. Consider the setup provided in Exercise 11.30. Calculate the
+reserve in the healthy state at time 14.6 using Euler’s backward method
+with a step size of 0.2, to numerically solve Thiele’s Differential
+Equation. \vspace{4mm}
+
+\(A) -2600 \hspace{0.2in} (B) -2300 \hspace{0.2in} (C) -2000
+\hspace{0.2in} (D) -1600 \hspace{0.2in} (E) -1200 \vspace{20mm}
+
+11.32. Consider a special 20-year policy issued on (x): \vspace{4mm}
+
+\(i) (x) follows the Permanent Disability Model in Examples of Multiple
+State Models, with transition intensities: $\mu^{01}$ = 0.025,
+$\mu^{02}$ = 0.010, $\mu^{12}$ = 0.040. \vspace{2mm}
+
+\(ii) Premiums of 28,500 per year are payable continuously each year
+while (x) is healthy. \vspace{2mm}
+
+\(iii) Benefits of 100,000 per year are payable continuously each year
+while (x) is disabled. \vspace{2mm}
+
+\(iv) A benefit of 500,000 is payable at the moment of death of (x).
+\vspace{2mm}
+
+\(v) $\delta$ = 0.04 \vspace{2mm}
+
+\(vi) (x) is healthy when the policy is issued. \vspace{4mm}
+
+Using Euler’s backward method to numerically solve Thiele’s Differential
+Equation with a time step of $h$ = 0.2, calculate the gross premium
+reserve at time 19.6 assuming (x) is disabled at time 19.6. \vspace{4mm}
+
+\(A) 47,000 \hspace{0.2in} (B) 47,300 \hspace{0.2in} (C) 47,600
+\hspace{0.2in} (D) 47,900 \hspace{0.2in} (E) 48,200 \vspace{10mm}
+
+\newpage
+11.33. A 3-state model is being used to value a 10-year sickness benefit
+policy on (x): \vspace{6mm}
+
+\(i) The states are: Healthy (State 0), Sick (State 1), and Dead (State
+2). \vspace{6mm}
+
+\(ii) The only possible transitions between states are: \vspace{2mm}
+
+State 0 to State 1, State 0 to State 2, State 1 to State 0, State 1 to
+State 2. \vspace{6mm}
+
+\(iii) You are given the following transition intensities for $t$ $>$ 0:
+\vspace{2mm}
+
+$\mu^{01}_{x + t}$ = 0.04, $\mu^{02}_{x + t}$ = 0.02, $\mu^{10}_{x +
+t}$ = 0.01, $\mu^{12}_{x + t}$ = 0.05. \vspace{6mm}
+
+\(iv) Premiums of 1500 per year are payable continuously each year while
+(x) is healthy. \vspace{6mm}
+
+\(v) Sickness benefits of 20,000 per year are payable continuously each
+year while (x) is sick. \vspace{6mm}
+
+\(vi) There are no expenses. \vspace{6mm}
+
+\(vii) $\delta$ = 0.05 \vspace{6mm}
+
+Calculate the reserve in the sick state at time 9.8 using Euler’s
+backward method with a step size of 0.1 to numerically solve Thiele’s
+Differential Equation. \vspace{4mm}
+
+\(A) 3600 \hspace{0.2in} (B) 3700 \hspace{0.2in} (C) 3800 \hspace{0.2in}
+(D) 3900 \hspace{0.2in} (E) 4000 \vspace{10mm}
+
+\newpage
+### Answers to Exercises
+
+\Large11.1. A \hspace{2in} 11.26. A \vspace{2mm}
+
+11.2. D \hspace{2in} 11.27. E \vspace{2mm}
+
+11.3. E \hspace{2in} 11.28. D \vspace{2mm}
+
+114\. A \hspace{2in} 11.29. C \vspace{2mm}
+
+11.5. B \hspace{2in} 11.30. E \vspace{2mm}
+
+11.6. D \hspace{2in} 11.31. B \vspace{2mm}
+
+11.7. B \hspace{2in} 11.32. C \vspace{2mm}
+
+11.8. C \hspace{2in} 11.33. E \vspace{2mm}
+
+11.9. B \vspace{2mm}
+
+11.10. D \vspace{2mm}
+
+11.11. C \vspace{2mm}
+
+11.12. E \vspace{2mm}
+
+11.13. B \vspace{2mm}
+
+11.14. D \vspace{2mm}
+
+11.15. A \vspace{2mm}
+
+11.16. A \vspace{2mm}
+
+11.17. A \vspace{2mm}
+
+11.18. B \vspace{2mm}
+
+11.19. A \vspace{2mm}
+
+11.20. C \vspace{2mm}
+
+11.21. E \vspace{2mm}
+
+11.22. D \vspace{2mm}
+
+11.23. C \vspace{2mm}
+
+11.24. B \vspace{2mm}
+
+11.25. C \vspace{2mm}
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#3 \vspace{2mm}
+
+-   Exam MLC, Spring 2015: \#2, 6 \vspace{2mm}
+
+-   Exam MLC, Fall 2014: \#3, 12 \vspace{2mm}
+
+-   Exam MLC, Spring 2014: \#3 \vspace{2mm}
+
+-   Exam MLC, Fall 2013: \#4, 10, 21 \vspace{2mm}
+
+-   Exam MLC, Spring 2013: \#4, 10, 13 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#12, 16, 24 \vspace{2mm}
+
+-   Exam MLC, Spring 2012: \#12, 19, 28 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#38, 54, 89, 151, 152, 180, 181, 217,
+    218, 250 \vspace{2mm}
+
+-   Exam MLC, Spring 2007: \#15, 16 \vspace{2mm}

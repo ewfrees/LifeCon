@@ -1,0 +1,8 @@
+book_filename: "LifeCon2"
+
+rmd_files: ["index.Rmd", "Chapters/01-SurvivalModelsLifeTables.Rmd", "Chapters/02-Selection.Rmd", "Chapters/03-InsuranceBenefitsI.Rmd", "Chapters/04-InsuranceBenefitsII.Rmd", "Chapters/05-AnnuitiesI.Rmd", "Chapters/06-AnnuitiesII.Rmd", "Chapters/07-PremiumCalculationI.Rmd", "Chapters/08-PremiumCalculationII.Rmd", "Chapters/09-ReservesI.Rmd", "Chapters/10-ReservesII.Rmd", "Chapters/11-MultipleStateModels.Rmd", "Chapters/12-MultipleDecrementsI.Rmd", "Chapters/13-MultipleDecrementsII.Rmd", "Chapters/14-MultipleLivesI.Rmd", "Chapters/15-MultipleLivesII.Rmd", "Chapters/16-OtherTopics.Rmd", "Chapters/18-MAFAppendix.Rmd", "Bibliography/Bibliography.Rmd"]
+#03-InsuranceBenefitsI.Rmd doesn't work because \bar only allowed in math mode
+
+language:
+  ui:
+    chapter_name: "Chapter "

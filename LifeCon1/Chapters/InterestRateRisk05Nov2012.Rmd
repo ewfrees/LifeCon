@@ -1,0 +1,545 @@
+---
+title: "Interest Rate Risks and Simulation"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Interest Rate Risks and Simulation
+## Financial Math Concepts
+
+We begin by reminding/introducing you to a few concepts that you have
+seen in an earlier financial mathematics course:
+
+-   $v(t)$ - the *current market price* of a $t$-year coupon bond
+
+-   $y_t$ - the *$t$-year spot rate of interest*. This is defined
+    through the expression $$\begin{aligned}
+    v(t)(1+y_t)^t = 1 \textrm{  which is the same thing as  } v(t)=\frac{1}{(1+y_t)^t}\end{aligned}$$
+
+-   *yield curve* - a plot of $\{y_t\}$ versus $t$
+
+-   *term structure of interest rates* describes this relationship
+    (between $\{y_t\}$ and $t$).
+
+-   *flat* term structure - $v(t) =v^t = e^{-\delta t}$, or
+    $y_t \equiv y$.
+
+-   *forward rates of interest* - $f(t,t+k)$, the (annual) interest rate
+    contracted at time 0 earned on an investment made at time $t$ that
+    matures at time $t+k$ $$\begin{aligned}
+    (1+f(t,t+k))^k= \frac{(1+y_{t+k})^{t+k}}{(1+y_t)^t}= \frac{v(t)}{v(t+k)}\end{aligned}$$
+
+-   *no-arbitrage argument* - we should not be able to make money from
+    nothing in risk free bonds by disinvesting and then reinvesting. An
+    arbitrage opportunity exists if an investor can construct a
+    portfolio that costs zero at inception and generates positive
+    profits with a non-zero probability in the future, with no
+    possibility of incurring a loss at any future time.
+
+## Valuation of Insurances and Life Annuities
+
+For our previously developed random variables, expectations and so
+forth, you can simply replace the flat term structure with a more
+general expression, e.g., $v^k$ becomes $v(k)$. Conceptually this is
+straight-forward although, naturally, it can make a huge difference in
+practice. Here are a few examples.
+
+-   Present value random variable of a life annuity due with annual
+    payments issued to a life aged $x$ with a yield curve $\{y_t\}$
+    becomes $$\begin{aligned}
+    Y = \sum_{k=0}^{K_x} v(k)\end{aligned}$$
+
+-   Expected present value for a life annuity due with annual payments
+    issued to a life aged $x$ with a yield curve $\{y_t\}$ becomes
+    $$\begin{aligned}
+    \ddot{a}(x)_y = \sum_{k=0}^{\infty} v(k) ~_k p_x\end{aligned}$$
+
+-   Present value random variable for a whole life insurance with a
+    benefit of 1 payable immediately upon death issued to a life aged
+    $x$ with a yield curve $\{y_t\}$ becomes $v(T_x)$.
+
+-   Expected present value for a whole life insurance with a benefit of
+    1 payable immediately upon death issued to a life aged $x$ with a
+    yield curve $\{y_t\}$ becomes $$\begin{aligned}
+    \bar{A}(x)_y = \int_{0}^{\infty} v(t) ~_t p_x \mu_{x+t} ~ dt .\end{aligned}$$
+
+The symbols $\ddot{a}(x)_y$ and $\bar{A}(x)_y$ are non-standard but
+easily understood in this context.
+
+In general, life insurance contracts are long-term. It is common in
+actuarial practice to use the long-term rate in traditional actuarial
+calculations.
+
+In traditional non-participating insurance and annuity products, if
+mortality and survival experience is known, then cash flows from each
+year are completely predictable. This means that such contracts can be
+replicated, so that cash inflows (premiums and interest earnings) can be
+matched exactly with cash outflows (e.g., benefits and expenses). For
+example, if my net cash outflow in 10 years is predicted to be
+\$1,000,000, then I can buy today a 10-year bond that pays \$1,000,000
+in 10 years - and, I know *exactly* the price of this bond. The future
+paths of interest rates are not a concern of mine.
+
+**Example. SoA MLC 293** . For a fully discrete 3-year term life
+insurance policy on (60), you are given:
+
+\(i) The death benefit is 100,000.
+
+\(ii) Mortality follows the Illustrative Life Table.
+
+\(iii) The rate of interest is based on the yield curve at $t = 0$.
+
+You are also given the following information about zero coupon bonds
+based on the yield curve at $t = 0$:
+
+  ------------------- ------- ------- -------
+  Years to Maturity      1       2       3
+  Price of 100 Bond    97.00   92.00   87.00
+  ------------------- ------- ------- -------
+
+Calculate the benefit premium.
+
+*Solution.* From the Illustrative Life Table, we have
+$q_{60} = 0.01376$, $q_{61} = 0.01501$, and $q_{62} = 0.01638$.
+
+For this 3-year term insurance, the expected present value of future
+benefits is $$\begin{aligned}
+100000 A_{60:\overline{3|}}^{~1} &= 1000000\left(v_1 q_{60} + v_2 ~_{1|} q_{60} + v_3 ~_{2|} q_{60} \right) \\
+&= 1000000\left((0.97) q_{60} + (0.92) p_{60} q_{61} + (0.87) p_{60}p_{61} q_{62} \right) \\
+&= 1000000\left((0.97)(0.01376) + (0.92)(0.98264)(0.01501) \right.\\
+& ~& ~~~~~~~ \left.+ (0.87)(0.98264)(0.98499)(0.01638) \right) =  4,070.969.\end{aligned}$$
+The expected present value of an annuity is $$\begin{aligned}
+\ddot{a}_{60:\overline{3|}} &= 1 + v_1 ~ p_{60} + v_2 ~_2 p_{60}  \\
+&= 1 + (0.97)(0.98264) + (0.92)(0.98264)(0.98499)= 2.850374.\end{aligned}$$
+Thus, the annual benefit premium is $4,070.969/2.850374= 1,431.74 .$
+
+## Diversifiable and Non-diversifiable Risks
+
+Mortality is not completely predictable. How important is that to the
+replication argument? Does approximate matching of cash flows help the
+insurer?
+
+*Diversifiable risks in a portfolio*. Consider $N$ risks in a portfolio,
+$X_1, \ldots, X_N$. If the variance of the average becomes small
+sufficiently fast (as the portfolio size grows), then the risks are said
+to be *diversifiable*. Here is one condition to ensure that the
+variability of the average becomes small: $$\begin{aligned}
+\lim_{N\rightarrow \infty} \frac{\sqrt{\textrm{Var}\left( \sum_{i=1}^N X_i \right)}}{N} = \lim_{N\rightarrow \infty} \sqrt{\textrm{Var}\left( \bar{X} \right)} = 0.\end{aligned}$$
+
+*Non-diversifiable risks* - Risks that do not meet the condition to be
+diversifiable.
+
+To assess whether a portfolio is diversifiable, it is often helpful to
+decompose the variance into components. To illustrate, we show how to
+decompose the variance of the loss $L$ into two components based on an
+interest environment $\textbf{i}$. The first component,
+$\textrm{E}[\textrm{Var}(L|\textbf{i})]$, is the risk due to uncertainty
+over future lifetimes; the second,
+$\textrm{Var}(\textrm{E}[L|\textbf{i}])$, is due to uncertainty over
+interest rates. $$\begin{aligned}
+\textrm{Var}(L) = \textrm{E}[\textrm{Var}(L|\textbf{i})] + \textrm{Var}[\textrm{E}(L|\textbf{i})]\end{aligned}$$
+
+**Example. Whole Life Policy Values.** Consider a portfolio of size $N$
+of fully discrete whole life policies. For simplicity, we assume that
+they are all issued to a life aged $x=40$ with a face equal to one and
+that mortality follows the Illustrative Life Table. Initially, the
+insurer faces an $i=5\%$ interest environment and so collects premiums
+$$\begin{aligned}
+P_{40} = \frac{A_{40}}{\ddot{a}_{40}}= \frac{0.2079}{16.6331} = 0.012502\end{aligned}$$
+from each of the $N$ policyholders. Let $N_1$ be the random number who
+die during the first year, a binomial random variable with a probability
+of $q_{40}=0.0027812$ of failure. Thus, at the end of the first policy
+year, the fund associated with this portfolio is $$\begin{aligned}
+FUND_1 = N P_{40}(1.05) - N_1 + \sum_{j=1}^{N-N_1} ~_1 L_j,\end{aligned}$$
+where $~_1 L_j = v^{K_{x,j}} - P_{40} \ddot{a}_{\overline{K_{x,i}|}}$ is
+the random future loss for the $j$th contract at time 1 for those that
+have survived. Note that if an $i=5\%$ interest environment prevails,
+then the expected fund is $$\begin{aligned}
+\textrm{E}~FUND_1 &= N P_{40}(1.05) - N q_{40} - N (1-q_{40}) \textrm{E}~ L_{1,j} \\
+&= N \left( P_{40}(1.05) - q_{40} - p_{40} ~_1 V_{40} \right) = 0,\end{aligned}$$
+using the recursive reserve formulation.
+
+Instead, suppose that beginning at time 1, the insurer faces one of
+three interest rate scenarios given by $$\begin{aligned}
+\textbf{i} = \left\{
+\begin{array}{cr}
+  i_1 = 4 \% & \textrm{with probability 0.25} \\
+  i_2 = 5 \% & \textrm{with probability 0.50} \\
+  i_3 = 6 \% & \textrm{with probability 0.25} \\
+\end{array} \right.\end{aligned}$$ For a fixed interest scenario $i_s$,
+we have that the random future loss variable at policy duration $k$ is
+$$\begin{aligned}
+_k L(i_s) = v_s^{K+1-k} - P_{40} \ddot{a}_{\overline{K+1-k|}} = \left(1+\frac{P_{40}}{1-v_s}\right) v_s^{K+1-k} - \frac{P_{40}}{1-v_s} ,\end{aligned}$$
+where $v_s=1/(1+i_s)$. This has conditional (on the interest scenario)
+mean $$\begin{aligned}
+\textrm{E}(_k L(i_s)|i_s) = A_{40+k}@i_s - P_{40} \ddot{a}_{40+k}@i_s,\end{aligned}$$
+and variance $$\begin{aligned}
+\textrm{Var}(_k L(i_s)|i_s) = \left(1+\frac{P_{40}}{1-v_s}\right)^2 \left( ^2A_{40+k}@i_s - A_{40+k}^2 @i_s\right).\end{aligned}$$
+The following table summarizes the calculations at duration $k=1$ based
+on the Illustrative Life Table (recall $P_{40} = 0.125021$ was set at
+contract initiation and so is constant across scenarios).
+
+  ------ ------ ---------- ----------------- ------------- ------------- -------------
+                                               Conditional                Conditional
+   $i$     prob   $A_{41}$   $\ddot{a}_{41}$      Exp Loss   $^2 A_{41}$   Var Loss
+   0.04    0.25      0.282            18.658         0.049         0.105     0.042
+   0.05    0.50      0.216            16.461         0.010         0.072     0.034
+   0.06    0.25      0.169            14.686        -0.015         0.052     0.029
+  ------ ------ ---------- ----------------- ------------- ------------- -------------
+
+For example, at $i=0.04$, the conditional mean loss is
+$0.282 - 0.012502 (18.658) = 0.049$. The conditional variance is
+$$\begin{aligned}
+ \left(1+\frac{0.012502}{1-1/(1.04)}\right)^2 \left( 0.105 - (282)^2\right) = 0.042.\end{aligned}$$
+
+Computing quantities over interest scenarios, we may write the expected
+loss as $$\begin{aligned}
+_1 V = \textrm{E}(_1 L(\textbf{i})) &= \sum_{j=1}^3 \textrm{E}(_1 L(i_s)|i_s) \times \Pr(\textbf{i}=i_s) \\
+&= (0.25) (0.049) + (0.50) (0.010) + (0.25) (-0.015) = 0.014 .\end{aligned}$$
+In this case, the expected fund is $$\begin{aligned}
+\textrm{E}~FUND_1 &= N P_{40}(1.05) - N q_{40} - N (1-q_{40}) ~_1 V  \\
+&= N \left\{ (0.012502)(1.05) - 0.0027812 - (1-0.0027812) (0.014) \right\} = -0.0033 N,\end{aligned}$$
+a sad situation for the insurer.
+
+To calculate the variability of obligations at time 1, we assume that
+first year expected mortality has held for the insurer and so there are
+$N(1-q_{40})=N^{\ast}$ policies outstanding. Let
+$LIAB(\textbf{i}) = \sum_{j=1}^{N*} ~_1 L(\textbf{i})_j$ be this sum of
+liabilities. For the second moment, from the “law of total variation”
+from probability theory, we have $$\begin{aligned}
+\textrm{Var}(LIAB(\textbf{i})) &=
+\textrm{E}[\textrm{Var}(LIAB(\textbf{i})|\textbf{i})]+
+\textrm{Var}[\textrm{E}(LIAB(\textbf{i})|\textbf{i})] .\end{aligned}$$
+For the first term, conditional on the interest environment **i**, the
+policies are $i.i.d$. Thus, $$\begin{aligned}
+\textrm{Var}(LIAB(\textbf{i})|\textbf{i}) &= N^{\ast} \textrm{Var}(~_1 L(\textbf{i})|\textbf{i})\end{aligned}$$
+and so $$\begin{aligned}
+\textrm{E}[\textrm{Var}(LIAB(\textbf{i})|\textbf{i})] &=
+N^{\ast} \textrm{E}[\textrm{Var}(~_1 L(\textbf{i})|\textbf{i})] \\
+&= N^{\ast}\sum_{j=1}^3 \textrm{Var}(_1 L(\textbf{i})|\textbf{i}) \times \Pr(\textbf{i}=i_s) \\
+&= N^{\ast}\left\{(0.25)(0.042) +(0.50)(0.034) + (0.25)(0.029) \right\} = 0.0349 N^{\ast}\end{aligned}$$
+For the second term, conditional on the interest environment **i**, we
+have $$\begin{aligned}
+\textrm{E}(LIAB(\textbf{i})|\textbf{i}) &= N^{\ast} \textrm{E}(~_1 L(\textbf{i})|\textbf{i})\end{aligned}$$
+and so $$\begin{aligned}
+\textrm{Var}[\textrm{E}(LIAB(\textbf{i})|\textbf{i})] &= N^{\ast2} \textrm{Var}[\textrm{E}(~_1 L(\textbf{i})|\textbf{i})] \\
+&= N^{\ast2}
+\left\{(0.25)(0.049-0.014)^2 +(0.50)(0.010-0.014)^2 \right.\\
+& ~~~~~~~~+& \left.(0.25)(-0.015-0.014)^2 \right\} = 0.0005 N^{\ast2}\end{aligned}$$
+Summarizing, we have $$\begin{aligned}
+\textrm{Var}(LIAB(\textbf{i})) &= 0.0349 N^{\ast}+ 0.0005 N^{\ast2} .\end{aligned}$$
+Thus, $$\begin{aligned}
+\lim_{N\rightarrow \infty} \frac{\sqrt{\textrm{Var}(LIAB(\textbf{i}))}}{N} = \lim_{N\rightarrow \infty}
+\frac{\sqrt{0.0349 N^{\ast}+ 0.0005 N^{\ast2}}}{N} = \sqrt{0.0005} q_{40} > 0.\end{aligned}$$
+We interpret this to mean that this risk is not diversifiable due to a
+random interest environment that is common to all policies.
+
+## Simulation
+
+Simulation is a computer-based, computationally intensive, method of
+solving difficult problems, such as analyzing business processes.
+Instead of creating physical processes and experimenting with them in
+order to understand their operational characteristics, a simulation
+study is based on a computer representation - it considers various
+hypothetical conditions as inputs and summarizes the results. Through
+simulation, a vast number of hypothetical conditions can be quickly and
+inexpensively examined. Performing the same analysis with a physical
+system is not only expensive and time-consuming but, in many cases,
+impossible. A drawback of simulation is that computer models are not
+perfect representations of business processes.
+
+There are three basic steps for producing a simulation study:
+
+-   Generating approximately independent realizations that are uniformly
+    distributed
+
+-   Transforming the uniformly distributed realizations to observations
+    from a probability distribution of interest
+
+-   With the generated observations as inputs, designing a structure to
+    produce interesting and reliable results.
+
+Designing the structure can be a difficult step, where the degree of
+difficulty depends on the problem being studied. There are many
+resources, including this tutorial, to help the actuary with the first
+two steps.
+
+### Generating Independent Uniform Observations
+
+We begin with a historically prominent method.
+
+**Linear Congruential Generator.** To generate a sequence of random
+numbers, start with $B_0$, a starting value that is known as a “seed.”
+Update it using the recursive relationship
+$$B_{n+1} = a B_n + c  \text{ \ \ modulo }m, ~~ n=0, 1, 2, \ldots .$$
+This algorithm is called a *linear congruential generator*. The case of
+$c=0$ is called a *multiplicative* congruential generator; it is
+particularly useful for really fast computations.
+
+For illustrative values of $a$ and $m$, Microsoft’s Visual Basic uses
+$m=2^{24}$, $a=1,140,671,485$, and $c = 12,820,163$ (see
+<http://support.microsoft.com/kb/231847>). This is the engine underlying
+the random number generation in Microsoft’s Excel program.
+
+The sequence used by the analyst is defined as $U_n=B_n/m.$ The analyst
+may interpret the sequence {$U_{i}$} to be (approximately) identically
+and independently uniformly distributed on the interval (0,1). To
+illustrate the algorithm, consider the following.
+
+**Example.** Take $m=15$, $a=3$, $c=2$ and $B_0=1$. Then we have:
+
+   step $n$  $B_n$                                      $U_n$
+  ---------- --------------------------------- ------------------------
+      0      $B_0=1$                           
+      1      $B_1 =\mod(3 \times 1 +2) = 5$      $U_1 = \frac{5}{15}$
+      2      $B_2 =\mod(3 \times 5 +2) = 2$      $U_2 = \frac{2}{15}$
+      3      $B_3 =\mod(3 \times 2 +2) = 8$     $U_3 = \frac{8}{15}$
+      4      $B_4 =\mod(3 \times 8 +2) = 11$    $U_4 = \frac{11}{15}$
+
+$\Box$
+
+Sometimes computer generated random results are known as *pseudo*-random
+numbers to reflect the fact that they are machine generated and can be
+replicated. That is, despite the fact that {$U_{i}$} appears to be
+i.i.d, it can be reproduced by using the same seed number (and the same
+algorithm). The ability to replicate results can be a tremendous tool as
+you use simulation while trying to uncover patterns in a business
+process.
+
+The linear congruential generator is just one method of producing
+pseudo-random outcomes. It is easy to understand and is (still) widely
+used. The linear congruential generator does have limitations, including
+the fact that it is possible to detect long-run patterns over time in
+the sequences generated (recall that we can interpret “independence” to
+mean a total lack of functional patterns). Not surprisingly, advanced
+techniques have been developed that address some of this method’s
+drawbacks.
+
+### Inverse Transform
+
+With the sequence of uniform random numbers, we next transform them to a
+distribution of interest. Let $F$ represent a distribution function of
+interest. Then, use the *inverse transform*
+$$X_i=F^{-1}\left( U_i \right) .$$ The result is that the sequence
+{$X_{i}$} is approximately i.i.d. with distribution function $F$.
+
+To interpret the result, recall that a distribution function, $F$, is
+monotonically increasing and so the inverse function, $F^{-1}$, is
+well-defined. The inverse distribution function (also known as the
+*quantile function*), is defined as $$\begin{aligned}
+F^{-1}(y) = \inf_x \{ F(x) \ge y \} ,\end{aligned}$$ where “$\inf$”
+stands for “infimum”, or the greatest lower bound.
+
+**Inverse Transform Visualization.** Here is a graph to help you
+visualize the inverse transform. When the random variable is continuous,
+the distribution function is strictly increasing and we can readily
+identify a unique inverse at each point of the distribution.
+
+![image](Figures\IRR_InverseDF.eps){width=".6\textwidth"}
+
+The inverse transform result is available when the underlying random
+variable is continuous, discrete or a mixture. Here is a series of
+examples to illustrate its scope of applications.
+
+**Exponential Distribution Example.** Suppose that we would like to
+generate observations from an exponential distribution with scale
+parameter $\theta$ so that $F(x) = 1 - e^{-x/\theta}$. To compute the
+inverse transform, we can use the following steps: $$\begin{aligned}
+ y = F(x) &\Leftrightarrow& y = 1-e^{-x/\theta} \\
+  &\Leftrightarrow& -\theta \ln(1-y) = x = F^{-1}(y) .\end{aligned}$$
+Thus, if $U$ has a uniform (0,1) distribution, then
+$X = -\theta \ln(1-U)$ has an exponential distribution with parameter
+$\theta$.
+
+*Some Numbers.* Take $\theta = 10$ and generate three random numbers to
+get
+
+  ------------------- ------------ ------------- -------------
+  $U$                   0.26321364   0.196884752   0.897884218
+  $X = -10\ln(1-U)$     1.32658423   0.952221285   9.909071325
+  ------------------- ------------ ------------- -------------
+
+$\Box$
+
+**Pareto Distribution Example.** Suppose that we would like to generate
+observations from a Pareto distribution with parameters $\alpha$ and
+$\theta$ so that
+$F(x) = 1 - \left(\frac{\theta}{x+\theta} \right)^{\alpha}$. To compute
+the inverse transform, we can use the following steps: $$\begin{aligned}
+ y = F(x) &\Leftrightarrow& 1-y = \left(\frac{\theta}{x+\theta} \right)^{\alpha} \\
+  &\Leftrightarrow& \left(1-y\right)^{-1/\alpha} = \frac{x+\theta}{\theta} = \frac{x}{\theta} +1 \\
+    &\Leftrightarrow& \theta \left((1-y)^{-1/\alpha} - 1\right) = x = F^{-1}(y) .\end{aligned}$$
+Thus, $X = \theta \left((1-U)^{-1/\alpha} - 1\right)$ has a Pareto
+distribution with parameters $\alpha$ and $\theta$.
+
+$\Box$
+
+**Inverse Transform Justification.** Why does the random variable
+$X = F^{-1}(U)$ have a distribution function “$F$”?
+
+This is easy to establish in the continuous case. Because $U$ is a
+Uniform random variable on (0,1), we know that $\Pr(U \le y) = y$, for
+$0 \le y \le 1$. Thus, $$\begin{aligned}
+\Pr(X \le x) &= \Pr(F^{-1}(U) \le x) \\
+ &= \Pr(F(F^{-1}(U)) \le F(x)) \\
+&= \Pr(U \le F(x)) = F(x)\end{aligned}$$ as required. The key step is
+that $F(F^{-1}(u)) = u$ for each $u$, which is clearly true when $F$ is
+strictly increasing.
+
+$\Box$
+
+**Bernoulli Distribution Example.** Suppose that we wish to simulate
+random variables from a Bernoulli distribution with parameter $p=0.85$.
+A graph of the cumulative distribution function shows that the quantile
+function can be written as
+
+![image](Figures\IRR_BinaryDF.eps){width=".6\textwidth"}
+
+$$\begin{aligned}
+F^{-1}(y) = \left\{ \begin{array}{cc}
+              0 & 0<y \leq 0.85 \\
+              1 & 0.85 < y  \leq  1.0 .
+            \end{array} \right.\end{aligned}$$
+
+Thus, with the inverse transform we may define $$\begin{aligned}
+X = \left\{ \begin{array}{cc}
+              0 & 0<U \leq 0.85  \\
+              1 &  0.85 < U  \leq  1.0
+            \end{array} \right.\end{aligned}$$ *Some Numbers.* Generate
+three random numbers to get
+
+  ----------------- ------------ ------------- -------------
+  $U$                 0.26321364   0.196884752   0.897884218
+  $X =F^{-1}(U)$               0             0             1
+  ----------------- ------------ ------------- -------------
+
+$\Box$
+
+**Discrete Distribution Example.** Consider the time of a machine
+failure in the first five years. The distribution of failure times is
+given as:
+
+  ------------- ----- ----- ----- ----- -----
+  Time ($x$)        1     2     3     4     5
+  probability     0.1   0.2   0.1   0.4   0.2
+  $F(x)$          0.1   0.3   0.4   0.8   1.0
+  ------------- ----- ----- ----- ----- -----
+
+![image](Figures\IRR_DiscreteRVDF.eps){width=".6\textwidth"}
+
+Using the graph of the distribution function, with the inverse transform
+we may define $$\begin{aligned}
+X = \left\{ \begin{array}{cc}
+              1 &   0<U  \leq 0.1  \\
+              2 &  0.1 < U  \leq  0.3\\
+              3 &  0.3 < U  \leq  0.4\\
+              4 &  0.4 < U  \leq  0.8  \\
+              5 &  0.8 < U  \leq  1.0     .
+            \end{array} \right.\end{aligned}$$
+
+$\Box$
+
+For general discrete random variables there may not be an ordering of
+outcomes. For example, a person could own one of five types of life
+insurance products and we might use the following algorithm to generate
+random outcomes: $$\begin{aligned}
+X = \left\{ \begin{array}{cc}
+  \textrm{whole life} &   0<U  \leq 0.1  \\
+ \textrm{endowment} &  0.1 < U  \leq  0.3\\
+\textrm{term life} &  0.3 < U  \leq  0.4\\
+  \textrm{universal life} &  0.4 < U  \leq  0.8  \\
+  \textrm{variable life} &  0.8 < U  \leq  1.0 .
+            \end{array} \right.\end{aligned}$$ Another analyst may use
+an alternative procedure such as: $$\begin{aligned}
+X = \left\{ \begin{array}{cc}
+  \textrm{whole life} &   0.9<U<1.0  \\
+ \textrm{endowment} &  0.7 \leq U < 0.9\\
+\textrm{term life} &  0.6 \leq U < 0.7\\
+  \textrm{universal life} &  0.2 \leq U < 0.6  \\
+  \textrm{variable life} &  0 \leq U < 0.2 .
+            \end{array} \right.\end{aligned}$$ Both algorithms produce
+(in the long-run) the same probabilities, e.g.,
+$\Pr(\textrm{whole life})=0.1$, and so forth. So, neither is incorrect.
+You should be aware that there is “more than one way to skin a cat.”
+(What an old expression!) Similarly, you could use an alterative
+algorithm for ordered outcomes (such as failure times 1, 2, 3, 4, or 5,
+above).
+
+$\Box$
+
+**Mixed Distribution Example.** Consider a random variable that is 0
+with probability 70% and is exponentially distributed with parameter
+$\theta= 10,000$ with probability 30%. In practice, this might
+correspond to a 70% chance of having no insurance claims and a 30%
+chance of a claim - if a claim occurs, then it is exponentially
+distributed. The distribution function is given as
+
+$$\begin{aligned}
+F(y) = \left\{ \begin{array}{cc}
+              0 &  x<0  \\
+              1 - 0.3 \exp(-x/10000) & x \ge 0 .
+            \end{array} \right.\end{aligned}$$
+
+![image](Figures\IRR_MixedDF.eps){width=".6\textwidth"}
+
+From the graph, we can see that the inverse transform for generating
+random variables with this distribution function is
+
+$$\begin{aligned}
+X = F^{-1}(U) = \left\{ \begin{array}{cc}
+              0 &  0< U  \leq  0.7  \\
+              -1000 \ln (\frac{1-U}{0.3}) & 0.7 < U < 1 .
+            \end{array} \right.\end{aligned}$$
+
+As you have seen, for the discrete and mixed random variables, the key
+is to draw a graph of the distribution function that allows you to
+visualize potential values of the inverse function.
+
+### How Many Simulated Values?
+
+There are many topics to be described in the study of simulation (and
+fortunately many good sources to help you). The best way to appreciate
+simulation is to experience it. One topic that inevitably comes up is
+the number of simulated trials needed to rid yourself of sampling
+variability so that you may focus on patterns of interest.
+
+How many simulated values are recommended? 100? 1,000,000? We can use
+the central limit theorem to respond to this question. Suppose that we
+wish to use simulation to calculate $\mathrm{E~}h(X)$, where $h(\cdot)$
+is some known function. Then, based on $R$ simulations (replications),
+we get $X_1,\ldots,X_R$. From this simulated sample, we calculate a
+sample average $$\overline{h}_R=\frac{1}{R}\sum_{i=1}^{R} h(X_i)$$ and a
+sample standard deviation
+$$s_{h,R}^2 = \frac{1}{R} \sum_{i=1}^{R}\left( h(X_i) -\overline{h}_R
+\right) ^2.$$So, $\overline{h}_R$ is your best estimate of
+$\mathrm{E~}h(X)$ and $s_{h,R}^2$ provides an indication of the
+uncertainty of your estimate. As one criterion for your confidence in
+the result, suppose that you wish to be within 1% of the mean with 95%
+certainty. According to the central limit theorem, your estimate should
+be approximately normally distributed. Thus, you should continue your
+simulation until $$\frac{.01\overline{h}_R}{s_{h,R}/\sqrt{R}}\geq 1.96$$
+or equivalently $$R \geq 38,416\frac{s_{h,R}^2}{\overline{h}_R^2}.$$
+This criterion is a direct application of the approximate normality
+(recall that 1.96 is the 97.5th percentile of the standard normal
+curve). Note that $\overline{h}_R$ and $s_{h,R}$ are not known in
+advance, so you will have to come up with estimates as you go
+(sequentially), either by doing a little pilot study in advance or by
+interrupting your procedure intermittently to see if the criterion is
+satisfied.
+
+## Learning Objectives
+
+Understand the non-stochastic interest rate models used to calculate
+present values and accumulated values of cash flows and calculate
+present values and accumulated values of cash flows.
+
+For fixed interest rates (level or varying over time); yield curves
+(spot and forward interest rates); and interest rate scenarios models:
+
+-   Describe the models.
+
+-   Calculate present values and accumulated values.

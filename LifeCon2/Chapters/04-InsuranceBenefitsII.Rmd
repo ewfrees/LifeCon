@@ -1,0 +1,609 @@
+---
+title: "Insurance Benefits II"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Insurance Benefits II
+
+Here, we consider a **discrete** life insurance where the death benefit
+is provided at the end of the $m$-th of a year of death. The value of
+$m$ is typically equal to 2 (half-year), 4 (quarter of a year), or 12
+(month). \vspace{20mm}
+
+## Additional Interest Theory Concepts
+
+\Large
+
+-   The nominal interest rate convertible $m$-thly, $i^{(m)}$, is such
+    that:
+
+    $(1 + \frac{i^{(m)}}{m})^m$ = 1 + $i$. \vspace{3mm}
+
+-   The nominal discount rate convertible $m$-thly, $d^{(m)}$, is such
+    that:
+
+    $(1 - \frac{d^{(m)}}{m})^m$ = 1 - $d$ = $v$. \vspace{3mm}
+
+-   $e^{\delta}$ = 1 + $i$ = $(1 + \frac{i^{(m)}}{m})^m$ =
+    $(1 - d)^{-1}$ = $(1 - \frac{d^{(p)}}{p})^{-p}$ \vspace{3mm}
+
+-   $a^{(m)}_{\lcroof{n}}$ = $\frac{1 -
+    v^n}{i^{(m)}}$, \hspace{0.25in} $\ddot{a}^{(m)}_{\lcroof{n}}$ =
+    $\frac{1 -
+    v^n}{d^{(m)}}$ \vspace{6mm}
+
+\newpage
+## Additional Life Insurance Formulas
+
+\Large
+
+-   The $m$-thly life insurance is such that the death benefit is
+    payable at the end of the $m$-th of a year of death of the
+    policyholder ($K_x^{(m)} + \frac{1}{m}$ years after policy issue).
+    \vspace{4mm}
+
+-   $K_x^{(m)}$, measured in years, is the beginning of the $m$-th of a
+    year after policy issue in which the policyholder dies. $K_x^{(m)}$
+    = 0, $\frac{1}{m}$, $\frac{2}{m}$, ... \vspace{4mm}
+
+-   The general exact formula for the expected present value of an
+    $m$-thly life insurance that pays $b_{\frac{k + 1}{m}}$ at time
+    $\frac{k + 1}{m}$ years ($k$ = 0, 1, 2, ...) is: \vspace{4mm}
+
+    $E(Z)$ = $\sum^{\infty}_{k = 0} b_{\frac{k + 1}{m}} v^{\frac{k +
+    1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_x$. Furthermore: \vspace{2mm}
+
+    “Say death occurs in the ($k$ + 1)st $m$-th of a year. Then the
+    present value of this benefit is $b_{\frac{k + 1}{m}} v^{\frac{k +
+    1}{m}}$, and the expected present value of this benefit is
+    $b_{\frac{k + 1}{m}} v^{\frac{k +
+    1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_x$. Summing over all possible
+    values of $k$ provides the overall expected present value.”
+    \vspace{4mm}
+
+    $E(Z^j)$ = $\sum^{\infty}_{k = 0} (b_{\frac{k + 1}{m}} v^{\frac{k +
+    1}{m}})^j{}_{\frac{k}{m}|\frac{1}{m}}q_x$ for $j$ = 1, 2, ...
+    \vspace{4mm}
+
+-   The International Actuarial Notation for $E(Z)$ above often contains
+    an $A^{(m)}$, which indicates that the expected present value is for
+    an $m$-thly life insurance. For example, $A^{(m)}_x$ denotes the
+    expected present value of a whole life insurance of 1 on (x) payable
+    at the end of the $m$-th of a year of death. \vspace{6mm}
+
+-   $^2A^{(m)}$ is $A^{(m)}$ evaluated at double the force of interest.
+    In addition to the rates discussed in **Insurance Benefits I**,
+    doubling the force of interest, from $\delta$ to 2$\delta$, affects
+    other interest rates as follows: \vspace{2mm}
+
+    -   $i^{(m)}$ changes to 12[$(1 + i)^{\frac{2}{m}}$ - 1]
+        \vspace{2mm}
+
+    -   $d^{(m)}$ changes to 12 [1 - $v^{\frac{2}{m}}$] \vspace{2mm}
+
+    \newpage
+-   Often, we do not use the exact formulas to calculate expected
+    present values for $m$-thly life insurance. Rather, we approximate
+    these expected present values from the corresponding annual life
+    insurance expected present values using one of two assumptions:
+    \vspace{2mm}
+
+    -   **UDD**: deaths are uniformly distributed within each year of
+        age. In most cases, $A^{(m)}$ = $\frac{i}{i^{(m)}}A$. The major
+        exception is the expected present value for $m$-thly endowment
+        insurance (see below). \vspace{2mm}
+
+    -   **Claims acceleration**: assumes that the death benefit is paid,
+        on average, at the average of the times it could be paid within
+        the year. In most cases, $A^{(m)}$ = $(1 +
+        i)^{\frac{m - 1}{2m}}A$. The major exception is the expected
+        present value for $m$-thly endowment insurance (see below).
+        \vspace{4mm}
+
+-   Let $m$ approach infinity. Under UDD: $\bar{A}$ =
+    $\frac{i}{\delta}A$. Under claims acceleration: $\bar{A}$ = $(1 +
+    i)^{\frac{1}{2}}A$. \vspace{4mm}
+
+-   Note: The formulas discussed below reduce to the corresponding
+    annual life insurance formulas in **Insurance Benefits I** when $m$
+    = 1. This can be an aid in memorizing and recalling these formulas.
+    \vspace{4mm}
+
+-   In this section, we also consider **geometrically increasing annual
+    life insurance**. The death benefit is increased by a constant
+    factor each year to account for inflation or profit sharing with the
+    policyholder.
+
+\newpage
+## Level Benefit Insurance
+
+\Large
+
+### m-thly Whole Life Insurance of 1 on (x)
+
+-   $Z$ = $v^{K^{(m)}_x + \frac{1}{m}}$ \vspace{5mm}
+
+-   $E(Z)$ = $A^{(m)}_{x}$ =
+    $\sum^{\infty}_{k = 0} v^{\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+    \vspace{3mm}
+
+    -   For de Moivre’s Law (Uniform Distribution): $A^{(m)}_{x}$ =
+        $\frac{1}{\omega - x}a^{(m)}_{\lcroof{\omega - x}}$ at force of
+        interest $\delta$
+
+    \vspace{5mm}
+
+-   $E(Z^2)$ = $^2A^{(m)}_{x}$ =
+    $\sum^{\infty}_{k = 0} v^{2\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+    \vspace{3mm}
+
+    -   For de Moivre’s Law (Uniform Distribution): $^2A^{(m)}_{x}$ =
+        $\frac{1}{\omega - x}a^{(m)}_{\lcroof{\omega -
+        x}}$ at force of interest 2$\delta$
+
+    \vspace{5mm}
+
+-   $Var(Z)$ = $^2A^{(m)}_x$ - [$A^{(m)}_x$]$^2$ \vspace{5mm}
+
+-   Recursion: $A^{(m)}_x$ = $v^{\frac{1}{m}}{}_{\frac{1}{m}}q_x$ +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_xA^{(m)}_{x +
+    \frac{1}{m}}$ \vspace{5mm}
+
+-   UDD: ${A^{(m)}}_x$ = $\frac{i}{i^{(m)}}$$A_x$ and $\bar{A}_x$ =
+    $\frac{i}{\delta}$$A_x$ \vspace{5mm}
+
+-   Claims acceleration: ${A^{(m)}}_x$ =
+    $(1 + i)^{\frac{m - 1}{2m}}$$A_x$ and $\bar{A}_x$ = $(1 +
+    i)^{\frac{1}{2}}$$A_x$
+
+\newpage
+### m-thly Term Insurance of 1 on (x)
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{K^{(m)}_x + \frac{1}{m}}   & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., n - $\frac{1}{m}$ }\\
+        0             & \quad \text{for $K^{(m)}_x$ = n, n + $\frac{1}{m}$, ...}\\
+      \end{array} \right.$$ 
+      \vspace{2mm} \vspace{5mm}
+
+-   $E(Z)$ = $\lcterm{A^{(m)}}{x}{n}$ =
+    $\sum^{mn - 1}_{k = 0} v^{\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+    \vspace{3mm}
+
+    -   For de Moivre’s Law (Uniform Distribution):
+        $\lcterm{A^{(m)}}{x}{n}$ = $\frac{1}{\omega -
+        x}a^{(m)}_{\lcroof{n}}$ at force of interest $\delta$
+
+    \vspace{5mm}
+
+-   $E(Z^2)$ = $^2\lcterm{A^{(m)}}{x}{n}$ =
+    $\sum^{mn - 1}_{k = 0} v^{2\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+    \vspace{3mm}
+
+    -   For de Moivre’s Law (Uniform Distribution):
+        $^2\lcterm{A^{(m)}}{x}{n}$ = $\frac{1}{\omega -
+        x}a^{(m)}_{\lcroof{n}}$ at force of interest 2$\delta$
+
+    \vspace{5mm}
+
+-   $Var(Z)$ = $^2\lcterm{A^{(m)}}{x}{n}$ -
+    [$\lcterm{A^{(m)}}{x}{n}$]$^2$ \vspace{5mm}
+
+-   Recursion: $\lcterm{A^{(m)}}{x}{n}$ =
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}q_x$ +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x\lcterm{A^{(m)}}{x + \frac{1}{m}}{n - \frac{1}{m}}$
+    \vspace{5mm}
+
+-   UDD: $\lcterm{A^{(m)}}{x}{n}$ =
+    $\frac{i}{i^{(m)}}$$\lcterm{A}{x}{n}$ and $\lcterm{\bar{A}}{x}{n}$ =
+    $\frac{i}{\delta}$$\lcterm{A}{x}{n}$ \vspace{5mm}
+
+-   Claims acceleration: $\lcterm{A^{(m)}}{x}{n}$ =
+    $(1 + i)^{\frac{m - 1}{2m}}$$\lcterm{A}{x}{n}$ and
+    $\lcterm{\bar{A}}{x}{n}$ = $(1 + i)^{\frac{1}{2}}$$\lcterm{A}{x}{n}$
+
+\newpage
+### m-thly Endowment Insurance of 1 on (x)
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{K^{(m)}_x + \frac{1}{m}}   & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., n - $\frac{1}{m}$ }\\
+        v^n             & \quad \text{for $K^{(m)}_x$ = n, n + $\frac{1}{m}$, ...}\\
+      \end{array} \right.$$ 
+      \vspace{2mm} \vspace{5mm}
+
+-   $E(Z)$ = $A^{(m)}_{x :\lcroof{n}}$ = $\lcterm{A^{(m)}}{x}{n}$ +
+    $\lcend{A}{x}{n}$ \vspace{5mm}
+
+-   $E(Z^2)$ = $^2A^{(m)}_{x :\lcroof{n}}$ = $^2\lcterm{A^{(m)}}{x}{n}$
+    + $^2\lcend{A}{x}{n}$ \vspace{5mm}
+
+-   $Var(Z)$ = $^2A^{(m)}_{x :\lcroof{n}}$ - [$A^{(m)}_{x
+    :\lcroof{n}}]^2$ \vspace{5mm}
+
+-   Recursion: $A^{(m)}_{x :\lcroof{n}}$ =
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}q_x$ +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_xA^{(m)}_{x + \frac{1}{m} :\lcroof{n - \frac{1}{m}}}$
+    \vspace{5mm}
+
+-   UDD: $A^{(m)}_{x :\lcroof{n}}$ =
+    $\frac{i}{i^{(m)}}$$\lcterm{A}{x}{n}$ + $\lcend{A}{x}{n}$ and
+    $\bar{A}_{x :\lcroof{n}}$ = $\frac{i}{\delta}$$\lcterm{A}{x}{n}$ +
+    $\lcend{A}{x}{n}$ \vspace{5mm}
+
+-   Claims acceleration:
+
+    $A^{(m)}_{x :\lcroof{n}}$ = $(1 + i)^{\frac{m -
+    1}{2m}}$$\lcterm{A}{x}{n}$ + $\lcend{A}{x}{n}$ and $\bar{A}_{x
+    :\lcroof{n}}$ = $(1 + i)^{\frac{1}{2}}$$\lcterm{A}{x}{n}$ +
+    $\lcend{A}{x}{n}$
+
+\newpage
+### m-thly Deferred Whole Life Insurance of 1 on (x)
+
+\vspace{2mm}
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        0                                      & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., u - $\frac{1}{m}$ }\\
+        v^{K^{(m)}_x + \frac{1}{m}}            & \quad \text{for $K^{(m)}_x$ = u, u + $\frac{1}{m}$, ...}\\
+      \end{array} \right.$$ 
+      \vspace{2mm} \vspace{5mm}
+
+-   $E(Z)$ = ${}_{u|}A^{(m)}_x$ =
+    $\sum^{\infty}_{k = mu} v^{\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+    = $A^{(m)}_x$ - $\lcterm{A^{(m)}}{x}{u}$ =
+    ${}_{u}E_x$$A^{(m)}_{x + u}$ \vspace{5mm}
+
+-   $E(Z^2)$ = ${}_{u|}^2A^{(m)}_x$ =
+    $\sum^{\infty}_{k = mu} v^{2\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+    = $^2A^{(m)}_x$ - $^2\lcterm{A^{(m)}}{x}{u}$ =
+    $(^2\lcend{A}{x}{u})$$(^2A^{(m)}_{x + u})$ \vspace{5mm}
+
+-   $Var(Z)$ = ${}_{u|}^2A^{(m)}_x$ - [${}_{u|}A^{(m)}_x]^2$
+    \vspace{5mm}
+
+-   ${}_{u|}A^{(m)}_x$ = 0 +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x({}_{u - \frac{1}{m}|}A^{(m)}_{x + \frac{1}{m}})$
+    \vspace{5mm}
+
+-   UDD: ${}_{u|}A^{(m)}_x$ = $\frac{i}{i^{(m)}}$${}_{u|}A_x$ and
+    ${}_{u|}\bar{A}_x$ = $\frac{i}{\delta}$${}_{u|}A_x$ \vspace{5mm}
+
+-   Claims acceleration: ${}_{u|}A^{(m)}_x$ =
+    $(1 + i)^{\frac{m - 1}{2m}}$${}_{u|}A_x$ and ${}_{u|}\bar{A}_x$ =
+    $(1 + i)^{\frac{1}{2}}$${}_{u|}A_x$
+
+\newpage
+### m-thly Deferred Term Insurance of 1 on (x)
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{K^{(m)}_x + \frac{1}{m}}                                      & \quad \text{for $K^{(m)}_x$ = u, u + $\frac{1}{m}$, ..., u + n - $\frac{1}{m}$}\\
+        0                                                                & \quad \text{otherwise}\\
+      \end{array} \right.$$ 
+      \vspace{5mm}
+
+-   $E(Z)$ = ${}_{u|n}A^{(m)}_x$ = ${}_{u|}\lcterm{A^{(m)}}{x}{n}$ =
+    $\sum^{m(u + n) - 1}_{k = mu} v^{\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+    = $\lcterm{A^{(m)}}{x}{u + n}$ - $\lcterm{A^{(m)}}{x}{u}$ =
+    ${}_{u}E_x$$\lcterm{A^{(m)}}{x + u}{n}$ \vspace{5mm}
+
+-   $E(Z^2)$ = ${}_{u|n}^2A^{(m)}_x$ =
+    $\sum^{m (u + n) -1}_{k = mu} v^{2\frac{k + 1}{m}}{}_{\frac{k}{m}|\frac{1}{m}}q_{x}$
+
+    = $^2\lcterm{A^{(m)}}{x}{u + n}$ - $^2\lcterm{A^{(m)}}{x}{u}$ =
+    $(^2\lcend{A}{x}{u})$$(^2\lcterm{A^{(m)}}{x + u}{n})$ \vspace{5mm}
+
+-   $Var(Z)$ = ${}_{u|n}^2A^{(m)}_x$ - [${}_{u|n}A^{(m)}_x]^2$
+    \vspace{5mm}
+
+-   ${}_{u|n}A^{(m)}_x$ = 0 +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x({}_{u -
+    \frac{1}{m}|n}A^{(m)}_{x + \frac{1}{m}})$ \vspace{5mm}
+
+-   UDD: ${}_{u|n}A^{(m)}_x$ = $\frac{i}{i^{(m)}}$${}_{u|n}A_x$ and
+    ${}_{u|n}\bar{A}_x$ = $\frac{i}{\delta}$${}_{u|n}A_x$ \vspace{5mm}
+
+-   Claims acceleration: ${}_{u|n}A^{(m)}_x$ =
+    $(1 + i)^{\frac{m - 1}{2m}}$${}_{u|n}A_x$ and ${}_{u|n}\bar{A}_x$ =
+    $(1 + i)^{\frac{1}{2}}$${}_{u|n}A_x$
+
+\newpage
+## Geometrically Increasing Life Insurance on (x)
+
+\Large
+
+Suppose the basic death benefit is 1. The death benefit is compounded at
+a rate of $j$ per year. There is an effective annual interest rate of
+$i$. \vspace{3mm}
+
+Define the modified interest rate: $i_b$ = $\frac{1 + i}{1 + j}$ - 1.
+Then: \vspace{4mm}
+
+-   The expected present value of an annual whole life insurance, with
+    $Z$ = $(1 + j)^{K_x}v^{K_x + 1}$, is $\frac{1}{1 + j}A_x$ at $i_b$.
+    \vspace{3mm}
+
+-   The expected present value of an annual term insurance, with:
+    \vspace{2mm}
+
+    $$Z = \left\{
+      \begin{array}{l l}
+        (1 + j)^{K_x}v^{K_x + 1}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        0            & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right...$$ 
+      \vspace{2mm}
+
+    is $\frac{1}{1 + j}\lcterm{A}{x}{n}$ at $i_b$.
+
+\newpage
+## Exercises
+
+\Large
+
+4.1. For a whole life insurance of 1000 on (30): \vspace{4mm}
+
+\(i) The benefit is payable at the end of the month of death.
+\vspace{2mm}
+
+\(ii) $l_x$ = 95 - $x$ for 0 $\le$ $x$ $\le$ 95, and $\delta$ = 0.07
+\vspace{4mm}
+
+Calculate the single benefit premium. \vspace{4mm}
+
+\(A) 215 \hspace{0.2in} (B) 216 \hspace{0.2in} (C) 217 \hspace{0.2in} (D)
+218 \hspace{0.2in} (E) 219 \vspace{10mm}
+
+4.2. A fund is set up to provide benefits to 500 independent lives age
+35: \vspace{4mm}
+
+\(i) On January 1, 2012, each life is issued a single premium 15-year
+deferred whole life insurance of 1000, payable at the end of the quarter
+of a year of death. \vspace{2mm}
+
+\(ii) Each life has mortality that follows the Illustrative Life Table,
+and $i$ = 0.06 \vspace{2mm}
+
+\(iii) The claims acceleration approach is used to calculate quarterly
+insurance expected present values. \vspace{4mm}
+
+Calculate the amount needed in the fund on January 1, 2012, so that the
+probability, as determined by the normal approximation, is 0.95 that the
+fund will be sufficient to provide these benefits. \vspace{4mm}
+
+\(A) 52,000 \hspace{0.2in} (B) 52,500 \hspace{0.2in} (C) 53,000
+\hspace{0.2in} (D) 53,500 \hspace{0.2in} (E) 54,000 \vspace{10mm}
+
+4.3. Consider a life insurance on (45). 5000 is payable at the moment of
+death if death occurs before age 55; 15,000 is payable at the moment of
+death if death occurs between ages 55 and 65; 30,000 is payable at the
+moment of death if death occurs after age 65. \vspace{2mm}
+
+Mortality follows the Illustrative Life Table, and $i$ = 0.06. Deaths
+are assumed to be uniformly distributed within each year of age.
+\vspace{2mm}
+
+Calculate the single benefit premium. \vspace{4mm}
+
+\(A) 4420 \hspace{0.2in} (B) 4430 \hspace{0.2in} (C) 4440 \hspace{0.2in}
+(D) 4450 \hspace{0.2in} (E) 4460 \vspace{10mm}
+
+4.4. Using the Illustrative Life Table, the claims acceleration
+approach, and $i$ = 0.06, calculate the actuarial present value of a
+30-year deferred whole life insurance of 10,000 on (35) payable at the
+end of the quarter of a year of death. \vspace{4mm}
+
+\(A) 615 \hspace{0.2in} (B) 620 \hspace{0.2in} (C) 625 \hspace{0.2in} (D)
+630 \hspace{0.2in} (E) 635 \vspace{10mm}
+
+4.5. Using the Illustrative Life Table, the uniform distribution of
+deaths assumption over each year of age, and $i$ = 0.06, calculate:
+1000$\insendc{50}{15}$. \vspace{4mm}
+
+\(A) 449 \hspace{0.2in} (B) 451 \hspace{0.2in} (C) 454 \hspace{0.2in} (D)
+457 \hspace{0.2in} (E) 459 \vspace{10mm}
+
+4.6. You are given a 20-year term insurance on a select life aged 25
+payable at the end of the year of death: \vspace{4mm}
+
+\(i) The death benefit for the first year is 100,000. The death benefit
+amount increases at a rate of 2% at the end of each policy year
+throughout the term of the insurance. \vspace{2mm}
+
+\(ii) Mortality follows the Standard Select Survival Model. \vspace{2mm}
+
+\(iii) $i$ = 0.071 \vspace{4mm}
+
+Calculate the expected present value of this insurance. \vspace{4mm}
+
+\(A) 437 \hspace{0.2in} (B) 445 \hspace{0.2in} (C) 455 \hspace{0.2in} (D)
+467 \hspace{0.2in} (E) 475 \vspace{10mm}
+
+4.7. Suppose mortality follows the Standard Select Survival Model, and
+$i$ = 0.05. \vspace{4mm}
+
+Calculate the single benefit premium for a 1-year deferred, 2-year term
+insurance of 10,000 on [60] that is payable at the end of the year of
+death. \vspace{4mm}
+
+\(A) 66 \hspace{0.2in} (B) 69 \hspace{0.2in} (C) 72 \hspace{0.2in} (D) 76
+\hspace{0.2in} (E) 79 \vspace{10mm}
+
+\newpage
+4.8. Consider a special 5-year deferred whole life insurance on (35)
+payable at the end of the year of death. You are given: \vspace{4mm}
+
+\(i) $$b_{k + 1} = \left\{
+  \begin{array}{l l}
+    0                         & \quad \text{for $k$ = 0, 1, ..., 4}\\
+    5000(1.02)^k             & \quad \text{for $k$ = 5, 6, ...}\\
+  \end{array} \right.$$ 
+  \vspace{2mm}
+
+\(ii) Mortality follows de Moivre’s Law with limiting age 95.
+\vspace{2mm}
+
+\(iii) $i$ = 0.05 \vspace{4mm}
+
+Calculate the expected present value of this insurance. \vspace{4mm}
+
+\(A) 1905 \hspace{0.2in} (B) 1915 \hspace{0.2in} (C) 1925 \hspace{0.2in}
+(D) 1935 \hspace{0.2in} (E) 1945 \vspace{10mm}
+
+4.9. Consider a life insurance on (40). 20,000 is payable at the end of
+the quarter of a year of death if death occurs before age 55; 10,000 is
+payable at end of the quarter of a year of death if death occurs between
+ages 55 and 65; 0 is payable if death occurs after age 65. \vspace{2mm}
+
+Mortality follows the Illustrative Life Table, and $i$ = 0.06. Deaths
+are assumed to be uniformly distributed within each year of age.
+\vspace{2mm}
+
+Calculate the expected present value. \vspace{4mm}
+
+\(A) 1220 \hspace{0.2in} (B) 1230 \hspace{0.2in} (C) 1240 \hspace{0.2in}
+(D) 1250 \hspace{0.2in} (E) 1260 \vspace{10mm}
+
+4.10. You are given a 20-year endowment insurance of 10,000 on a select
+life aged 40 with death benefit payable at the end of the month of
+death. You are given: \vspace{4mm}
+
+\(i) Mortality follows the Standard Select Survival Model. \vspace{2mm}
+
+\(ii) $i$ = 0.05 \vspace{2mm}
+
+\(iii) Deaths are uniformly distributed over each year of age.
+\vspace{4mm}
+
+Calculate the standard deviation of the present value of the insurance
+random variable. \vspace{4mm}
+
+\(A) 350 \hspace{0.2in} (B) 360 \hspace{0.2in} (C) 370 \hspace{0.2in} (D)
+380 \hspace{0.2in} (E) 390
+
+\newpage
+4.11. Consider a special life insurance on a life aged 50: \vspace{4mm}
+
+\(i) The death benefit is 50,000 payable at the end of the quarter of a
+year of death if death occurs between ages 50 and 60, and the death
+benefit is 100,000 payable at the end of the quarter of a year of death
+if death occurs after age 60. \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{2mm}
+
+\(iv) Deaths are uniformly distributed within each year of age.
+\vspace{4mm}
+
+Calculate the expected present value of this insurance. \vspace{4mm}
+
+\(A) 22,200 \hspace{0.2in} (B) 22,400 \hspace{0.2in} (C) 22,600
+\hspace{0.2in} (D) 22,800 \hspace{0.2in} (E) 23,000 \vspace{6mm}
+
+4.12. Consider a 3-year term insurance of 150,000 on (60) payable at the
+end of the month of death: \vspace{4mm}
+
+\(i) $i$ = 0.06 \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) Deaths are uniformly distributed within each year of age.
+\vspace{4mm}
+
+Calculate the expected present value of this insurance. \vspace{4mm}
+
+\(A) 5300 \hspace{0.2in} (B) 5500 \hspace{0.2in} (C) 5700 \hspace{0.2in}
+(D) 5900 \hspace{0.2in} (E) 6100 \vspace{6mm}
+
+4.13. For a special 4-year term insurance on (45) payable at the end of
+the year of death: \vspace{4mm}
+
+\(i) $Z$ is the present value random variable for this insurance.
+\vspace{2mm}
+
+\(ii) ${}_{k|}q_{45}$ = 0.02($k$ + 1) for $k$ = 0, 1, 2, ..., 49.
+\vspace{2mm}
+
+\(iii) $i$ = 0.07 \vspace{2mm}
+
+\(iv) The death benefit for year $k + 1$ is equal to: \vspace{2mm}
+
+\hspace{1in} 50,000$(1.035)^{k + 1}$ for $k$ = 0, 1, 2, 3. \vspace{4mm}
+
+Calculate the standard deviation of $Z$. \vspace{4mm}
+
+\(A) 16,100 \hspace{0.2in} (B) 17,100 \hspace{0.2in} (C) 18,100
+\hspace{0.2in} (D) 19,100 \hspace{0.2in} (E) 20,100 \vspace{10mm}
+
+\newpage
+4.14. Each of 1000 independent lives aged 30 purchase a single-premium
+whole life insurance of 15,000 payable at the end of the month of death,
+where: \vspace{4mm}
+
+\(i) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(ii) $i$ = 0.06 \vspace{2mm}
+
+\(iii) Deaths are uniformly distributed within each year of age.
+\vspace{2mm}
+
+\(iv) $^2 A^{(12)}_{30}$ = 0.026714; calculated using (i), (ii), and
+(iii). \vspace{2mm}
+
+\(v) $h$ is the aggregate amount the insurer receives from the 1000 lives
+at issue. \vspace{4mm}
+
+Using the normal approximation, calculate $h$, in millions, such that
+the probability the insurer has sufficient funds to pay all claims is
+0.99. \vspace{4mm}
+
+\(A) 1.1 \hspace{0.2in} (B) 1.3 \hspace{0.2in} (C) 1.5 \hspace{0.2in} (D)
+1.7 \hspace{0.2in} (E) 1.9 \vspace{10mm}
+
+\newpage
+### Answers to Exercises
+
+\Large4.1. C \vspace{2mm}
+
+4.2. D \vspace{2mm}
+
+4.3. B \vspace{2mm}
+
+4.4. C \vspace{2mm}
+
+4.5. A \vspace{2mm}
+
+4.6. D \vspace{2mm}
+
+4.7. B \vspace{2mm}
+
+4.8. B \vspace{2mm}
+
+4.9. C \vspace{2mm}
+
+4.10. D \vspace{2mm}
+
+4.11. B \vspace{2mm}
+
+4.12. E \vspace{2mm}
+
+4.13. C \vspace{2mm}
+
+4.14. D \vspace{2mm}
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#9 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#15 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#34, 231 \vspace{2mm}

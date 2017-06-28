@@ -1,0 +1,712 @@
+---
+title: "Premium Calculation II"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Premium Calculation II
+
+## Premiums Payable on an m-THLY Basis
+
+**Life Insurance with Premiums Payable on an $m$-thly Basis:** a life
+insurance that is funded by an $m$-thly annuity-due of premiums.
+
+**Continuous Insurance of 1 on (x) with $m$-thly Premiums**:
+
+-   You can obtain this table by taking the table for **Fully Continuous
+    Insurance of 1 on (x)** in **Premium Calculation I** and replacing
+    the continuous premium annuity with an $m$-thly annuity-due.
+
+-   For example, a continuous $n$-year term insurance of 1 on (x) with
+    premiums payable on an $m$-thly basis is:
+
+    $\begin{array}{l|l|l|l}
+    \hline
+    \textbf{Insurance}    & \textbf{PVFB@0}     & \mathbf{\frac{PVFP@0}{Benefit Premium}}   & \textbf{Benefit Premium} \\
+    \hline
+    \text{Continuous}     & v^{T_x}, T_x \le n  & \ddot{a}_{\lcroof{K^{(m)}_x + \frac{1}{m}}}, K^{(m)}_x < n &  \\
+    n\text{-year Term}    & 0, T_x > n          & \ddot{a}_{\lcroof{n}}, K^{(m)}_x \ge n    & P^{(m)}(\lcterm{\bar{A}}{x}{n}) = \frac{\lcterm{\bar{A}}{x}{n}}{\ddot{a}^{(m)}_{x:\lcroof{n}}} \\
+    \text{with} m\text{-thly premiums} & & & \\ 
+    \hline
+    \end{array}$
+
+-   You do NOT have to know the actuarial notation for $m$-thly benefit
+    premiums; $P$ is sufficient.
+
+-   $K^{(m)}_x$ $<$ $n$ means that $K^{(m)}_x$ = 0, $\frac{1}{m}$,
+    $\frac{2}{m}$, ..., $n$ - $\frac{1}{m}$.
+
+-   For the continuous $n$-year term insurance of 1 on (x) with premiums
+    payable on an $m$-thly basis, the premium that is actually payable
+    at the beginning of each $m$-th of a year is
+    $\frac{1}{m}$$P^{(m)}(\lcterm{\bar{A}}{x}{n})$.
+
+-   The annual benefit premium for an annual $n$-year term insurance of
+    1 on (x) with premiums payable on an $m$-thly basis is
+    $\lcterm{P^{(m)}}{x}{n}$ =
+    $\frac{\lcterm{A}{x}{n}}{\ddot{a}^{(m)}_{x :\lcroof{n}}}$.
+
+## Gross Loss-at-Issue
+
+-   The first step to determining the premiums that the policyholder
+    should pay to fund both the benefits and expenses associated with a
+    particular policy is to determine the appropriate
+
+    **gross loss-at-issue random variable**:
+
+    $L_0$ = ${}_{0}L$ = $L$ = Present value of future benefits at
+    issue + Present value of future expenses at issue - Present value of
+    future premiums at issue.
+
+    = $PVFB@0$ + $PVFE@0$ - $PVFP@0$
+
+-   The gross loss-at-issue may be written with a superscript, as
+    $L^g_0$.
+
+-   If expenses are ignored, the loss is a net loss. If expense
+    information is provided, the loss is assumed to be a gross loss.
+
+-   Loss is random because $PVFB@0$, $PVFE@0$, and $PVFP@0$ each depend
+    on the future lifetime of the policyholder.
+
+-   There will be a **loss** on a policy if the amount the insurer pays
+    out in benefits and expenses is higher than the amount the insurer
+    collects in premiums; $L_0$ $>$ 0 if $PVFB@0$ + $PVFE@0$ $>$
+    $PVFP@0$. There will be a **profit** on a policy if the amount the
+    insurer pays out in benefits and expenses is smaller than the amount
+    the insurer collects in premiums; $L_0$ $<$ 0 if $PVFB@0$ + $PVFE@0$
+    $<$ $PVFP@0$.
+
+## Gross Premium Equivalence Principle Calculation
+
+-   Premiums calculated using the gross loss-at-issue are called **gross
+    premiums**. Gross premiums are denoted as $G$.
+
+-   There are no special formulas to memorize for gross premiums
+    associated with various insurance coverages. Just solve the
+    following **equivalence principle** equation for $G$:
+
+    $E(L^g_0)$ = $E(PVFB@0)$ + $E(PVFE@0)$ - $E(PVFP@0)$ = 0 $\implies$
+
+    $E(PVFB@0)$ + $E(PVFE@0)$ = $E(PVFP@0)$.
+
+-   Under this principle, the insurer charges premiums so that, on
+    average, there will be neither a loss or a profit on the policy.
+    Clearly, this is not the case in practice. It is possible to allow
+    for profit by including a “profit loading expense” in $E(PVFE@0)$.
+
+-   The gross premium pays for both the benefits and expenses of a
+    policy. It makes sense that a gross premium calculated using the
+    equivalence principle ($G$) can be decomposed into the sum of two
+    premiums: a benefit premium that pays for just the benefits ($P$)
+    plus an **expense premium** or **expense loading** that pays for
+    just the expenses $(e)$:
+
+    $G$ = $P$ + $e$.
+
+## Expense Terminology
+
+-   **Initial Year:** The first policy year. Expenses incurred at the
+    start of the first year may be called **initial expenses**.
+
+-   **Renewal Year:** Any policy year after the first. Expenses incurred
+    at the start of a renewal year may be called **renewal expenses**.
+
+-   **Per-Premium Expense:** an expense that is a function of the
+    premium charged, such as a percent of premium expense. Examples
+    include agent commissions and taxes.
+
+-   **Per-Policy Expense:** an expense that is a fixed amount per
+    policy, regardless of the amount of coverage. Examples include
+    maintenance expenses.
+
+-   **Per-Insurance Expense:** an expense that is a function of the
+    benefit of the insurance. For example, consider a fully discrete
+    whole life insurance of 100,000 on (x). If there is an expense of 1
+    per 1000 of insurance payable at the beginning of the year, that
+    equates to an expense of 100 payable at the beginning of the year.
+
+-   **Acquisition Expense:** an expense that is payable on the policy
+    issue date. This is a type of initial expense.
+
+-   **Settlement Expense:** an expense that is payable at the same time
+    the benefit of the insurance (the claim) is payable.
+
+## Single Policy Percentile Premium Principle
+
+Percentile premiums are determined such that:
+
+$Pr(L_0 > 0)$ = $\alpha$ for 0 $\le$ $\alpha$ $\le$ 1.
+
+The best way to calculate percentile premiums for a life insurance on
+(x) is to use the following approach:
+
+-   First, note that $Pr(L_0 > 0)$ = $\alpha$ $\implies$
+    ${}_{t_{\alpha}}q_x$ = $\alpha$.
+
+    That is because $L_0$ is a non-decreasing function of the
+    policyholder’s future lifetime for a life insurance. Therefore, the
+    life insurance policy will realize a loss 100$\alpha$% of the time
+    if the policyholder dies by the $100\alpha$-th percentile of the
+    policyholder’s future lifetime distribution.
+
+    Solve ${}_{t_{\alpha}}q_x$ = $\alpha$ for $t_{\alpha}$.
+
+    If the life insurance is annual (the death benefit is payable at the
+    end of the year of death), keep only the integer part of
+    $t_{\alpha}$ to obtain the appropriate $k_{\alpha}$. That is because
+    an annual life insurance pays its benefit based on the curtate
+    future lifetime of the policyholder.
+
+-   Using the solved for $t_{\alpha}$ or $k_{\alpha}$, setup the
+    equation:
+
+    $L_0$ = $PVFB@0$ - $PVFP@0$ = 0.
+
+    Solve this last equation for the 100$\alpha$-th percentile premium.
+
+## Portfolio Percentile Premium Principle
+
+-   Consider a portfolio of $N$ independent and identically distributed
+    policies.
+
+-   Let $L_{0, i}$ denote the loss-at-issue for policy number $i$ in the
+    portfolio, where $i$ = 1, 2, ..., $N$.
+
+-   Let $S$ = $\sum^N_{i = 1} L_{0, i}$.
+
+-   The **Portfolio Percentile Premium Principle** solves for the
+    premium for each policy via the following, where $\Phi(.)$ denotes
+    the c.d.f. of a standard normal distribution:
+
+    $Pr[S > 0]$ = 1 - $\Phi(-\frac{E(S)}{\sqrt{V(S)}})$ = $\alpha$ for 0
+    $\le$ $\alpha$ $\le$ 1
+
+    $\implies$ $\Phi(-\frac{E(S)}{\sqrt{V(S)}})$ = 1 - $\alpha$
+
+-   Note: Both $E(S)$ and $\sqrt{V(S)}$ will be functions of the
+    premium.
+
+    Set -$\frac{E(S)}{\sqrt{V(S)}}$ = $z_{1 - \alpha}$, the 100(1 -
+    $\alpha$)-th percentile of the standard normal distribution, and
+    solve for the premium.
+
+    The value of $\alpha$ will be close to zero.
+
+## Exercises
+
+8.1. For a special fully discrete 2-year term insurance on a select life
+aged 30 payable at the end of the year of death:
+
+\(i) Premiums are payable semiannually.
+
+\(ii) Premiums are payable only in the first year.
+
+\(iii) $b_{k + 1}$ = 500(2 - $k$) for $k$ = 0, 1
+
+\(iv) Mortality follows the Standard Select Survival Model, and $i$ =
+0.05.
+
+\(v) Deaths are uniformly distributed within each year of age.
+
+Calculate the amount of each semiannual benefit premium.
+
+\(A) 0.20 (B) 0.23 (C) 0.26 (D) 0.29 (E) 0.32
+
+8.2. Calculate the level annual net premium for a 20-year endowment
+insurance of 50,000 on (40) where the death benefit is payable at the
+moment of death and premiums are payable at the beginning of each month.
+Assume that mortality follows the Illustrative Life Table, $i$ = 0.06,
+and deaths are uniformly distributed over each year of age.
+
+\(A) 1430 (B) 1450 (C) 1470 (D) 1490 (E) 1510
+
+8.3. You are given:
+
+\(i) $\ddot{a}^{(12)}_x$ = $0.9$$\ddot{a}^{(4)}_x$
+
+\(ii) $P^{(m)}_x$ denotes the level net premium for a whole life
+insurance of 1 on (x) payable at the end of the year of death, with
+premiums payable at the beginning of each $\frac{1}{m}$-th of a year
+while (x) is alive.
+
+\(iii) $P^{(4)}_x$ = 0.027
+
+Calculate: $P^{(12)}_x$.
+
+\(A) 0.02 (B) 0.03 (C) 0.04 (D) 0.05 (E) 0.06
+
+8.4. You are given a special fully discrete 20-year pure endowment
+insurance of 20,000 on (30):
+
+\(i) Level gross premiums are payable at the beginning of each month
+during the first ten years.
+
+\(ii) The monthly gross premium is 115% of the monthly benefit premium
+payable at the beginning of each month during the first ten years.
+
+\(iii) Deaths are uniformly distributed within each year of age.
+
+\(iv) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+Calculate the expected gross loss-at-issue.
+
+\(A) - 880 (B) -640 (C) -440 (D) - 290 (E) 0
+
+8.5. For a fully continuous whole life insurance of 10,000 on (30):
+
+\(i) Mortality follows de Moivre’s Law with $\omega$ = 100.
+
+\(ii) $\delta$ = 0.05
+
+Calculate the 20th percentile premium.
+
+\(A) 455 (B) 465 (C) 475 (D) 485 (E) 495
+
+8.6. Consider a fully discrete whole life insurance of 1000 on (40):
+
+\(i) Mortality follows the Illustrative Life Table.
+
+\(ii) $i$ = 0.06
+
+Calculate the smallest premium such that the probability of a positive
+loss-at-issue on the insurance is less than 0.20.
+
+\(A) 14 (B) 15 (C) 16 (D) 17 (E) 18
+
+8.7. An insurer issues whole life insurance policies to lives aged 30.
+The sum insured of 100,000 is paid at the end of the year of death, and
+level annual premiums are payable at the beginning of each year.
+
+Initial expenses are 1500 plus 20% of the first premium. Renewal
+expenses are 4% of the second and subsequent premiums.
+
+Assume mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+Using the normal approximation, calculate the annual premium via the
+portfolio percentile premium principle, such that the probability that
+the loss-at-issue on the portfolio is negative is 0.90. Assume a
+portfolio of 1000 identical, independent policies.
+
+\(A) 800 (B) 810 (C) 820 (D) 830 (E) 840
+
+8.8. An insurer issues single-premium whole life insurance policies of
+100,000, payable at the end of the month of death, to select lives aged
+40. Initial expenses are 20% of the single premium. Assume mortality
+follows the Standard Select Survival Model, and $i$ = 0.05.
+
+Using the normal approximation and Woolhouse’s formula with 3 terms,
+calculate the single premium via the portfolio percentile premium
+principle, so that the probability the loss-at-issue on the portfolio is
+negative is 95%. Assume a portfolio of 15,000 identical, independent
+policies.
+
+\(A) 14,400 (B) 14,700 (C) 15,000 (D) 15,300 (E) 15,600
+
+8.9 An insurer issues fully discrete 20-year endowment insurance
+policies of 100,000 to insureds age 40 with independent future
+lifetimes:
+
+\(i) The level annual net premium is calculated using the percentile
+premium principle and the normal approximation, such that the
+probability of a loss on the portfolio is 1%.
+
+\(ii) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+\(iii) $^2 \insend{40}{20}$ = 0.118943
+
+Calculate the annual net premium per policy for a portfolio of 2000
+policies.
+
+\(A) 2600 (B) 2700 (C) 2800 (D) 2900 (E) 3000
+
+8.10. On January 1, 2012, Pat purchases a 5-year deferred whole life
+insurance of 100,000 payable at the end of the year of death. You are
+given:
+
+\(i) Level gross premiums of 5000 are payable at the beginning of each
+year for the first 5 years.
+
+\(ii) There is an acquisition expense of 100 that is payable on the
+policy issue date.
+
+\(iii) There is an annual maintenance expense of 20 payable at the
+beginning of each year, including the first year.
+
+\(iv) There is a first year total percent of premium expense of 15% of
+the gross premium, and a renewal year total percent of premium expense
+of 5% of the gross premium; all percent of premium expenses are payable
+at the beginning of the year.
+
+\(v) There is a claims settlement expense of 120, payable at the time the
+death benefit is paid.
+
+\(vi) $i$ = 0.05.
+
+Calculate the loss-at-issue if Pat dies on April 30, 2014.
+
+\(A) -12,925 (B) -9,221 (C) 26,409 (D) 43,857 (E) 73,562
+
+8.11. Consider a fully discrete whole life insurance of 100,000 on (35).
+Percent of premium expenses are 10% per year, and per policy expenses
+are 25 per year. All expenses are paid at the beginning of the year. The
+effective annual interest rate is 0.05.
+
+Assume that mortality follows: $S_0(x)$ = 1 - $\frac{x}{95}$ for 0 $\le$
+$x$ $\le$ 95. Calculate the level annual gross premium using the
+equivalence principle.
+
+\(A) 2410 (B) 2440 (C) 2470 (D) 2500 (E) 2530
+
+8.12. For a fully discrete 5-payment 10-year endowment insurance of 1000
+on (30):
+
+\(i) There are level annual gross premiums.
+
+\(ii) Mortality follows the Illustrative Life Table, and $i$ = 0.06
+
+\(iii) The following expenses are all payable at the beginning of the
+policy year:
+
+$\begin{array}{l|r|r|r|r}
+\hline
+              & \multicolumn{2}{c|}{\textbf{Policy Year 1}}   & \multicolumn{2}{c}{\textbf{Policy Years 2+}} \\
+\hline
+              & \textbf{\% Premium}   & \textbf{Per Policy}   & \textbf{\% Premium}   & \textbf{Per Policy} \\
+\hline
+\text{Taxes}  & 5\%   & --- & 5\% & --- \\
+\text{Sales Commission}   & 20\% & --- & 5\% & --- \\
+\text{Policy Maintenance} & ---  & 20  & --- & 10   \\
+\hline
+\end{array}$
+
+\(iv) There is also a claims settlement expense of 50, payable at the
+time the sum insured is paid.
+
+Calculate the level annual gross premium using the equivalence
+principle.
+
+\(A) 160 (B) 165 (C) 170 (D) 175 (E) 180
+
+8.13. Calculate the probability that the endowment insurance in Exercise
+8.12 is profitable, where profitability is measured using the gross
+loss-at-issue random variable.
+
+\(A) 0.974 (B) 0.977 (C) 0.980 (D) 0.983 (E) 0.986
+
+8.14. For a fully discrete 5-year term insurance of 10,000 on (35):
+
+\(i) Mortality follows the Illustrative Life Table, and $i$ = 0.06
+
+\(ii) The following expenses, all payable at the beginning of the year:
+
+$\begin{array}{l|r|r|r|r}
+\hline
+                & \multicolumn{2}{c|}{\textbf{Year 1}}  & \multicolumn{2}{c}{\textbf{Years 2-5}} \\
+\hline
+                & \textbf{\% Premium} & \textbf{Per Policy} & \textbf{\% Premium} & \textbf{Per Policy} \\
+\hline
+\text{Sales Commission}   & 40\%  & --- & 4\% & --- \\
+\text{Taxes}              & 6\%   & --- & 6\% & --- \\
+\text{Policy Maintenance} & ---   & K  & --- & 5   \\
+\hline
+\end{array}$
+
+\(iii) There is an acquisition expense of 50 that is payable at policy
+issue, and a settlement expense of 120 that is payable at the same time
+as the death benefit.
+
+\(iv) The level annual gross premium, calculated using the equivalence
+principle, is 47.73.
+
+Calculate: $K$.
+
+\(A) 8 (B) 10 (C) 12 (D) 14 (E) 16
+
+8.15. For a fully discrete 10-year endowment insurance of 10,000 on
+(50):
+
+\(i) Percent of premium expenses consist of commissions equal to 50% of
+gross premium in the first year and 5% of gross premium premium in
+renewal years. Each expense is at the beginning of the year.
+
+\(ii) Other expenses include an acquisition expense of 20 due at policy
+issue, a settlement expense of 180 due at the time the benefit of 10,000
+is paid, and an annual level maintenance expense of 25 at the beginning
+of each year.
+
+\(iii) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+Using the equivalence principle, calculate the annual level expense
+premium.
+
+\(A) 110 (B) 120 (C) 130 (D) 140 (E) 150
+
+8.16. The level annual gross premium for a fully discrete 20-year
+endowment insurance of 10,000 on (45) is determined using the following
+assumptions:
+
+\(i) Percent of premium expenses consist of sales commission equal to 20%
+of premium in the first year followed by 5% of premium in all other
+years, and taxes equal to 2.5% of premium each year.
+
+\(ii) Per-policy expenses are 50 in the first year and 25 in all other
+years.
+
+\(iii) All expenses are payable at the beginning of the year.
+
+\(iv) Mortality follows the Illustrative Life Table.
+
+\(v) $i$ = 0.06
+
+\(vi) The level annual gross premium is calculated using the equivalence
+principle.
+
+Calculate the difference between the gross premium and the loading for
+expenses in the gross premium.
+
+\(A) 300 (B) 320 (C) 340 (D) 360 (E) 380
+
+8.17. Consider a 15-year term insurance on a select life aged 40 with
+benefits payable at the end of the year of death:
+
+\(i) The term insurance has a basic sum insured of 100,000; compound
+reversionary bonuses at the rate of 3.5% will vest at the end of each
+year.
+
+\(ii) Level gross premiums are payable at the beginning of the month
+during the 15 years.
+
+\(iii) The insurer has initial expenses of 2000 plus 4% of the first
+monthly gross premium, and renewal expenses of 1% of the second and
+subsequent monthly gross premiums.
+
+\(iv) Mortality follows the Standard Select Survival Model, and $i$ =
+0.05.
+
+\(v) $A_{[40]}$ and $A_{55}$, each at an effective annual interest rate
+of (1.05/1.035 - 1), are equal to 0.516777 and 0.634596, respectively.
+
+\(vi) Woolhouse’s formula with three terms is used to calculate monthly
+annuity-due expected present values.
+
+Calculate the monthly gross premium using the equivalence principle.
+
+\(A) 24 (B) 26 (C) 28 (D) 30 (E) 32
+
+8.18. Consider a special fully discrete whole life insurance on a select
+life aged 50:
+
+\(i) The death benefit is 120,000 during the first 15 years, and is
+72,000 thereafter.
+
+\(ii) Gross premiums are $G$ during the first 15 years, and are 0.6$G$
+thereafter.
+
+\(iii) There is a claims settlement expense of 100, payable at the same
+time as the death benefit.
+
+\(iv) Expenses are 20% of the first gross premium, and 2% of each renewal
+gross premium. Expenses are paid at the beginning of the year.
+
+\(v) Mortality follows the Standard Select Survival Model, and $i$ =
+0.05.
+
+Calculate $G$ using the equivalence principle.
+
+\(A) 900 (B) 950 (C) 1000 (D) 1050 (E) 1100
+
+8.19. Consider a 10-year term insurance of 100,000 on (40) payable at
+the moment of death:
+
+\(i) Only one gross premium is payable at issue.
+
+\(ii) There is an expense of 1.00 per 1000 of insurance payable at issue.
+There is an expense of 0.50 per 1000 of insurance payable at the
+beginning of each year during the second and subsequent years.
+
+\(iii) Mortality follows the Illustrative Life Table, and $i$ = 0.06
+
+\(iv) Deaths are uniformly distributed within each year of age.
+
+Calculate the gross premium using the equivalence principle.
+
+\(A) 3100 (B) 3200 (C) 3300 (D) 3400 (E) 3500
+
+8.20. For the insurance described in Exercise 8.19, calculate the
+probability that the gross loss-at-issue is positive.
+
+\(A) 0.027 (B) 0.031 (C) 0.035 (D) 0.039 (E) 0.043
+
+8.21. Consider a fully discrete whole life insurance of 1000 on (x):
+
+\(i) The contract premium is the level annual gross premium determined
+using the equivalence principle.
+
+\(ii) The level annual net premium is 13.
+
+\(iii) There is a level annual expense that is payable at the beginning
+of each year.
+
+\(iv) $i$ = 0.03
+
+\(v) $A_x$ = 0.20 and $^2A_x$ = 0.09
+
+Calculate the standard deviation of the gross loss-at-issue random
+variable.
+
+\(A) 323 (B) 333 (C) 343 (D) 353 (E) 363
+
+8.22. Consider a fully discrete whole life insurance of 100,000 on (60):
+
+\(i) The level annual gross premium is 3800.
+
+\(ii) The following expenses, which are incurred at the beginning of the
+year:
+
+$\begin{array}{r|rr|rr}
+\hline
+                   & \multicolumn{2}{c}{\textbf{Year 1}} & \multicolumn{2}{c}{\textbf{Years
+                   2+}} \\
+                   & \% of Premium & Constant   & \% of Premium & Constant \\
+\hline
+\text{Sales Commission}   & 25\% & 0  & 5\% & 0 \\
+\text{Taxes}              & 5\%  & 0  & 5\% & 0 \\
+\text{Policy Maintenance} & 0    & 60 & 0   & 11 \\
+\hline
+\end{array}$
+
+\(iii) There is a claims settlement expense of 110 payable at the same
+time as the death benefit.
+
+\(iv) Mortality follows the Illustrative Life Table.
+
+\(v) $i$ = 0.06
+
+Calculate the probability that this policy makes a profit, where
+profitability is measured using the gross loss-at-issue random variable.
+
+\(A) 0.56 (B) 0.57 (C) 0.58 (D) 0.59 (E) 0.60
+
+8.23. Consider a fully discrete 15-year deferred whole life insurance of
+100,000 on (50):
+
+\(i) Level annual gross premiums, calculated using the equivalence
+principle, are payable only during the first 15 years.
+
+\(ii) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+\(iii) Issue expenses, incurred at the start of the first year, are 18%
+of gross premium plus 150. Renewal expenses, incurred at the start of
+each of years 2 through 15, are 5% of gross premium. There are no
+renewal expenses for year 16 and subsequent years.
+
+Determine the annual expense premium.
+
+\(A) 120 (B) 123 (C) 126 (D) 129 (E) 132
+
+8.24. Consider a special life annuity issued to Serah, aged 35:
+
+\(i) There is a deferral period of 10 years.
+
+\(ii) Level net premiums are payable at the beginning of the year only
+during the deferral period.
+
+\(iii) If Serah dies during the deferral period, there is a death
+benefit, payable at the end of the year of death, that is equal to the
+return of all net premiums previously paid with interest at 6%
+
+\(iv) If Serah is still alive at the end of the deferral period, 5000 is
+payable at the beginning of each quarter of a year for life, with the
+first payment payable immediately (at age 45).
+
+\(v) Mortality follows the Illustrative Life Table.
+
+\(vi) Woolhouse’s formula with two terms is used to calculate annuity
+expected present values.
+
+\(vii) $i$ = 0.06
+
+Calculate the net premium.
+
+\(A) 19,000 (B) 19,400 (C) 19,700 (D) 20,000 (E) 20,400
+
+### Answers to Exercises
+
+8.1. A
+
+8.2. C
+
+8.3. B
+
+8.4. A
+
+8.5. E
+
+8.6. C
+
+8.7. C
+
+8.8. E
+
+8.9. D
+
+8.10. A
+
+8.11. C
+
+8.12. D
+
+8.13. D
+
+8.14. B
+
+8.15. D
+
+8.16. A
+
+8.17. B
+
+8.18. D
+
+8.19. C
+
+8.20. D
+
+8.21. A
+
+8.22. D
+
+8.23. B
+
+8.24. C
+
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#7, 8, 9, 11
+
+-   Exam MLC, Spring 2015: \#9, 10, 12, 17
+
+-   Exam MLC, Fall 2014: \#8, 9, 10, 11
+
+-   Exam MLC, Spring 2014: \#9, 10
+
+-   Exam MLC, Fall 2013: \#9, 18, 19
+
+-   Exam MLC, Spring 2013: \#15, 25
+
+-   Exam MLC, Fall 2012: \#25
+
+-   Exam MLC, Spring 2012: \#4, 5, 7, 22, 25, 26
+
+-   Exam MLC, Sample Questions: \#24, 37, 60, 129, 139, 147, 170, 190,
+    198, 239, 240, 245, 246, 247, 248, 309
+
+-   Exam 3L, Fall 2010: \#14
+
+-   Exam MLC, Spring 2007: \#11

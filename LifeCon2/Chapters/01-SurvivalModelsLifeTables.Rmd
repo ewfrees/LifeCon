@@ -1,0 +1,1144 @@
+---
+title: "Survival Models and Life Tables"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Survival Models and Life Tables
+
+Let (x) denote a life aged x.
+
+## Future Lifetime
+
+-   $T_x$ = **time-until-death for (x)**, a continuous random variable
+    (in years).
+
+    $T_x$ is also called the **future lifetime random variable**. $T_x$
+    may also be written as $T(x)$ or $T$.
+
+    Special case: $T_0$ = **age-at-death for (0)**, where (0) denotes a
+    newborn life. Note: $T_0$ = x + $T_x$, given survival to age x.
+
+-   $F_x(t)$ = ${}_{t}q_x$ = $Pr(T_x \le t)$
+
+    This is the **cumulative distribution function of $T_x$**, “the
+    probability that (x) dies within $t$ years.” The $q$-notation will
+    be used most of the time.
+
+    $F_0(t)$ can also be written more simply as $F(t)$.
+
+-   $S_x(t)$ = ${}_{t}p_x$ = $Pr(T_x > t)$
+
+    This is the **survival function function of $T_x$**,“the probability
+    that (x) survives for at least $t$ years.” The words “at least” are
+    often omitted. The $p$-notation will be used most of the time.
+
+    $S_0(t)$ can also be written more simply as $S(t)$ or $s(t)$.
+
+-   From above: ${}_{t}q_x$ + ${}_{t}p_x$ = 1.
+
+    “(x) will either survive or die within $t$ years.”
+
+-   $S_0(x + t)$ = $S_0(x)$${}_{t}p_x$
+
+    “The probability that (0) survives $x + t$ years is equivalent
+    to (0) first surviving $x$ years to age x, and then surviving $t$
+    additional years to age x + t.”
+
+<!-- -->
+
+-   ${}_{u + t}p_x$ = $({}_{u}p_x)$$({}_{t}p_{x + u})$
+
+    “The probability that (x) survives $u + t$ years is equivalent
+    to (x) first surviving $u$ years to age x + u, and then surviving
+    $t$ additional years to age x + u + t.”
+
+-   Be careful: ${}_{u + t}q_x$ $\neq$ $({}_{u}q_x)$$({}_{t}q_{x +
+    u})$.
+
+    “The right-hand side implies that it is possible for (x) to die
+    within $u$ years, then somehow come back to life at age x + u in
+    order to die again within $t$ years. This, of course, is not
+    possible and cannot be equal to the left-hand side which is the
+    probability (x) dies within $u + t$ years.”
+
+-   ${}_{u|t}q_x$ = ${}_{u + t}q_x$ - ${}_{u}q_x$ = ${}_{u}p_x$ -
+    ${}_{u + t}p_x$ = (${}_{u}p_x$)(${}_{t}q_{x +
+    u}$)
+
+    This is a $u$-year deferred probability of death, “the probability
+    that (x) dies between ages x + u and x + u + t.” Note: ${}_{0|t}q_x$
+    = ${}_{t}q_x$.
+
+-   Note: ${}_{1}q_x$, ${}_{1}p_x$, and ${}_{u|1}q_x$ are written as
+    $q_x$, $p_x$, and ${}_{u|}q_x$, respectively.
+
+    $q_x$ may be referred to as a **mortality rate** at age x, and $p_x$
+    may be referred to as a **survival rate** at age x.
+
+## Force of Mortality
+
+-   $\mu_x$ = $\mu(x)$ = **force of mortality at age x**, given survival
+    to age x. This is sometimes called the “hazard rate” or “failure
+    rate.”
+
+    $\mu_x$ = $-\frac{\frac{d}{dx}[S_0(x)]}{S_0(x)}$ =
+    $-\frac{d}{dx}[\ln S_0(x)]$
+
+    “This is the instantaneous death rate for a life at age x.”
+
+-   $\mu_{x + t}$ = $\mu_x(t)$ = **force of mortality at age x + t**,
+    given survival to x + t.
+
+    $\mu_{x + t}$ = $-\frac{\frac{d}{dt}[{}_{t}p_x]}{{}_{t}p_x}$ =
+    $-\frac{d}{dt}[\ln {}_{t}p_x]$
+
+    “This is the instantaneous death rate for a life at age x + t. Here,
+    the variable is time after age x. You could also obtain
+    $\mu_{x + t}$ by replacing x in $\mu_x$ with x + t.”
+
+-   ${}_{t}p_x$ = $\exp[-\int^{x + t}_x \mu_sds]$ =
+    $\exp[-\int^{t}_0 \mu_{x + s}ds]$
+
+-   If $c$ $>$ 0, then $\mu^{*}_{x + s}$ = $c\mu_{x + s}$ $\implies$
+    ${}_{t}p^{*}_x$ = $({}_{t}p_x)^{c}$.
+
+    For constant $k$, then $\mu^{*}_{x + s}$ = $\mu_{x + s}$ + $k$
+    $\implies$ ${}_{t}p^{*}_x$ = $(e^{-kt})({}_{t}p_x)$.
+
+    The constant $k$ should be such that $\mu^{*}_{x + s}$ $>$ 0.
+
+-   $f_x(t)$ = ${}_{t}p_x$$\mu_{x + t}$ = **probability density function
+    of $T_x$**.
+
+    This comes from the above formula for $\mu_{x + t}$, recognizing
+    that $f_x(t)$ = $\frac{d}{dt}[{}_{t}q_x]$ =
+    $-\frac{d}{dt}[{}_{t}p_x]$.
+
+-   ${}_{t}q_x$ = $\int^t_0 {}_{s}p_x$$\mu_{x + s} ds$
+
+-   ${}_{t}p_x$ = $\int^{\infty}_t {}_{s}p_x$$\mu_{x + s} ds$
+
+-   ${}_{u|t}q_x$ = $\int^{u+t}_u {}_{s}p_x\mu_{x + s}ds$
+
+## Curtate Future Lifetime
+
+-   $K_x$ = **curtate future lifetime for (x)**, a discrete random
+    variable.
+
+    $K_x$ = $\left\lfloor{T_x}\right\rfloor$ = integer part of $T_x$.
+    That is, $K_x$ represents the complete number of future years
+    survived by (x), where any fractional time survived in the year of
+    death is ignored. Note: $K_x$ = 0, 1, 2...
+
+    $K_x$ may also be written as $K(x)$ or $K$.
+
+-   ${}_{k|}q_{x}$ = $Pr(K_x = k)$ = $Pr(k \le T_x < k + 1)$ for $k$ =
+    0, 1, 2...
+
+    This is the **probability mass function of $K_x$**, “the probability
+    that (x) dies in the ($k$ + 1)st year, between ages x + k and x +
+    k + 1.”
+
+-   ${}_{k+1}q_{x}$ = ${}_{0|}q_{x}$ + ${}_{1|}q_{x}$ + ... +
+    ${}_{k|}q_{x}$
+
+    “The probability that (x) dies within $k$ + 1 years is the sum of
+    the probabilities that (x) dies in the first year, the second year,
+    ..., the ($k$ + 1)st year.”
+
+## Other Features of $T_x$ and $K_x$ Distributions
+
+-   $\mathring{e}_x$ = $E(T_x)$ =
+    $\int^{\infty}_0 t({}_{t}p_x)(\mu_{x + t})dt$ =
+    $\int^{\infty}_0 {}_{t}p_xdt$
+
+    This is the **complete expectation of life for (x)**, the average
+    time-until-death for (x). That is, (x) is expected to die at age x +
+    $\mathring{e}_x$.
+
+-   $Var(T_x)$ = $E(T_x^2)$ - $[E(T_x)]^2$ = $2\int^{\infty}_0
+    t{}_{t}p_xdt$ - $[\mathring{e}_x]^2$
+
+-   $\mathring{e}_{x :\overline{n}|}$ = $E[min(T_x, n)]$ = $\int^{n}_0
+    {}_{t}p_xdt$
+
+    This is the **n-year temporary complete life expectancy for (x)**,
+    the average number of years out of the next n years that (x)
+    survives.
+
+    This expectation helps define the recursion: $\mathring{e}_x$ =
+    $\mathring{e}_{x :\overline{n}|}$ +
+    ${}_{n}p_x$$\mathring{e}_{x + n}$.
+
+    “The average number of future years that (x) survives is the average
+    number of years out of the first n years that (x) survives plus the
+    average number of years (x) survives after the first n years
+    (accounting for the probability that (x) survives the first n
+    years).”
+
+    Similarly: $\mathring{e}_{x :\overline{m + n}|}$ = $\mathring{e}_{x
+    :\overline{m}|}$ + ${}_{m}p_x$$\mathring{e}_{x + m :\overline{n}|}$.
+
+-   The **100$\alpha$-th percentile of the distribution of $T_x$**,
+    $\pi_{\alpha}$, is such that:
+
+    ${}_{\pi_{\alpha}}q_x$ = $\alpha$ for 0 $\le$ $\alpha$ $\le$ 1.
+
+    Special case: $\alpha$ = 0.50; $\pi_{.50}$ is called the **median
+    future lifetime for (x)**.
+
+<!-- -->
+
+-   $e_x$ = $E(K_x)$ = $\sum^{\infty}_{k = 0} k({}_{k|}q_x)$ =
+    $\sum^{\infty}_{k = 1} {}_{k}p_x$
+
+    This is the **curtate expectation of life for (x)**, the average
+    curtate future lifetime for (x).
+
+-   $\mathring{e}_x$ $\approx$ $e_x$ + $\frac{1}{2}$
+
+-   $Var(K_x)$ = $E(K_x^2)$ - $[E(K_x)]^2$ =
+    $\sum^{\infty}_{k = 1} (2k -
+    1){}_{k}p_x$ - $[e_x]^2$
+
+-   $e_{x :\overline{n}|}$ = $E[min(K_x, n)]$ = $\sum^{n}_{k =
+    1} {}_{k}p_x$
+
+    This is the **n-year temporary curtate life expectancy for (x)**.
+
+    This expectation helps define the recursions: $e_x$ = $e_{x
+    :\overline{n}|}$ + ${}_{n}p_x$$e_{x +  n}$ and
+
+    $e_{x :\overline{m + n}|}$ = $e_{x :\overline{m}|}$ +
+    ${}_{m}p_x$$e_{x + m
+    :\overline{n}|}$.
+
+## Special Mortality Laws
+
+### de Moivre’s Law
+
+$T_x$ has a continuous uniform distribution.
+
+The limiting age is $\omega$ such that 0 $\le$ $x$ $\le$ $x + t$ $\le$
+$\omega$.
+
+-   $\mu_x$ = $\frac{1}{\omega - x}$ (Note: $x$ $\neq$ $\omega$)
+
+-   $S_0(x)$ = $\frac{\omega - x}{\omega}$
+
+-   $F_0(x)$ = $\frac{x}{\omega}$
+
+-   ${}_{t}p_x$ = $\frac{\omega - x - t}{\omega - x}$
+
+-   ${}_{t}q_x$ = $\frac{t}{\omega - x}$
+
+-   ${}_{u|t}q_x$ = $\frac{t}{\omega - x}$
+
+-   $f_x(t)$ = ${}_{t}p_x$$\mu_{x + t}$ = $\frac{1}{\omega - x}$ (Note:
+    $x$ $\neq$ $\omega$)
+
+-   $\mathring{e}_x$ = $\frac{\omega - x}{2}$
+
+-   $\mathring{e}_{x :\overline{n}|}$ = $n{}_{n}p_x$ +
+    $\frac{n}{2}{}_{n}q_x$
+
+    “(x) can either survive $n$ years with probability ${}_{n}p_x$, or
+    die within $n$ years with probability ${}_{n}q_x$. Surviving $n$
+    years contributes $n$ to the expectation. Dying within $n$ years
+    contributes $\frac{n}{2}$ to the expectation as future lifetime has
+    a uniform distribution - (x), on average, would die halfway through
+    the $n$-year period.”
+
+-   $Var(T_x)$ = $\frac{(\omega - x)^2}{12}$
+
+-   $e_x$ = $\frac{\omega - x - 1}{2}$
+
+-   $Var(K_x)$ = $\frac{(\omega - x)^2}{12}$ - $\frac{1}{12}$
+
+### Modified/Generalized de Moivre’s Law
+
+$T_x$ has a beta distribution.
+
+The limiting age is $\omega$ such that 0 $\le$ $x$ $\le$ $x + t$ $\le$
+$\omega$. Also, there is a parameter $\alpha$ $>$ 0.
+
+-   $\mu_x$ = $\frac{\alpha}{\omega - x}$ (Note: $x$ $\neq$ $\omega$)
+
+-   $S_0(x)$ = $\left(\frac{\omega - x}{\omega}\right)^{\alpha}$
+
+-   $F_0(x)$ = 1 - $\left(\frac{\omega - x}{\omega}\right)^{\alpha}$
+
+-   ${}_{t}p_x$ = $\left(\frac{\omega - x - t}{\omega -
+    x}\right)^{\alpha}$
+
+-   ${}_{t}q_x$ = 1 - $\left(\frac{\omega - x - t}{\omega -
+    x}\right)^{\alpha}$
+
+    Note: ${}_{t}q_x$ $\neq$ $\left(\frac{t}{\omega -
+    x}\right)^{\alpha}$.
+
+-   $\mathring{e}_x$ = $\frac{\omega - x}{\alpha + 1}$
+
+-   $Var(T_x)$ = $\frac{\alpha(\omega - x)^2}{(\alpha + 1)^2(\alpha
+    + 2)}$
+
+    Note: $\alpha$ = 1 results in uniform distribution/de Moivre’s Law.
+
+### Constant Force of Mortality
+
+$T_x$ has an exponential distribution, $x$ $\ge$ 0. There is another
+parameter that denotes the force of mortality: $\mu$ $>$ 0.
+
+-   $\mu_x$ = $\mu$
+
+-   $S_0(x)$ = $e^{-\mu x}$
+
+-   $F_0(x)$ = 1 - $e^{-\mu x}$
+
+-   ${}_{t}p_x$ = $e^{-\mu t}$ = $(p_x)^t$
+
+-   ${}_{t}q_x$ = 1 - $e^{-\mu t}$
+
+-   $\mathring{e}_x$ = $\frac{1}{\mu}$
+
+-   $\mathring{e}_{x :\overline{n}|}$ = $\frac{1 - e^{-\mu n}}{\mu}$
+
+-   $Var(T_x)$ = $\frac{1}{\mu^2}$
+
+-   $e_x$ = $\frac{p_x}{q_x}$
+
+-   $Var(K_x)$ = $\frac{p_x}{(q_x)^2}$
+
+    Note1: A constant force of mortality implies that “age does not
+    matter.” This can easily be seen from ${}_{t}p_x$ = $e^{-\mu t}$; x
+    does not appear on the right-hand side.
+
+    Note2: $T_x$ has an exponential distribution implies that $K_x$ has
+    a geometric distribution.
+
+### Gompertz’s Law
+
+-   $\mu_x$ = $Bc^x$ for $x$ $\ge$ 0, $B$ $>$ 0, $c$ $>$ 1
+
+-   $S_0(x)$ = $\exp[-\frac{B}{\ln c}(c^x - 1)]$
+
+-   $F_0(x)$ = 1 - $\exp[-\frac{B}{\ln c}(c^x - 1)]$
+
+-   ${}_{t}p_x$ = $\exp[-\frac{B}{\ln c}c^x(c^t - 1)]$
+
+-   ${}_{t}q_x$ = 1 - $\exp[-\frac{B}{\ln c}c^x(c^t - 1)]$
+
+Note: $c$ = 1 results in a constant force of mortality.
+
+### Makeham’s Law
+
+-   $\mu_x$ = $A$ + $Bc^x$ for $x$ $\ge$ 0, $A$ $\ge$ -$B$, $B$ $>$ 0,
+    $c$ $>$ 1
+
+-   $S_0(x)$ = $\exp[-Ax - \frac{B}{\ln c}(c^x - 1)]$
+
+-   $F_0(x)$ = 1 - $\exp[-Ax - \frac{B}{\ln c}(c^x - 1)]$
+
+-   ${}_{t}p_x$ = $\exp[-At - \frac{B}{\ln c}c^x(c^t - 1)]$
+
+-   ${}_{t}q_x$ = 1 - $\exp[-At - \frac{B}{\ln c}c^x(c^t - 1)]$
+
+Note1: $A$ = 0 results in Gompertz’s Law.
+
+Note2: $c$ = 1 results in a constant force of mortality.
+
+### Weibull’s Law
+
+$T_x$ has a Weibull distribution.
+
+-   $\mu_x$ = $k$$x^n$ for $x$ $\ge$ 0, $k$ $>$ 0, $n$ $>$ 0
+
+-   $S_0(x)$ = $\exp[-\frac{k}{n + 1}x^{n + 1}]$
+
+-   $F_0(x)$ = 1 - $\exp[-\frac{k}{n + 1}x^{n + 1}]$
+
+-   ${}_{t}p_x$ = $\exp[-\frac{k}{n + 1}((x + t)^{n + 1} - x^{n + 1})]$
+
+-   ${}_{t}q_x$ = 1 -
+    $\exp[-\frac{k}{n + 1}((x + t)^{n + 1} - x^{n + 1})]$
+
+## Life Tables
+
+Given a survival model with survival probabilities ${}_{t}p_x$, one can
+construct a **life table**, also called a **mortality table**, from some
+initial age $x_0$ (usually age 0) to a maximum age $\omega$ (a limiting
+age).
+
+-   Let $l_{x_0}$, the **radix** of the life table, represent the number
+    of lives age $x_0$.
+
+    $l_{x_0}$ is an arbitrary positive number.
+
+-   $l_{\omega}$ = 0.
+
+-   $l_{x + t}$ = $(l_x)({}_{t}p_x)$ for $x_0$ $\le$ $x$ $\le$ $x + t$
+    $\le$ $\omega$.
+
+    $l_{x + t}$ represents the **expected number of survivors** to age
+    x + t out of $l_x$ individuals aged x.
+
+-   ${}_{t}d_x$ = $l_x$ - $l_{x + t}$ = $(l_x)({}_{t}q_x)$ for $x_0$
+    $\le$ $x$ $\le$ $x + t$ $\le$ $\omega$.
+
+    ${}_{t}d_x$ represents the **expected number of deaths** between
+    ages x and x + t out of $l_x$ lives aged x.
+
+    Note 1: ${}_{1}d_x$ is written as $d_x$.
+
+    Note 2: If $n$ = 1, 2..., then ${}_{n}d_x$ = $d_x$ + $d_{x + 1}$ +
+    ... + $d_{x + n - 1}$.
+
+-   ${}_{t}d_{x + u}$ = $l_{x + u}$ - $l_{x + u + t}$ =
+    $(l_x)({}_{u|t}q_x)$.
+
+The **Illustrative Life Table** is the life table that is provided to
+the candidate taking Exam MLC. Some questions from either exam will
+involve Illustrative Life Table calculations. A web link to this table
+(and ALL exam tables) is provided for each exam in Appendix A of this
+study supplement.
+
+## Fractional Age Assumptions
+
+Life Tables are usually defined for integer ages x and integer times t.
+For a quantity that involves fractional ages and/or fractional times,
+one has to make an assumption about the survival distribution between
+integer ages; that is, one has to interpolate the value of the quantity
+within each year of age. Two common interpolation assumptions follow.
+
+### Uniform Distribution of Deaths (UDD)
+
+One linearly interpolates within each year of age. For integer age x and
+0 $\le$ $s$ $\le$ $s + t$ $\le$ 1:
+
+-   $l_{x + s}$ = $l_x$ - $s$$d_x$ = $(1 - s)l_x$ + $(s)l_{x + 1}$. This
+    is a linear function of $s$.
+
+-   ${}_{s}q_x$ = $s$$q_x$
+
+-   ${}_{s}p_x$ = 1 - $s$$q_x$
+
+-   $\mu_{x + s}$ = $\frac{q_x}{1 - sq_x}$ (does not hold at $s$ = 1)
+
+-   $f_x(s)$ = ${}_{s}p_x$$\mu_{x + s}$ = $q_x$ (does not hold at $s$
+    = 1)
+
+-   ${}_{s}q_{x + t}$ = $\frac{sq_x}{1 - tq_x}$
+
+-   $\mathring{e}_x$ = $e_x$ + $\frac{1}{2}$
+
+-   $Var(T_x)$ = $Var(K_x)$ + $\frac{1}{12}$
+
+-   Note: uniform distribution/de Moivre’s Law has the property of UDD
+    across all ages up to the limiting age $\omega$.
+
+    Furthermore, uniform distribution/de Moivre’s Law may be expressed
+    as $l_x$ = $k(\omega - x)$ for 0 $\le$ $x$ $\le$ $\omega$ where $k$
+    $>$ 0.
+
+### Constant Force of Mortality
+
+One exponentially interpolates within each year of age. For integer age
+x and 0 $\le$ $s$ $\le$ $s + t$ $\le$ 1:
+
+-   $l_{x + s}$ = $l_x$$p^s_x$ $\implies$ $\ln[l_{x + s}]$ = $(1 -
+    s)\ln[l_x]$ + $s\ln[l_{x + 1}]$. This is an exponential function of
+    $s$.
+
+-   ${}_{s}p_x$ = $p^s_x$
+
+-   ${}_{s}q_x$ = 1 - $p^s_x$
+
+-   $\mu_{x + s}$ = -$\ln p_x$ = $\mu_x$ (does not hold at $s$ = 1)
+
+-   $f_x(s)$ = ${}_{s}p_x$$\mu_{x + s}$ = -$\ln p_x$$(p^s_x)$ (does not
+    hold at $s$ = 1)
+
+-   ${}_{s}q_{x + t}$ = 1 - $p^s_x$
+
+## Exercises
+
+1.1. Suppose: $F_0(t)$ = 1 - $(1 + 0.00026t^2)^{-1}$ for $t$ $\ge$ 0.
+
+Calculate the probability that (30) dies between ages 35 and 40.
+
+\(A) 0.056 (B) 0.058 (C) 0.060 (D) 0.062 (E) 0.064
+
+1.2. You are given: $s(x)$ = $\frac{10,000 - x^2}{10,000}$ for 0 $\le$
+$x$ $\le$ 100.
+
+Calculate: $q_{49}$.
+
+\(A) 0.009 (B) 0.011 (C) 0.013 (D) 0.015 (E) 0.017
+
+1.3. Consider a population of newborns (lives aged 0). Each newborn has
+mortality such that:
+
+$S_0(x)$ = $\frac{x^2}{\omega^2}$ - $\frac{2x}{\omega}$ + 1 for 0 $\le$
+$x$ $\le$ $\omega$.
+
+It is assumed that $\omega$ varies among newborns, and is a random
+variable with a uniform distribution between ages 85 and 105.
+
+Calculate the probability that a random newborn survives to age 18.
+
+\(A) 0.656 (B) 0.657 (C) 0.658 (D) 0.659 (E) 0.660
+
+1.4. Suppose: $S_0(t)$ = $\exp[-\frac{t^2}{2500}]$ for $t$ $\ge$ 0.
+
+Calculate the force of mortality at age 45.
+
+\(A) 0.036 (B) 0.039 (C) 0.042 (D) 0.045 (E) 0.048
+
+1.5. The probability density function of the future lifetime of a brand
+new machine is: $f(x)$ = $\frac{4x^3}{27c}$ for 0 $\le$ $x$ $\le$ $c$.
+
+Calculate: $\mu(1.1)$.
+
+\(A) 0.06 (B) 0.07 (C) 0.08 (D) 0.09 (E) 0.10
+
+1.6. You are given:
+
+\(i) The probability that (30) will die within 30 years is 0.10.
+
+\(ii) The probability that (40) will survive to at least age 45 and that
+another (45) will die by age 60 is 0.077638.
+
+\(iii) The probability that two lives age 30 will both die within 10
+years is 0.000096.
+
+\(iv) All lives are independent and have the same expected mortality.
+
+Calculate the probability that (45) will survive 15 years.
+
+\(A) 0.90 (B) 0.91 (C) 0.92 (D) 0.93 (E) 0.94
+
+1.7. You are given:
+
+\(i) $e_{50}$ = 20 and $e_{52}$ = 19.33
+
+\(ii) $q_{51}$ = 0.035
+
+Calculate: $q_{50}$.
+
+\(A) 0.028 (B) 0.030 (C) 0.032 (D) 0.034 (E) 0.036
+
+1.8. You are given:
+
+$S_0(x)$ = $\Big(\frac{1 + 0.005(1.1)^x}{1.005}\Big)$$^{-0.2098}$ for
+$x$ $>$ 0.
+
+Calculate the force of mortality at age 30.
+
+\(A) 0.0012 (B) 0.0016 (C) 0.0020 (D) 0.0024 (E) 0.0028
+
+1.9. For a population of smokers and non-smokers:
+
+\(i) Non-smokers have a force of mortality that is equal to one-half the
+force of mortality for smokers at each age.
+
+\(ii) For non-smokers, mortality follows a uniform distribution with
+$\omega$ = 90.
+
+Calculate the difference between the probability that a 55 year old
+smoker dies within 10 years and the probability that a 55 year old
+non-smoker dies within 10 years.
+
+\(A) 0.20 (B) 0.22 (C) 0.24 (D) 0.26 (E) 0.28
+
+1.10. You are given:
+
+\(i) The standard probability that (40) will die prior to age 41 is 0.01.
+
+\(ii) (40) is now subject to an extra risk during the year between ages
+40 and 41.
+
+\(iii) To account for the extra risk, a revised force of mortality is
+defined for the year between ages 40 and 41.
+
+\(iv) The revised force of mortality is equal to the standard force of
+mortality plus a term that decreases linearly from 0.05 at age 40 to 0
+at age 41.
+
+Calculate the revised probability that (40) will die prior to age 41.
+
+\(A) 0.030 (B) 0.032 (C) 0.034 (D) 0.036 (E) 0.038
+
+1.11. An actuary assumes that Jed, aged 40, has the force of mortality:
+
+$\mu_x$ = $\frac{x^2}{c^3 - x^3}$ for 0 $\le$ $x$ $<$ $c$.
+
+Using $\mu_x$, the actuary calculates the probability that Jed dies
+within 20 years as 0.06844. However, $\mu_x$ is only appropriate for a
+life with standard mortality. Jed is actually a substandard life with
+force of mortality:
+
+$\mu^{*}_x$ = 3$\mu_x$ = $\frac{3x^2}{c^3 - x^3}$ for 0 $\le$ $x$ $<$
+$c$.
+
+Using $\mu^{*}_x$, calculate the correct value of the probability that
+Jed dies within 20 years.
+
+\(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+1.12. You are given:
+
+\(i) $T_x$ denotes the time-until-death random variable for (x).
+
+\(ii) Mortality follows de Moivre’s Law with limiting age $\omega$.
+
+\(iii) The variance of $T_{25}$ is equal to 352.0833.
+
+Calculate: $\mathring{e}_{40: \overline{10}|}$.
+
+\(A) 7.5 (B) 8.0 (C) 8.5 (D) 9.0 (E) 9.5
+
+1.13. You are given: $\mu_x$ = $\frac{1}{\sqrt{80 - x}}$ for 0 $\le$ $x$
+$<$ 80.
+
+Calculate the median future lifetime for (40).
+
+\(A) 4.0 (B) 4.3 (C) 4.6 (D) 4.9 (E) 5.2
+
+1.14. You are given:
+
+$$\mu_{x} = \left\{
+  \begin{array}{l l}
+    0.04 & \quad \text{for 0 $\le$ x $<$ 40}\\
+    0.05 & \quad \text{for 40 $\le$ x}\\
+  \end{array} \right.$$
+
+Calculate: $\mathring{e}_{25}$.
+
+\(A) 22 (B) 23 (C) 24 (D) 25 (E) 26
+
+1.15. You are given: ${}_{k|}q_0$ = 0.10 for $k$ = 0, 1, ..., 9.
+
+Calculate: ${}_{5}p_2$.
+
+\(A) 0.275 (B) 0.325 (C) 0.375 (D) 0.425 (E) 0.475
+
+1.16. For the current model of Zingbot:
+
+\(i) $s(x)$ = $\frac{\omega - x}{\omega}$ for 0 $\le$ $x$ $\le$ $\omega$
+
+\(ii) $var[T(5)]$ = 102.083333.
+
+For the proposed model of Zingbot, with the same $\omega$ as the current
+model:
+
+\(1) $s^*(x)$ = $(\frac{\omega - x}{\omega})^{\alpha}$ for 0 $\le$ $x$
+$\le$ $\omega$, $\alpha$ $>$ 0
+
+\(2) $\mu^*_{10}$ = 0.0166667.
+
+Calculate the difference between the complete expectation of life for a
+brand new proposed model of Zingbot and the complete expectation of life
+for a brand new current model of Zingbot.
+
+\(A) 5.9 (B) 6.1 (C) 6.3 (D) 6.5 (E) 6.7
+
+1.17. Mortality for Frodo, age 33, is usually such that:
+
+${}_{t}p_x$ = $\left(\frac{110 - x - t}{110 - x}\right)^{2}$ for 0 $\le$
+$t$ $\le$ $110 - x$.
+
+However, Frodo has decided to embark on a dangerous quest that will last
+for the next three years (starting today). During these three years
+only, Frodo’s mortality will be revised so that he will have a constant
+force of mortality of 0.2 for each year. After the quest, Frodo’s
+mortality will once again follow the above expression for ${}_{t}p_x$.
+
+Calculate Frodo’s revised complete expectation of life.
+
+\(A) 15.2 (B) 15.4 (C) 15.6 (D) 15.8 (E) 16.0
+
+1.18. You are given:
+
+$$\mu_x = \left\{
+  \begin{array}{l l l}
+    0.020       & \quad \text{for 20 $\le$ $x$ $<$ 30}\\
+    0.025       & \quad \text{for 30 $\le$ $x$ $<$ 42}\\
+    0.030       & \quad \text{for 42 $\le$ $x$ $<$ 60}\\
+  \end{array} \right.$$
+
+Calculate the probability that (26) dies in the 19th year.
+
+\(A) 0.015 (B) 0.017 (C) 0.019 (D) 0.021 (E) 0.023
+
+1.19. An actuary has developed a survival model for a widget, denoted by
+A, such that:
+
+$S^A_0(x)$ = $\frac{(10 - x)^2}{100}$ for 0 $\le$ $x$ $\le$ 10.
+
+The actuary’s supervisor notes that the above survival model is
+incorrect. The correct survival model for a widget, denoted by B, is
+such that:
+
+$$S^B_0(x) = \left\{
+  \begin{array}{l l }
+    \frac{(10 - x)^2}{100}       & \quad \text{for 0 $\le$ $x$ $<$
+    5} \vspace{5mm}\\
+  e^{- 0.2\ln(4) x}            & \quad \text{for x $\ge$ 5}\\
+  \end{array} \right.$$
+
+Calculate: $\mathring{e}^B_2$ - $\mathring{e}^A_2$.
+
+\(A) 0.70 (B) 0.72 (C) 0.74 (D) 0.76 (E) 0.78
+
+1.20. For a group of lives aged 40, consisting of 30% smokers and 70%
+non-smokers, you are given:
+
+\(i) For non-smokers, $\mu^N(x)$ = 0.05 for $x$ $\ge$ 40.
+
+\(ii) For smokers, $\mu^S(x)$ = 0.10 for $x$ $\ge$ 40.
+
+Calculate the 90th percentile of the distribution of the future lifetime
+of a randomly selected member from this population.
+
+\(A) 40 (B) 42 (C) 44 (D) 46 (E) 48
+
+1.21. You are given:
+
+\(i) $T_x$ is the time-until-death for (x) random variable.
+
+\(ii) The force of mortality is constant.
+
+\(iii) $e_x$ = 15.63
+
+Calculate the variance of $T_x$.
+
+\(A) 240 (B) 250 (C) 260 (D) 270 (E) 280
+
+1.22. Originally, mortality for Daniel, currently aged 30, is such that:
+
+\(i) $e_{30}$ = 40.78
+
+\(ii) $e_{30 :\overline{15}|}$ = 14.07
+
+\(iii) ${}_{15}p_{30}$ = 0.8764 and ${}_{16}p_{30}$ = 0.8664
+
+\(iv) The limiting age is 100.
+
+Now, it is believed that in the year of age between ages 45 and 46,
+Daniel will be subject to an additional risk such that the constant 0.15
+will be added to the force of mortality $\mu_{45}(t)$ for 0 $\le$ $t$
+$<$ 1.
+
+Calculate the revised value of $e_{30}$ for Daniel, accounting for the
+additional risk in the year of age between ages 45 and 46.
+
+\(A) 36 (B) 37 (C) 38 (D) 39 (E) 40
+
+1.23. For (x):
+
+\(i) $K$ is the curtate future lifetime random variable.
+
+\(ii) $${}_{k|}q_{x} = \left\{
+  \begin{array}{l l}
+    0.20       & \quad \text{for $k$ = 0, 1, 2}\\
+    0.40       & \quad \text{for $k$ = 3 }\\
+  \end{array} \right.$$
+
+Calculate the standard deviation of $K$.
+
+\(A) 1.1 (B) 1.2 (C) 1.3 (D) 1.4 (E) 1.5
+
+1.24. You are given:
+
+\(i) $\mu(x)$ = $B$$(1.05)^{x}$ for $x$ $\ge$ 0, $B$ $>$ 0.
+
+\(ii) $p_{51}$ = 0.9877
+
+Calculate: $B$.
+
+\(A) 0.001 (B) 0.002 (C) 0.003 (D) 0.004 (E) 0.005
+
+1.25. You are given:
+
+\(i) The force of mortality for Vivian is $\mu^{V}_x$ = $\mu$ for $x$
+$\ge$ 0, $\mu$ $>$ 0.
+
+\(ii) The force of mortality for Augustine is $\mu^{A}_x$ =
+$\frac{1}{90 - x}$ for 0 $\le$ $x$ $<$ 90.
+
+Calculate $\mu$ so that ${}_{10}p_{30}$ is the same for Vivian and
+Augustine.
+
+\(A) 0.016 (B) 0.018 (C) 0.020 (D) 0.022 (E) 0.024
+
+1.26. Consider the following survival function:
+
+$S_0(x)$ = $0.0125\sqrt{k^2 - x^2}$ for 0 $\le$ $x$ $\le$ $k$.
+
+Calculate the force of mortality at age 46.
+
+\(A) 0.011 (B) 0.013 (C) 0.015 (D) 0.017 (E) 0.019
+
+1.27. For a certain model of widget, the Widget T-1000:
+
+$\mu_x$ = $\frac{2x}{c^2 - x^2}$ for 0 $\le$ $x$ $<$ $c$.
+
+A brand new Widget T-1000 has a complete expectation of life equal to 8
+years. Calculate the probability that a one-year old Widget T-1000
+survives at least two years but no more than four years.
+
+\(A) 0.11 (B) 0.12 (C) 0.13 (D) 0.14 (E) 0.15
+
+1.28. Actuary A and Actuary B are each trying to calculate the 3-year
+temporary curtate life expectancy for Miguel, aged 60.
+
+Both agree that a standard life has the following force of mortality:
+
+$\mu^S_x$ = 0.00006 + 0.0000006$(1.15)^{x}$ for $x$ $\ge$ 0.
+
+Both also agree that Miguel has a force of mortality that exceeds the
+force of mortality for a standard life at all ages. However, Actuary A
+believes that Miguel has force of mortality 1.15$\mu^S_x$, while Actuary
+B believes that Miguel has force of mortality $\mu^S_x$ + 1.15.
+
+Calculate the difference between Actuary A’s 3-year temporary curtate
+life expectancy for Miguel and Actuary B’s 3-year temporary curtate life
+expectancy for Miguel.
+
+\(A) 2.1 (B) 2.3 (C) 2.5 (D) 2.7 (E) 2.9
+
+1.29. For a population of lives each aged 55 that consists of smokers
+and non-smokers:
+
+\(i) For smokers, $\mu_x$ = 0.0008$x$ for $x$ $\ge$ 0.
+
+\(ii) The force of mortality for a smoker is twice the force of mortality
+for a non-smoker at each age.
+
+Calculate the median future lifetime for a non-smoker from this
+population.
+
+\(A) 24.0 (B) 24.5 (C) 25.0 (D) 25.5 (E) 26.0
+
+1.30. Suppose today is January 1, 2014, and Paul has just turned age 35.
+He has mortality such that:
+
+${}_{t}p_{35}$ = $(0.95)^t$ for $t$ $\ge$ 0.
+
+Calculate the probability that Paul will die in an odd-numbered calendar
+year.
+
+\(A) 0.48 (B) 0.49 (C) 0.50 (D) 0.51 (E) 0.52
+
+1.31. Consider the following life table, where missing entries are
+denoted by “---”:
+
+$\begin{array}{r|r|r|r}
+\hline
+\mathbf{x} & \mathbf{q_x} & \mathbf{l_x} & \mathbf{d_x} \\
+\hline
+48 & ---        & 90,522       & ---    \\
+49 & 0.007453   & 89,900.9286  & ---    \\
+\hline
+\end{array}$
+
+Calculate the expected number of deaths between ages 48 and 50.
+
+\(A) 1280 (B) 1290 (C) 1300 (D) 1310 (E) 1320
+
+1.32. You are given the following life table, where missing entries are
+denoted by “---”:
+
+$\begin{array}{r|r|r|r}
+\hline
+\mathbf{x} & \mathbf{l_{x}} & \mathbf{q_{x}} & \mathbf{e_{x}} \\
+\hline
+65 & 79,354  & 0.0172    & ---    \\
+66 & ---     & 0.0186    & ---    \\
+67 & ---     & ---       & ---    \\
+68 & 74,993  & ---       & 14.89 \\
+69 & ---     & ---       & 14.22 \\
+\hline
+\end{array}$
+
+Calculate the expected number of deaths between ages 67 and 69.
+
+\(A) 2970 (B) 3020 (C) 3070 (D) 3120 (E) 3170
+
+1.33. You are given:
+
+\(i) $l_x$ = 1000($\omega$ - $x$) for 0 $\le$ $x$ $\le$ $\omega$
+
+\(ii) $\mu_{30}$ = 0.0125
+
+Calculate: $\mathring{e}_{40 :\overline{20}|}$.
+
+\(A) 17.1 (B) 17.6 (C) 18.1 (D) 18.6 (E) 19.1
+
+1.34. You are given the following life table, where missing values are
+indicated by “---":
+
+$\begin{array}{r|r|r|r}
+\hline
+\mathbf{x} & \mathbf{l_x} & \mathbf{d_x} & \mathbf{p_x} \\
+\hline
+0 & 1000.0   & ---   & 0.875   \\
+1 & ---      & 125.0 & ---     \\
+2 & ---      & ---   & ---     \\
+3 & ---      & ---   & 0.680   \\
+4 & ---      & 182.5 & ---     \\
+5 & 200.0    & ---   & ---     \\
+\hline
+\end{array}$
+
+Calculate: ${}_{2|}q_{0}$.
+
+\(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+1.35. Woolhouse is currently age 40. Woolhouse’s mortality follows 130%
+of the Illustrative Life Table; that is, $q_x$ for Woolhouse is 130% of
+$q_x$ in the Illustrative Life Table for x = 40, 41, ..., 110.
+
+Calculate Woolhouse’s 4-year temporary curtate life expectancy.
+
+\(A) 3.950 (B) 3.955 (C) 3.960 (D) 3.965 (E) 3.970
+
+1.36. Suppose mortality follows the Illustrative Life Table, and deaths
+are uniformly distributed within each year of age.
+
+Calculate: ${}_{4.5}q_{40.3}$.
+
+\(A) 0.0141 (B) 0.0142 (C) 0.0143 (D) 0.0144 (E) 0.0145
+
+1.37. Suppose mortality follows the Illustrative Life Table, where
+deaths are assumed to be uniformly distributed between integer ages.
+
+Calculate the median future lifetime for (32).
+
+\(A) 44.7 (B) 45.0 (C) 45.3 (D) 45.6 (E) 45.9
+
+1.38. Suppose mortality follows the Illustrative Life Table with the
+assumption that deaths are uniformly distributed between integer ages.
+
+Calculate: ${}_{0.9}q_{60.6}$.
+
+\(A) 0.0130 (B) 0.0131 (C) 0.0132 (D) 0.0133 (E) 0.0134
+
+1.39. You are given the mortality rates:
+
+$q_{30}$ = 0.020, $q_{31}$ = 0.019, $q_{32}$ = 0.018.
+
+Assume deaths are uniformly distributed over each year of age.
+
+Calculate the 1.4-year temporary complete life expectancy for (30).
+
+\(A) 1.377 (B) 1.379 (C) 1.381 (D) 1.383 (E) 1.385
+
+1.40. Using the Illustrative Life Table, calculate: ${}_{11|17}q_{42}$.
+
+\(A) 0.20 (B) 0.21 (C) 0.23 (D) 0.24 (E) 0.25
+
+1.41. Consider two survival models A and B:
+
+\(i) For Model A: $l_x$ = 1000($\omega_A$ - $x$) for 0 $\le$ $x$ $\le$
+$\omega_A$
+
+\(ii) For Model B: $l_x$ = 500$(\omega_B - x)^{\alpha}$ for 0 $\le$ $x$
+$\le$ $\omega_B$, $\alpha$ $>$ 0
+
+Furthermore:
+
+\(1) For Model B, the force of mortality at age 55 is 0.046.
+
+\(2) The complete expectation of life for (40) under Model A is 39.615%
+higher than the complete expectation of life for (40) under Model B.
+
+\(3) For Model A, the probability that (45) survives the first 20 years
+and dies in the subsequent 10 years is 0.20.
+
+For Model B, calculate the probability that (45) dies between ages 65
+and 75.
+
+\(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+1.42. Consider a population that consists of 600 lives aged 50 and 520
+lives aged 60.
+
+Each life has mortality that follows the Illustrative Life Table, and
+all lives have independent future lifetime random variables.
+
+Calculate the standard deviation of the total number of survivors to age
+80.
+
+\(A) 14.7 (B) 15.2 (C) 15.7 (D) 16.2 (E) 16.7
+
+1.43. Suppose:
+
+\(i) $q_{70}$ = 0.04 and $q_{71}$ = 0.05.
+
+\(ii) Let UDD denote a uniform distribution of deaths assumption within
+each year of age, and let CF denote a constant force of mortality within
+each year of age.
+
+Calculate the probability that (70.6) will die within the next 0.5 years
+under UDD minus the probability that (70.6) will die within the next 0.5
+years under CF.
+
+\(A) 0.00008 (B) 0.00010 (C) 0.00012 (D) 0.00014 (E) 0.00016
+
+1.44. You are given:
+
+\(i) The force of mortality is constant between integer ages.
+
+\(ii) ${}_{0.3}q_{x + 0.7}$ = 0.10
+
+Calculate: $q_x$.
+
+\(A) 0.24 (B) 0.26 (C) 0.28 (D) 0.30 (E) 0.32
+
+1.45. A life insurer issues Roderick, aged 40, a policy that will pay
+10,000 upon survival of a number of years equal to Roderick’s median
+future lifetime. You are given:
+
+\(i) $d$ = 0.04
+
+\(ii) For Roderick: $q_{40 + k}$ = 0.05(1 + $k$) for $k$ = 0, 1, ..., 19.
+(Roderick is a very unfortunate individual with respect to his future
+lifetime distribution.)
+
+\(iii) The force of mortality is constant between integer ages.
+
+Calculate the expected present value of the 10,000 payment; that is,
+calculate the present value of 10,000 times the probability that the
+10,000 will be paid to Roderick.
+
+\(A) 4100 (B) 4130 (C) 4160 (D) 4190 (E) 4220
+
+1.46. For a mortality table:
+
+\(i) $q_{70}$ = 0.058
+
+\(ii) Deaths are uniformly distributed within each year of age.
+
+\(iii) The probability that (71.25) dies within 0.4 years is 0.0252.
+
+Calculate the probability that (70) dies between ages 71.25 and 71.65.
+
+\(A) 0.021 (B) 0.023 (C) 0.025 (D) 0.027 (E) 0.029
+
+1.47. Andy, aged 66, has mortality rates that are 3 times higher than
+mortality rates in the Illustrative Life Table. That is, for $x$ = 66,
+67, ..., 110:
+
+$q^{*}_x$ = 3$q_x$,
+
+where $q_x$ is a mortality rate in the Illustrative Life Table and
+$q^{*}_x$ is Andy’s corresponding mortality rate.
+
+Calculate the probability that Andy dies between ages 68 and 70.
+
+\(A) 0.11 (B) 0.12 (C) 0.13 (D) 0.14 (E) 0.15
+
+### Answers to Exercises
+
+1.1. E 1.26. A
+
+1.2. C 1.27. A
+
+1.3. A 1.28. C
+
+1.4. A 1.29. D
+
+1.5. B 1.30. B
+
+1.6. C 1.31. B
+
+1.7. B 1.32. E
+
+1.8. B 1.33. A
+
+1.9. A 1.34. D
+
+1.10. C 1.35. C
+
+1.11. D 1.36. E
+
+1.12. D 1.37. C
+
+1.13. B 1.38. A
+
+1.14. A 1.39. C
+
+1.15. C 1.40. C
+
+1.16. E 1.41. D
+
+1.17. D 1.42. E
+
+1.18. C 1.43. A
+
+1.19. D 1.44. D
+
+1.20. A 1.45. C
+
+1.21. C 1.46. B
+
+1.22. B 1.47. D
+
+1.23. B
+
+1.24. A
+
+1.25. B
+
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#1, 2
+
+-   Exam MLC, Spring 2015: \#1
+
+-   Exam MLC, Spring 2014: \#1
+
+-   Exam MLC, Fall 2013: \#24, 25
+
+-   Exam 3L, Fall 2013: \#1, 2, 3
+
+-   Exam MLC, Spring 2013: \#20
+
+-   Exam 3L, Spring 2013: \#1, 2, 3
+
+-   Exam MLC, Fall 2012: \#3
+
+-   Exam 3L, Fall 2012: \#1, 2, 3
+
+-   Exam MLC, Spring 2012: \#2 (MLC Only)
+
+-   Exam 3L, Spring 2012: \#1, 2, 3
+
+-   Exam MLC, Sample Questions: \#13, 21, 22, 28, 32, 59, 65, 98, 106,
+    116, 120, 131, 145, 155, 161, 171, 188, 189, 200, 201, 207, 219,
+    223, 267 (MLC Only), 276
+
+-   Exam 3L, Fall 2011: \#1, 2
+
+-   Exam 3L, Spring 2011: \#1, 2, 3
+
+-   Exam 3L, Fall 2010: \#1, 2, 3
+
+-   Exam 3L, Spring 2010: \#1, 2, 3, 4
+
+-   Exam 3L, Fall 2009: \#1, 2, 3
+
+-   Exam 3L, Spring 2009: \#1, 3
+
+-   Exam 3L, Fall 2008: \#12, 13, 14
+
+-   Exam 3L, Spring 2008: \#13, 14, 15, 16
+
+-   Exam MLC, Spring 2007: \#1, 21

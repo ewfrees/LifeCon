@@ -1,0 +1,677 @@
+---
+title: "Annuities II"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Annuities II
+
+## m-thly Annuities-Due
+
+Here, we consider a **discrete** life annuity where each payment is
+provided at the beginning of the $m$-th of a year, conditional on
+survival. The value of $m$ is typically equal to 2 (half-year), 4
+(quarter of a year), or 12 (month).
+
+Note:
+
+-   An $m$-thly life annuity-due is such that each payment is made at
+    the beginning of each $m$-th of a year (for a total of
+    $m (K^{(m)}_x + \frac{1}{m})$ payments, in years).
+
+-   The general exact formula for the expected present value of an
+    $m$-thly life annuity-due on (x) that pays $\pi_{\frac{k}{m}}$ at
+    time $\frac{k}{m}$ years ($k$ = 0, 1, 2, ...) is:
+
+    $E(Y_d)$ = $\sum^{\infty}_{k = 0} \pi_{\frac{k}{m}}
+    v^{\frac{k}{m}}{}_{\frac{k}{m}}p_x$ = $\sum^{\infty}_{k = 0}
+    \pi_{\frac{k}{m}} ({}_{\frac{k}{m}}E_x)$. Furthermore:
+
+    “Say the payment is $\pi_{\frac{k}{m}}$ at time $\frac{k}{m}$. Then
+    the present value of this benefit is $\pi_{\frac{k}{m}}
+    v^{\frac{k}{m}}$, and the expected present value of this benefit is
+    $\pi_{\frac{k}{m}} v^{\frac{k}{m}}{}_{\frac{k}{m}}p_x$ ((x) has to
+    survive to time $\frac{k}{m}$ in order for $\pi_{\frac{k}{m}}$ to be
+    made at that time). Summing over all possible payment times provides
+    the overall expected present value.”
+
+-   The International Actuarial Notation for $E(Y_d)$ often contains an
+    $\ddot{a}^{(m)}$, which indicates that the expected present value is
+    for an m-thly life annuity-due. For example, $\ddot{a}^{(m)}_x$
+    denotes the expected present value of a whole life annuity-due of 1
+    per year on (x), payable in equal installments of $\frac{1}{m}$ at
+    the beginning of each $m$-th of the year.
+
+-   $^2\ddot{a}^{(m)}$ is $\ddot{a}^{(m)}$ evaluated at double the force
+    of interest.
+
+-   Often, we do not use the exact formulas to calculate expected
+    present values for an $m$-thly life annuity-due. Rather, we
+    approximate these expected present values from the corresponding
+    annual life annuity-due expected present values using one of two
+    assumptions:
+
+    -   **UDD**: deaths are uniformly distributed within each year of
+        age. In UDD formulas that approximate $m$-thly life
+        annuities-due, we use the following functions:
+
+        $\alpha(m)$ = $\frac{id}{i^{(m)}d^{(m)}}$ and $\beta(m)$ =
+        $\frac{i
+        - i^{(m)}}{i^{(m)}d^{(m)}}$
+
+        Let $m$ approach infinity. In UDD formulas that approximate
+        continuous life annuities, we use the following functions:
+
+        $\alpha(\infty)$ = $\frac{id}{\delta^2}$ and $\beta(\infty)$ =
+        $\frac{i - \delta}{\delta^2}$.
+
+        You are provided a table of $\alpha(m)$ and $\beta(m)$ for
+        various values of $m$ at $i$ = 0.06 during Exam MLC. Please
+        refer to the web link to Exam MLC tables provided in Appendix A
+        of this study supplement.
+
+    -   **Woolhouse’s Formula**: based on series expansions. For
+        example, Woolhouse’s Formula with three terms for an $m$-thly
+        whole life annuity-due of 1 per year on (x) is:
+
+        $\ddot{a}^{(m)}_x$ = $\ddot{a}_x$ - $\frac{m - 1}{2m}$ -
+        $\frac{m^2
+        - 1}{12m^2}$$(\delta + \mu_x)$, and
+
+        Woolhouse’s Formula with two terms for an $m$-thly whole life
+        annuity-due of 1 per year on (x) is:
+
+        $\ddot{a}^{(m)}_x$ = $\ddot{a}_x$ - $\frac{m - 1}{2m}$ (this
+        approximates the UDD formula).
+
+        Furthermore, $\mu_x$ can be approximated as
+        -$\frac{1}{2}$$(\ln p_{x
+        - 1} + \ln p_x)$.
+
+-   Note: The formulas discussed below reduce to the corresponding
+    annual life annuity-due formulas in **Annuities I** when $m$ = 1.
+
+<!-- -->
+
+-   Note: While unlikely, it is possible that $m$-thly life
+    annuities-immediate could be tested; each payment is made at the end
+    of each $m$-th of a year (for a total of $m (K^{(m)}_x)$ payments,
+    in years).
+
+    You can use the following relations:
+
+    -   $a^{(m)}_x$ = $\ddot{a}^{(m)}_x$ - $\frac{1}{m}$
+
+    -   $a^{(m)}_{x :\overline{n}|}$ =
+        $\ddot{a}^{(m)}_{x :\overline{n}|}$ - $\frac{1}{m}$(1 -
+        ${}_{n}E_x)$
+
+    -   ${}_{n|}a^{(m)}_x$ = $a^{(m)}_x$ - $a^{(m)}_{x :\overline{n}|}$
+
+    -   $a^{(m)}_{\overline{x :\overline{n}|}}$ =
+        $a^{(m)}_{\overline{n}|}$ + ${}_{n|}a^{(m)}_x$
+
+### m-thly Whole Life Annuity-Due of 1 per Year on (x)
+
+-   $Y_d$ = $\ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m}}| }$ =
+    $\frac{1 - v^{K^{(m)}_x + \frac{1}{m}}}{d^{(m)}}$
+
+    So: $Y_d$ = $\frac{1 - Z}{d^{(m)}}$, where $Z$ is the present value
+    random variable for an m-thly whole life insurance of 1 on (x).
+
+-   $E(Y_d)$ = $\ddot{a}^{(m)}_x$ =
+    $\sum^{\infty}_{k = 0} \frac{1}{m}{}_{\frac{k}{m}}E_x$ =
+    $\frac{1 - A^{(m)}_x}{d^{(m)}}$
+
+-   $Var(Y_d)$ = $\frac{^2A^{(m)}_x - [A^{(m)}_x]^2}{[d^{(m)}]^2}$
+
+-   Recursion: $\ddot{a}^{(m)}_x$ = $\frac{1}{m}$ +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x\ddot{a}^{(m)}_{x +
+    \frac{1}{m}}$
+
+-   UDD: $\ddot{a}^{(m)}_x$ = $\alpha(m)$$\ddot{a}_x$ - $\beta(m)$;
+    $\bar{a}_x$ = $\alpha(\infty)$$\ddot{a}_x$ - $\beta(\infty)$
+
+-   Woolhouse’s Formula with 3 terms: $\ddot{a}^{(m)}_x$ =
+    $\ddot{a}_x$ - $\frac{m - 1}{2m}$ -
+    $\frac{m^2 - 1}{12m^2}$$(\delta + \mu_x)$;
+
+    $\bar{a}_x$ = $\ddot{a}_x$ - $\frac{1}{2}$ - $\frac{1}{12}$$(\delta
+    + \mu_x)$
+
+### m-thly Temporary Life Annuity-Due of 1 per Year on (x)
+
+-   $$Y_d = \left\{
+      \begin{array}{l l}
+        \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m}}| }   & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., n - $\frac{1}{m}$}\\
+        \ddot{a}^{(m)}_{\overline{n}|}             & \quad \text{for $K^{(m)}_x$ = n, n + $\frac{1}{m}$, ...}\\
+      \end{array} \right.$$ = $\frac{1 - Z}{d^{(m)}}$
+
+    where $Z$ is the present value random variable for an m-thly n-year
+    endowment insurance of 1 on (x).
+
+-   $E(Y_d)$ = $\ddot{a}^{(m)}_{x :\overline{n}|}$ =
+    $\sum^{mn - 1}_{k = 0} \frac{1}{m} {}_{\frac{k}{m}}E_x$ =
+    $\frac{1 - A^{(m)}_{x
+    :\overline{n}|}}{d^{(m)}}$
+
+-   $Var(Y_d)$ = $\frac{^2A^{(m)}_{x
+    :\overline{n}|}  -  [A^{(m)}_{x :\overline{n}|}]^2}{[d^{(m)}]^2}$
+
+-   Recursion: $\ddot{a}^{(m)}_{x :\overline{n}|}$ = $\frac{1}{m}$ +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x\ddot{a}^{(m)}_{x + \frac{1}{m} :\overline{n - \frac{1}{m}}| }$
+
+-   UDD: $\ddot{a}^{(m)}_{x :\overline{n}|}$ =
+    $\alpha(m)$$\ddot{a}_{x:\overline{n}|}$ -
+    $\beta(m)$$(1 - {}_{n}E_x)$;
+
+    $\bar{a}_{x:\overline{n}|}$ =
+    $\alpha(\infty)$$\ddot{a}_{x:\overline{n}|}$ -
+    $\beta(\infty)$$(1 - {}_{n}E_x)$
+
+-   Woolhouse’s Formula with 3 terms:
+
+    $\ddot{a}^{(m)}_{x :\overline{n}|}$ = $\ddot{a}_{x:\overline{n}|}$ -
+    $\frac{m -
+    1}{2m}$$(1 - {}_{n}E_x)$ - $\frac{m^2 - 1}{12m^2}$$(\delta + \mu_x -
+    {}_{n}E_x(\delta + \mu_{x + n}))$;
+
+    $\bar{a}_{x:\overline{n}|}$ = $\ddot{a}_{x:\overline{n}|}$ -
+    $\frac{1}{2}$$(1 - {}_{n}E_x)$ -
+    $\frac{1}{12}$$(\delta + \mu_x - {}_{n}E_x(\delta + \mu_{x + n}))$
+
+    I would not memorize these UDD and Woolhouse’s formulas. Just know
+    the $m$-thly whole life results and use:
+
+    $\ddot{a}^{(m)}_{x :\overline{n}|}$ = $\ddot{a}^{(m)}_{x}$ -
+    ${}_{n}E_x$$\ddot{a}^{(m)}_{x + n}$.
+
+### m-thly Deferred Whole Life Annuity-Due of 1 per Year on (x)
+
+-   $$Y_d = \left\{
+      \begin{array}{l l}
+        0                       & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., u - $\frac{1}{m}$}\\
+        v^u \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m} - u}| }             & \quad \text{for $K^{(m)}_x$ = u, u + $\frac{1}{m}$, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_d)$ = ${}_{u|}\ddot{a}^{(m)}_x$ =
+    $\sum^{\infty}_{k = mu} \frac{1}{m} {}_{\frac{k}{m}}E_x$ =
+    $\ddot{a}^{(m)}_x$ - $\ddot{a}^{(m)}_{x :\overline{u}|}$ =
+    ${}_{u}E_x$$\ddot{a}^{(m)}_{x + u}$
+
+-   Recursion: ${}_{u|}\ddot{a}^{(m)}_x$ = 0 +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x({}_{u - \frac{1}{m}|}\ddot{a}^{(m)}_{x + \frac{1}{m}})$
+
+-   UDD: ${}_{u|}\ddot{a}^{(m)}_x$ = $\alpha(m)$${}_{u|}\ddot{a}_x$ -
+    $\beta(m)$${}_{u}E_x$; ${}_{u|}\bar{a}_x$ =
+    $\alpha(\infty)$${}_{u|}\ddot{a}_x$ - $\beta(\infty)$${}_{u}E_x$
+
+-   Woolhouse’s Formula with 3 terms: ${}_{u|}\ddot{a}^{(m)}_x$ =
+    ${}_{u|}\ddot{a}_x$ - $\frac{m - 1}{2m}$${}_{u}E_x$ -
+    $\frac{m^2 - 1}{12m^2}$${}_{u}E_x(\delta + \mu_{x + u})$;
+
+    ${}_{u|}\bar{a}_x$ = ${}_{u|}\ddot{a}_x$ -
+    $\frac{1}{2}$${}_{u}E_x$ -
+    $\frac{1}{12}$${}_{u}E_x(\delta + \mu_{x + u})$
+
+    I would not memorize these UDD and Woolhouse’s formulas. Just know
+    the $m$-thly whole life results and use: ${}_{n|}\ddot{a}^{(m)}_{x}$
+    = ${}_{n}E_x$$\ddot{a}^{(m)}_{x + n}$.
+
+### m-thly Deferred Temporary Life Annuity-Due of 1 per Year on (x)
+
+-   $$Y_d = \left\{
+      \begin{array}{l l l}
+        0                      & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., u - $\frac{1}{m}$}\\
+        v^u \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m} - u}| }                 & \quad \text{for $K^{(m)}_x$ = u, u + $\frac{1}{m}$, ..., u + n - $\frac{1}{m}$}\\
+        v^u \ddot{a}^{(m)}_{\overline{n}|}                       & \quad \text{for $K^{(m)}_x$ = u + n, u + n + $\frac{1}{m}$, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_d)$ = ${}_{u|n}\ddot{a}^{(m)}_x$ =
+    $\sum^{m(u + n) - 1}_{k = mu} \frac{1}{m} {}_{\frac{k}{m}}E_x$ =
+    $\ddot{a}^{(m)}_{x :\overline{u + n}|}$ -
+    $\ddot{a}^{(m)}_{x :\overline{u}|}$ =
+    ${}_{u}E_x$$\ddot{a}^{(m)}_{x + u:\overline{n}|}$
+
+-   Recursion: ${}_{u|n}\ddot{a}^{(m)}_x$ = 0 +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x({}_{u -
+    \frac{1}{m}|n}\ddot{a}^{(m)}_{x + \frac{1}{m}})$
+
+### m-thly Certain and Life Annuity-Due of 1 per Year on (x)
+
+-   $$Y_d = \left\{
+      \begin{array}{l l}
+        \ddot{a}^{(m)}_{\overline{n}|}               & \quad \text{for $K^{(m)}_x$ = 0, $\frac{1}{m}$, ..., n - $\frac{1}{m}$}\\
+        \ddot{a}^{(m)}_{\overline{K^{(m)}_x + \frac{1}{m}}| }         & \quad \text{for $K^{(m)}_x$ = n, n + $\frac{1}{m}$, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_d)$ = $\ddot{a}^{(m)}_{\overline{x: \overline{n}|}}$ =
+    $\ddot{a}^{(m)}_{\overline{n}|}$ + ${}_{n|}\ddot{a}^{(m)}_x$
+
+-   Recursion: $\ddot{a}^{(m)}_{\overline{x: \overline{n}|}}$ =
+    $\frac{1}{m}$ +
+    $v^{\frac{1}{m}}{}_{\frac{1}{m}}q_x\ddot{a}^{(m)}_{\overline{n - \frac{1}{m}}| }$
+    + $v^{\frac{1}{m}}{}_{\frac{1}{m}}p_x\ddot{a}^{(m)}_{\overline{x +
+    \frac{1}{m}: \overline{n - \frac{1}{m}}| }}$
+
+## Varying Annuities
+
+-   **Annually Increasing Annuity:** A life annuity where the annual
+    payment is increased arithmetically for each year the annuitant
+    survives. For example, an annually increasing temporary life
+    annuity-due pays $R$ at the beginning of the first year, $2R$ at the
+    beginning of the second year given survival of the annuitant,...,
+    $nR$ at the beginning of year $n$ given survival of the annuitant.
+
+-   **Annually Decreasing Annuity:** A life annuity where the annual
+    payment is decreased arithmetically for each year the annuitant
+    survives. For example, an annually decreasing temporary life
+    annuity-due pays $nR$ at the beginning of the first year, $(n - 1)R$
+    at the beginning of the second year given survival of the
+    annuitant,..., $R$ at the beginning of year $n$ given survival of
+    the annuitant.
+
+-   **Geometrically Increasing Annuity:** A life annuity where the
+    annual payment is increased at a compound rate of $j$ per year for
+    each year the annuitant survives. For example, a geometrically
+    increasing whole life annuity-due pays $R$ at the beginning of the
+    first year, $R(1 +j)$ at the beginning of the second year given
+    survival of the annuitant, $R(1 +j)^2$ at the beginning of the third
+    year given survival of the annuitant, etc.
+
+### Annually Increasing Whole Life Annuity on (x)
+
+**Continuous Annually Increasing Whole Life Annuity**:
+
+-   Provides 1 continuously during the first year, 2 continuously during
+    the second year, 3 continuously during the third year, etc.
+
+-   $E(Y)$ = $(I\bar{a})_{x}$ = $\sum^{\infty}_{k = 0} (k +
+    1){}_{k|}\bar{a}_{x:\overline{1}|}$
+
+**Continuously Increasing Whole Life Annuity**:
+
+-   The payment rate at time $t$ is $t$.
+
+-   $E(Y)$ = $(\bar{I}\bar{a})_{x}$ = $\int^{\infty}_0 t{}_{t}E_x dt$
+
+    -   With a constant force of mortality: $(\bar{I}\bar{a})_{x}$ =
+        $\frac{1}{(\mu + \delta)^2}$.
+
+**Annually Increasing Whole Life Annuity-Due**:
+
+-   Provides 1 at the beginning of the first year, 2 at the beginning of
+    the second year, 3 at the beginning of the third year, etc.
+
+-   $E(Y_d)$ = $(I\ddot{a})_{x}$ =
+    $\sum^{\infty}_{k = 0} (k + 1){}_{k}E_x$
+
+    -   With a constant force of mortality: $(I\ddot{a})_{x}$ =
+        $\frac{(1 + i)^2}{(q + i)^2}$
+
+-   Recursion: $(I\ddot{a})_x$ = $\ddot{a}_x$ +
+    $vp_x(I\ddot{a})_{x + 1}$
+
+**Annually Increasing Whole Life Annuity-Immediate**:
+
+-   Provides 1 at the end of the first year, 2 at the end of the second
+    year, 3 at the end of the third year, etc.
+
+-   $E(Y_i)$ = $(Ia)_{x}$ = $\sum^{\infty}_{k = 1} k{}_{k}E_x$
+
+-   Recursion: $(Ia)_x$ = $a_x$ + $vp_x(Ia)_{x + 1}$
+
+### Annually Increasing Temporary Life Annuity on (x)
+
+**Continuous Annually Increasing Temporary Life Annuity**:
+
+-   Provides 1 continuously during the first year, 2 continuously during
+    the second year, ..., n continuously during year n.
+
+-   $E(Y)$ = $(I\bar{a})_{x: \overline{n}|}$ =
+    $\sum^{n - 1}_{k = 0} (k +
+    1){}_{k|}\bar{a}_{x:\overline{1}|}$
+
+**Continuously Increasing Temporary Life Annuity**:
+
+-   The payment rate at time $t$ is $t$ during the first n years.
+
+-   $E(Y)$ = $(\bar{I}\bar{a})_{x: \overline{n}|}$ =
+    $\int^{n}_0 t{}_{t}E_x dt$
+
+**Annually Increasing Temporary Life Annuity-Due**:
+
+-   Provides 1 at the beginning of the first year, 2 at the beginning of
+    the second year, ..., n at the beginning of year n.
+
+-   $E(Y_d)$ = $(I\ddot{a})_{x: \overline{n}|}$ =
+    $\sum^{n - 1}_{k = 0} (k + 1){}_{k}E_x$
+
+-   Recursion: $(I\ddot{a})_{x: \overline{n}|}$ =
+    $\ddot{a}_{x: \overline{n}|}$ +
+    $vp_x(I\ddot{a})_{x + 1: \overline{n - 1}|}$
+
+**Annually Increasing Temporary Life Annuity-Immediate**:
+
+-   Provides 1 at the end of the first year, 2 at the end of the second
+    year, ..., n at the end of year n.
+
+-   $E(Y_i)$ = $(Ia)_{x: \overline{n}|}$ = $\sum^{n}_{k = 1} k{}_{k}E_x$
+
+-   Recursion: $(Ia)_{x: \overline{n}|}$ = $a_{x: \overline{n}|}$ +
+    $vp_x(Ia)_{x + 1: \overline{n - 1}|}$
+
+### Annually Decreasing Temporary Life Annuity on (x)
+
+**Continuous Annually Decreasing Temporary Life Annuity**:
+
+-   Provides n continuously during the first year, n - 1 continuously
+    during the second year, ..., 1 continuously during year n.
+
+-   $E(Y)$ = $(D\bar{a})_{x: \overline{n}|}$ =
+    $\sum^{n - 1}_{k = 0} (n - k){}_{k|}\bar{a}_{x:\overline{1}|}$
+
+    Also: $(I\bar{a})_{x: \overline{n}|}$ +
+    $(D\bar{a})_{x: \overline{n}|}$ =
+    $(n + 1)\bar{a}_{x:\overline{n}|}$.
+
+**Continuously Decreasing Temporary Life Annuity**:
+
+-   The payment rate at time $t$ is $n$ - $t$ during the first n years.
+
+-   $E(Y)$ = $(\bar{D}\bar{a})_{x: \overline{n}|}$ =
+    $\int^{n}_0 (n - t){}_{t}E_x dt$
+
+    Also: $(\bar{I}\bar{a})_{x: \overline{n}|}$ + $(\bar{D}\bar{a})_{x:
+    \overline{n}|}$ = $n\bar{a}_{x:\overline{n}|}$.
+
+**Annually Decreasing Temporary Life Annuity-Due**:
+
+-   Provides n at the beginning of the first year, n - 1 at the
+    beginning of the second year, ..., 1 at the beginning of year n.
+
+-   $E(Y_d)$ = $(D\ddot{a})_{x: \overline{n}|}$ =
+    $\sum^{n - 1}_{k = 0} (n - k){}_{k}E_x$
+
+    Also: $(I\ddot{a})_{x: \overline{n}|}$ +
+    $(D\ddot{a})_{x: \overline{n}|}$ =
+    $(n + 1)\ddot{a}_{x:\overline{n}|}$.
+
+-   Recursion: $(D\ddot{a})_{x: \overline{n}|}$ = $n$ +
+    $vp_x(D\ddot{a})_{x + 1: \overline{n - 1}|}$
+
+**Annually Decreasing Temporary Life Annuity-Immediate**:
+
+-   Provides n at the end of the first year, n - 1 at the end of the
+    second year, ..., 1 at the end of year n.
+
+-   $E(Y_i)$ = $(Da)_{x: \overline{n}|}$ =
+    $\sum^{n}_{k = 1} (n - k + 1){}_{k}E_x$
+
+    Also: $(Ia)_{x: \overline{n}|}$ + $(Da)_{x: \overline{n}|}$ = $(n +
+    1)a_{x: \overline{n}|}$.
+
+-   Recursion: $(Da)_{x: \overline{n}|}$ = $nvp_x$ +
+    $vp_x(Da)_{x + 1: \overline{n - 1}|}$
+
+### Geometrically Increasing Life Annuity on (x)
+
+-   Consider an annual whole life annuity-due where the payment at time
+    0 is 1, the payment at time 1 is $(1 + j)$, the payment at time 2 is
+    $(1 +
+    j)^2$, etc. There is an effective annual interest rate of $i$.
+
+    Define the modified interest rate: $i_{\pi}$ =
+    $\frac{1 + i}{1 + j}$ - 1. Then:
+
+    The expected present value of the above annual whole life
+    annuity-due is $\ddot{a}_x$ at $i_{\pi}$.
+
+-   Consider an annual n-year temporary life annuity-due where the
+    payment at time 0 is 1, the payment at time 1 is $(1 + j)$, the
+    payment at time 2 is $(1 +
+    j)^2$, ..., the payment at time n - 1 is $(1 + j)^{n - 1}$. There is
+    an effective annual interest rate of $i$.
+
+    Define the modified interest rate: $i_{\pi}$ =
+    $\frac{1 + i}{1 + j}$ - 1. Then:
+
+    The expected present value of the above annual n-year temporary life
+    annuity-due is $\ddot{a}_{x:\overline{n}|}$ at $i_{\pi}$.
+
+## Exercises
+
+6.1. You are given:
+
+\(i) Mortality follows the Illustrative Life Table.
+
+\(ii) Deaths are uniformly distributed over each year of age.
+
+\(iii) $i$ = 0.06
+
+Calculate: $\ddot{a}_{35:\overline{20}|}^{(12)}$.
+
+\(A) 11.0 (B) 11.2 (C) 11.5 (D) 11.8 (E) 12.0
+
+6.2. You are given:
+
+\(i) Mortality follows a select-and-ultimate table, 3-year select period.
+
+\(ii) $\ddot{a}_{[40] + 1}$ = 19.2297
+
+\(iii) $i$ = 0.045
+
+\(iv) $p_{[40]}$ = 0.9987
+
+\(v) $\mu_{[40] + 1}$ = 0.001321
+
+Using Woolhouse’s formula with three terms, calculate:
+${}_{1|}\ddot{a}^{(4)}_{[40]}$.
+
+\(A) 18.0 (B) 18.1 (C) 18.2 (D) 18.3 (E) 18.4
+
+6.3. Consider a special 20-year temporary life annuity-due on (30) with
+annual payments:
+
+\(i) The payment for the beginning of year ($k$ + 1) is: $\pi_k$ =
+$(1.04)^k$ for $k$ = 0, 1, 2, ..., 19.
+
+\(ii) $i$ = 0.06
+
+\(iii) $l_x$ = 100 - $x$ for 0 $\le$ $x$ $\le$ 100
+
+Calculate the single benefit premium.
+
+\(A) 14.6 (B) 14.7 (C) 14.8 (D) 14.9 (E) 15.0
+
+6.4. You are given:
+
+\(i) $l_{62}$ = 8,982,404, $l_{63}$ = 8,915,575, and $l_{64}$ = 8,842,735
+
+\(ii) $v$ = 0.9569
+
+\(iii) $(I\ddot{a})_{62}$ = 158.94
+
+\(iv) $(I\ddot{a})_{64}$ = 145.55
+
+Calculate: $\ddot{a}_{63}$.
+
+\(A) 13.2 (B) 13.4 (C) 13.6 (D) 13.8 (E) 14.0
+
+6.5. A fund is established to provide annuity benefits to 500
+independent lives all age 35.
+
+You are given:
+
+\(i) On January 1, 2012, each life is issued a single premium whole life
+annuity. The total payment for each year is 12,000, which is payable in
+equal monthly installments in advance.
+
+\(ii) Each life has mortality that follows the Illustrative Life Table.
+
+\(iii) $i$ = 0.06
+
+\(iv) Deaths are uniformly distributed within each year of age.
+
+Calculate the amount needed in the fund on January 1, 2012, in millions,
+so that the probability, as determined by the normal approximation, is
+0.99 that the fund will be sufficient to provide these benefits.
+
+\(A) 90.0 (B) 90.5 (C) 91.0 (D) 91.5 (E) 92.0
+
+6.6. Consider a special life annuity issued to Jenn, aged 37:
+
+\(i) There is a deferral period of 10 years. If Jenn dies during the
+deferral period, 80% of the net single premium is refunded without
+interest at the end of the year of death.
+
+\(ii) During the 15-year period starting at the end of the deferral
+period, 1000 is payable at the beginning of each month while Jenn is
+alive. If Jenn is still alive 25 years after issue, 3000 is payable at
+the beginning of each month for life.
+
+\(iii) Mortality follows the Illustrative Life Table.
+
+\(iv) Deaths are uniformly distributed over each year of age.
+
+\(v) $i$ = 0.06
+
+Calculate the net single premium.
+
+\(A) 135,500 (B) 136,100 (C) 136,700 (D) 137,300 (E) 137,900
+
+6.7. Consider a 15-year certain and life annuity-due of 24,000 per year
+on (65) payable monthly (actual payments are 2000 per month):
+
+\(i) Mortality follows the Illustrative Life Table.
+
+\(ii) $i$ = 0.06
+
+\(iii) Deaths are uniformly distributed over each year of age.
+
+Calculate the expected present value of this annuity.
+
+\(A) 267,900 (B) 268,400 (C) 268,900 (D) 269,400 (E) 269,900
+
+6.8. You are given:
+
+\(i) $Y_1$ is the present value random variable for a 10-year temporary
+life annuity-due of 1 per year on a select life aged 40 payable
+quarterly.
+
+\(ii) $Y_2$ is the present value random variable for a 10-year certain
+and life annuity-due of 1 per year on a select life aged 40 payable
+quarterly.
+
+\(iii) $i$ = 0.05
+
+\(iv) Mortality follows the Standard Select Survival Model.
+
+\(v) Woolhouse’s formula with three terms is used to approximate
+quarterly expected present values.
+
+Calculate the variance of the sum of $Y_1$ and $Y_2$.
+
+\(A) 3.8 (B) 3.9 (C) 4.0 (D) 4.1 (E) 4.2
+
+6.9. Consider a special increasing 3-year temporary life annuity-due
+payable annually on (x):
+
+\(i) The payment for the first year is 1000, the payment for the second
+year is 3000, and the payment for the third year is 7000.
+
+\(ii) ${}_{k}p_x$ = $(0.97)^k$ for $k$ = 0, 1, 2.
+
+\(iii) $i$ = 0.04
+
+\(iv) $Y$ is the present value random variable for this annuity.
+
+Calculate the standard deviation of $Y$.
+
+\(A) 1904 (B) 1920 (C) 1936 (D) 1952 (E) 1968
+
+6.10. You are given a life annuity-due on (55) payable monthly. 100 is
+payable each month during the first 10 years; 300 is payable each month
+after the first 10 years.
+
+Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+Woolhouse’s formula with two terms is used to approximate monthly
+expected present values. Calculate the expected present value of this
+annuity.
+
+\(A) 23,710 (B) 24,210 (C) 24,710 (D) 25,210 (E) 25,710
+
+6.11. For a special continuous 10-year deferred life annuity on (55):
+
+\(i) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+\(ii) Woolhouse’s formula with two terms is used to determine annuity
+expected present values.
+
+\(iii) 36,000 is payable continuously each year between ages 65 and 75.
+
+\(iv) 22,000 is payable continuously each year after age 75.
+
+Calculate the expected present value of this annuity.
+
+\(A) 145,000 (B) 146,000 (C) 147,000 (D) 148,000 (E) 149,000
+
+6.12. You are given:
+
+\(i) The following select-and-ultimate life table:
+
+$\begin{array}{r|r|r|r|r|r}
+\hline
+\mathbf{x} & \mathbf{l_{[x]}} & \mathbf{l_{[x] + 1}} & \mathbf{l_{[x] + 2}} & \mathbf{l_{x + 3}} & \mathbf{x + 3} \\
+\hline
+35 & 142,800 & 142,649 & 142,491 & 141,768 & 38 \\
+36 & 142,704 & 142,530 & 142,110 & 141,333 & 39 \\
+37 & 141,758 & 141,518 & 140,999 & 140,481 & 40 \\
+\hline
+\end{array}$
+
+\(ii) $v$ = 0.97
+
+Calculate the variance of the present value of a 3-year temporary life
+annuity-due of 1000 per year on [35] payable annually.
+
+\(A) 4600 (B) 4700 (C) 4800 (D) 4900 (E) 5000
+
+### Answers to Exercises
+
+6.1. C
+
+6.2. A
+
+6.3. B
+
+6.4. E
+
+6.5. C
+
+6.6. D
+
+6.7. C
+
+6.8. B
+
+6.9. A
+
+6.10. D
+
+6.11. B
+
+6.12. C
+
+## Past Exam Questions
+
+-   Exam MLC, Fall 2012: \#19
+
+-   Exam MLC, Spring 2012: \#30
+
+-   Exam MLC, Sample Questions: \#7, 284

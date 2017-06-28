@@ -1,0 +1,717 @@
+---
+title: "Multiple State Models"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Multiple State Models
+## Examples of Multiple State Models
+
+Consider a life aged $x$ who, at time point $t$ (age $x+t$) is in one of
+$n+1$ (*multiple*) states. We label the potential outcomes, known as the
+*state space*, as $0,1, \ldots, n$. Specifically, we let $Y(t)$
+(sometimes denoted as $Y(x+t)$) be a categorical random variable with
+potential outcomes $0,1, \ldots, n$.
+
+**Special Case 1. The Alive-Dead Model.** In this special case, $Y(t)$
+can take on values
+
+-   0, meaning alive
+
+-   1, meaning dead.
+
+That is, there are two states under consideration, $0$ and $n=1$. A
+graphical representation is given in Figure 1 where the arrow indicates
+that it is possible to transit from state 0 to state 1 (but not the
+reverse).
+
+![image](Figures\MSM_TwoState.pdf){width=".5\textwidth"}
+
+**Special Case 2. The Accidental Death Model.** In this special case,
+$Y(t)$ can take on values
+
+-   0, meaning alive
+
+-   1, meaning death due to accident
+
+-   2, meaning death due to all other causes.
+
+This model is relevant for certain life insurance products that provide
+an extra benefit in the event of accidental death. There are three
+states under consideration, $0$, $1$ and $n=2$. A graphical
+representation is given in Figure 2 where the arrows indicates that it
+is possible to transit from state 0 to either state 1 or state 2. It is
+not possible to transit out of state 1 or 2. If it is not possible to
+leave a state, it is referred to as an *absorbing state*.
+
+![image](Figures\MSM_LifeDeathOtherDeath.pdf){width=".5\textwidth"}
+
+**Special Case 3. Permanent Disability Model.** In this special case,
+$Y(t)$ can take on values
+
+-   0, meaning health
+
+-   1, meaning permanently disabled
+
+-   2, meaning death.
+
+This model is relevant for certain life insurance products that provide
+an extra benefit in the sickness such as a permanent disability. For
+example, it is common for some life insurance products to “forgive”
+premium payments during this period. In this model, disability is viewed
+as “permanent” in the sense that once a person achieves the disability
+status, recovery to the former “health” status is not possible.
+
+![image](Figures\MSM_HealthyDisabledDead.pdf){width=".3\textwidth"}
+
+**Special Case 4. Multiple Decrement Model.** In this special case,
+$Y(t)$ can take on values $0, 1, 2, \ldots, n$ where each of
+$1, 2, \ldots, n$ are absorbing states. The Alive-Dead and the
+Accidental Death Model are both special cases of the Multiple Decrement
+Model. Because of its importance in applications, we examine multiple
+decrement models in a separate module.
+
+![image](Figures\MSM_MultipleDecrement.pdf){width=".25\textwidth"}
+
+**Special Case 5. Joint Life Model.** In this special case, we consider
+not one but two lives, e.g., $x$ and $y$. For many applications, these
+represent ages at contract issue of a husband and wife for life and
+insurance or annuity products. In this special case, $Y(t)$ can take on
+values
+
+-   0, meaning both $x$ and $y$ are alive
+
+-   1, meaning $x$ is alive although $y$ is dead
+
+-   2, meaning $y$ is alive although $x$ is dead
+
+-   3, meaning both $x$ and $y$ are dead.
+
+Because of its importance in applications, we examine joint life models
+in a separate module.
+
+![image](Figures\MSM_JointLifeStatus.pdf){width=".35\textwidth"}
+
+## Multiple State Concepts
+
+Our objective is to follow the categorical random variable $Y(t)$ over
+time $t$. We start by reviewing a few terms.
+
+-   A *stochastic process* is a collection of random variables.
+
+-   A *continuous-time stochastic process* is a stochastic process that
+    is indexed by a continuous time variable such as time.
+
+    -   For example, we will use $\{Y(t)\}_{t \ge 0}$ to denote the
+        history of states that $(x)$ is in.
+
+    -   This is sometimes known as *continuous-time, discrete-state
+        stochastic process* because the time index $t$ is continuous but
+        the outcome at any point in time, $Y(t)$ is discrete.
+
+-   A *discrete-time stochastic process* is a stochastic process that is
+    indexed by a discrete time variable.
+
+    -   For example, we will use $\{Y(k)\}_{k = 0, 1, 2, \ldots }$ to
+        track the state of a person at regular intervals, e.g. monthly
+        or annually
+
+-   For contrast, many viewers are familiar with (geometric) Brownian
+    Motion $\{S(t)\}_{t \ge 0}$, a *continuous-time, continuous-state
+    stochastic process*. Here, the time index $t$ is also continuous.
+    Further, $S(t)$, that can be interpreted as the stock price at a
+    moment in time (“$S$” for stock price), is modeled as a random
+    variable with *continuous* outcomes.
+
+## Probability Fundamentals
+
+### Probability Definitions
+
+**Transition Probabilities** Let $Y(t)$ be a discrete random variable.
+We are concerned with probabilities of the form $$\begin{aligned}
+\Pr(Y(8) = 2 | Y(4) = 0).\end{aligned}$$ This is the probability that
+$Y$ is in state 2 at time $t=8$, given that $Y$ was in state 0 at time
+$t=4$. We will think of think as *transition probability*, that is, the
+probability of moving to a potentially new state, given some initial
+information.
+
+More generally, consider the following transition probability
+$$\begin{aligned}
+\Pr(Y(t_2) = i_2 | Y(t_1) = i_1).\end{aligned}$$ Here, we typically work
+with $t_1 < t_2$. The states $i_1$ and $i_2$ both belong to the set of
+potential states, $\{0, 1, \ldots, n\}$.
+
+We might wish to calibrate the following probability $$\begin{aligned}
+\Pr(Y(t_4) = i_4 | Y(t_1) = i_1, Y(t_2) = i_2, Y(t_3) = i_3).\end{aligned}$$
+What is the probability that $Y(t_4) = i_4$ given the events $\{Y(t_1) =
+i_1\}$, $\{Y(t_2) = i_2\}$, and $\{Y(t_3) = i_3\}$? We use the following
+assumption to answer this complex question.
+
+**Markov Property (in words).** Suppose you are given that the process
+is currently in state $i$ at time $t$ (e.g., $Y(t) = i$), where state
+$i$ and time $t$ are arbitrary. Then, the (conditional) probability of
+the process being in any state in the future does not depend on the
+past; it depends only on the current state.
+
+**Markov Property (using notation).** Consider an arbitrary set of $n+1$
+time points $t_1 < \cdots < t_n < t$ and corresponding set of states
+$i_1, \ldots, i_n, i$ such that
+$\Pr(Y(t_1)=i_1, \ldots, Y(t_n)=i_n, Y(t)=i) >0$. Then, for future time
+length $s>0$ and state $j$, $$\begin{aligned}
+\Pr(Y(t+s)=j &|& Y(t)=i, Y(t_1)=i_1, \ldots, Y(t_n)=i_n) \\
+          &= \Pr(Y(t+s)=j |~ Y(t)=i) .\end{aligned}$$
+
+As an example, think about monthly observed health status over
+$t=1, 2,3, 4$. Then, for example, we might have $$\begin{aligned}
+\Pr(Y(4)=3 | Y(3)=1, Y(2)=0, Y(1)=0) &= \Pr(Y(4)=3 | Y(3)=1) .\end{aligned}$$
+
+-   A stochastic process with the Markov property is sometimes called a
+    “Markov process.”
+
+-   A Markov process is also called a “Markov chain,” referring to the
+    “chain” of states visited throughout a period of time .
+
+**Probability Notation**. Let $_t p_x^{ij}$ be the probability that a
+life aged $x$ in state $i$ is in state $j$ at age $x+t$. That is,
+$$\begin{aligned}
+ _t p_x^{ij} = \Pr(Y(x+t)=j |~ Y(x)=i ) .\end{aligned}$$
+
+**Special Case: Alive-Dead Model**. In this case $n=1$, $i=0$ for alive
+and $j=1$ for dead. Then we have $$\begin{aligned}
+ _t p_x^{01} = \Pr(Y(x+t)=1 |~ Y(x)=0 ) = ~_t q_x,\end{aligned}$$ our
+familiar probability of death for $(x)$ with $t$ years.
+
+$\Box$
+
+Probabilities, of course, are bounded by 0 and 1. Moreover, we consider
+only $n+1$ potential outcomes, so that $$\begin{aligned}
+ _t p_x^{i0} +  ~_t p_x^{i1} + \cdots +  ~_t p_x^{in} = 1.\end{aligned}$$
+
+For annuity calculations, it is helpful to define the notion that a life
+remains in a state over an extended period of time. Thus, we define
+$$\begin{aligned}
+ _t p_x^{\overline{ii}} = \Pr(Y(x+s)=i, \text{~for all~} s \text{~in~} [0,t) ~|~ Y(x)=i ) ,\end{aligned}$$
+that is, the probability that a life aged $x$ *stays* in state $i$
+throughout the period from age $x$ to age $x+t$. Note that
+$_t p_x^{\overline{ii}} \leq  ~ _t p_x^{ii}$. This is sometimes known
+as an *occupancy probability*.
+
+### Discrete Time Fundamentals
+
+To develop intuition, in this section we consider both ages $x$ and
+duration time $t$ as discrete. When probabilities do not depend on the
+conditioning time (age), Markov probabilities are said to be (time-)
+*homogenous*. This special case is helpful in particular for short-term
+coverages such as some types of health insurance as well as property and
+casualty insurance. When probabilities change with time (age) (the usual
+case for mortality), Markov probabilities are said to be (time-)
+*inhomogenous*.
+
+Many calculations are simply complicated applications of the familiar
+*Law of Total Probability*. To see how this works, consider the
+following.
+
+*Example - Rain*. Suppose that there only two states of the world,
+$0=Rain$ ($R$) and $1=No~Rain$ ($NR$). You are given that
+
+-   if it is raining today, then the probability of rain tomorrow is 0.7
+
+-   if it is not raining today, then the probability of no rain tomorrow
+    is 0.6.
+
+Assume that is raining today at time $t=1$, what is the probability that
+it will be raining at time $t=3$?
+
+*Solution*. By the law of total probability, $$\begin{aligned}
+\Pr (Y(3) = R | Y(1) = R) &=  \Pr (Y(3) = R | Y(2) = R) \times  \Pr (Y(2) = R | Y(1) = R)
+\\ & & ~~~~ +
+\Pr (Y(3) = R | Y(2) = NR)  \times  \Pr (Y(2) = NR | Y(1) = R) \\
+&= (0.7)(0.7) + (0.4)(0.3) = 0.61 .\end{aligned}$$
+
+$\Box$
+
+In notation, we can express this as $$\begin{aligned}
+\Pr (Y(3) = 0 | Y(1) = 0) &= \Pr (Y(2) = 0 | Y(1) = 0) \times  \Pr (Y(3) = 0 | Y(2) = 0)\\
+                           & & ~~~~ +
+\Pr (Y(2) = 1 | Y(1) = 0) \times  \Pr (Y(3) = 0 | Y(2) = 1)\\ \\
+ _2 p_1^{00} &=  _1 p_1^{00}   \times ~_1 p_2^{00} +  ~_1 p_1^{01} \times ~_1 p_2^{10} \\\end{aligned}$$
+or simply as $$\begin{aligned}
+ _2 p_1^{00} &=  p_1^{00}   \times p_2^{00} +  p_1^{01} \times p_2^{10} ,\end{aligned}$$
+where we have dropped the “1” prefix, as is common in actuarial
+notation.
+
+*Example - Rain - Continued*. Assuming that is not raining today at time
+$t=1$, what is the probability that it will be raining on day $t=3$?
+
+*Solution*. $$\begin{aligned}
+  ~_2 p_1^{10} &=  p_1^{10} \times  p_2^{00}  +  p_1^{11} \times  p_2^{10} \\
+&= (0.4)(0.7) + (0.6)(0.4) = 0.52 .\end{aligned}$$ Note that
+$~_2 p_1^{11} = 1- 0.52 = 0.48$. We could always calculate this using
+the above procedure but often it is quicker to use the fact that
+probabilities (even conditional probabilities) must sum to one.
+
+$\Box$
+
+**Chapman-Kolmogorov equation**.
+
+More generally, we have $$\begin{aligned}
+  ~_2 p_1^{ij} &=  \sum_{k=0}^n  p_1^{ik} \times p_2^{kj}\end{aligned}$$
+Next, convince yourself that $$\begin{aligned}
+ ~_3 p_1^{01} &=  \sum_{k=0}^n  p_1^{0k}  \times _2 p_2^{k1},\end{aligned}$$
+and $$\begin{aligned}
+  ~_3 p_1^{01} &=  \sum_{k=0}^n  ~_2 p_1^{0k} \times  p_3^{k1} ,\end{aligned}$$
+and $$\begin{aligned}
+  ~_5 p_1^{ij} &=  \sum_{k=0}^n ~_2 p_1^{ik} \times  ~_3 p_3^{kj} .\end{aligned}$$
+These are all special cases of the “Chapman-Kolmogorov equation”
+$$\begin{aligned}
+  ~_{m+r} p_x^{ij} &=  \sum_{k=0}^n ~ ~_m p_x^{ik} \times  ~_r p_{x+m}^{kj} .\end{aligned}$$
+
+### Exercises
+
+**1.** Using the Rain Example probabilities, calculate the probability
+that if it is raining on Monday (at $t=1$) then it will not be raining
+on Friday (at $t=5$).
+
+Solution. Begin with the “Chapman-Kolmogorov equation”, choose $n=1$,
+$m+r=4$, $i=0$ and $j=1$, to get $$\begin{aligned}
+  _4 p_1^{01} &=  \sum_{k=0}^1 ~ ~_m p_1^{0k} \times  ~_n p_{m+1}^{k0} .\end{aligned}$$
+There are different choices for $m$ and $r$. We demonstrate $m=r=2$, to
+get $_4 p_1^{01} =  \sum_{k=0}^1 ~_2 p_1^{0k} \times  ~_2 p_3^{k0} .$
+
+We determine
+
+$~_2 p_1^{00} =  p_1^{00} \times  p_2^{00}  +  p_1^{01} \times  p_2^{10} = (0.7)(0.7) + (0.3)(0.4) = 0.61 .$
+
+$~_2 p_1^{01} = 1 - ~ _2 p_1^{00} = 0.39.$
+
+$~_2 p_1^{10} =  p_1^{10} \times  p_2^{00}  +  p_1^{11} \times  p_2^{10} = (0.4)(0.7) + (0.6)(0.4) = 0.52 .$
+
+$~_2 p_1^{11} = 1 - ~_2 p_1^{10} = 0.48.$
+
+Thus, $$\begin{aligned}
+  _4 p_1^{01} &=   ~_2 p_1^{00} \times  ~_2 p_3^{01} +   ~_2 p_1^{01} \times  ~_2 p_3^{11} \\
+&= (0.61)(0.39) + (0.39)(0.48) = 0.4251.\end{aligned}$$
+
+$\Box$
+
+**2.** The Simple Insurance Company starts at time 0 with a surplus of
+3. At the beginning of every year, it collects a premium of 2. every
+year, it pays a random claim amount as shown:
+
+  ----------------------------- ------ ------ ------ ------
+  Claim Amount                       0      1      2      4
+  Probability of Claim Amount     0.15   0.25   0.40   0.20
+  ----------------------------- ------ ------ ------ ------
+
+If, at the end of the year, Simple’s surplus is more than 3, it pays a
+dividend equal to the amount of surplus in excess of 3. If Simple is
+unable to pay its claims, or if its surplus drops to 0, then it goes out
+of business. Simple has no administrative expenses and interest is equal
+to 0.
+
+Calculate the probability that Simple will be in business at the end of
+three years.
+
+*Solution.*
+
+We follow surplus for the state space that may be in one of 0,1,2, or 3.
+Note that Surplus = 0 is an “absorbing” state, there is no probability
+of exit so that $_t p_m^{00} =1$ and $_t p_m^{0j} =0$, for $j=1,2,3$. We
+start at time 0 with a surplus of 3 and so, the probability of surplus
+being zero at the end of three years can be denoted as $_3 p_0^{03}$.
+With this notation, the probability of being in business at the end of
+three years is $1- ~_3 p_0^{03}$.
+
+Now, with the Chapman-Kolmogorov equation, choose $m=1, r=2$, $i=3$ and
+$j=0$, to get $$\begin{aligned}
+  _3 p_1^{30} &=  \sum_{k=0}^3 ~  p_0^{3k} \times  ~_2 p_1^{k0} .\end{aligned}$$
+
+To plug numbers into the Chapman-Kolmogorov equation, it is helpful to
+write down the set of transition probabilities
+
+[ccccc]{}\
+“From” or &\
+“Origin State” $i$ &\
+Surplus & 0 & 1 & 2 & 3\
+0 & 1 & 0 & 0& 0\
+1 & .2 & .4 & .25 & .15\
+2 & .2 & 0 & .4 & .4\
+3 & 0 & .2 & 0 & .8\
+
+Where do these numbers come from? Well, start with the last row,
+corresponding to $i=3$. At the start of the year, we have 3 of surplus
+plus 2 more in premiums, for a total of 5. If we get 4 in claims, then
+we drop down to 1 with a probability of 0.2, or $p_1^{31}=0.2$. If we
+get 0,1, or 2 claims, then the surplus before dividend is 5, 4 and 3,
+respectively, so the surplus after dividends is 3. Thus,
+$p_1^{33}=0.15+0.25+0.40=0.8$. This takes care of all the events in that
+row that can happen, so the other probabilities are 0. Use similar logic
+to confirm the probabilities in the other rows.
+
+Now, going back to the Chapman-Kolmogorov equation, we see that
+$$\begin{aligned}
+  ~_3 p_1^{30} &=  p_0^{30} \times  ~_2 p_1^{00} +
+   p_0^{31} \times  ~_2 p_1^{10} +
+    p_0^{32} \times  ~_2 p_1^{20} +
+     p_0^{33} \times  ~_2 p_1^{30} \\
+ &=  (0.2) \times  ~_2 p_1^{10} +
+     (0.3) \times  ~_2 p_1^{30}\end{aligned}$$ and $$\begin{aligned}
+  _2 p_1^{10} &=  p_0^{10} \times p_1^{00}+
+   p_0^{11} \times  p_1^{10} +
+    p_0^{12} \times  p_1^{20} +
+     p_0^{13} \times  p_1^{30} \\
+ &=  (.2)(1)+(.4)(.2)+(.25)(.2)+(.15)(0) = 0.33\end{aligned}$$
+$$\begin{aligned}
+  _2 p_1^{30} &=  p_0^{30} \times p_1^{00}+
+   p_0^{31} \times  p_1^{10} +
+    p_0^{32} \times  p_1^{20} +
+     p_0^{33} \times  p_1^{30} \\
+ &=  0 +(.2)(.2)+0 +(.8)(0) = 0.04.\end{aligned}$$ Thus,
+$$\begin{aligned}
+  _3 p_1^{30} &=   (0.2) \times  ~_2 p_1^{10} +
+     (0.3) \times  ~_2 p_1^{30} \\
+      &=   (0.2)(.33) + (0.3)(0.4) = 0.098.\end{aligned}$$ This yields
+the probability of being in business at the end of three years is
+$1- ~_3 p_0^{03} = 1 - 0.098 = 0.902$.
+
+$\Box$
+
+### Continuous Time Fundamentals
+
+Now return to the more general case where we think about both age $x$
+and time $t$ as evolving on a continuous basis.
+
+For $i\neq j$, define $$\begin{aligned}
+  \mu_x^{ij} = \lim_{h \rightarrow 0^+} \frac{_h p_x^{ij}}{h},\end{aligned}$$
+to be the *force of transition* from state $i$ to state $j$. It is also
+known as the *transition intensity*.
+
+**Special Case: Alive-Dead Model**. In this case $n=1$, $i=0$ for alive,
+$j=1$ for dead, and $_h p_x^{01} =  ~_h q_x$. Thus, $$\begin{aligned}
+  \mu_x^{01} = \lim_{h \rightarrow 0^+} \frac{_h p_x^{01}}{h}= \lim_{h \rightarrow 0^+} \frac{_h q_x}{h} = \mu_x,\end{aligned}$$
+our usual definition of the force of mortality. Thus,
+
+$$\begin{aligned}
+ _t p_x =  ~_t p_x^{\overline{00}}= \exp \left\{- \int_0^t \sum_{j=1}^1    \mu_{x+s}^{0j} ~ds  \right\}= \exp \left\{- \int_0^t   \mu_{x+s}^{01} ~ds  \right\},\end{aligned}$$
+
+$\Box$
+
+**“Little o” Notation**. Some authors prefer to use notation to describe
+infinitesimal terms. When we use the notation “$o(1)$”, this stands for
+a sequence of terms that converges to 0 as along some index. For
+example, think of the notation “$o(1)$” as meaning a sequence of terms
+$\{ \epsilon_h \}$ where $$\begin{aligned}
+\lim_{h \rightarrow 0} \epsilon_h = 0.\end{aligned}$$ Similarly,
+“$o(h)$”, this stands for a sequence of terms that converges to 0 faster
+than an index $h$, that is,
+$\lim_{h \rightarrow 0} \frac{\epsilon_h}{h} = 0.$ More generally,
+“$o(g(h))$” stands for a sequence of terms $\{ \epsilon_h \}$ where
+$\lim_{h \rightarrow 0} \frac{\epsilon_h}{g(h)} = 0.$
+
+How do we evaluate transition probabilities based on transition
+intensities? We will introduce two results, one for occupancy
+probabilities and one known as “Kolmogorov’s forward equation.”
+
+With the transition intensities, we can compute occupancy probabilities
+with: $$\begin{aligned}
+ _t p_x^{\overline{ii}}= \exp \left\{- \int_0^t
+ \sum_{j=0, j \ne i}^n  \mu_{x+s}^{ij} ~ds  \right\},\end{aligned}$$
+*Sketch of Proof:* To see where this relationship comes from, first
+re-write the transition intensity as
+$~_h p_x^{ij} =  h \mu_x^{ij}  + o(h)$. Now, sum both sides to get
+$$\begin{aligned}
+1 -  ~ _h p_x^{ii} = \sum_{j=0, j \neq i}^n ~ _h p_x^{ij} =  \sum_{j=0, j \neq i}^n \{ h \mu_x^{ij} + o(h) \} =h M_x^i  + o(h),\end{aligned}$$
+by defining the term $M_x^i = \sum_{j=0, j \neq i}^n \mu_x^{ij}$. Now,
+the next and final step is to argue that $$\begin{aligned}
+ ~ _h p_x^{ii} = ~ _h p_x^{\overline{ii}} + o(h),\end{aligned}$$
+Intuitively, this is due to Assumption 2: $$\begin{aligned}
+\Pr[\text{2 or more transitions within a time period of length } h]  = o(h),\end{aligned}$$
+To complete the argument, begin with the relationship $$\begin{aligned}
+~_{t+h} p_x^{\overline{ii}} &= ~ _t p_x^{\overline{ii}} \times ~ _h p_{x+t}^{\overline{ii}} \\
+&= ~ _t p_x^{\overline{ii}} \left(1 - h M_{x+t}^i  + o(h)\right)\end{aligned}$$
+and so $$\begin{aligned}
+\frac{~ _{t+h} p_x^{\overline{ii}} - ~ _t p_x^{\overline{ii}}}{h} = - ~ _t p_x^{\overline{ii}} M_{x+t}^i  + o(1) .\end{aligned}$$
+Take limits as $h\rightarrow 0^+$ yields $$\begin{aligned}
+\frac{\frac{\partial}{\partial t}  ~ _t p_x^{\overline{ii}}}{~ _t p_x^{\overline{ii}}} = \frac{\partial}{\partial t} ~ \ln{~ _t p_x^{\overline{ii}}} = - M_{x+t}^i .\end{aligned}$$
+Integrating both sides yields the result.
+
+$\Box$
+
+A second method is based on *Kolmogorov’s forward equation*:
+$$\begin{aligned}
+\frac{\partial}{\partial t} ~ _t p_x^{ij}=
+ \sum_{k=0, k \ne j}^n
+ \left(
+ _t p_x^{ik} \mu_{x+t}^{kj}
+- ~  _t p_x^{ij} \mu_{x+t}^{jk}
+  \right).\end{aligned}$$ **Special Case: Multi-Decrement Model**. In
+this case, the positive probabilities only occur at the origin state
+$i=0$. Similarly, forces of transition are only positive when the origin
+state is 0. Thus, $$\begin{aligned}
+\frac{\partial}{\partial t} ~ _t p_x^{0j}= ~ _t p_x^{00} \mu_{x+t}^{0j}.\end{aligned}$$
+Integrating both sides yields $$\begin{aligned}
+ _t p_x^{0j}= \int_0^t ~ _s p_x^{00} \mu_{x+s}^{0j} ds.\end{aligned}$$
+
+$\Box$
+
+**Special Case: Permanent Disability Model.** With $n=2$, $Y(t)$ can
+take on values
+
+-   0, meaning health
+
+-   1, meaning permanently disabled
+
+-   2, meaning death.
+
+From state 0, one can go to 0, 1, or 2. From state 1, one can go to 1,
+or 2. State 2 is an absorbing state.
+
+Start with the occupancy probabilities $$\begin{aligned}
+~_t p_x^{00} &=
+\exp \left( - \int_0^t (\mu_{x+s}^{01}+\mu_{x+s}^{02})ds \right)\end{aligned}$$
+and $$\begin{aligned}
+~_t p_x^{11} &=
+\exp \left( - \int_0^t \mu_{x+s}^{12} ds \right).\end{aligned}$$ We can
+omit the overlines because you can not return to state 0 or 1 after
+having left.
+
+Now use Kolmogorov’s forward equation with $i=0$, $j=1$. This yields
+$$\begin{aligned}
+\frac{\partial}{\partial t} ~ _t p_x^{01} &=
+ \sum_{k=0, k \ne 1}^2
+ \left( _t p_x^{0k} \mu_{x+t}^{k1} - ~  _t p_x^{01} \mu_{x+t}^{1k}
+  \right)
+  = ~ _t p_x^{00} \mu_{x+t}^{01} - ~  _t p_x^{01} \mu_{x+t}^{12} .\end{aligned}$$
+Multiply each side by the “integrating factor”
+$\exp(\int_0^t \mu_{x+s}^{12} ds)$ to get $$\begin{aligned}
+\exp\left(\int_0^t \mu_{x+s}^{12} ds\right)(\frac{\partial}{\partial t} ~ _t p_x^{01} +~  _t p_x^{01} \mu_{x+t}^{12} )
+  &= \exp\left(\int_0^t \mu_{x+s}^{12} ds\right)~ _t p_x^{00} \mu_{x+t}^{01}  .\end{aligned}$$
+Now, use the chain rule $$\begin{aligned}
+\frac{\partial}{\partial t}
+\left\{\exp\left(\int_0^t \mu_{x+s}^{12} ds\right) ~ _t p_x^{01}
+\right\}
+ &=
+\exp\left(\int_0^t \mu_{x+s}^{12} ds\right) ~\frac{\partial}{\partial t}  ~ _t p_x^{01}
++\left(\frac{\partial}{\partial t} \exp(\int_0^t \mu_{x+s}^{12} ds)\right) ~ _t p_x^{01} \\
+ &=\exp\left(\int_0^t \mu_{x+s}^{12} ds\right)
+ \left( \frac{\partial}{\partial t} ~ _t p_x^{01} +\mu_{x+t}^{12}~ _t p_x^{01}
+ \right) \\
+ &=
+\exp\left(\int_0^t \mu_{x+s}^{12} ds\right)~ _t p_x^{00}\mu_{x+t}^{01}\end{aligned}$$
+Integrating each side from 0 to $n$ yields $$\begin{aligned}
+\exp\left(\int_0^n \mu_{x+s}^{12} ds\right)  ~ _n p_x^{01} &=
+\int_0^n \exp\left(\int_0^t \mu_{x+s}^{12} ds\right)  ~ _t p_x^{00}\mu_{x+t}^{01} dt.\end{aligned}$$
+We now bring $\exp\left(\int_0^n \mu_{x+s}^{12} ds\right)$ to the right
+hand side and note that $$\begin{aligned}
+\exp\left(-\int_t^n \mu_{x+s}^{12} ds\right) = ~ _{n-t} p_{x+t}^{11}\end{aligned}$$
+from the occupancy probability formula. Thus, $$\begin{aligned}
+ ~ _n p_x^{01} &=
+\int_0^n  ~ _t p_x^{00}\mu_{x+t}^{01} ~ _{n-t} p_{x+t}^{11} dt.\end{aligned}$$
+
+$\Box$
+
+*Sketch of Proof of the General Kolmogorov Forward Equation:* To see
+where Kolmogorov’s forward equation comes from, begin with the
+Chapman-Kolmogorov equation $$\begin{aligned}
+  ~_{t+h} p_x^{ij} &=  \sum_{k=0}^n ~ ~_t p_x^{ik} \times  ~_h p_{x+t}^{kj} = ~_t p_x^{ij} \times  ~_h p_{x+t}^{jj}+ \sum_{k=0, k \neq j}^n ~ ~_t p_x^{ik} \times  ~_h p_{x+t}^{kj}  \\
+  &= ~_t p_x^{ij}\left(1 - h M_{x+t}^j  + o(h)\right) +  \sum_{k=0, k \neq j}^n ~ ~_t p_x^{ik} \left(h \mu_{x+t}^{kj}  + o(h)\right)  \\
+  &= ~_t p_x^{ij} + h \left\{- ~_t p_x^{ij} M_{x+t}^j   +  \sum_{k=0, k \neq j}^n ~ ~_t p_x^{ik} \times \mu_{x+t}^{kj} \right\}+ o(h) .\end{aligned}$$
+With this, we have $$\begin{aligned}
+\frac{  ~_{t+h} p_x^{ij} - ~_t p_x^{ij}}{h} = \sum_{k=0, k \neq j}^n ~ ~_t p_x^{ik} \times \mu_{x+t}^{kj} - ~_t p_x^{ij} M_{x+t}^j + o(1) ,\end{aligned}$$
+and taking limits as $h\rightarrow 0^+$ yields the result.
+
+$\Box$
+
+To evaluate the general Kolmogorov’s forward equation, the idea is use
+the following discrete approximation $$\begin{aligned}
+ _{t+h} p_x^{ij} \approx  ~ _t p_x^{ij}+  h \sum_{k=0, k \ne j}^n
+ \left(  _t p_x^{ik} \mu_{x+t}^{kj} - ~  _t p_x^{ij} \mu_{x+t}^{jk}  \right) ,\end{aligned}$$
+and evaluate transition probabilities recursively. This is known as
+“Euler’s method.”
+
+To illustrate, first pick a small $h$. Many applications will start with
+$t=0$ because transition probabilities $_0 p_x^{ij}$ are known. Then,
+compute $_h p_x^{ij}$ for all relevant $\{i,j\}$. Then, calculate
+$_{2h} p_x^{ij}$ for all relevant $\{i,j\}$, and so on. Easy for
+computers, hard for people.
+
+**Special Case: Disability Model.** $Y(t)$ can take on values
+
+-   0, meaning health
+
+-   1, meaning disabled (but not permanent)
+
+-   2, meaning death.
+
+From state 0, one can go to 0, 1, or 2. From state 1, one can go to 0,
+1, or 2. State 2 is an absorbing state.
+
+With $n=2$, the discrete version of $$\begin{aligned}
+ _{t+h} p_x^{ij} \approx  ~ _t p_x^{ij}+  h \sum_{k=0, k \ne j}^2
+ \left(  _t p_x^{ik} \mu_{x+t}^{kj} - ~  _t p_x^{ij} \mu_{x+t}^{jk}  \right) .\end{aligned}$$
+
+Case 1. $i=j=0$. We have $$\begin{aligned}
+ _{t+h} p_x^{00} &\approx&  ~ _t p_x^{00}+  h \sum_{k=0, k \ne 0}^2
+ \left(  _t p_x^{0k} \mu_{x+t}^{k0} - ~  _t p_x^{00} \mu_{x+t}^{0k}  \right) \\
+ &= ~ _t p_x^{00}+  h
+ \left(  _t p_x^{01} \mu_{x+t}^{10} - ~  _t p_x^{00} (\mu_{x+t}^{01}+\mu_{x+t}^{02})  \right).\end{aligned}$$
+
+Case 1. $i=0$, $j=1$. We have $$\begin{aligned}
+ _{t+h} p_x^{01} &\approx&   ~ _t p_x^{01}+  h \sum_{k=0, k \ne 1}^2
+ \left(  _t p_x^{0k} \mu_{x+t}^{k1} - ~  _t p_x^{01} \mu_{x+t}^{1k}  \right) \\
+  &= ~ _t p_x^{01}+  h
+ \left(  _t p_x^{00} \mu_{x+t}^{01} - ~  _t p_x^{01} (\mu_{x+t}^{10}+\mu_{x+t}^{12})  \right).\end{aligned}$$
+
+The probability $_t p_x^{02}$ is determined by
+$_t p_x^{02}=1-_t p_x^{00}-_t p_x^{01}.$
+
+$\Box$
+
+**Euler’s Method for Transition Probabilities**.
+
+This is similar to the policy value calculations with two differences.
+
+-   For policy values, we often have knowledge of beginning and ending
+    values. Thus, one can use this additional information as boundary
+    conditions for the differential equations. For most transition
+    probability problems, we have knowledge of only the beginning
+    values.
+
+-   For most transition probability problems, there are multiple
+    transitions to deal with, so we require several calculations at each
+    recursion. This is unlike the policy reserve calculation where only
+    a single evaluation at each step of the recursion was required.
+
+## Insurance Benefits, Annuities and Policy Values
+
+### Insurance Benefits and Annuities
+
+First consider a life annuity due for someone who starts in state $i$ at
+age $x$. The annuity pays 1 at the start of each year while the life is
+in stage $j$.
+
+Using the current payment technique, the expected present value ($EPV$)
+is $$\begin{aligned}
+\ddot{a}_x^{ij} =\sum_{k=0}^{\infty} v^k ~_k p_x^{ij} .\end{aligned}$$
+
+Assuming $Y(0)=i$, the random variable underlying this payment stream is
+$$\begin{aligned}
+ \sum_{k=0}^{\infty} v^k \mathrm{I}(Y(k)=j) .\end{aligned}$$
+
+For the continuous version, $$\begin{aligned}
+\bar{a}_x^{ij} =
+\int_0^{\infty} e^{-\delta t} ~_t p_x^{ij} ~ dt ,\end{aligned}$$ is the
+expected present value ($EPV$) of a life annuity to $x$ that pays 1 per
+year continuously while the life is in stage $j$.
+
+More generally, let $B_t^{(j)}$ denote the rate of payment of benefit
+while the policyholder is in state $j$. Then, the $EPV$ is
+$$\begin{aligned}
+\int_0^{\infty} e^{-\delta t} B_t^{(j)} ~_t p_x^{ij} ~ dt\end{aligned}$$
+
+As a variation, you might use the annuity for premium payments and use
+an occupancy probability. For example $$\begin{aligned}
+\int_0^{\infty} e^{-\delta t}  ~_t p_x^{\overline{00}} ~ dt\end{aligned}$$
+represents a payment of 1 throughout the year as long as someone is in
+state 0, assuming the person starts in state 0. Here, for example, state
+0 might correspond to a “healthy” state.
+
+For insurances, suppose that a life age $x$ is in state $i$ at time 0
+and that 1 is paid immediately at time $t$ for transition to state $k$.
+Then, the $EPV$ is $$\begin{aligned}
+\bar{A}_x^{ik} =
+\int_0^{\infty} \sum_{j \ne k} e^{-\delta t} ~_t p_x^{ij} \mu_{x+t}^{jk} ~ dt\end{aligned}$$
+This assumes that the person transits from any state $j$ other than $k$.
+
+### Policy Values
+
+The symbol $_t V^{(i)}$ means the actuarial present value of future
+benefits minus premiums at policy time $t$ for a policyholder in state
+$i$ at that time.
+
+To examine the (infinitesimal) changes in policy values, we have
+*Thiele’s differential equation*: $$\begin{aligned}
+\frac{\partial}{\partial t} ~ _t V^{(i)} = \delta_t ~_t V^{(i)} -  B_t^{(i)}
+-  \sum_{j=0, j \ne i}^n \mu_{x+t}^{ij} \left( S_t^{(ij)} + ~_t V^{(j)} - ~_t V^{(i)}  \right).\end{aligned}$$
+where:
+
+-   $B_t^{(i)}$ denotes the rate of payment of benefit while the
+    policyholder is in state $i$,
+
+-   $S_t^{(ij)}$ denotes the lump sum benefit payable instantaneously at
+    time $t$ on transition from state $i$ to state $j$ .
+
+Where does this come from? One way to think about this is to begin with
+a policy value from first principles. To see this, define the discount
+factor $v(t) = \exp\left( - \int_0^{\infty} \delta_s ds \right)$. With
+this, define $$\begin{aligned}
+~_t V^{(i)} =&& \sum_{j=0, j \ne i}^n \int_0^{\infty}
+\frac{v(t+s)}{v(t)} \left( S_t^{(ij)} + ~_t V^{(j)}  \right)
+~_s p_{x+t}^{\overline{ii}} \mu_{x+t+s}^{ij} ds \\
+&& +\int_0^{\infty}\frac{v(t+s)}{v(t)} B_{t+s}^{(i)} ~_s p_{x+t}^{\overline{ii}} ds\end{aligned}$$
+Then, you can differentiate this to get Thiele’s differential equation.
+
+## Special Case: Two Lives
+
+Joint and last survivor probabilities can be expressed as a special case
+of the multiple state formulation and so no new theory is required to
+handle this special case. Define the following four states:
+
+-   0 means both $x$ and $y$ are alive
+
+-   1 means $x$ is alive although $y$ is dead
+
+-   2 means $y$ is alive although $x$ is dead
+
+-   3 means both $x$ and $y$ are dead.
+
+![image](Figures\MSM_JointLifeStatus.pdf){width=".5\textwidth"}
+
+Here is a table relating traditional joint and last survivor to multiple
+state notation:
+
+[cc|l]{}\
+Traditional & Multi-State& Concept\
+$~_t p_{xy}$ & $~_t p_{xy}^{00}$ & Pr[$x$ and $y$ are both alive in $t$
+years]\
+$~_t q_{xy}$ & $~_t p_{xy}^{01}+~_t p_{xy}^{02}+~_t p_{xy}^{03}$ &
+Pr[$x$ and $y$ are not both alive in $t$ years]\
+$~_t q_{xy}^1$ & & Pr[$x$ dies before $y$ in $t$ years]\
+$~_t q_{xy}^2$ & & Pr[$x$ dies after $y$ in $t$ years]\
+$~_t p_{\overline{xy}}$ &
+$~_t p_{xy}^{00}+~_t p_{xy}^{01}+~_t p_{xy}^{02}$ & Pr[at least one of
+$x$ and $y$ are alive in $t$ years]\
+$~_t q_{\overline{xy}}$ & $~_t p_{xy}^{03}$ & Pr[$x$ and $y$ are both
+dead in $t$ years]\
+
+In the traditional notation, the right subscript refers to the status,
+e.g. $xy$. The $p$-type probabilities refer to the survival of the
+status - the $q$-type probabilities refer to the failure of the status.
+The numbers on top of ages indicate that the status is *contingent*,
+where order of failure is important. Although there is no immediate
+expression, it can be calculated using multiple state concepts as:
+$$\begin{aligned}
+~_t q_{xy}^1 &= \int_0^t ~_s p_{xy}^{00} \mu_{x+s:y+s}^{02} ds =
+\int_0^t ~_s p_{xy} \mu_{x+s} ds .\end{aligned}$$ Similarly,
+$$\begin{aligned}
+~_t q_{xy}^2 &= \int_0^t ~_s p_{xy}^{01} \mu_{x+s}^{13} ds
+= \int_0^t ~_s q_y ~_s p_x \mu_{x+s} ds .\end{aligned}$$
+
+**Example.** Suppose that $T(25)$ is uniformly distributed (DeMoivre)
+over $(0,75)$, that $T(50)$ is uniformly distributed (DeMoivre) over
+$(0,50)$ and that that $T(25)$ and $T(50)$ are independent.
+
+Calculate $~_{25} q_{25:50}^{~~~~2}$.
+
+Solution.
+
+From the DeMoivre mortality law, we have $~_t q_x = \frac{t}{w_x - x}$
+so $~_t q_{25} = \frac{t}{75}$ and $~_t q_{50} = \frac{t}{50}$. Further,
+the probability density function is constant so
+$~_t p_x \mu_{x+t} = \frac{1}{w_x - x}$. Thus, $$\begin{aligned}
+~_{25} q_{25:50}^{~~~~2} &=  \int_0^{25} ~_s q_{25} ~_s p_{50} \mu_{50+s} ds \\
+&=  \int_0^{25} \frac{s}{75} \frac{1}{50} ds = \frac{25^2}{2(75)(50)} = \frac{1}{12}.\end{aligned}$$

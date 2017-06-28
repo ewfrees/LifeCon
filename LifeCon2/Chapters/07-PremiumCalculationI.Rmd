@@ -1,0 +1,750 @@
+---
+title: "Premium Calculation I"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Premium Calculation I
+
+## Key Concepts
+
+The policyholder often pays for a life insurance or life annuity with
+multiple payments to the insurer over time called **premiums**.
+
+### Terminology
+
+-   **Fully Continuous Insurance:** a continuous insurance that is
+    funded with a continuous annuity of premiums.
+
+-   **Fully Discrete Insurance:** an annual insurance that is funded by
+    an annual annuity-due of premiums.
+
+-   **Semi-Continuous Insurance:** a continuous insurance that is funded
+    by an annual annuity-due of premiums.
+
+**Net Loss-at-Issue**:
+
+-   The first step to determining the premiums that the policyholder
+    should pay to fund the benefits of a particular policy is to
+    determine the appropriate **net loss-at-issue random variable**,
+    ignoring policy expenses:
+
+    $L_0$ = ${}_{0}L$ = $L$ =
+
+    Present value of future benefits at issue - Present value of future
+    premiums at issue
+
+    = $PVFB@0$ - $PVFP@0$
+
+-   The net loss-at-issue may be written with a superscript, as $L^n_0$.
+    “Net” will often be omitted if there is no expense information
+    provided.
+
+-   Loss is random because $PVFB@0$ and $PVFP@0$ each depend on the
+    future lifetime of the policyholder.
+
+-   There will be a **loss** on a policy if the amount the insurer pays
+    out in benefits is higher than the amount the insurer collects in
+    premiums; $L_0$ $>$ 0 if $PVFB@0$ $>$ $PVFP@0$. There will be a
+    **profit** on a policy if the amount the insurer pays out in
+    benefits is smaller than the amount the insurer collects in
+    premiums; $L_0$ $<$ 0 if $PVFB@0$ $<$ $PVFP@0$.
+
+### Premium Principles
+
+-   A **premium principle** is a rule that manipulates the loss-at-issue
+    random variable in some way to generate premiums.
+
+-   Premiums calculated using net loss-at-issue random variable are
+    called **net premiums**.
+
+-   A common premium principle is the **Equivalence Principle:**
+
+    -   Premiums are determined such that: $E(L_0)$ = 0.
+
+    -   Under this principle, the insurer charges premiums so that, on
+        average, there will be neither a loss or a profit on the policy.
+        Clearly, this is not the case in practice...
+
+    -   Using the formula for $L_0$, the equivalence principle can also
+        be stated as: $E(PVFB@0)$ = $E(PVFP@0)$. This should be your
+        starting point for complicated problems involving the
+        equivalence principle.
+
+    -   On Exam LC, and Exam MLC prior to 2014, net premiums determined
+        via the equivalence principle are called **benefit premiums**.
+        Starting in 2014, the term “net premium” will be equivalent to
+        “benefit premium” on Exam MLC unless otherwise indicated; that
+        is, a net premium is a premium calculated using the equivalence
+        principle without expenses. In this supplement, both “benefit
+        premium” and “net premium” will be used interchangeably.
+
+## Equivalence Principle
+
+### Fully Continuous Insurance of 1 on (x)
+
+$\begin{array}{l|l|l|l}
+\hline
+\textbf{Continuous}   & \textbf{PVFB@0}        & \mathbf{\frac{PVFP@0}{Benefit Premium}}    & \textbf{Benefit} \\
+\textbf{Insurance}        &                      &    & \textbf{Premium} \\
+\hline
+\text{Whole}            & & & \\
+\text{Life}                   & v^{T_x}                                & \bar{a}_{\overline{T_x}|}                     & \bar{P}(\bar{A}_x)$ = $\frac{\bar{A}_x}{\bar{a}_x} \\
+\hline
+n\text{-year}                  & v^{T_x}, T_x \le n            & \bar{a}_{\overline{T_x}|}, T_x \le n &  \\
+\text{Term}                      & 0, T_x > n                      &
+\bar{a}_{\overline{n}|}, T_x >
+                       n & \bar{P}(\bar{A}_{x:\overline{n}|}^{1}) = \frac{\bar{A}_{x:\overline{n}|}^{1}}{\bar{a}_{x:\overline{n}|}} \\
+\hline
+n\text{-year}                  & 0, T_x \le n                    & \bar{a}_{\overline{T_x}|}, T_x \le n &  \\
+\text{Pure  Endowment}              & v^{n}, T_x > n &
+\bar{a}_{\overline{n}|}, T_x >
+                       n & \bar{P}(A_{x:\overline{n}|}^{~~~~1}) = \frac{A_{x:\overline{n}|}^{~~~~1}}{\bar{a}_{x:\overline{n}|}} \\
+\hline
+n\text{-year}                       & v^{T_x}, T_x \le n       & \bar{a}_{\overline{T_x}|}, T_x \le n &  \\
+\text{Endowment}                 & v^{n}, T_x > n &
+\bar{a}_{\overline{n}|}, T_x >
+                       n & \bar{P}(\bar{A}_{x:\overline{n}|}) = \frac{\bar{A}_{x:\overline{n}|}}{\bar{a}_{x:\overline{n}|}} \\
+\hline
+h\text{-Payment}               &  & \bar{a}_{\overline{T_x}|}, T_x \le h &  \\
+\text{Whole Life}                & v^{T_x}  & \bar{a}_{\overline{h}|}, T_x > h & {}_{h}\bar{P}(\bar{A}_x) = \frac{\bar{A}_x}{\bar{a}_{x:\overline{h}|}} \\
+\hline
+h\text{-Payment}               &  &  & \\
+n\text{-year}                 & v^{T_x}, T_x \le n  & \bar{a}_{\overline{T_x}|}, T_x \le h &  \\
+\text{Endowment}                          & v^{n}, T_x > n  & \bar{a}_{\overline{h}|}, T_x > h  & {}_{h}\bar{P}(\bar{A}_{x:\overline{n}|}) = \frac{\bar{A}_{x:\overline{n}|}}{\bar{a}_{x:\overline{h}|}} \\
+\hline
+\end{array}$
+
+-   For each fully continuous insurance,
+
+    $L^n_0$ = $PVFB@0$ - (Benefit Premium)$\frac{PVFP@0}{\text{Benefit
+    Premium}}$, using the appropriate entries for a value of $T_x$.
+
+-   In the “Benefit Premium” column, the left hand side of the equals
+    sign gives the actuarial notation for the benefit premium. Those
+    taking Exam MLC do not have to know this notation, and can denote
+    the benefit premium in each row as $P$.
+
+-   Furthermore, if the face amount is $S$, both sides of the equation
+    in the “Benefit Premium” column should be multiplied by $S$.
+
+-   For each fully continuous insurance, the benefit premium was
+    determined by $E(L^n_0)$ = $E(PVFB@0)$ - (Benefit
+    Premium)$\frac{E(PVFP@0)}{\text{Benefit Premium}}$ = 0.
+
+-   $\bar{P}(\bar{A}_x)$ = $\frac{\bar{A}_x}{\bar{a}_x}$ =
+    $\frac{\delta \bar{A}_x}{1 -
+    \bar{A}_x}$ = $\frac{1}{\bar{a}_x}$ - $\delta$.
+
+-   $\bar{P}(\bar{A}_{x:\overline{n}|})$ =
+    $\frac{\bar{A}_{x:\overline{n}|}}{\bar{a}_{x:\overline{n}|}}$ =
+    $\frac{\delta \bar{A}_{x:\overline{n}|}}{1 -
+    \bar{A}_{x:\overline{n}|}}$ =
+    $\frac{1}{\bar{a}_{x:\overline{n}|}}$ - $\delta$.
+
+-   With a constant force of mortality: $\bar{P}(\bar{A}_x)$ =
+    $\bar{P}(\bar{A}_{x:\overline{n}|}^{1})$ = $\mu$.
+
+-   For a couple of the insurances in the table, there are analytic
+    formulas for the variance of the net loss-at-issue.
+
+    -   For a fully continuous whole life insurance of 1 on (x):
+
+        $Var(L^n_0)$ = $(1 +
+        \frac{\bar{P}(\bar{A}_x)}{\delta})^2$$(^2\bar{A}_x -
+        [\bar{A}_x]^2)$.
+
+        -   With a constant force of mortality: $Var(L^n_0)$ =
+            $\frac{\mu}{\mu + 2\delta}$.
+
+    -   For a fully continuous $n$-year endowment insurance of 1 on (x):
+
+        $Var(L^n_0)$ = $(1 +
+        \frac{\bar{P}(\bar{A}_{x:\overline{n}|})}{\delta})^2$$(^2\bar{A}_{x:\overline{n}|} -
+        [\bar{A}_{x:\overline{n}|}]^2)$.
+
+    -   If the benefit is $S$, multiply each of the above $Var(L^n_0)$
+        formulas by $S^2$.
+
+    -   These formulas for $Var(L^n_0)$ are true for any type of
+        premium, not just a benefit premium, **except** for the constant
+        force of mortality formula.
+
+    -   For any other type of fully continuous insurance, use:
+        $Var(L^n_0)$ = $E[(L^n_0)^2]$ - $(E[L^n_0])^2$. If the
+        equivalence principle is used to determine premiums, then:
+        $Var(L^n_0)$ = $E[(L^n_0)^2]$.
+
+-   The equivalence principle can also determine benefit premiums for
+    continuous annuities. For example:
+
+    $\bar{P}({}_{n|}\bar{a}_x)$ =
+    $\frac{{}_{n|}\bar{a}_x}{\bar{a}_{x:\overline{n}|}}$.
+
+### Fully Discrete Insurance of 1 on (x)
+
+<!-- $\begin{array}{l|l|l|l} -->
+<!-- <!-- \hline --> -->
+<!-- <!-- \textbf{Annual}     & \textbf{PVFB@0}     & \mathbf{\frac{PVFP@0}{Benefit Premium}}    & \textbf{Benefit} \\ --> -->
+<!-- <!-- \textbf{Insurance}    &                   &    & \textbf{Premium} \\ --> -->
+<!-- <!-- \hline --> -->
+<!-- <!-- \text{Whole}            & & & \\ --> -->
+<!-- <!-- \text{Life]         & v^{K_x + 1}           & \ddot{a}_{\overline{K_x + 1}|}        & P_x = \frac{A_x}{\ddot{a}_x} \\ --> -->
+<!-- <!-- \hline --> -->
+<!-- <!-- n\text{-year}     & v^{K_x + 1}, K_x < n    & \ddot{a}_{\overline{K_x + 1}|}, K_x < n &  \\ --> -->
+<!-- <!-- \text{Term}       & 0, K_x \ge n & \ddot{a}_{\overline{n}|}, K_x \gen & {P}_{x:\overline{n}|}^{1} = \frac{{A}_{x:\overline{n}|}^{1}}{\ddot{a}_{x:\overline{n}|}} \\ --> -->
+<!-- <!-- \hline --> -->
+<!-- <!-- n\text{-year}      & 0, K_x < n           & \ddot{a}_{\overline{K_x + 1}|}, K_x < n &  \\ --> -->
+<!-- <!-- \text{Pure Endowment}              & v^{n}, K_x \ge n & \ddot{a}_{\overline{n}|}, K_x \ge --> -->
+<!-- <!--                        n & {P}_{x:\overline{n}|}^{~~~~1} = \frac{A_{x:\overline{n}|}^{~~~~1}}{\ddot{a}_{x:\overline{n}|}} \\ --> -->
+<!-- <!-- \hline --> -->
+<!-- <!-- n\text{-year}     & v^{K_x + 1}, K_x < n  & \ddot{a}_{\overline{K_x + 1}|}, K_x < n &  \\ --> -->
+<!-- <!-- \text{Endowment}                 & v^{n}, K_x \ge n & --> -->
+<!-- <!-- \ddot{a}_{\overline{n}|}, K_x \ge --> -->
+<!-- <!--                        n & P_{x:\overline{n}|} = \frac{A_{x:\overline{n}|}}{\ddot{a}_{x:\overline{n}|}} \\ --> -->
+<!-- <!-- \hline --> -->
+<!-- <!-- h\text{-Payment}               &  & \ddot{a}_{\overline{K_x + 1}|}, K_x < h &  \\ --> -->
+<!-- <!-- \text{Whole Life}                & v^{K_x + 1}  & \ddot{a}_{\overline{h}|}, K_x \ge h & {}_{h}P_x = \frac{A_x}{\ddot{a}_{x:\overline{h}|}} \\ --> -->
+<!-- <!-- \hline --> -->
+<!-- <!-- h\text{-Payment}               &  &  & \\ --> -->
+<!-- <!-- n\text{-year}                & v^{K_x + 1}, K_x < n  & \ddot{a}_{\overline{K_x + 1}|}, K_x < h &  \\ --> -->
+<!-- <!-- \text{Endowment}     & v^{n}, K_x \ge n  & \ddot{a}_{\overline{h}|}, K_x \ge h  & {}_{h}P_{x:\overline{n}|} = \frac{A_{x:\overline{n}|}}{\ddot{a}_{x:\overline{h}|}} \\ --> -->
+<!-- <!-- \hline --> -->
+<!-- \end{array}$ -->
+
+-   For each fully discrete insurance,
+
+    $L^n_0$ = $PVFB@0$ - (Benefit Premium)$\frac{PVFP@0}{\text{Benefit
+    Premium}}$, using the appropriate entries for a value of $K_x$.
+
+-   Recall, $K_x$ can only take on non-negative integer values. So,
+    $K_x$ $<$ $n$ $\implies$ $K_x$ = 0, 1, ..., $n$ - 1.
+
+-   In the “Benefit Premium” column, the left hand side of each equation
+    gives the actuarial notation for the benefit premium. Those taking
+    Exam MLC only have to know the notation for the whole life, $n$-year
+    term, $n$-year pure endowment, and $n$-year endowment rows; and can
+    denote other benefit premiums as $P$.
+
+-   Furthermore, if the face amount is $S$, both sides of the equation
+    in the “Benefit Premium” column should be multiplied by $S$.
+
+-   For each fully discrete insurance, the benefit premium was
+    determined by $E(L^n_0)$ = $E(PVFB@0)$ - (Benefit
+    Premium)$\frac{E(PVFP@0)}{\text{Benefit Premium}}$ = 0.
+
+-   $P_x$ (the benefit premium for a fully discrete whole life insurance
+    of 1 on (x)) should not be confused with $p_x$ (the probability
+    that (x) survives to age x + 1).
+
+-   $P_x$ = $\frac{A_x}{\ddot{a}_x}$ = $\frac{d A_x}{1 -
+    A_x}$ = $\frac{1}{\ddot{a}_x}$ - $d$.
+
+-   $P_{x:\overline{n}|}$ =
+    $\frac{A_{x:\overline{n}|}}{\ddot{a}_{x:\overline{n}|}}$ =
+    $\frac{d A_{x:\overline{n}|}}{1 -
+    A_{x:\overline{n}|}}$ = $\frac{1}{\ddot{a}_{x:\overline{n}|}}$ -
+    $d$.
+
+-   With a constant force of mortality: $P_x$ =
+    ${P}_{x:\overline{n}|}^{1}$ = $v q$.
+
+-   Argue that the following **3-Premium** equations are valid:
+
+    -   ${}_{n}P_x$ - ${P}_{x:\overline{n}|}^{1}$ = $A_{x +
+        n}$ ${P}_{x:\overline{n}|}^{~~~~1}$
+
+    -   $P_{x:\overline{n}|}$ - ${}_{n}P_x$ = [1 - $A_{x +
+        n}$] ${P}_{x:\overline{n}|}^{~~~~1}$
+
+    -   ${P}_{x:\overline{n}|}^{1}$ + ${P}_{x:\overline{n}|}^{~~~~1}$ =
+        $P_{x:\overline{n}|}$
+
+<!-- -->
+
+-   For a couple of the insurances in the table, there are analytic
+    formulas for the variance of the net loss-at-issue.
+
+    -   For a fully discrete whole life insurance of 1 on (x):
+
+        $Var(L^n_0)$ = $(1 + \frac{P_x}{d})^2$$(^2A_x - [A_x]^2)$.
+
+        -   With a constant force of mortality: $Var(L^n_0)$ =
+            $\frac{pq}{q + i^2 + 2i}$.
+
+    -   For a fully discrete $n$-year endowment insurance of 1 on (x):
+
+        $Var(L^n_0)$ =
+        $(1 + \frac{P_{x:\overline{n}|}}{d})^2$$(^2 A_{x:\overline{n}|}
+        - [A_{x:\overline{n}|}]^2)$.
+
+    -   If the benefit is $S$, multiply each of the above $Var(L^n_0)$
+        formulas by $S^2$.
+
+    -   These formulas for $Var(L^n_0)$ are true for any type of
+        premium, not just a benefit premium, **except** for the constant
+        force of mortality formula.
+
+    -   For any other type of fully discrete insurance, use:
+        $Var(L^n_0)$ = $E[(L^n_0)^2]$ - $(E[L^n_0])^2$. If the
+        equivalence principle is used to determine premiums, then:
+        $Var(L^n_0)$ = $E[(L^n_0)^2]$.
+
+-   The equivalence principle can also determine benefit premiums for
+    discrete annuities. For example:
+
+    $P({}_{n|}\ddot{a}_x)$ =
+    $\frac{{}_{n|}\ddot{a}_x}{\ddot{a}_{x:\overline{n}|}}$.
+
+### Semi-Continuous Insurance of 1 on (x)
+
+-   You can obtain this table by taking the table for **Fully Continuous
+    Insurance of 1 on (x)** and replacing the continuous premium annuity
+    with an annual annuity-due.
+
+-   For example, a semi-continuous $n$-year term insurance of 1 on (x)
+    is:
+
+$\begin{array}{l|l|l|l}
+\hline
+\textbf{Insurance}   & \textbf{PVFB@0}    & \mathbf{\frac{PVFP@0}{Benefit Premium}}    & \textbf{Benefit Premium} \\
+\hline
+\text{Semi-Continuous}           & v^{T_x}, T_x \le n            & \ddot{a}_{\overline{K_x + 1}|}, K_x < n &  \\
+n\text{-year Term}             & 0, T_x > n & \ddot{a}_{\overline{n}|}, K_x \ge n & P(\bar{A}_{x:\overline{n}|}^{1}) = \frac{\bar{A}_{x:\overline{n}|}^{1}}{\ddot{a}_{x:\overline{n}|}} \\
+\hline
+\end{array}$
+
+
+-   Those taking Exam MLC do NOT have to know the actuarial notation for
+    semi-continuous benefit premiums; $P$ is sufficient.
+
+-   Exam MLC Only: With a uniform distribution of deaths (UDD) in each
+    year of age:
+
+    -   $P(\bar{A}_x)$ = $\frac{i}{\delta}$$P_x$
+
+    -   $P(\bar{A}_{x:\overline{n}|}^{1})$ =
+        $\frac{i}{\delta}$${P}_{x:\overline{n}|}^{1}$
+
+    -   $P(\bar{A}_{x:\overline{n}|})$ =
+        $\frac{i}{\delta}$${P}_{x:\overline{n}|}^{1}$ +
+        ${P}_{x:\overline{n}|}^{~~~~1}$
+
+## Exercises
+
+7.1. On January 1, 2010, Pat purchases a 5-year deferred whole life
+insurance of 100,000 payable at the end of the year of death. Premiums
+of 4000 are payable at the beginning of each year for the first 5 years,
+and $i$ = 0.05.
+
+Calculate the loss-at-issue if Pat dies on September 30, 2016.
+
+\(A) 48,370 (B) 52,884 (C) 53,756 (D) 57,209 (E) 62,187
+
+7.2. Stefano, age 60, purchases a whole life insurance of 1,000,000:
+
+\(i) The death benefit is payable at the moment of death.
+
+\(ii) Premiums of 50,000 are payable at the beginning of each year for as
+long as Stefano is alive.
+
+\(iii) $i$ = 0.05
+
+\(iv) $L$ is the loss-at-issue random variable.
+
+Calculate the value of $L$ if Stefano dies at age 61.5.
+
+\(A) 764,059 (B) 809,410 (C) 819,138 (D) 831,810 (E) 879,429
+
+7.3. Consider a fully continuous whole life insurance of 1000 on (x).
+
+Assume $\delta$ = 0.08 and $\mu_x(t)$ = 0.04 for $t$ $\ge$ 0.
+
+Calculate the level annual benefit premium.
+
+\(A) 30 (B) 35 (C) 40 (D) 45 (E) 50
+
+7.4. Paul, age 31, purchases a fully discrete 20-year endowment
+insurance of 1000. Assume mortality follows the Illustrative Life Table,
+and $i$ = 0.06.
+
+Calculate: 1000$P_{31 :\overline{20}|}$.
+
+\(A) 21 (B) 23 (C) 25 (D) 27 (E) 29
+
+7.5. Consider the following special fully discrete whole life insurance
+on (50):
+
+\(i) The death benefit is 80,000 before age 65; the death benefit is
+150,000 thereafter.
+
+\(ii) The level annual net premium is $2P$ before age 65; the level
+annual net premium is $P$ thereafter.
+
+\(iii) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+Calculate the annual net premium payable before age 65.
+
+\(A) 1300 (B) 1800 (C) 2300 (D) 2700 (E) 3200
+
+7.6. Consider a fully discrete 5-payment 10-year endowment insurance of
+1000 on (70):
+
+\(i) Mortality follows the Illustrative Life Table.
+
+\(ii) $i$ = 0.06
+
+Calculate the level annual net premium.
+
+\(A) 140 (B) 145 (C) 150 (D) 155 (E) 160
+
+7.7. For a fully continuous whole life insurance of 5000 on (x):
+
+\(i) The force of mortality is a constant.
+
+\(ii) $\delta$ = 0.05
+
+\(iii) $L$ is the loss-at-issue random variable based on level annual
+benefit premiums.
+
+\(iv) The standard deviation of $L$ is 2236.07
+
+Calculate the level annual benefit premium.
+
+\(A) 100 (B) 125 (C) 150 (D) 175 (E) 200
+
+7.8. A fully continuous whole life insurance of 10,000 on (x) is issued
+with premiums determined by the equivalence principle.
+
+You are also given:
+
+\(i) $\mu_x(t)$ = 0.02 for $t$ $\ge$ 0
+
+\(ii) $\delta$ = 0.05
+
+Calculate the probability that the loss-at-issue is positive.
+
+\(A) 0.30 (B) 0.33 (C) 0.36 (D) 0.39 (E) 0.42
+
+7.9. An insurer has just issued each of 100 independent lives aged 35 a
+fully discrete 20-year endowment insurance of 1000 with level annual
+benefit premiums. Each life has mortality that follows the Illustrative
+Life Table. The effective annual interest rate is 0.06.
+
+Using the normal approximation, determine the fund amount at issue, $h$,
+that is necessary so that the insurer is 99% sure that the sum of the
+100 loss-at-issue random variables associated with the endowment
+insurances will not exceed $h$.
+
+\(A) 2100 (B) 2200 (C) 2300 (D) 2400 (E) 2500
+
+7.10. For a special fully discrete whole life insurance on (35):
+
+\(i) The death benefit is equal to 2000 plus the return of all benefit
+premiums paid in the past without interest.
+
+\(ii) $\ddot{a}_{35}$ = 19.93
+
+\(iii) $(IA)_{35}$ = 5.58
+
+\(iv) $i$ = 0.045
+
+Calculate the level annual benefit premium for this insurance.
+
+\(A) 20 (B) 22 (C) 24 (D) 26 (E) 28
+
+7.11. You are given:
+
+\(i) The level annual benefit premium for a fully discrete 20-year term
+insurance of 5000 on (x) is 75.
+
+\(ii) The level annual benefit premium for a fully discrete 20-year
+endowment insurance of 5000 on (x) is 200.
+
+\(iii) The level annual benefit premium for a fully discrete 20-payment
+whole life insurance of 5000 on (x) is 150.
+
+Calculate the actuarial present value of a fully discrete whole life
+insurance of 5000 on (x + 20).
+
+\(A) 2000 (B) 2500 (C) 3000 (D) 3500 (E) 4000
+
+7.12. For a life insurance on (x):
+
+\(i) 1000 is payable at the end of the year of death if death occurs in
+the first ten years; 2000 is payable at the end of the year of death if
+death occurs in the next ten years; otherwise, the death benefit is 0.
+
+\(ii) Level annual benefit premiums are payable at the beginning of each
+year for the first 20 years.
+
+\(iii) $d$ = 0.10, and $q_x$ = 0.03 for all integer ages x.
+
+Calculate the level annual benefit premium.
+
+\(A) 31 (B) 33 (C) 35 (D) 37 (E) 39
+
+7.13. For a special fully discrete 3-year term insurance on (x):
+
+\(i) The death benefit: $b_{k + 1}$ = 500($k$ + 1) for $k$ = 0, 1, 2
+
+\(ii) $q_{x + k}$ = 0.02($k$ + 1) for $k$ = 0, 1, 2
+
+\(iii) $i$ = 0.03
+
+Use the equivalence principle to calculate the level annual premium for
+this insurance.
+
+\(A) 41 (B) 42 (C) 43 (D) 44 (E) 45
+
+7.14. You are given:
+
+\(i) $l_x$ = 100$(110 - x)^2$ for 0 $\le$ $x$ $\le$ 110
+
+\(ii) $i$ = 0
+
+Calculate the level annual benefit premium for a fully discrete
+5-payment 15-year term insurance of 1 on (30):
+${}_{5} {P}_{30:\overline{15}|}^{1}$.
+
+\(A) 0.06 (B) 0.07 (C) 0.08 (D) 0.09 (E) 0.10
+
+7.15. A fully discrete 5-year endowment insurance of 1000 was just
+issued to Math Mage, aged 30. In determining the level annual benefit
+premium, it was assumed that $i$ = 0.06 and that Math Mage had mortality
+that follows the Illustrative Life Table.
+
+Shortly after issuing the 5-year endowment insurance, it was discovered
+that Math Mage had been cursed by Hattendorf. In calculating the level
+annual benefit premium, it should have been assumed that $i$ = 0.06 and
+that Math Mage had mortality such that the actual force of mortality was
+$\mu_{30}(t)$ + 0.10 for 0 $<$ $t$ $<$ 5, where $\mu_{30}(t)$ is the
+force of mortality associated with the Illustrative Life Table.
+
+Calculate the difference between the benefit premium that Math Mage
+should be paying calculated using the correct mortality (based on
+$\mu_{30}(t)$ + 0.10) and the benefit premium actually payable by Math
+Mage calculated using the incorrect mortality (Illustrative Life Table).
+
+\(A) 40 (B) 50 (C) 60 (D) 70 (E) 80
+
+7.16. Consider a 5-year deferred whole life annuity-due on (60) with an
+annual payment of 10,000. You are given:
+
+\(i) Benefit premiums are payable at the beginning of each year during
+the first five years. The benefit premium payable in each of years one
+and two is half of the benefit premium payable in each of years three,
+four, and five.
+
+\(ii) $d$ = 0.04306
+
+\(iii) $q_{60}$ = 0.006155 and $q_{61}$ = 0.006765
+
+\(iv) ${}_{5}E_{60}$ = 0.77282
+
+\(v) $\ddot{a}_{65}$ = 13.4662 and $\ddot{a}_{62:\overline{3}|}$ = 2.8513
+
+Calculate the benefit premium payable in each of years one and two.
+
+\(A) 14,300 (B) 14,600 (C) 14,900 (D) 15,200 (E) 15,500
+
+7.17. Consider a fully continuous whole life insurance of 100,000 on
+(30):
+
+\(i) If the level annual premium is $\pi_1$, the standard deviation of
+the loss-at-issue random variable is 55,621.49.
+
+\(ii) If the level annual premium is $\pi_2$, the standard deviation of
+the loss-at-issue random variable is 49,441.32.
+
+\(iii) $\pi_1$ is 1.5 times $\pi_2$.
+
+\(iv) $\delta$ = 0.04
+
+\(v) $Z$ is the present value random variable for the continuous whole
+life insurance of 100,000 on (30).
+
+Calculate the standard deviation of $Z$.
+
+\(A) 37,100 (B) 38,200 (C) 39,300 (D) 40,400 (E) 41,500
+
+7.18. Bruce and Lucius, both aged x, have each just purchased a fully
+discrete 3-year term insurance of 1000:
+
+\(i) Bruce pays a benefit premium of 175.72 each year. If Bruce dies in
+the second year after policy issue, the loss-at-issue is 559.27.
+
+\(ii) Lucius pays non-level annual benefit premiums. The first benefit
+premium is 100, the second benefit premium is 175, and the third benefit
+premium is $P$.
+
+\(iii) Each life has mortality such that: ${}_{k|}q_x$ = $(0.3)^{k +
+1}$ for $k$ = 0, 1, 2.
+
+\(iv) The effective annual interest rate is $i$.
+
+Calculate: $P$.
+
+\(A) 285 (B) 315 (C) 345 (D) 375 (E) 405
+
+7.19. Consider a special 20-year deferred whole life annuity-due of 5000
+per year on (45) payable annually:
+
+\(i) Level annual benefit premiums are payable at the beginning of the
+year during the first 20 years after policy issue.
+
+\(ii) There is a death benefit during the premium-paying period, payable
+at the end of the year of death, that is equal to the return of all
+benefit premiums previously paid with interest at 6%.
+
+\(iii) $i$ = 0.06
+
+\(iv) Mortality follows the Illustrative Life Table.
+
+Calculate the benefit premium.
+
+\(A) 1180 (B) 1210 (C) 1240 (D) 1270 (E) 1300
+
+7.20. You are given:
+
+\(i) A fully discrete 2-year deferred, 3-year term insurance of 1000 is
+issued to a life aged x.
+
+\(ii) Level annual premiums are only payable during the first two years.
+
+\(iii) The level annual premium is determined such that the average
+loss-at-issue is zero.
+
+\(iv) $v$ = 0.90
+
+\(v) ${}_{k|}q_x$ = 0.05(1 + $k$) for $k$ = 0, 1, 2, 3, 4; ${}_{5|}q_x$ =
+0.25
+
+Calculate the median loss-at-issue.
+
+\(A) 193 (B) 226 (C) 258 (D) 295 (E) 331
+
+7.21. Paul is attempting to determine the level annual benefit premium
+for a fully discrete 20-year endowment insurance of 10,000 on (55). Paul
+assumes the following:
+
+\(i) $i$ = 0.06
+
+\(ii) Paul is not sure of the future lifetime distribution of (55). He
+believes there is an 80% probability that the mortality of (55) follows
+the Illustrative Life Table, and that there is a 20% probability that
+the mortality of (55) is such that ${}_{k|}q_{55}$ = 0.05 for $k$ = 0,
+1, 2, ..., 19.
+
+Determine the level annual benefit premium.
+
+\(A) 384 (B) 414 (C) 444 (D) 474 (E) 504
+
+7.22. Suppose today is January 1, 2014, and Paul has just turned age 35.
+He has mortality such that:
+
+${}_{t}p_{35}$ = $(0.95)^t$ for $t$ $\ge$ 0.
+
+Paul has just been issued a special fully discrete whole life insurance:
+
+\(i) $i$ = 0.07
+
+\(ii) The death benefit if Paul dies in an odd-numbered calendar year is
+5000.
+
+\(iii) The death benefit if Paul dies in an even-numbered calendar year
+is 10,000.
+
+\(iv) Benefit premiums are payable annually, where the benefit premium
+for an odd-numbered calendar year is double the benefit premium for an
+even-numbered calendar year.
+
+Calculate the benefit premium payable during an even-numbered calendar
+year.
+
+\(A) 220 (B) 240 (C) 260 (D) 280 (E) 300
+
+### Answers to Exercises
+
+7.1. B
+
+7.2. D
+
+7.3. C
+
+7.4. D
+
+7.5. D
+
+7.6. C
+
+7.7. B
+
+7.8. D
+
+7.9. E
+
+7.10. A
+
+7.11. C
+
+7.12. B
+
+7.13. D
+
+7.14. B
+
+7.15. A
+
+7.16. B
+
+7.17. A
+
+7.18. B
+
+7.19. D
+
+7.20. C
+
+7.21. B
+
+7.22. B
+
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#10
+
+-   Exam MLC, Spring 2015: \#8, 11
+
+-   Exam MLC, Fall 2014: \#7
+
+-   Exam MLC, Spring 2014: \#8
+
+-   Exam MLC, Fall 2013: \#14, 15, 16
+
+-   Exam MLC, Spring 2013: \#1, 3, 18
+
+-   Exam 3L, Spring 2013: \#13, 14
+
+-   Exam MLC, Fall 2012: \#20, 22
+
+-   Exam 3L, Spring 2012: \#12
+
+-   Exam MLC, Spring 2012: \#3, 6
+
+-   Exam MLC, Sample Questions: \#6, 14, 29, 40, 47, 51, 76, 84, 92, 96,
+    97, 99, 111, 119, 127, 142, 154, 157, 172, 174, 184, 204, 221, 228,
+    309
+
+-   Exam 3L, Spring 2010: \#16
+
+-   Exam 3L, Fall 2008: \#22
+
+-   Exam 3L, Spring 2008: \#23
+
+-   Exam MLC, Spring 2007: \#4

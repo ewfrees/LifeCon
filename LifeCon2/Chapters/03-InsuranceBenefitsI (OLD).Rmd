@@ -1,0 +1,1371 @@
+---
+title: "Insurance Benefits I"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Insurance Benefits I
+
+A **life insurance** policy provides a lump sum **benefit** typically
+upon the death of the policyholder. The benefit may also be called the
+**face amount** or the **sum insured** of the policy.
+
+For insurances with death benefits, the insurance can be described as
+either (i) **continuous**: the death benefit is payable at the moment of
+death of the policyholder or (ii) **discrete**: the death benefit is
+payable at the end of the period of death of the policyholder, where
+“period” can be a year or a fraction of a year such as a month.
+
+## Types of Life Insurance
+
+-   **Level Benefit Insurance**
+
+    -   **Whole Life Insurance:** Provides a benefit upon the death of
+        the policyholder. This is also called **permanent** life
+        insurance.
+
+    -   **Term Life Insurance:** Provides a benefit upon the death of
+        the policyholder if the policyholder dies within an $n$-year
+        period after policy issue. This is also called **term
+        insurance**.
+
+    -   **Pure Endowment:** Provides a benefit at the end of $n$ years
+        if the policyholder survives the $n$ years after policy issue.
+
+    -   **Endowment Insurance:** A **term insurance plus a pure
+        endowment**. This insurance will provide a benefit upon the
+        death of the policyholder if the policyholder dies within an
+        $n$-year period after policy issue. If the policyholder survives
+        the $n$-year period, then a benefit is payable at the end of the
+        $n$ years.
+
+    -   **Deferred Insurance:** The policyholder must survive a $u$-year
+        period after policy issue, called the **deferred period** or
+        **deferral period**, in order for any benefits to be payable. A
+        **deferred whole life insurance** provides a benefit upon the
+        death of the policyholder if the policyholder survives the
+        $u$-year deferral period. A **deferred term insurance** provides
+        a benefit upon the death of the policyholder if the policyholder
+        dies within an $n$-year period after surviving the $u$-year
+        deferral period; that is, the benefit is payable upon death of
+        the policyholder if death occurs between $u$ years and $u + n$
+        years after policy issue.
+
+-   **Varying Benefit Insurance**
+
+    -   **Annually Increasing Insurance:** A life insurance where the
+        death benefit is increased arithmetically for each year the
+        policyholder survives. For example, an **annually increasing
+        term insurance** pays $S$ if the policyholder dies in the first
+        year after policy issue, $2S$ if the policyholder dies in the
+        second year after policy issue, ..., $nS$ if the policyholder
+        dies in the $n$-th year after policy issue.
+
+    -   **Annually Decreasing Insurance:** A life insurance where the
+        death benefit is decreased arithmetically for each year the
+        policyholder survives. For example, an **annually decreasing
+        term insurance** pays $nS$ if the policyholder dies in the first
+        year after policy issue, $(n-1)S$ if the policyholder dies in
+        the second year after policy issue, ..., $S$ if the policyholder
+        dies in the $n$-th year after policy issue.
+
+For each of these insurances, the following will be considered:
+
+-   The **present value of the benefit**, $Z$, is the benefit discounted
+    for interest between policy issue and the benefit payment date. This
+    is a random variable, as the benefit payment date is a function of
+    the future lifetime of the policyholder.
+
+-   The **expected present value of the benefit**, $E(Z)$, is the
+    benefit discounted for both interest and mortality between policy
+    issue and all potential benefit payment dates. $E(Z)$ is with
+    respect to the distribution of the policyholder’s future lifetime.
+
+    $E(Z)$ will be written differently for each type of life insurance
+    considered. In addition, $E(Z)$ can also be called the **actuarial
+    present value** **of the insurance**, the **single premium**, the
+    **net single premium**,
+
+    or the **single benefit premium**.
+
+-   Secondary characteristics of the distribution of $Z$ that will be of
+    interest include the variance of $Z$ and percentiles of the
+    distribution of $Z$.
+
+## Interest Theory Concepts
+
+-   Let $i$ denote the effective annual interest rate.
+
+-   The discount factor: $v$ = $\frac{1}{1 + i}$.
+
+-   The discount rate, $d$, is such that: $d$ = $\frac{i}{1 + i}$ = $iv$
+    = 1 - $v$.
+
+-   The force of interest, $\delta$, is such that: $\delta$ = $\ln(1
+    + i)$.
+
+    Also: $e^{\delta}$ = 1 + $i$ = $\frac{1}{1 - d}$ $\implies$
+    $e^{-\delta}$ = $v$ = 1 - $d$.
+
+-   $a_{\overline{n}|}$ = $\frac{1 -
+    v^n}{i}$, $\ddot{a}_{\overline{n}|}$ = $\frac{1 -
+    v^n}{d}$, $\bar{a}_{\overline{n}|}$ = $\frac{1 -
+    v^n}{\delta}$
+
+-   $(Ia)_{\overline{n}|}$ = $\frac{\ddot{a}_{\overline{n}|} -
+    nv^n}{i}$, $(I\ddot{a})_{\overline{n}|}$ =
+    $\frac{\ddot{a}_{\overline{n}|} - nv^n}{d}$,
+    $(I\bar{a})_{\overline{n}|}$ =
+    $\frac{\ddot{a}_{\overline{n}|} - nv^n}{\delta}$,
+    $(\bar{I}\bar{a})_{\overline{n}|}$ =
+    $\frac{\bar{a}_{\overline{n}|} - nv^n}{\delta}$
+
+-   $(Da)_{\overline{n}|}$ = $\frac{n - a_{\overline{n}|}}{i}$,
+    $(D\ddot{a})_{\overline{n}|}$ = $\frac{n - a_{\overline{n}|}}{d}$,
+    $(D\bar{a})_{\overline{n}|}$ = $\frac{n -
+    a_{\overline{n}|}}{\delta}$, $(\bar{D}\bar{a})_{\overline{n}|}$ =
+    $\frac{n - \bar{a}_{\overline{n}|}}{\delta}$
+
+## Life Insurance Formulas
+
+This section provides key formulas for different life insurances. Note:
+
+-   Most life insurances have continuous and discrete versions. In the
+    continuous case, the death benefit is payable at the moment of death
+    of the policyholder ($T_x$ years after policy issue). The discrete
+    case can be: (i) annual, where the death benefit is payable at the
+    end of the year of death of the policyholder ($K_x$ + 1 years after
+    policy issue) and (ii) $m$-thly (Exam MLC only).
+
+    It is possible that the death benefits could be subject to a finite
+    term and/or a deferral period. It is also possible that there may be
+    a survival benefit.
+
+-   The general formula for the present value of a continuous life
+    insurance on (x) that pays $b_t$ at time $t$ ($>$ 0) is:
+
+    $Z$ = $b_{T_x}v^{T_x}$ = $b_{T_x}e^{-\delta T_x}$.
+
+    The general formula for the expected present value of a continuous
+    life insurance on (x) that pays $b_t$ at time $t$ ($>$ 0) is:
+
+    $E(Z)$ = $\int^{\infty}_0 b_t v^{t}{}_{t}p_x\mu_{x + t}dt$ =
+    $\int^{\infty}_0 b_t e^{-\delta t}{}_{t}p_x\mu_{x + t}dt$.
+    Furthermore:
+
+    “Say the moment of death is at time $t$. Then the present value of
+    this benefit is $b_t v^{t}$, and the expected present value of this
+    benefit is $b_t v^{t}{}_{t}p_x\mu_{x + t}dt$ ((x) has to survive $t$
+    years and then immediately die for $b_t$ to be paid at time $t$).
+    Integrating over all possible times of death provides the overall
+    expected present value.”
+
+    $E(Z^j)$ = $\int^{\infty}_0 (b_t v^{t})^j{}_{t}p_x\mu_{x + t}dt$ for
+    $j$ = 1, 2, ...
+
+<!-- -->
+
+-   The general formula for the present value of an annual life
+    insurance on (x) that pays $b_{k + 1}$ at time $k$ + 1 ($k$ = 0, 1,
+    2, ...) is:
+
+    $Z$ = $b_{K_x + 1}v^{K_x + 1}$.
+
+    The general formula for the expected present value of an annual life
+    insurance on (x) that pays $b_{k + 1}$ at time $k$ + 1 ($k$ = 0, 1,
+    2, ...) is:
+
+    $E(Z)$ = $\sum^{\infty}_{k = 0} b_{k + 1} v^{k + 1}{}_{k|}q_x$.
+    Furthermore:
+
+    “Say death occurs in year ($k$ + 1). Then the present value of this
+    benefit is $b_{k + 1} v^{k + 1}$, and the expected present value of
+    this benefit is $b_{k + 1} v^{k + 1}{}_{k|}q_x$. Summing over all
+    possible values of $k$ provides the overall expected present value.”
+
+    $E(Z^j)$ = $\sum^{\infty}_{k = 0} (b_{k + 1} v^{k + 1})^j{}_{k|}q_x$
+    for $j$ = 1, 2, ...
+
+-   The International Actuarial Notation for $E(Z)$ often contains an
+    $A$, which indicates that the expected present value is for a life
+    insurance. For example, $A_x$ denotes the expected present value of
+    a whole life insurance of 1 on (x) payable at the end of the year of
+    death.
+
+-   $^2A$ is $A$ evaluated at double the force of interest. Doubling the
+    force of interest, from $\delta$ to 2$\delta$, affects other
+    interest rates as follows:
+
+    -   $i$ changes to $i^2$ + $2i$
+
+    -   (1 + $i$) changes to $(1 + i)^2$
+
+    -   $v$ changes to $v^2$
+
+    -   $d$ changes to 2$d$ - $d^2$
+
+    Formulas assuming a force of interest of $\delta$ can be easily
+    modified for a force of interest of 2$\delta$. Consider the
+    following equation involving a whole life insurance of 1 on (x):
+    $A_x$ = $vq_x$ + $vp_xA_{x + 1}$. Doubling the force of interest
+    results in the equation: $^2A_x$ = $v^2q_x$ + $v^2p_x(^2A_{x + 1})$.
+
+-   $^2A$ is NOT the notation for $E(Z^2)$.
+
+-   For most insurance, a basic benefit of 1 is assumed. If the basic
+    benefit is $S$, notation and formulas are adjusted. For example, the
+    expected present value of a continuous whole life insurance of $S$
+    on (x) is $E(Z)$ = $S\bar{A}_{x}$ =
+    $\int^{\infty}_0 Sv^t{}_{t}p_x\mu_{x + t}dt$, and $E(Z^2)$ = 
+    $(S^2)^2\bar{A}_x$ = $\int^{\infty}_0 (S^2) v^{2t}{}_{t}p_x\mu_{x + t}dt$.
+
+-   There is only one version of the pure endowment as there is no death
+    benefit.
+
+-   A common problem involves a portfolio of $N$ independent and
+    identically distributed life insurance policies. $N$ is assumed to
+    be “large” ($\ge$ 30).
+
+    The present value random variable for policy $j$ is $Z_j$ for $j$ =
+    1, 2, .... $N$.
+
+    Let $S$ = $\sum^N_{j = 1} Z_j$ = present value of all policies in
+    the portfolio.
+
+    Then: $E(S)$ = $NE(Z)$ and $Var(S)$ = $NVar(Z)$.
+
+    Assume that a policyholder pays for a policy with a single premium
+    at issue.
+
+    The minimum amount that the insurer should collect from the $N$
+    lives at issue, $h$, such that the probability is approximately
+    $\alpha$ (between 0 and 1) that the insurer will have sufficient
+    funds to pay the future benefits solves:
+
+    $Pr(S \le h)$ = $\Phi(\frac{h - E(S)}{\sqrt{Var(S)}})$ = $\alpha$,
+    where $\frac{h - E(S)}{\sqrt{Var(S)}}$ = $z_{\alpha}$, the
+    100$\alpha$th percentile of the standard normal distribution.
+
+-   Recursion formulas take an expected present value and decomposes it
+    into the sum of two expected present values: the expected present
+    value of the benefit if the policyholder dies in the first period
+    plus the expected present value of the benefit if the policyholder
+    survives the first period.
+
+-   For formulas with a constant force of mortality, we will sometimes
+    use:
+
+    -   $p_x$ = $e^{-\mu}$ = $p$
+
+    -   $q_x$ = 1 - $e^{-\mu}$ = 1 - $p$ = $q$
+
+## Level Benefit Insurance
+
+### Whole Life Insurance of 1 on (x)
+
+**Continuous Whole Life Insurance**:
+
+-   $Z$ = $v^{T_x}$
+
+-   $E(Z)$ = $\bar{A}_{x}$ = $\int^{\infty}_0 v^t{}_{t}p_x\mu_{x +
+    t}dt$
+
+    -   For de Moivre’s Law (Uniform Distribution): $\bar{A}_x$ =
+        $\frac{1}{\omega - x}\bar{a}_{\overline{\omega - x}|}$ at force
+        of interest $\delta$
+
+    -   With a constant force of mortality: $\bar{A}_x$ =
+        $\frac{\mu}{\mu + \delta}$
+
+-   $E(Z^2)$ = $^2\bar{A}_x$ = $\int^{\infty}_0 v^{2t}{}_{t}p_x\mu_{x +
+    t}dt$
+
+    -   For de Moivre’s Law (Uniform Distribution): $^2\bar{A}_x$ =
+        $\frac{1}{\omega - x}\bar{a}_{\overline{\omega - x}|}$ at force
+        of interest 2$\delta$
+
+    -   With a constant force of mortality: $^2\bar{A}_x$ =
+        $\frac{\mu}{\mu + 2\delta}$
+
+-   $Var(Z)$ = $^2\bar{A}_x$ - [$\bar{A}_x$]$^2$
+
+-   $F_Z(z)$ = $Pr[Z \le z]$ = $Pr[v^{T_x} \le z]$ = ${}_{c}p_x$ where
+    $c$ = -$\frac{\ln(z)}{\delta}$
+
+    -   For de Moivre’s Law (Uniform Distribution): $F_Z(z)$ = 1 +
+        $\frac{\ln(z)}{\delta (\omega - x)}$ for $v^{\omega -
+        x}$ $\le$ $z$ $\le$ 1. If the death benefit is $S$, replace $z$
+        with $\frac{z}{S}$.
+
+    -   With a constant force of mortality: $F_Z(z)$ =
+        $z^{\frac{\mu}{\delta}}$ for 0 $\le$ $z$ $\le$ 1. If the death
+        benefit is $S$, replace $z$ with $\frac{z}{S}$.
+
+    Note: The 100$\alpha$-th percentile of the distribution of $Z$,
+    $z_{\alpha}$, solves:
+
+    $F_Z(z_{\alpha})$ = $\alpha$ for 0 $\le$ $\alpha$ $\le$ 1.
+
+**Annual Whole Life Insurance**:
+
+-   $Z$ = $v^{K_x + 1}$
+
+-   $E(Z)$ = $A_{x}$ = $\sum^{\infty}_{k = 0} v^{k + 1}{}_{k|}q_{x}$
+
+    -   For de Moivre’s Law (Uniform Distribution): $A_x$ =
+        $\frac{1}{\omega - x}a_{\overline{\omega - x}|}$ at force of
+        interest $\delta$
+
+    -   With a constant force of mortality: $A_x$ = $\frac{q}{q + i}$
+
+-   $E(Z^2)$ = $^2A_x$ =
+    $\sum^{\infty}_{k = 0} v^{2(k + 1)}{}_{k|}q_{x}$
+
+    -   For de Moivre’s Law (Uniform Distribution): $^2A_x$ =
+        $\frac{1}{\omega - x}a_{\overline{\omega - x}|}$ at force of
+        interest 2$\delta$
+
+    -   With a constant force of mortality: $^2A_x$ =
+        $\frac{q}{q + i^2 + 2i}$
+
+-   $Var(Z)$ = $^2A_x$ - [$A_x$]$^2$
+
+-   Recursion: $A_x$ = $vq_x$ + $vp_xA_{x + 1}$
+
+### Term Insurance of 1 on (x)
+
+**Continuous Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{T_x}   & \quad \text{for $T_x$ $\le$ n}\\
+        0         & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+
+
+**Annual Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{K_x + 1}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        0             & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+
+
+### Pure Endowment of 1 on (x)
+
+**Pure Endowment**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        0   & \quad \text{for $T_x$ $\le$ n}\\
+        v^n         & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+
+
+### Endowment Insurance of 1 on (x)
+
+**Continuous Endowment Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{T_x}   & \quad \text{for $T_x$ $\le$ n}\\
+        v^n         & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+ 
+
+-   $Var(Z)$ = $^2\bar{A}_{x :\overline{n}|}$ - [
+    $\bar{A}_{x:\overline{n}|}]^2$
+
+**Annual Endowment Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{K_x + 1}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        v^n             & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+
+
+-   $Var(Z)$ = $^2A_{x :\overline{n}|}$ - [$A_{x
+    :\overline{n}|}]^2$
+
+-   Recursion: $A_{x :\overline{n}|}$ = $vq_x$ +
+    $vp_xA_{x + 1 :\overline{n - 1}|}$
+
+### Deferred Whole Life Insurance of 1 on (x)
+
+**Continuous Deferred Whole Life Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        0               & \quad \text{for $T_x$ $\le$ u}\\
+        v^{T_x}         & \quad \text{for $T_x$ $>$ u}\\
+      \end{array} \right.$$
+
+
+
+-   $Var(Z)$ = ${}_{u|}^2\bar{A}_x$ - [${}_{u|}\bar{A}_x]^2$
+
+**Annual Deferred Whole Life Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        0                       & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+        v^{K_x + 1}             & \quad \text{for $K_x$ = u, u + 1, ...}\\
+      \end{array} \right.$$
+
+
+
+-   $Var(Z)$ = ${}_{u|}^2A_x$ - [${}_{u|}A_x]^2$
+
+-   Recursion: ${}_{u|}A_x$ = 0 + $v p_x({}_{u - 1|}A_{x + 1})$
+
+### Deferred Term Insurance of 1 on (x)
+
+**Continuous Deferred Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{T_x}                & \quad \text{for u $<$ $T_x$ $\le$ u + n}\\
+        0                      & \quad \text{otherwise}\\
+      \end{array} \right.$$
+
+
+
+-   $Var(Z)$ = ${}_{u|n}^2\bar{A}_x$ - [${}_{u|n}\bar{A}_x]^2$
+
+**Annual Deferred Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        v^{K_x + 1}                       & \quad \text{for $K_x$ = u, u + 1, ..., u + n - 1}\\
+        0                                 & \quad \text{otherwise}\\
+      \end{array} \right.$$
+
+
+
+-   $Var(Z)$ = ${}_{u|n}^2A_x$ - [${}_{u|n}A_x]^2$
+
+-   ${}_{u|n}A_x$ = 0 + $vp_x({}_{u - 1|n}A_{x + 1})$
+
+## Varying Benefit Insurance
+
+### Annually Increasing Whole Life Insurance on (x)
+
+**Continuous Annually Increasing Whole Life Insurance**:
+
+-   $Z$ = $(\left\lfloor{T_x}\right\rfloor + 1)$$v^{T_x}$
+
+-   $E(Z)$ = $(I\bar{A})_{x}$ =
+    $\int^{\infty}_0 (\left\lfloor{t}\right\rfloor +
+    1)v^t{}_{t}p_x\mu_{x + t}dt$
+
+    -   For de Moivre’s Law (Uniform Distribution): $(I\bar{A})_{x}$ =
+        $\frac{1}{\omega - x}(I\bar{a})_{\overline{\omega -x}|}$ 
+        at force of interest $\delta$
+
+**Continuously Increasing Whole Life Insurance**:
+
+-   $Z$ = $T_xv^{T_x}$
+
+-   $E(Z)$ = $(\bar{I}\bar{A})_{x}$ =
+    $\int^{\infty}_0 tv^t{}_{t}p_x\mu_{x + t}dt$
+
+    -   For de Moivre’s Law (Uniform Distribution):
+        $(\bar{I}\bar{A})_{x}$ = 
+        $\frac{1}{\omega -x}(\bar{I}\bar{a})_{\overline{\omega - x}|}$ 
+        at force of interest $\delta$
+
+    -   With a constant force of mortality: $(\bar{I}\bar{A})_{x}$ =
+        $\frac{\mu}{(\mu + \delta)^2}$
+
+**Annual Annually Increasing Whole Life Insurance**:
+
+-   $Z$ = $(K_x + 1)v^{K_x + 1}$
+
+-   $E(Z)$ = $(IA)_{x}$ =
+    $\sum^{\infty}_{k = 0} (k + 1)v^{k + 1}{}_{k|}q_x$
+
+    -   For de Moivre’s Law (Uniform Distribution): $(IA)_{x}$ =
+        $\frac{1}{\omega - x}(Ia)_{\overline{\omega - x}|}$ at force of
+        interest $\delta$
+
+-   Recursion: $(IA)_x$ = $A_x$ + $vp_x(IA)_{x + 1}$
+
+### Annually Increasing Term Insurance on (x)
+
+**Continuous Annually Increasing Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        (\left\lfloor{T_x}\right\rfloor + 1)v^{T_x}   & \quad \text{for $T_x$ $\le$ n}\\
+        0            & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+
+
+**Continuously Increasing Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        T_xv^{T_x}   & \quad \text{for $T_x$ $\le$ n}\\
+        0            & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+
+
+**Annual Annually Increasing Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        (K_x + 1)v^{K_x + 1}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        0             & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+
+
+### Annually Decreasing Term Insurance on (x)
+
+**Continuous Annually Decreasing Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        (n - \left\lfloor{T_x}\right\rfloor)v^{T_x}   & \quad \text{for $T_x$ $\le$ n}\\
+        0            & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+
+**Continuously Decreasing Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        (n - T_x)v^{T_x}   & \quad \text{for $T_x$ $\le$ n}\\
+        0            & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+
+**Annual Annually Decreasing Term Insurance**:
+
+-   $$Z = \left\{
+      \begin{array}{l l}
+        (n - K_x)v^{K_x + 1}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        0                      & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+
+## Exercises
+
+3.1. Suppose:
+
+\(i) Mortality follows $l_x$ = 110 - $x$ for 0 $\le$ $x$ $\le$ 110.
+
+\(ii) $i$ = 0.08.
+
+
+
+\(A) 110 (B) 120 (C) 130 (D) 140 (E) 150
+
+3.2. For a 20-year term insurance of 1 on (x):
+
+\(i) The death benefit is payable at the moment of death.
+
+\(ii) $\mu_x(t)$ = 0.04 for $t$ $\ge$ 0
+
+\(iii) $\delta$ = 0.06
+
+\(iv) $Z$ is the present value random variable for this insurance.
+
+Calculate: $Var(Z)$.
+
+\(A) 0.10 (B) 0.11 (C) 0.12 (D) 0.13 (E) 0.14
+
+3.3. Consider a life insurance on (40) that pays zero benefit if death
+occurs prior to age 45; pays 3000 at the end of the year of death if
+death occurs between ages 45 and 55; and pays 5000 at the end of the
+year of death if death occurs after age 55. Mortality follows the
+Illustrative Life Table, and $i$ = 0.06. Calculate the expected present
+value of the benefits.
+
+\(A) 670 (B) 675 (C) 680 (D) 685 (E) 690
+
+3.4. You are given: $l_x$ = 500(90 - $x$) for 0 $\le$ $x$ $\le$ 90 and
+$i$ = 0.06.
+
+Calculate the variance of the present value random variable for a whole
+life insurance of 1000 on (35) payable at the end of the year of death.
+
+\(A) 62,330 (B) 63,245 (C) 64,660 (D) 65,500 (E) 66,135
+
+3.5. Consider a whole life insurance of 1 on (x) payable at the moment
+of death:
+
+\(i) $\mu_x(t)$ = 0.03 for $t$ $\ge$ 0, and $\delta$ = 0.05
+
+\(ii) $Z$ is the present value random variable for this insurance.
+
+\(iii) $g$ is the standard deviation of $Z$.
+
+Calculate: $Pr[Z > \bar{A}_x + g]$.
+
+\(A) 0.21 (B) 0.22 (C) 0.46 (D) 0.78 (E) 0.79
+
+3.6. You are given:
+
+$$\delta_t = \left\{
+  \begin{array}{l l}
+    0.060 & \quad \text{for 0 $\le$ t $<$ 5}\\
+    0.065 & \quad \text{for t $\ge$ 5}\\
+  \end{array} \right.$$
+
+$$\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.020 & \quad \text{for 0 $\le$ t $<$ 5}\\
+    0.025 & \quad \text{for t $\ge$ 5}\\
+  \end{array} \right.$$
+
+Calculate the actuarial present value of a whole life insurance of 1 on
+(x) payable at the moment of death.
+
+\(A) 0.19 (B) 0.21 (C) 0.23 (D) 0.25 (E) 0.27
+
+3.7. For a special 3-year term insurance on (x) payable at the end of
+the year of death:
+
+\(i) $Z$ is the present value random variable for this insurance.
+
+\(ii) $q_{x + k}$ = 0.02($k$ + 1) for $k$ = 0, 1, 2
+
+\(iii) $b_{k + 1}$ = 5000($k$ + 1) for $k$ = 0, 1, 2
+
+\(iv) $i$ = 0.06
+
+Calculate the standard deviation of $Z$.
+
+\(A) 3340 (B) 3350 (C) 3360 (D) 3370 (E) 3380
+
+3.8. Consider a 20-year endowment insurance of 25,000 with death benefit
+payable at the end of the year of death on a standard life aged x. The
+mortality rates for the first two years for a standard life aged x are
+such that: $q_x$ = 0.010 and $q_{x + 1}$ = 0.011.
+
+The actuarial present value of this endowment insurance on a standard
+life aged x, using $i$ = 0.05, is 10,145.
+
+Sheldon, age x, wants to purchase the above endowment insurance.
+However, Sheldon plans on conducting a dangerous two-year physics
+experiment. His mortality rates for just the first two years will be
+different than those of a standard life aged x; for Sheldon: $q_x$ =
+0.020 and $q_{x + 1}$ = 0.022.
+
+Calculate the actuarial present value of Sheldon’s endowment insurance,
+using $i$ = 0.05.
+
+\(A) 10,283 (B) 10,421 (C) 10,527 (D) 10,877 (E) 10,911
+
+3.9. You are given:
+
+<!-- \(i) $\insend{35}{1}$ = 0.9434, $A_{36}$ = 0.1347, and $(IA)_{35}$ = -->
+<!-- 3.7100 -->
+
+\(ii) $p_{35}$ = 0.9964
+
+Calculate: $(IA)_{36}$.
+
+\(A) 3.77 (B) 3.78 (C) 3.79 (D) 3.80 (E) 3.81
+
+3.10. For a special 30-year term insurance on (45):
+
+\(i) 1000 is payable at the moment of death if death occurs between ages
+45 and 65.
+
+\(ii) 500 is payable at the moment of death if death occurs between ages
+65 and 75.
+
+\(iii) Mortality follows: $l_x$ = 500(95 - $x$) for 0 $\le$ $x$ $\le$ 95,
+and $\delta$ = 0.06.
+
+Calculate the single benefit premium for this insurance.
+
+\(A) 240 (B) 245 (C) 250 (D) 255 (E) 260
+
+3.11. Let $Z$ be the present value random variable for a whole life
+insurance on (x) with a benefit of 10,000 payable at the moment of
+death.
+
+Assume $\mu_x(t)$ = 0.03 and $\delta_t$ = 0.06 for $t$ $\ge$ 0.
+
+Calculate the 65th percentile of the distribution of $Z$.
+
+\(A) 3502 (B) 3760 (C) 4030 (D) 4225 (E) 4550
+
+3.12. Consider a special whole life insurance of 10,000 on (30):
+
+\(i) Mortality follows the Illustrative Life Table, $i$ = 0.06
+
+\(ii) If (30) dies during the first 10 years, the benefit is payable at
+the end of the first 10 years. Otherwise, the benefit is payable at the
+end of the year of death.
+
+Calculate the actuarial present value of this insurance.
+
+\(A) 672 (B) 976 (C) 994 (D) 1025 (E) 6356
+
+3.13. Each of 100 independent lives age 30 purchase a single-premium
+continuous 35-year endowment insurance of 1000, where:
+
+\(i) Mortality follows de Moivre’s Law with $\omega$ = 100, and $\delta$
+= 0.06
+
+\(ii) $h$ is the aggregate amount the insurer receives from the 100
+lives.
+
+Using the normal approximation, calculate $h$ such that the probability
+the insurer has sufficient funds to pay all claims is 0.99.
+
+\(A) 32,000 (B) 32,300 (C) 32,600 (D) 32,900 (E) 33,200
+
+3.14. Let $Z$ be the present value random variable for a special
+continuous whole life insurance on (x), where for $t$ $\ge$ 0:
+
+\(i) $b_t$ = $1000e^{0.05t}$
+
+\(ii) $\mu_x(t)$ = 0.01 and $\delta_t$ = 0.06
+
+Calculate the expected value of $Z$.
+
+\(A) 420 (B) 440 (C) 460 (D) 480 (E) 500
+
+3.15. Each of 100 independent lives age 30 purchase a single-premium
+5-year deferred whole life insurance of 10 payable at the end of the
+year of death, where:
+
+\(i) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+\(ii) $h$ is the aggregate amount the insurer receives from the 100
+lives.
+
+Using the normal approximation, calculate $h$ such that the probability
+the insurer has sufficient funds to pay all claims is 0.95.
+
+\(A) 105 (B) 112 (C) 116 (D) 121 (E) 128
+
+3.16. A special term insurance policy on (40) pays 1000 at the end of
+the year of death for the first ten years and 2000 at the end of the
+year of death for the next 10 years. Mortality follows the Illustrative
+Life Table, $i$ = 0.06.
+
+Calculate the single benefit premium for this policy.
+
+\(A) 90 (B) 93 (C) 96 (D) 100 (E) 104
+
+3.17. You are given:
+
+\(i) $A_x$ = 0.20, $A_{x + 20}$ = 0.35
+
+<!-- \(ii) $\insend{x}{20}$ = 0.50 -->
+
+Calculate: ${}_{20|}A_x$.
+
+\(A) 0.08 (B) 0.10 (C) 0.12 (D) 0.14 (E) 0.16
+
+3.18. You are given:
+
+\(i) $q_x$ is a constant for all integer ages x.
+
+\(ii) The expected present value of a 2-year term insurance of 1000 on
+(35) payable at the end of the year of death is 63.96.
+
+\(iii) The probability that the 1000 death benefit for the 2-year term
+insurance on (35) will be paid is 0.068775.
+
+Calculate the expected present value of a 10-year deferred whole life
+insurance of 1000 on (35) payable at the end of the year of death.
+
+\(A) 150 (B) 165 (C) 170 (D) 175 (E) 180
+
+3.19. For a group of individuals all age 26, you are given:
+
+\(i) 20% are smokers and 80% are non-smokers.
+
+\(ii) Mortality rates for non-smokers ($q^N_x$) follows the Illustrative
+Life Table.
+
+\(iii) Mortality rates for smokers ($q^S_x$) are double the mortality
+rates for non-smokers.
+
+\(iv) $i$ = 0.03
+
+Calculate the single benefit premium for a 3-year term insurance of 5000
+payable at the end of the year of death on a 26 year old chosen at
+random from this group of smokers and non-smokers.
+
+\(A) 21.00 (B) 21.50 (C) 22.00 (D) 22.50 (E) 23.00
+
+3.20. A group of 100 lives each age 45 set up a fund to pay 10,000 at
+the end of the year of death of each member. They each pay into the
+fund, at inception, an amount equal to the single benefit premium for a
+whole life insurance of 10,000 on (45) payable at the end of the year of
+death assuming mortality follows the Illustrative Life Table and $i$ =
+0.06.
+
+The actual experience of the fund is one death in the first year and two
+deaths in the fourth year; the interest rate is 0.06 in the first and
+second years, 0.065 in the third and fourth years, and 0.07 in the fifth
+year.
+
+Calculate the difference between the expected size of the fund and the
+actual size of the fund at the end of the first five years.
+
+\(A) 3160 (B) 3200 (C) 3240 (D) 3280 (E) 3320
+
+3.21. You are given:
+
+\(i) The covariance of two random variables $Z_1$ and $Z_2$ is equal to
+the expected value of the product of $Z_1$ and $Z_2$, minus the product
+of the expected value of $Z_1$ and the expected value of $Z_2$.
+
+\(ii) $Z_1$ denotes the present value random variable for a whole life
+insurance of 1000 on (30) payable at the end of the year of death.
+
+\(iii) $Z_2$ denotes the present value random variable for a 10-year
+deferred whole life insurance of 1000 on (30) payable at the end of the
+year of death.
+
+\(iv) Mortality follows the Illustrative Life Table and $i$ = 0.06.
+
+Calculate the covariance of $Z_1$ and $Z_2$.
+
+\(A) 5700 (B) 5750 (C) 5800 (D) 5850 (E) 5900
+
+3.22. You are given:
+
+\(i) Mortality follows the Illustrative Life Table, and $i$ = 0.06
+
+\(ii) $Z$ is the present value random variable for a whole life insurance
+of 5000 on (30) payable at the end of the year of death.
+
+Calculate the probability that $Z$ exceeds $E(Z)$.
+
+\(A) 0.26 (B) 0.27 (C) 0.28 (D) 0.29 (E) 0.30
+
+3.23. You are given:
+
+\(i) For a standard life: ${}_{k|}q_x$ = $(0.8)^k(0.2)$ for $k$ = 0, 1,
+2, ...
+
+\(ii) $\delta$ = 0.05
+
+\(iii) A certain life has the same mortality as a standard life except
+that the probability of death within the first year after policy issue
+for the certain life is 50% higher than the probability of death within
+the first year after policy issue for a standard life of the same age at
+policy issue.
+
+Assuming the certain life is issued a whole life insurance of 1 at age x
+payable at the end of the year of death, calculate $A_x$ for the certain
+life.
+
+\(A) 0.800 (B) 0.815 (C) 0.830 (D) 0.845 (E) 0.860
+
+3.24. You are given:
+
+\(i) The force of mortality is a constant.
+
+\(ii) $^2\bar{A}_x$ = 0.2414.
+
+\(iii) The present value of a dollar to be paid, with certainty, at the
+end of 10 years is 0.5770.
+
+Calculate the probability that (x) survives at least 15 years but no
+more than 20 years.
+
+\(A) 0.080 (B) 0.085 (C) 0.090 (D) 0.095 (E) 0.100
+
+3.25. For a 10-year deferred 10-year term insurance of 1000 on (x) with
+benefits payable at the moment of death:
+
+\(i) $$\delta_t = \left\{
+  \begin{array}{l l}
+    0.06 & \quad \text{for t $\le$ 6}\\
+    0.07 & \quad \text{for t $>$ 6}\\
+  \end{array} \right.$$
+
+\(ii) $$\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.025 & \quad \text{for t $\le$ 6}\\
+    0.035 & \quad \text{for t $>$ 6}\\
+  \end{array} \right.$$
+
+Calculate the single benefit premium for this insurance.
+
+\(A) 82.50 (B) 83.50 (C) 84.50 (D) 85.50 (E) 86.50
+
+3.26. You are given:
+
+\(i) $\mu_x$ = 0.0002$(1.1)^x$ for $x$ $>$ 0
+
+\(ii) $d$ = 0.06
+
+Calculate: ${}_{3|2}A_{50}$.
+
+\(A) 0.040 (B) 0.046 (C) 0.052 (D) 0.058 (E) 0.064
+
+3.27. Consider a whole life insurance of 1000 on (x) payable at the end
+of the year of death:
+
+\(i) $v$ = 0.965
+
+\(ii) ${}_{10}p_x$ = 0.920
+
+\(iii) $A_{x + 11}$ = 0.425
+
+Suppose $q_{x + 10}$ is increased to $q_{x + 10}$ + 0.100.
+
+Calculate the increase in the expected present value of the insurance.
+
+\(A) 32 (B) 34 (C) 36 (D) 38 (E) 40
+
+3.28. An insurer issues a special life insurance of 100,000 on (x).
+
+If (x) dies during the first year, 100,000 is payable at the end of the
+first year. However, if (x) survives the first year, the insurer flips a
+coin at the end of the first year. If the coin lands on “heads,” the
+insurer extends the policy for a second year so that if (x) dies in the
+second year, 100,000 is payable at the end of the second year. But, if
+the coin lands on “tails,” the policy is immediately terminated.
+
+If the policy is still in force at the end of the second year, the same
+coin described above is flipped at the end of the second year. The
+policy is extended for a third year if the coin lands on heads, and the
+policy is immediately terminated if the coin lands on tails. The coin
+flip continues with the same results for heads and tails at the end of
+each year that the policy remains in force.
+
+Furthermore:
+
+\(i) $\delta$ = 0.05
+
+\(ii) $p_{x + k}$ = 0.98 for $k$ = 0, 1, 2, ...
+
+\(iii) Let $t$ denote the probability that the coin lands on tails at the
+end of the year between times $k$ and $k$ + 1, assuming that the policy
+is in force at time $k$, where $k$ = 0, 1, 2, ... The probability that
+the coin lands on heads at the end of the year between times $k$ and $k$
++ 1 is 0.5$t$.
+
+\(iv) The results of the coin flip for each year are independent of the
+mortality of (x).
+
+Calculate the actuarial present value of this special insurance.
+
+\(A) 2700 (B) 2760 (C) 2820 (D) 2880 (E) 2940
+
+3.29. You are given:
+
+\(i) $K$ is the curtate future lifetime random variable for a life aged
+50.
+
+\(ii) The following present value random variable for an insurance on a
+life aged 50:
+
+$$Z = \left\{
+  \begin{array}{l l}
+    1000v^{K + 1}                   & \quad \text{for $K$ $<$ 5}\\
+    1000v^5                         & \quad \text{for $K$ $\ge$ 5}\\
+  \end{array} \right.$$
+
+\(iii) Mortality follows the Illustrative Life Table.
+
+\(iv) $i$ = 0.06
+
+Calculate the probability that $Z$ will be greater than 800.
+
+\(A) 0.010 (B) 0.012 (C) 0.016 (D) 0.019 (E) 0.027
+
+3.30. A computer store sells a specific brand new laptop with a purchase
+price of 1000. This laptop comes with a 5-year warranty such that if the
+laptop breaks down in year $k$ + 1, (80 - 20$k$)% of the purchase price
+will be refunded at the end of that year; for $k$ = 0, 1, 2, 3, 4.
+
+Also:
+
+\(i) $d$ = 0.03
+
+\(ii) The probability that the laptop breaks down in each of the first
+three years is 0.05, and the probability that the laptop breaks down in
+each of the fourth and fifth years is 0.10.
+
+Calculate the expected present value of the warranty.
+
+\(A) 83 (B) 93 (C) 103 (D) 113 (E) 123
+
+3.31. Consider a 10-year endowment insurance of 5000 on (50) with death
+benefit payable at the end of the year of death:
+
+\(i) Mortality follows the Illustrative Life Table.
+
+\(ii) $i$ = 0.06
+
+\(iii) $Z$ is the present value random variable for this insurance.
+
+Calculate: $E(Z^2)$, in millions.
+
+\(A) 8.1 (B) 8.2 (C) 8.3 (D) 8.4 (E) 8.5
+
+3.32. For a special 10-year deferred whole life insurance policy on
+(40):
+
+\(i) Death benefits are payable at the moment of death.
+
+\(ii) The amount of benefit is 200,000 if death occurs between ages 50
+and 65, and is 100,000 if death occurs after age 65.
+
+\(iii) $Z$ is the present value random variable, at age 40, for the
+payments under this insurance.
+
+\(iv) $\delta$ = 0.05
+
+\(v) $\mu$ = 0.02
+
+Calculate the probability that $Z$ exceeds 50,000.
+
+\(A) 0.21 (B) 0.22 (C) 0.23 (D) 0.24 (E) 0.25
+
+3.33. For a whole life insurance of 1000 on (x) payable at the end of
+the year of death:
+
+\(i) $q_x$ = 0.03 and $q_{x + 1}$ = 0.05
+
+\(ii) $v$ = 0.95
+
+\(iii) $A_{x + 2}$ = 0.7459
+
+Calculate the change in the expected present value of this insurance if
+$q_{x + 1}$ is doubled.
+
+\(A) 11.1 (B) 11.3 (C) 11.5 (D) 11.7 (E) 11.9
+
+3.34. Consider a group of 750 independent lives each aged x. Each life
+has just been issued a 10-year term insurance of 1000 payable at the
+moment of death. Furthermore:
+
+\(i) The force of interest is a constant, equal to 0.07.
+
+\(ii) For each life, the force of mortality is a constant, equal to 0.04.
+
+A fund is established to pay the death benefits of the 750 policies. The
+initial amount of the fund is such that, using the normal approximation,
+the probability is 0.99 that sufficient funds will be available to pay
+the death benefits of the 750 policies.
+
+Calculate the initial amount of the fund.
+
+\(A) 203,400 (B) 203,800 (C) 204,200 (D) 204,600 (E) 205,000
+
+3.35. Consider the following three life insurances, each issued on the
+same life aged 30 and each subject to the same constant annual effective
+interest rate:
+
+\(i) **Life Insurance A**: Pays a benefit of 1000 at the end of the year
+of death if (30) dies within 10 years, or a benefit of 600 at age 40 if
+(30) survives to age 40.
+
+\(ii) **Life Insurance B**: Pays a benefit of 800 at the earlier of the
+end of the year of death of (30) or the end of ten years.
+
+\(iii) **Life Insurance C**: Pays a benefit of 1500 at the end of the
+year of death if (30) dies within 10 years.
+
+The expected present value of Life Insurance A is 474.02, and the
+expected present value of Life Insurance B is 553.04.
+
+Calculate the expected present value of Life Insurance C.
+
+\(A) 140 (B) 160 (C) 180 (D) 200 (E) 220
+
+3.36. A life insurer wants to issue a portfolio of single-premium 3-year
+term insurance policies, each of 25,000 payable at the end of the year
+of death, to $n$ independent lives each aged x:
+
+\(i) Each life has mortality where: ${}_{k|}q_x$ = 0.01($k$ + 1) for $k$
+= 0, 1, 2.
+
+\(ii) $v$ = 0.96
+
+\(iii) The life insurer will charge each life a single premium, payable
+at issue, that is equal to 140% of the expected present value of a
+single term insurance policy in the portfolio.
+
+Using the normal approximation, determine the minimum possible value of
+$n$ such that the probability the life insurer has sufficient funds to
+pay all of the death benefits is greater than or equal to 0.99.
+
+\(A) 530 (B) 531 (C) 532 (D) 533 (E) 534
+
+3.37. Consider a special 10-year term insurance on (40) payable at the
+end of the year of death. The death benefit for year $k$ + 1 is:
+
+$b_{k + 1}$ = 10 - $k$, for $k$ = 0, 1, 2, ..., 9.
+
+The expected present value of this insurance is written as
+
+
+Furthermore, you are given:
+
+
+
+\(ii) A standard life has mortality rate: $q_{40}$ = 0.01.
+
+\(iii) $i$ = 0.05
+
+Due to an extra hazard at age 40, a certain life has $q_{40}$ = 0.03,
+but has standard mortality at all other ages.
+
+
+
+\(A) 0.71 (B) 0.72 (C) 0.73 (D) 0.74 (E) 0.75
+
+3.38. You are given:
+
+\(i) The following select-and-ultimate life table:
+
+\(ii) $v$ = 0.97
+
+<!-- Calculate: $\insend{[36]}{3}$. -->
+
+\(A) 0.90 (B) 0.91 (C) 0.92 (D) 0.93 (E) 0.94
+
+3.39. For a special whole life insurance issued on (50):
+
+\(i) Death benefits are payable at the end of the year of death.
+
+\(ii) The amount of benefit is 2000 if death occurs within the first 10
+years and is 1000 thereafter.
+
+\(iii) $Z$ is the present value random variable for the payments under
+this insurance.
+
+\(iv) $i$ = 0.06
+
+\(v) Mortality follows the Illustrative Life Table.
+
+Calculate the standard deviation of $Z$.
+
+\(A) 320 (B) 340 (C) 360 (D) 380 (E) 400
+
+3.40. You are given a 10-year term insurance of 5000 on (35) payable at
+the moment of death:
+
+\(i) $\delta$ = 0.04
+
+\(ii) $l_x$ = 100$(100 - x)^2$ for 0 $\le$ $x$ $\le$ 100.
+
+Find the probability that the present value of the death benefit is 0.
+
+\(A) 0.71 (B) 0.72 (C) 0.73 (D) 0.74 (E) 0.75
+
+3.41. For a group of individuals all age 44, you are given:
+
+\(i) 30% are smokers (S) and 70% are non-smokers (N).
+
+\(ii) The force of mortality for a smoker is: $\mu^S_{44 + t}$ = 0.1 for
+$t$ $\ge$ 0.
+
+\(iii) The force of mortality for a non-smoker is such that:
+
+$\mu^S_{44 + t}$ = 2$\mu^N_{44 + t}$ for $t$ $\ge$ 0.
+
+\(iv) $i$ = 0.05
+
+Calculate the expected present value of a 2-year term insurance of
+50,000 payable at the end of the year of death on an individual chosen
+at random from this group.
+
+\(A) 5200 (B) 5300 (C) 5400 (D) 5500 (E) 5600
+
+3.42. For a continuous whole life insurance of 1 on (x):
+
+\(i) $$\delta_t = \left\{
+  \begin{array}{l l}
+    0.052 & \quad \text{for 0 $\le$ t $<$ 8}\\
+    0.059 & \quad \text{for t $\ge$ 8}\\
+  \end{array} \right.$$
+
+\(ii) $$\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.031 & \quad \text{for 0 $\le$ t $<$ 8}\\
+    \mu & \quad \text{for t $\ge$ 8}\\
+  \end{array} \right.$$
+
+\(iii) $\pureend{x + 10}{2}$ = 0.8319.
+
+Calculate the expected present value of this insurance.
+
+\(A) 0.35 (B) 0.36 (C) 0.37 (D) 0.38 (E) 0.39
+
+3.43. You are given:
+
+\(i) $^2A_{46}$ = 0.3$A_{46}$
+
+\(ii) $A_{46}$ - $A_{45}$ = 0.02
+
+\(iii) $q_{45}$ = 0.001
+
+\(iv) $v$ = 0.9312
+
+Calculate: $^2A_{45}$.
+
+\(A) 0.071 (B) 0.073 (C) 0.075 (D) 0.077 (E) 0.079
+
+3.44. You are given:
+
+\(i) Mortality follows the Illustrative Life Table.
+
+\(ii) $i$ = 0.06
+
+
+
+\(A) 0.071 (B) 0.073 (C) 0.075 (D) 0.077 (E) 0.079
+
+3.45. Suppose today is January 1, 2014, and Paul has just turned age 35.
+He has mortality such that:
+
+${}_{t}p_{35}$ = $(0.95)^t$ for $t$ $\ge$ 0.
+
+Paul has just been issued a special whole life insurance, where:
+
+\(i) $i$ = 0.07
+
+\(ii) 1000 is payable at the end of the year of death if Paul dies in an
+odd-numbered calendar year.
+
+\(iii) 2000 is payable at the end of the year of death if Paul dies in an
+even-numbered calendar year.
+
+Calculate the single benefit premium for Paul’s insurance.
+
+\(A) 610 (B) 620 (C) 630 (D) 640 (E) 650
+
+3.46. You are given:
+
+\(i) The effective annual interest rate is a constant.
+
+\(ii) $q_{x + 1}$ = $q_x$ + 0.005
+
+
+
+Calculate the probability that (x) dies within two years.
+
+\(A) 0.050 (B) 0.052 (C) 0.054 (D) 0.056 (E) 0.058
+
+3.47. Each of 200 independent lives aged 40 purchases a single-premium
+life insurance that pays 2000 at the end of the year of death if death
+occurs between ages 43 and 45:
+
+\(i) $q_{40 + k}$ = 0.02 + 0.001$k$ for $k$ = 0, 1, 2, 3, 4.
+
+\(ii) $i$ = 0.04
+
+\(iii) $h$ is the aggregate amount the insurer receives from the 200
+lives.
+
+Using the normal approximation, calculate $h$ such that the probability
+the insurer has sufficient funds to pay all of the death benefits is
+0.95.
+
+\(A) 22,000 (B) 22,200 (C) 22,400 (D) 22,600 (E) 22,800
+
+### Answers to Exercises
+
+3.1. D 3.26. B
+
+3.2. C 3.27. C
+
+3.3. C 3.28. B
+
+3.4. A 3.29. D
+
+3.5. A 3.30. C
+
+3.6. E 3.31. B
+
+3.7. A 3.32. A
+
+3.8. B 3.33. A
+
+3.9. E 3.34. D
+
+3.10. D 3.35. E
+
+3.11. D 3.36. B
+
+3.12. C 3.37. D
+
+3.13. B 3.38. B
+
+3.14. E 3.39. C
+
+3.15. B 3.40. B
+
+3.16. B 3.41. E
+
+3.17. E 3.42. C
+
+3.18. D 3.43. E
+
+3.19. D 3.44. E
+
+3.20. A 3.45. D
+
+3.21. C 3.46. B
+
+3.22. C 3.47. D
+
+3.23. B
+
+3.24. D
+
+3.25. D
+
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#4
+
+-   Exam MLC, Spring 2015: \#4, 5
+
+-   Exam MLC, Fall 2014: \#4
+
+-   Exam MLC, Spring 2014: \#5
+
+-   Exam MLC, Fall 2013: \#12, 13
+
+-   Exam MLC, Spring 2013: \#7
+
+-   Exam MLC, Fall 2012: \#14
+
+-   Exam 3L, Spring 2012: \#13
+
+-   Exam MLC, Sample Questions: \#2, 3, 4, 17, 56, 64, 69, 72, 107, 109,
+    121, 141, 148, 158, 175, 176, 197, 215, 226, 286, 308
+
+-   Exam 3L, Fall 2010: \#13
+
+-   Exam 3L, Spring 2010: \#18
+
+-   Exam 3L, Fall 2009: \#13, 15
+
+-   Exam 3L, Spring 2009: \#11
+
+-   Exam 3L, Spring 2008: \#21, 22
+
+-   Exam MLC, Spring 2007: \#10, 22, 27

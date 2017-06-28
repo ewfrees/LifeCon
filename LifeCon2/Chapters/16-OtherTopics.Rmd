@@ -1,0 +1,1728 @@
+---
+title: "Other Topics"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Other Topics
+
+## Pension Mathematics
+
+\Large
+
+-   **Defined Benefit and Defined Contribution Plans** \vspace{4mm}
+
+    -   A **defined benefit** pension plan determines the future
+        periodic pension benefit by a formula that is a function of an
+        employee’s earnings history (career average salary or salary in
+        the final working years), age, and number of years of service,
+        among other factors. The employer is primarily responsible for
+        making contributions into a fund such that the accumulated fund
+        value can provide the predetermined periodic pension benefits;
+        hence, the employer bears the investment risk. \vspace{2mm}
+
+        The **annual** pension benefit under a defined benefit plan is:
+        $\alpha n S r$, \vspace{2mm}
+
+        where $\alpha$ is an **early retirement factor** between zero
+        and one (penalizes early retirement by reducing the pension
+        benefit), $n$ is the
+
+        **number of years of service** (employment), $S$ is some
+
+        **final average salary measure** (for example, the final 3-year
+        average salary prior to retirement), and $r$ is the **accrual
+        rate** (a factor that ensures the pension benefit is some
+        percentage of the replacement ratio, see below). If the pension
+        benefit is payable $m$-thly, the actual monthly payments are the
+        annual pension benefit divided by $m$. \vspace{4mm}
+
+    -   A **defined contribution** pension plan predetermines the
+        contributions that the employee (and often the employer as well)
+        pay into a fund that will accumulate interest and provide the
+        future pension benefits. The employee is primarily responsible
+        for the investment risk, although in some cases the employer
+        will match some percentage of the employee’s contribution. The
+        amount of the future periodic pension benefit depends on the
+        fund’s performance. \vspace{2mm}
+
+-   The **replacement ratio** determines the benefit for a defined
+    benefit pension plan and the target benefit for a defined
+    contribution pension plan: \vspace{2mm}
+
+    \hspace{2in} $R$ = $\frac{\text{Pension Income in the Year After
+    Retirement}}{\text{Salary in the Year Before Retirement}}$
+
+    \newpage
+-   We often project an employee’s salary in some future year (or years)
+    in order to determine pension benefits. This projection is typically
+    done by using a **salary scale function**. \vspace{4mm}
+
+    -   The **salary scale function**, $s_x$, is a constant multiple of
+        the salary earned by an employee in the year between ages x and
+        x + 1. \vspace{2mm}
+
+    -   If the employee’s salary between ages x and x + 1 is $c$, the
+        employee’s projected salary between ages y and y + 1 (assuming y
+        $\ge$ x and the employee is employed between ages x and y + 1)
+        is: $c\frac{s_y}{s_x}$. \vspace{2mm}
+
+        The ratio $\frac{s_y}{s_x}$ measures the growth rate of the
+        employee’s salary between ages x and y + 1. \vspace{2mm}
+
+    -   Sometimes salaries are revised continuously, and you are given
+        an employee’s salary rate at some time. Salary scale is an
+        annual measure of an employees salary: it is proportional to the
+        employee’s salary earned in an entire year of age. The salary
+        rate is an instantaneous measure of an employee’s salary; it is
+        proportional to the employee’s salary earned in some small
+        interval of time around the time of the salary rate within a
+        year of age. How can we relate a salary rate (instantaneous
+        measure) to a salary scale (annual measure)? \vspace{2mm}
+
+        It is often assumed that an employee’s salary rate can
+        approximate the annual salary for a year of age that begins six
+        months before the time of the salary rate and that ends six
+        months after the time of the salary rate. \vspace{2mm}
+
+        For example: if the employee’s salary between ages x and x + 1
+        is $c$, the employee’s projected salary rate at age y + 1 is:
+        $c\frac{s_{y - 0.5}}{s_x}$.
+
+        The salary rate at age y + 1 is approximated by using the salary
+        scale $s_{y - 0.5}$, which applies between ages y - 0.5 and y +
+        0.5. \vspace{2mm}
+
+    -   As another example, if the employee’s salary rate at age x + 1
+        is $c$, the employee’s projected salary rate at age y + 1 is:
+        $c\frac{s_{y -
+        0.5}}{s_{x - 0.5}}$.
+
+    \newpage
+    ### Actuarial Liability
+
+-   In a defined benefit plan, the employer bears the investment risk.
+    The employer needs to contribute enough money each year into a fund
+    so that the accumulated contributions can fund the specified future
+    periodic pension benefits. \vspace{2mm}
+
+-   The employer contribution to be made in a particular year can be
+    determined by reserve recursion, where the reserve refers to the
+    assets that the employer needs to set aside in order to meet the
+    accrued pension benefits as they fall due in the future.
+    \vspace{2mm}
+
+-   The reserve at time $k$, ${}_{k}V$, is called the **actuarial
+    liability**: the sum of the expected present value of all accrued
+    pension benefits prior to time $k$. \vspace{2mm}
+
+-   Assume that: \vspace{4mm}
+
+    -   All employer contributions are made at the start of the year.
+        \vspace{2mm}
+
+    -   There are no corresponding employee contributions. \vspace{2mm}
+
+    -   Any benefits for exit from employment payable during the year
+        are made exactly half-way through the year. \vspace{4mm}
+
+    The **normal contribution** for an employee age x + $k$ at the start
+    of year $k$ + 1, $C_k$, is determined from the following:
+    \vspace{4mm}
+
+    ${}_{k}V$ + $C_k$ = EPV(benefits for mid-year exits, at time $k$) +
+    $vp^{(\tau)}_{x + k}({}_{k + 1}V)$, \vspace{4mm}
+
+    where $\tau$ denotes all modes of exit from employment. Time $k$
+    will often be referred to as the **valuation date**. \vspace{2mm}
+
+    \newpage
+-   The accrued pension benefits in the actuarial liability calculations
+    can be determined using either the:
+
+    -   **Projected unit credit (PUC)** cost method: assumes that the
+        accrued pension benefit allows fully for future salary
+        increases. \vspace{2mm}
+
+    -   **Traditional unit credit (TUC)** cost method: recognizes that
+        future salary increases are not guaranteed; utilizes only
+        previously declared salaries. This method is sometimes called
+        the **current unit credit method**.
+
+    \vspace{4mm}
+
+-   Consider an employee who entered the pension plan at age x. Assume
+    that pension benefits are based on the final $n$-year average
+    salary. \vspace{2mm}
+
+    Define the following “$n$-year averaging function” for age x + $t$:
+    \vspace{2mm}
+
+    \hspace{1in} $z_{x + t}$ = ($s_{x + t - n} + ... + s_{x + t - 2} +
+    s_{x + t - 1}$)/$n$. \vspace{4mm}
+
+    Furthermore, assume the valuation date is when the employee is aged
+    x + $k$, and assume the employee’s (normal) retirement date is when
+    the employee is age x + $k$ + $j$ (if early retirement is possible,
+    these calculations have to be repeated for each possible retirement
+    date). \vspace{4mm}
+
+    -   Under the **PUC** cost method: salaries are projected to the
+        retirement date to allow for future salary increases using
+        $z_{x + k + j}$. \vspace{1mm}
+
+    -   Under the **TUC** cost method: salaries are not projected to the
+        retirement date. Instead, the final average salary to the
+        valuation date is utilized, using $z_{x + k}$. \vspace{2mm}
+
+        Note: $z_{x + k}$ would have to be adjusted for an employee with
+        less than $n$ years of service. \vspace{4mm}
+
+\newpage
+## Interest Rate Risk
+
+-   $v(t)$ = the **current market price of a $t$-year zero-coupon bond**
+
+    **with a face amount of 1**. \vspace{4mm}
+
+-   $y_t$ = the **$t$-year spot interest rate** such that: \vspace{2mm}
+
+    $v(t)$$(1 + y_t)^t$ = 1 $\implies$ $v(t)$ = $(1 + y_t)^{-t}$.
+    \vspace{4mm}
+
+-   The **term structure of interest rates** describes the relationship
+    between $y_t$ and $t$. The **yield curve** is a plot of $y_t$ versus
+    $t$, and is usually an increasing function of $t$. These terms are
+    often used interchangeably. \vspace{4mm}
+
+-   $f(t, t + k)$ = **$t$-year deferred, $k$-year forward interest
+    rate** such that: \vspace{2mm}
+
+    $(1 + f(t, t + k))^k$ = $\frac{(1 + y_{t + k})^{t + k}}{(1 +
+    y_t)^t}$ = $\frac{v(t)}{v(t + k)}$ \vspace{4mm}
+
+-   Expected present value formulas for life insurances and annuities
+    with interest rates that vary over time ($y_t$) are analogous to the
+    expected present value formulas with constant interest rates ($i$).
+    For example: \vspace{2mm}
+
+    -   $\bar{A}(x)$ = $\int^{\infty}_0 v(t){}_{t}p_x\mu_{x + t} dt$
+        \vspace{2mm}
+
+    -   $\ddot{a}(x :\lcroof{n})$ = $\sum^{n - 1}_{k = 0}
+        v(k){}_{k}p_x$ \vspace{4mm}
+
+-   Consider a portfolio with $N$ life insurance policies. The random
+    variable $X_i$ equals some quantity of interest for policy $i$ (such
+    as the loss-at-issue), where $i$ = 1, 2, ..., $N$. The risk in the
+    portfolio, as measured by $X_i$, is **diversifiable** if:
+    \vspace{2mm}
+
+    $\lim_{N \to \infty}\frac{1}{N}\sqrt{Var[\sum^N_{i = 1} X_i]}$ = 0.
+    \vspace{2mm}
+
+    Otherwise, the risk is called **non-diversifiable**. \vspace{2mm}
+
+    Let $X_i$ depend on the random variable $Y$ (example: an interest
+    rate): \vspace{2mm}
+
+    -   $E[X_i]$ = $E[E[X_i|Y]]$ \vspace{2mm}
+
+    -   $Var[X_i]$ = $E[Var[X_i|Y]]$ + $Var[E[X_i|Y]]$
+
+\newpage
+## Emerging Costs for Traditional Life Insurance
+
+\Large
+
+-   Consider a fully discrete life insurance on (x) with an $n$-year
+    term. For $k$ = 0, 1, 2, ..., $n$ - 1: \vspace{2mm}
+
+    -   The effective annual interest rate for the year from $k$ to
+        $k$ + 1 is $i_k$. \vspace{2mm}
+
+    -   The only decrement is death. \vspace{2mm}
+
+    -   $q_{x + k}$ denotes the mortality rate between ages x + k and
+        x + k + 1. \vspace{2mm}
+
+    -   $PC_0$ denote **pre-contract expenses**: expenses incurred prior
+        to issue and are allocated to the end of “year zero” (for
+        example, acquisition costs). \vspace{2mm}
+
+    -   $G_k$ denotes the premium payable at the start of the year from
+        $k$ to $k$ + 1. \vspace{2mm}
+
+    -   $e_k$ denotes expenses payable at the start of the year from $k$
+        to $k$ + 1. \vspace{2mm}
+
+    -   $b_{k + 1}$ denotes the death benefit paid at time $k$ + 1
+        if (x) dies in the year from $k$ to $k$ + 1. \vspace{2mm}
+
+    -   $E_{k + 1}$ denotes claim settlement expenses paid at time $k$ +
+        1 if (x) dies in the year from $k$ to $k$ + 1. \vspace{2mm}
+
+    -   ${}_{k}V$ denotes the reserve at time $k$. \vspace{2mm}
+
+    -   $Pr_{k + 1}$ denotes the profit emerging at the end of year
+        $k$ + 1 assuming the policy was in force at the start of the
+        year from $k$ to $k$ + 1. \vspace{4mm}
+
+-   $Pr_0$ = - ($PC_0 + {}_{0}V$). \vspace{4mm}
+
+-   $Pr_{k + 1}$ = $(G_k + {}_{k}V - e_{k})(1 + i_k)$ -
+    $(b_{k + 1} + E_{k + 1}) q_{x + k}$ - ${}_{k + 1}V p_{x + k}$
+    \vspace{2mm}
+
+    “This is the profit emerging at the end of year $k$ + 1 per policy
+    in force at the start of year $k$ + 1; this is the expected profit
+    **per inforce policy**. Take the net cash flow received at the start
+    of the year $(G_k + {}_{k}V - e_{k})$ and accumulate it for interest
+    at $i_k$ to the end of the year. Then, subtract the expected benefit
+    payable at the end of the year ($(b_{k + 1} + E_{k
+    + 1}) q_{x + k}$ - ${}_{k + 1}V p_{x + k}$.)” \vspace{4mm}
+
+-   Note: Different assumptions for interest, mortality, and expenses
+    are used to calculate the premium, reserves, and profits. Each
+    assumption is referred to as a basis. Therefore, a profit
+    calculation problem will often involve a **premium basis**, a
+    **reserve basis**, and a **profit test basis**. The profit test
+    basis will have the most realistic assumptions for interest,
+    mortality, and expenses; the premium and reserve bases will be more
+    conservative than the profit test basis. \vspace{4mm}
+
+<!-- -->
+
+-   $Pr$ = $(Pr_0, Pr_1, ..., Pr_n)^{\prime}$ = **profit vector**
+    \vspace{4mm}
+
+-   $\Pi$ = $(\Pi_0, \Pi_1, \Pi_2, \Pi_3, ..., \Pi_n)^{\prime}$
+
+    = $(Pr_0, Pr_1, p_x (Pr_2), {}_{2}p_x (Pr_3)..., {}_{n - 1}p_x
+    (Pr_n))^{\prime}$ = **profit signature** \vspace{1mm}
+
+    “$\Pi_{k + 1}$ denotes the profit emerging at the end of year $k$ +
+    1 per **issued** policy. That is, it is only assumed that the policy
+    was issued to a life aged x, and does NOT assume the policy is in
+    force (in this case, (x) survives) to the start of year $k$ + 1 for
+    $k$ = 0, 1, ..., $n$ - 1; this is the expected profit **per issued
+    policy**.” \vspace{4mm}
+
+-   Let $r$ denote the **risk discount rate** (or **hurdle interest
+    rate**). The risk discount rate is the rate used to discount
+    profits. In finance, this is often called the **opportunity cost of
+    capital**. \vspace{4mm}
+
+-   Consider the following **profit measures**: different ways of
+    measuring profit based on a policy’s profit signature. \vspace{4mm}
+
+    -   The **net present value (NPV)** is the expected present value of
+        the future profits such that: \vspace{2mm}
+
+        $NPV$ = $\sum^n_{k = 0} \Pi_k v_r^k$. \vspace{2mm}
+
+        The policy will be profitable if the NPV is positive.
+        \vspace{4mm}
+
+    -   The **internal rate of return (IRR)** is the interest rate $j$
+        such that: \vspace{2mm}
+
+        $NPV@j$ = 0. \vspace{2mm}
+
+        The policy will be adequately profitable if the IRR is greater
+        than the risk discount rate. \vspace{4mm}
+
+    -   The **profit margin** is such that: Profit Margin =
+        $\frac{NPV@r}{G\anndue{x}{n}@r}$ \vspace{2mm}
+
+        The profit margin is the NPV expressed as a proportion of the
+        expected present value of the premiums at the risk discount
+        rate. \vspace{4mm}
+
+    -   The **discounted payback period (DPP)** is the smallest value of
+        $m$ such that: \vspace{2mm}
+
+        $\sum^m_{k = 0} \Pi_k v_r^k$ $\ge$ 0. \vspace{2mm}
+
+        $m$ denotes the number of years the policy needs to remain in
+        force until the policy becomes profitable. \vspace{4mm}
+
+<!-- -->
+
+-   The previous equations can easily be modified to consider a multiple
+    decrement model. Suppose that there are $m$ decrements. For $j$ = 1,
+    2, ..., $m$; let the benefit payable at the end of the year of
+    decrement due to cause $j$, between $k$ and $k$ + 1, equal
+    $b^{(j)}_{k + 1}$. To slightly simplify notation, let any settlement
+    expenses associated with the benefit for decrement $j$ be included
+    in $b^{(j)}_{k +
+     1}$. \vspace{2mm}
+
+    $Pr_0$ = - ($PC_0 + {}_{0}V)$. \vspace{2mm}
+
+    For $k$ = 0, 1, 2, ..., $n$ - 1: \vspace{2mm}
+
+    -   $Pr_{k + 1}$ = $(G_k + {}_{k}V - e_{k})(1 + i_k)$ -
+        $\sum^m_{j = 1} b^{(j)}_{k + 1}q^{(j)}_{x + k}$ - ${}_{k + 1}V
+        p^{(\tau)}_{x + k}$ \vspace{2mm}
+
+    -   $\Pi_{k + 1}$ = ${}_{k}p^{(\tau)}_x Pr_{k + 1}$ \vspace{3mm}
+
+    Note: For the policy to be inforce at time $k$, (x) must survive all
+    decrements ($\tau$) up to $k$ with probability ${}_{k}p^{(\tau)}_x$.
+    \vspace{4mm}
+
+-   The previous equations can be modified to consider a multiple state
+    model. Suppose there are $m$ + 1 states. Assume that the
+    policyholder is in State 0 at policy issue. \vspace{2mm}
+
+    $Pr^{(0)}_0$ = - ($PC_0 + {}_{0}V^{(0)}$); it is assumed
+    pre-contract expenses are the same for all policyholders.
+    \vspace{2mm}
+
+    -   Let $k$ = 0, 1, 2, ..., $n$ - 1. For each non-terminal state
+        $i$, calculate the expected profit per inforce policy at the
+        start of year $k$ + 1: $Pr^{(i)}_{k + 1}$. As for the multiple
+        decrement case, we will include any settlement expenses
+        associated with the benefit in the “b” term. \vspace{2mm}
+
+    -   $Pr^{(i)}_{k + 1}$ =
+        $(G^{(i)}_k + {}_{k}V^{(i)} - e^{(i)}_{k})(1 + i_k)$ -
+        $\sum^m_{j = 0} [b^{(j)}_{k + 1} + {}_{k + 1}V^{(j)}] p^{ij}_{x +
+        k}$ \vspace{2mm}
+
+        “First, accumulate the net cash flow at the start of the year
+        with interest to the end of the year and subtract the expected
+        benefit payable at the end of the year. However, for the net
+        cash flow at the start of the year: you need to consider
+        premiums, reserves, and expenses associated with being in State
+        $i$ at the start of the year. For the expected benefits and
+        reserves required at the end of the year, consider all of the
+        States $j$ (which may equal $i$) that the policyholder could be
+        in at the end of the year.” \vspace{2mm}
+
+        This interpretation assumes there are no benefits payable at the
+        beginning of the year while in State 0. The net cash flow at the
+        start of the year can easily be adjusted to incorporate such
+        benefits, by including them in $e^{(i)}_{k}$. \vspace{2mm}
+
+-   $\Pi_{k + 1}$ = $\sum_i {}_{k}p^{0i}_x Pr^{(i)}_{k + 1}$.
+    \vspace{2mm}
+
+    “The expected profit per policy issued is a weighted average of all
+    of the possible $Pr^{(i)}_{k + 1}s$. When summing over $i$, only
+    consider non-terminal states.
+
+\newpage
+## Universal Life Insurance
+
+\Large
+
+-   **Universal Life Insurance** is a life insurance with an investment
+    component. Universal Life Insurance is an account into which the
+    policyholder pays premiums and earns interest. Each period,
+    deductions are made for the cost of insurance (mortality charge) and
+    expenses. The death benefit and premiums paid are chosen by the
+    policyholder (within reason; for example, sufficient funds have to
+    be available to cover the cost of insurance and expenses), and can
+    often be adjusted while the insurance is in force. \vspace{4mm}
+
+    ### Projecting Account Values
+
+    \Large
+
+-   **Fixed Death Benefit/Type A** \vspace{2mm}
+
+    Consider a universal life insurance on (x) that pays $S$ at the end
+    of the year of death. Premiums are payable at the beginning of the
+    year. Let $k$ = 0, 1, ...: \vspace{2mm}
+
+    -   $AV_k$ denotes the **account value** at the start of the year
+        from $k$ to $k$ + 1. Unless you are told otherwise, **the
+        account value is the reserve** for a universal life insurance.
+        \vspace{2mm}
+
+    -   $G_k$ denotes the premium at the start of the year from $k$ to
+        $k$ + 1. \vspace{2mm}
+
+    -   $e_k$ denotes the **expense charge** at the start of the year
+        from $k$ to $k$ + 1. \vspace{2mm}
+
+    -   $i^c_k$ denotes the **credited interest rate** for the year from
+        $k$ to $k$ + 1, used to calculate account values. \vspace{2mm}
+
+    -   $CoI_k$ denotes the **cost of insurance** at the start of the
+        year from $k$ to $k$ + 1, this is the expected present value of
+        the net amount at risk for year $k$ + 1 (at time $k$).
+        \vspace{2mm}
+
+        $i^q$ denotes the interest rate used to calculate $CoI_k$, $v_q$
+        = $(1 + i^q)^{-1}$. If no cost of insurance interest rate is
+        provided, assume $i^q$ is equal to $i^c_k$. \vspace{2mm}
+
+    -   $q_{x + k}$ denotes the mortality rate between ages x + k and
+        x + k + 1 used in the calculation of $CoI_k$. This will
+        sometimes be referred to as the **cost of insurance rate**.
+        \vspace{4mm}
+
+The recursion for projecting the fixed death benefit account value at
+the end of year $k$ + 1: \vspace{4mm}
+
+$AV_{k + 1}$ = $[AV_k + G_{k} - e_{k} - CoI_k](1 + i^c_k)$ \vspace{4mm}
+
+where $CoI_k$ = $(S - AV_{k + 1})v_qq_{x + k}$. \vspace{2mm}
+
+“The account value at the end of year $k$ + 1 is the net cash flow at
+the beginning of year $k$ + 1 accumulated at the credited interest rate
+$i^c_k$ to the end of the year. The net cash flow at the beginning of
+year $k$ + 1, at time $k$, is the account value at time $k$ plus the
+premium at time $k$ minus the expense charge at time $k$ minus the net
+amount at risk discounted for interest and mortality at time $k$
+$[AV_k + G_{k} - e_{k} - CoI_k]$. Note: the net amount at risk is the
+additional funds beyond the account value at the end of year $k$ + 1
+required to fund the death benefit of $S$ $(S - AV_{k + 1})$.”
+\vspace{2mm}
+
+As the required account value $AV_{k + 1}$ appears on both sides of the
+above fixed death benefit account value recursion, it can be solved for
+as follows: \vspace{4mm}
+
+$AV_{k + 1}$ = $[AV_k + G_{k} - e_{k} - Sv_qq_{x + k}](1 +
+i^c_k)$$[1 - v_qq_{x + k}(1 + i^c_k)]^{-1}$. \vspace{10mm}
+
+-   **Variable Death Benefit/Type B** \vspace{2mm}
+
+    Consider a universal life insurance on (x) that pays $S$ plus the
+    account value at the end of the year of death. Premiums are payable
+    at the beginning of the year. Let $k$ = 0, 1, ...: \vspace{2mm}
+
+    The recursion for projecting the variable death benefit account
+    value at the end of year $k$ + 1: \vspace{4mm}
+
+    $AV_{k + 1}$ = $[AV_k + G_{k} - e_{k} - CoI_k](1 + i^c_k)$
+    \vspace{4mm}
+
+    where $CoI_k$ = $Sv_qq_{x + k}$. \vspace{2mm}
+
+    “The interpretation of the variable death benefit account value
+    recursion is analogous to the fixed death benefit account value
+    recursion. Note: the net amount at risk is the additional funds
+    beyond the account value at the end of year $k$ + 1 required to fund
+    the death benefit of $S$ + $AV_{k +1}$ $(S)$.” \vspace{5mm}
+
+**Corridor Factor Requirement** \vspace{5mm}
+
+-   A universal life policy must have a large enough death benefit to
+    qualify as a life insurance policy. \vspace{2mm}
+
+-   This requirement can be checked by using a **corridor factor** for
+    each policy year. \vspace{2mm}
+
+-   Consider policy year $k$ + 1: \vspace{2mm}
+
+    -   Determine $AV_{k + 1}$. \vspace{2mm}
+
+    -   Let $\gamma_{k + 1}$ denote the corridor factor for year $k$
+        + 1. \vspace{2mm}
+
+        Compare the death benefit payable at time $k$ + 1 to
+        $(\gamma_{k +
+        1})(AV_{k + 1})$. \vspace{2mm}
+
+    -   If the death benefit payable at time $k$ + 1 is greater than or
+        equal to $(\gamma_{k +
+        1})(AV_{k + 1})$, then the death benefit at time $k$ + 1
+        satisfies the corridor factor requirement for year $k$ + 1 and
+        there is no issue (with the death benefit for the year being
+        large enough for the policy to be considered life insurance).
+        Otherwise, the death benefit at time $k$ + 1 needs to be
+        replaced with $(\gamma_{k +
+        1})(AV_{k + 1})$ and both $AV_{k + 1}$ and $CoI_k$ need to be
+        recalculated.
+
+\newpage
+### Profit Testing
+
+\Large
+
+Consider a universal life insurance on (x). Let $k$ = 0, 1, ...:
+\vspace{2mm}
+
+-   $AV_k$ denotes the account value at the start of the year from $k$
+    to $k$ + 1. \vspace{2mm}
+
+-   $G_k$ denotes the premium at the start of the year from $k$ to $k$ +
+    1. \vspace{2mm}
+
+-   $PC_0$ denotes pre-contract expenses. \vspace{2mm}
+
+-   $e_{k}$ denotes the expenses at the start of the year from $k$ to
+    $k$ + 1. All expenses are under the **profit test basis** and will
+    likely be less conservative (lower) than the expenses used to
+    determine account values. \vspace{2mm}
+
+-   $i_k$ denotes the annual effective interest rate for the year from
+    $k$ to $k$ + 1 used for profit testing. This rate is under the
+    **profit test basis** and will likely be less conservative (higher)
+    than the rates used to determine account values and the cost of
+    insurance ($i^c_k$, $i_q$). \vspace{2mm}
+
+-   There are two decrements: mortality and withdrawal. \vspace{2mm}
+
+-   $b_{k + 1}$ denotes the death benefit plus any claims settlement
+    expenses payable at the end of year $k$ + 1, if death occurs between
+    times $k$ to $k$ + 1. For simplicity, settlement expenses will be
+    included within this term. \vspace{2mm}
+
+-   $CV_{k + 1}$ denotes the cash value/surrender value (account value
+    less any surrender charge) plus processing costs payable at the end
+    of year $k$ + 1, if withdrawal occurs between times $k$ to $k$ + 1.
+    \vspace{2mm}
+
+-   $q^{(d)}_{x + k}$ denotes the mortality rate between ages x + k and
+    x + k + 1. This rate is under the **profit test basis** and will
+    likely be less conservative (lower) than the rate used to determine
+    account values and the cost of insurance. \vspace{2mm}
+
+-   $q^{(w)}_{x + k}$ denotes the surrender rate between ages x + k and
+    x + k + 1. \vspace{2mm}
+
+-   $p^{(\tau)}_{x + k}$ = 1 - $q^{(d)}_{x + k}$ - $q^{(w)}_{x +
+    k}$, the **persistency rate**.
+
+\newpage
+Then, the profit emerging at the end of year $k$ + 1 per policy in force
+at the start of the year from $k$ to $k$ + 1 is: \vspace{6mm}
+
+$Pr_0$ = - ($PC_0 + {}_{0}V$), \vspace{4mm}
+
+$Pr_{k + 1}$ = $(G_k + AV_k - e_{k})(1 + i_k)$ - $b_{k + 1}
+q^{(d)}_{x + k}$ - $CV_{k + 1} q^{(w)}_{x + k}$ - $AV_{k + 1}
+p^{(\tau)}_{x + k}$
+
+for $k$ = 0, 1, ..., $n$ - 1. \vspace{6mm}
+
+“The profit emerging at the end of year $k$ + 1 per policy in force at
+the start of the year from $k$ to $k$ + 1 can be calculated as follows.
+Take the net cash flow received at the start of the year
+$(G_k + AV_k - e_{k})$ and accumulate it for interest at $i_k$ to the
+end of the year. Then, subtract the expected benefit payable at the end
+of the year ($b_{k + 1} q^{(d)}_{x + k}$ + $CV_{k + 1}
+q^{(w)}_{x + k}$ + $AV_{k + 1} p^{(\tau)}_{x + k}$).” \vspace{6mm}
+
+-   The corresponding element of the profit signature is: \vspace{4mm}
+
+    $\Pi_{k + 1}$ = ${}_{k}p^{(\tau)}_x Pr_{k + 1}$. \vspace{6mm}
+
+-   Account values can be projected using the appropriate recursions
+    that were discussed in **Projecting Account Values**. Remember to
+    use the interest, mortality, and expenses under the **account value
+    basis** which will likely not equal the interest, mortality, and
+    expenses under the profit test basis. \vspace{6mm}
+
+-   The typical assumptions for the decrements will be that death can
+    occur throughout the year and surrender can only occur at the end of
+    the year. \vspace{2mm}
+
+    Then: \vspace{4mm}
+
+    $q^{(d)}_{x + k}$ = $q^{\prime(d)}_{x + k}$ \vspace{4mm}
+
+    $q^{(w)}_{x + k}$ = $(p^{\prime(d)}_{x + k})$$(q^{\prime(w)}_{x +
+    k})$
+
+\newpage
+## Exercises
+
+\Large
+
+16.1. A worker exact age 38 on January 1, 2012, earned 80,000 in 2011:
+\vspace{4mm}
+
+\(i) In a defined benefit plan, the retirement age is 65. \vspace{2mm}
+
+\(ii) The annual pension benefit is based on the projected average salary
+earned in the three years prior to retirement. \vspace{2mm}
+
+\(iii) Salaries are increased by 4% on December 31 of each year.
+\vspace{4mm}
+
+Calculate the projected average salary earned in the three years prior
+to retirement. \vspace{4mm}
+
+\(A) 200,000 \hspace{0.2in} (B) 220,000 \hspace{0.2in} (C) 240,000
+\hspace{0.2in} (D) 260,000 \hspace{0.2in} (E) 280,000 \vspace{8mm}
+
+16.2. A plan member exact age 45 on the valuation date earned salary at
+a rate of 100,000 per year at the valuation date. The salary scale
+function is: $s_x$ = $(1.03)^x$. Assume salaries are increased
+continuously. Calculate the projected salary rate at age 55.
+\vspace{4mm}
+
+\(A) 126,000 \hspace{0.2in} (B) 128,000 \hspace{0.2in} (C) 130,000
+\hspace{0.2in} (D) 132,000 \hspace{0.2in} (E) 134,000 \vspace{8mm}
+
+16.3. An employee joins a defined benefit plan at exact age 40.
+\vspace{4mm}
+
+\(i) Between ages 40 and 41, the employee’s salary is 45,000.
+\vspace{2mm}
+
+\(ii) The salary scale is such that: $s_{39}$ = 1.894, $s_{40}$ = 2.005,
+$s_{64}$ = 3.698. \vspace{2mm}
+
+\(iii) Mortality after retirement follows the Illustrative Life Table.
+\vspace{2mm}
+
+\(iv) $i$ = 0.06 \vspace{2mm}
+
+\(v) Retirement is mandatory at exact age 65. \vspace{2mm}
+
+\(vi) The plan will provide payments of $X$ per year at the beginning
+each year starting at age 65. $X$ is determined such that the
+replacement ratio is equal to 60%. \vspace{4mm}
+
+Calculate the expected present value of the plan payments at exact age
+65. \vspace{4mm}
+
+\(A) 490,000 \hspace{0.2in} (B) 491,000 \hspace{0.2in} (C) 492,000
+\hspace{0.2in} (D) 493,000 \hspace{0.2in} (E) 494,000
+
+\newpage
+16.4. Victor, age 55, is a new employee enrolled in a pension plan on
+January 1, 2016. One of the plan benefits is a death in service benefit,
+payable immediately on death before age 60. You are given: \vspace{4mm}
+
+\(i) Victor’s salary scale is: $s_y$ = $(1.05)^{y - 55}$ for 55 $\le$ $y$
+$\le$ 59. \vspace{2mm}
+
+\(ii) $i$ = 0.07 \vspace{2mm}
+
+\(iii) Victor’s employment follows the Illustrative Service Table.
+\vspace{4mm}
+
+Assume that the death in service benefit is 150,000. Also, assume all
+deaths occur in the middle of the year. \vspace{2mm}
+
+Calculate the expected present value of the death in service benefit on
+January 1, 2016. \vspace{4mm}
+
+\(A) 6100 \hspace{0.2in} (B) 6300 \hspace{0.2in} (C) 6500 \hspace{0.2in}
+(D) 6700 \hspace{0.2in} (E) 6900 \vspace{20mm}
+
+16.5. Consider the setup in Exercise 16.4 up to and including (iii).
+Now, assume that the death in service benefit is twice the annual salary
+in the year of death. Victor’s annual salary for 2016 is 90,000.
+\vspace{2mm}
+
+Assuming that all deaths occur in the middle of the year, calculate the
+expected present value of the death in service benefit on January 1,
+2016. \vspace{4mm}
+
+\(A) 8200 \hspace{0.2in} (B) 8400 \hspace{0.2in} (C) 8600 \hspace{0.2in}
+(D) 8800 \hspace{0.2in} (E) 9000 \vspace{10mm}
+
+\newpage
+16.6. In a defined contribution plan: \vspace{4mm}
+
+\(i) An employee joins the plan at age 40. \vspace{2mm}
+
+\(ii) Salary increases are 3% per year. \vspace{2mm}
+
+\(iii) Contributions to the plan are made annually at the end of the
+year, based on the annual salary for that year. \vspace{2mm}
+
+\(iv) Contributions are assumed to earn investment returns of 7.5% per
+year. \vspace{2mm}
+
+\(v) The retirement age is age 65. \vspace{2mm}
+
+\(vi) The employee will use the accumulated value of the contributions to
+purchase a monthly annuity-due at age 65, where $\ddot{a}^{(12)}_{65}$ =
+12. \vspace{2mm}
+
+\(vii) On withdrawal from the plan before age 65, for any reason, the
+proceeds of the accumulated contributions are paid to the employee or
+the employee’s survivors. \vspace{4mm}
+
+Calculate the percentage of annual salary that must be contributed each
+year in order to achieve a 60% replacement ratio. \vspace{4mm}
+
+\(A) 15.0 \hspace{0.2in} (B) 15.5 \hspace{0.2in} (C) 16.0 \hspace{0.2in}
+(D) 16.5 \hspace{0.2in} (E) 17.0 \vspace{10mm}
+
+\newpage
+16.7. Bob, currently exact age 40, joined a defined benefit pension plan
+at exact age 35. His current salary is 50,000 per year. He will retire
+at exact age 65. You are given: \vspace{2mm}
+
+\(i) Bob’s salary will increase at the rate of 2% each year on his future
+birthdays. \vspace{2mm}
+
+\(ii) The annual retirement benefit is 1.5% of the final three-year
+average salary for each year of service. \vspace{2mm}
+
+\(iii) Bob wants to supplement this annual retirement benefit with
+benefits provided from a defined contribution plan, so that the total
+annual benefit is 60,000. \vspace{2mm}
+
+\(iv) The total annual benefit is payable monthly on the first of each
+month, with the first monthly payment payable at exact age 65.
+\vspace{2mm}
+
+\(v) Post-retirement mortality follows the Illustrative Life Table.
+\vspace{2mm}
+
+\(vi) $i$ = 0.06 \vspace{2mm}
+
+\(vii) Deaths are uniformly distributed within each year of age.
+\vspace{2mm}
+
+Calculate the defined contribution plan accumulation needed at age 65 so
+that Bob receives his desired annual benefit. \vspace{4mm}
+
+\(A) 231,000 \hspace{0.2in} (B) 232,000 \hspace{0.2in} (C) 233,000
+\hspace{0.2in} (D) 234,000 \hspace{0.2in} (E) 235,000 \vspace{5mm}
+
+16.8. For a new participant entering a defined contribution plan at
+exact age 45: \vspace{2mm}
+
+\(i) The participant’s current salary (between ages 45 and 46) is 25,000.
+\vspace{2mm}
+
+\(ii) Salaries increase by 5% at the end of the year of age. \vspace{2mm}
+
+\(iii) Retirement is mandatory at exact age 65. \vspace{2mm}
+
+\(iv) Contributions equal to 4% of salary are made mid-year. \vspace{2mm}
+
+\(v) $i$ = 0.05 \vspace{2mm}
+
+\(vi) Ignore mortality and other decrements. \vspace{2mm}
+
+Calculate the accumulated value of the contributions for this
+participant at exact age 65. \vspace{4mm}
+
+\(A) 48,000 \hspace{0.2in} (B) 49,000 \hspace{0.2in} (C) 50,000
+\hspace{0.2in} (D) 51,000 \hspace{0.2in} (E) 52,000 \vspace{10mm}
+
+\newpage
+16.9. PJ joins UMAD Corporation as an employee on January 1, 2017 at
+exact age 60. His starting annual salary is 90,000 and will increase by
+3% on January 1 of each future year while employed. You are given:
+\vspace{2mm}
+
+\(i) UMAD offers PJ a defined benefit plan with an annual retirement
+benefit that is equal to 15% of the salary in the year of retirement for
+each year of service. \vspace{2mm}
+
+\(ii) PJ will receive an annual whole life annuity of the retirement
+benefit described in (i) with the first payment due on December 31, 2021
+if he retires in 2021. If PJ retires in 2019, he will receive an annual
+whole life annuity of 70% of the retirement benefit described in (i)
+with the first payment due on December 31, 2019. If PJ retires in 2020,
+he will receive an annual whole life annuity of 85% of the retirement
+benefit described in (i) with the first payment due on December 31,
+2020. PJ receives no retirement benefits if he retires prior to 2019.
+\vspace{2mm}
+
+\(iii) $i$ = 0.08 \vspace{2mm}
+
+\(iv) The service table below models exits from employment: \vspace{2mm}
+
+-   $d^{(1)}_x$ denotes the expected number of deaths while employed
+    during the year. \vspace{2mm}
+
+-   $d^{(2)}_x$ denotes the expected number of retirements during the
+    year. \vspace{2mm}
+
+-   There are no other modes of exit from employment. \vspace{2mm}
+
+$\begin{array}{r|r|r|r}
+\hline
+x      & l^{(\tau)}_x   & d^{(1)}_x  & d^{(2)}_x \\
+\hline
+60       & 24,000  & 302   & 3460 \\
+\hline
+61       & 20,238  & 284   & 1570 \\
+\hline
+62       & 18,384  & 268   & 2599 \\
+\hline
+63       & 15,517  & 253 & 1301 \\
+\hline
+64       & 13,963  & 240 & 13,723 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+\(v) $\ddot{a}_{63}$ = 13.0, $\ddot{a}_{64}$ = 12.7, $\ddot{a}_{65}$ =
+12.3. \vspace{2mm}
+
+Calculate the expected present value of PJ’s retirement benefits on
+January 1, 2017. \vspace{2mm}
+
+\(A) 421,000 \hspace{0.2in} (B) 422,000 \hspace{0.2in} (C) 423,000
+\hspace{0.2in} (D) 424,000 \hspace{0.2in} (E) 425,000
+
+\newpage
+16.10. An employee is exact age 62 on January 1, 2012: \vspace{4mm}
+
+\(i) The employee’s annual salary for 2012 is 125,300. The salary scale
+function is: $s_x$ = $(1.04)^x$. Salary increases occur each year on
+December 31. \vspace{2mm}
+
+\(ii) The Illustrative Service Table models employee exit from employment
+due to four decrements: death while employed (d), withdrawal (w),
+retirement due to disability (i), and retirement due to age (r).
+\vspace{2mm}
+
+\(iii) The employee is issued a special 3-year insurance on January 1,
+2012. The insurance provides two types of benefits. \vspace{2mm}
+
+\(iv) If the employee dies in employment prior to age 65, a lump sum
+death benefit equal to twice the employee’s salary at death is paid at
+the moment of death. Deaths are assumed to occur in the middle of the
+year. \vspace{2mm}
+
+\(v) If the employee retires due to age prior to age 65, a lump sum
+retirement benefit equal to a percentage of the employee’s salary is
+paid at the end of the year of retirement. The percentage of the
+employee’s salary for the retirement benefit is 20% if retirement occurs
+between ages 62 and 63, 40% if retirement occurs between ages 63 and 64,
+and 60% if retirement occurs between ages 64 and 65. \vspace{2mm}
+
+\(vi) The effective annual interest rate for all cash flows is 0.06.
+\vspace{4mm}
+
+Calculate the expected present value of the employee’s insurance.
+\vspace{4mm}
+
+\(A) 23,000 \hspace{0.2in} (B) 24,000 \hspace{0.2in} (C) 25,000
+\hspace{0.2in} (D) 26,000 \hspace{0.2in} (E) 27,000 \vspace{20mm}
+
+\newpage
+16.11. PJ is a member of a defined benefit pension plan at UMAD on the
+valuation date: January 1, 2024. You are given: \vspace{4mm}
+
+\(i) PJ was hired by UMAD on January 1, 2016 at exact age 38.
+\vspace{2mm}
+
+\(ii) PJ’s annual salary for 2016 was 94,000. \vspace{2mm}
+
+\(iii) PJ’s salary has increased each year on January 1 by 4% in 2017
+through 2024. PJ’s salary will continue to increase by 4% on each
+January 1 after 2024 as long as he is employed by UMAD. \vspace{2mm}
+
+\(iv) The annual accrued benefit as of any date is 1.7% of the three-year
+final average salary as of that date, multiplied by the years of service
+as of that date. The pension is payable as a 5-year certain and life
+annuity with monthly payments, with the first payment due at retirement.
+\vspace{2mm}
+
+\(v) The normal retirement age is exact age 60. \vspace{2mm}
+
+\(vi) Mortality follows the Illustrative Life Table, both before and
+after retirement. \vspace{2mm}
+
+\(vii) Annuity expected present values are determined using Woolhouse’s
+formula with two terms. \vspace{2mm}
+
+\(viii) $i$ = 0.06 \vspace{2mm}
+
+\(ix) Before retirement, the only mode of exit from employment is
+mortality. \vspace{4mm}
+
+Calculate the normal contribution to be made on the valuation date using
+the projected unit credit cost method. \vspace{4mm}
+
+\(A) 14,000 \hspace{0.2in} (B) 14,200 \hspace{0.2in} (C) 14,500
+\hspace{0.2in} (D) 14,800 \hspace{0.2in} (E) 15,100 \vspace{10mm}
+
+16.12. Consider the setup provided in Exercise 16.11. Calculate the
+normal contribution to be made on the valuation date using the
+traditional unit credit cost method. \vspace{4mm}
+
+\(A) 11,000 \hspace{0.2in} (B) 11,200 \hspace{0.2in} (C) 11,500
+\hspace{0.2in} (D) 11,800 \hspace{0.2in} (E) 12,100 \vspace{10mm}
+
+\newpage
+16.13. You are given the yield curve of effective annual spot rates:
+
+$y_t$ = 0.03 + $\frac{\sqrt{t}}{200}$ for $t$ $\ge$ 0. \vspace{2mm}
+
+Calculate the forward rate for a 5-year zero coupon bond to be purchased
+at the end of five years. \vspace{4mm}
+
+\(A) 0.0500 \hspace{0.2in} (B) 0.0505 \hspace{0.2in} (C) 0.0510
+\hspace{0.2in} (D) 0.0515 \hspace{0.2in} (E) 0.0520 \vspace{10mm}
+
+16.14. You are given: \vspace{4mm}
+
+\(i) The yield curve in Exercise 16.13. \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{4mm}
+
+Calculate the level annual benefit premium for a fully discrete 3-year
+term insurance of 10,000 on (35) issued at time $t$ = 0. \vspace{4mm}
+
+\(A) 19 \hspace{0.2in} (B) 20 \hspace{0.2in} (C) 21 \hspace{0.2in} (D) 22
+\hspace{0.2in} (E) 23 \vspace{10mm}
+
+16.15. For a fully discrete 3-year term insurance of 5000 on (46):
+\vspace{4mm}
+
+\(i) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(ii) The rate of interest is based on the yield curve at time $t$ = 0.
+You are also given the following information based on the yield curve at
+$t$ = 0: \vspace{4mm}
+
+$\begin{array}{c|c}
+\hline
+\textbf{t} & \textbf{Annual Forward Interest Rate} \\
+\hline
+0 & 0.032 \\
+1 & 0.035 \\
+2 & 0.039 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Calculate the expected present value of the insurance. \vspace{4mm}
+
+\(A) 57 \hspace{0.2in} (B) 59 \hspace{0.2in} (C) 61 \hspace{0.2in} (D) 63
+\hspace{0.2in} (E) 65 \vspace{10mm}
+
+\newpage
+16.16. You are given: \vspace{4mm}
+
+\(i) $X_N$ denotes the number of deaths between ages 45 and 50 for $N$
+independent lives each aged 40. \vspace{2mm}
+
+\(ii) Each of the $N$ lives has mortality that follows the Illustrative
+Life Table. \vspace{4mm}
+
+Calculate: $\frac{\sqrt{Var(X_{30})}}{30}$ - $\lim_{N \to
+\infty}\frac{\sqrt{Var(X_{N})}}{N}$. \vspace{4mm}
+
+\(A) 0.021 \hspace{0.2in} (B) 0.023 \hspace{0.2in} (C) 0.025
+\hspace{0.2in} (D) 0.027 \hspace{0.2in} (E) 0.029 \vspace{10mm}
+
+16.17. For a fully discrete 3-year term insurance of 10,000 on (53):
+\vspace{4mm}
+
+\(i) $q_{53}$ = 0.015, $q_{54}$ = 0.019, $q_{55}$ = 0.022 \vspace{2mm}
+
+\(ii) The rate of interest is based on the yield curve at time $t$ = 0.
+You are also given the following information based on the yield curve at
+$t$ = 0: \vspace{4mm}
+
+$\begin{array}{c|c|c}
+\hline
+\textbf{Start Time} & \textbf{End Time} & \textbf{Annual Forward Rate} \\
+\hline
+0 & 1 & 0.035 \\
+1 & 2 & 0.040 \\
+2 & 3 & 0.046 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Calculate the standard deviation of the present value of the death
+benefit random variable of the insurance. \vspace{4mm}
+
+\(A) 2100 \hspace{0.2in} (B) 2200 \hspace{0.2in} (C) 2300 \hspace{0.2in}
+(D) 2400 \hspace{0.2in} (E) 2500 \vspace{10mm}
+
+16.18. For a fully discrete 3-year endowment insurance of 100,000 on
+(45): \vspace{4mm}
+
+\(i) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(ii) The yield curve of effective annual spot interest rates is given
+by:
+
+$y_t$ = 0.03 + 0.01$t$ for $t$ $\ge$ 0. \vspace{4mm}
+
+Calculate the benefit reserve at the end of the second year.
+\vspace{4mm}
+
+\(A) 61,950 \hspace{0.2in} (B) 62,050 \hspace{0.2in} (C) 63,150
+\hspace{0.2in} (D) 64,250 \hspace{0.2in} (E) 65,350
+
+\newpage
+16.19. Consider a fully discrete 2-year term insurance of 100,000 on
+(40): \vspace{4mm}
+
+\(i) The level annual benefit premium, calculated assuming an effective
+annual interest rate of 0.06, is 271.41. \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) The effective annual interest rate is a random variable
+($\mathbf{i}$):
+
+$$\mathbf{i} = \left\{
+  \begin{array}{l l l}
+    0.03 & \quad \text{with probability 0.35}\\
+    0.06 & \quad \text{with probability 0.50}\\
+    0.09 & \quad \text{with probability 0.15}\\
+  \end{array} \right.$$ 
+
+\vspace{2mm}
+
+\(iv) The future lifetime of (40) is independent of the interest rate.
+\vspace{2mm}
+
+\(v) Let $V(L_0|i)$ = variance of the net future loss-at-issue random
+variable given $i$. Then $V(L_0|0.03)$ = 52,162,633 and $V(L_0|0.09)$ =
+44,322,379. \vspace{4mm}
+
+Calculate the standard deviation of the net future loss-at-issue random
+variable for the policy. Use the 271.41 premium. \vspace{4mm}
+
+\(A) 6000 \hspace{0.2in} (B) 7000 \hspace{0.2in} (C) 8000 \hspace{0.2in}
+(D) 9000 \hspace{0.2in} (E) 10,000 \vspace{10mm}
+
+16.20. Johnson Inc. issues a portfolio of identical 5-year term
+insurance policies to independent lives aged 75: \vspace{4mm}
+
+\(i) Half of the policies have a death benefit of 10,000, and the other
+half have a death benefit of 100,000. \vspace{2mm}
+
+\(ii) Death benefits are payable at the moment of death. \vspace{2mm}
+
+\(iii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iv) $i$ = 0.06 \vspace{2mm}
+
+\(v) Assume deaths are uniformly distributed over each year of age.
+\vspace{2mm}
+
+\(vi) $Z$ denotes the present value random variable for one of the
+policies in the portfolio chosen at random. \vspace{4mm}
+
+Calculate the standard deviation of $Z$. \vspace{4mm}
+
+\(A) 28,000 \hspace{0.2in} (B) 28,500 \hspace{0.2in} (C)
+29,000\hspace{0.2in} (D) 29,500 \hspace{0.2in} (E) 30,000 \vspace{10mm}
+
+\newpage
+16.21. Johnson Life Insurance issues a special 3-year term insurance on
+Ike aged 70. You are given: \vspace{4mm}
+
+\(i) Ike’s status follows a 4-state homogeneous Markov model with states:
+\vspace{2mm}
+
+State 0: Healthy, State 1: Disabled, State 2: Withdrawn, State 3: Dead.
+\vspace{4mm}
+
+\(ii) You are given the following annual transition probabilities for $k$
+= 0, 1, 2: \vspace{4mm}
+
+$\begin{array}{r|r|r|r|r}
+\hline
+\textbf{State i} & \mathbf{p^{i0}_{70+k}} & \mathbf{p^{i1}_{70+k}} & \mathbf{p^{i2}_{70+k}} & \mathbf{p^{i3}_{70+k}} \\
+\hline
+0 & 0.85 & 0.10 & 0.04 & 0.01 \\
+\hline
+1 & 0.80 & 0.15 & 0.03 & 0.02  \\
+\hline
+2 & 0.00 & 0.00 & 1.00 & 0.00  \\
+\hline 
+3 & 0.00 & 0.00 & 0.00 & 1.00  \\ 
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+\(iii) Ike is healthy at policy issue. \vspace{2mm}
+
+\(iv) There is a death benefit of 25,000 payable at the end of the year
+of death of Ike. \vspace{2mm}
+
+\(v) Level net premiums are payable at the beginning of the year if Ike
+is healthy. \vspace{2mm}
+
+\(vi) The current one-year spot rate is 5%, the current two-year spot
+rate is 6%, and the current three-year spot rate is 7%. \vspace{4mm}
+
+Calculate the net premium reserve at the end of the second year if Ike
+is disabled at the end of the second year. \vspace{4mm}
+
+\(A) 460 \hspace{0.2in} (B) 470 \hspace{0.2in} (C) 480 \hspace{0.2in} (D)
+490 \hspace{0.2in} (E) 500 \vspace{10mm}
+
+\newpage
+16.22. A portfolio consists of $N$ identical one-year term insurance
+policies issued simultaneously, each on a life aged x. \vspace{4mm}
+
+The insurer is unsure about the mortality of this group of policyholders
+over the term of the policies. For each policy, $q_x$ is regarded as a
+random variable with the following probability distribution:
+\vspace{4mm}
+
+-   With probability 60%, $q_x$ = 0.03, \vspace{1mm}
+
+-   With probability 40%, $q_x$ = 0.06.
+
+\vspace{4mm}
+
+The value of $q_x$ is the same for all lives in the portfolio, and
+conditional on the value of $q_x$, all lives have independent future
+lifetimes. \vspace{2mm}
+
+Let $D_N$ denote the total number of deaths during the one-year term for
+the portfolio of $N$ policies. \vspace{4mm}
+
+Calculate $\lim_{N \to \infty}\frac{1}{N}\sqrt{Var(D_N)}$. \vspace{4mm}
+
+\(A) -0.030 \hspace{0.2in} (B) -0.015 \hspace{0.2in} (C) 0 \hspace{0.2in}
+(D) 0.015 \hspace{0.2in} (E) 0.030 \vspace{10mm}
+
+16.23. Consider a whole life insurance of 1 on (x) payable at the moment
+of death: \vspace{4mm}
+
+\(i) (x) is subject to a constant force of mortality equal to 0.03.
+\vspace{2mm}
+
+\(ii) The force of interest is equal to 0.05 with probability 0.5, and is
+equal to 0.07 with probability 0.5. \vspace{2mm}
+
+\(iii) The future lifetime of (x) is independent of the force of
+interest. \vspace{2mm}
+
+\(iv) $Z$ denotes the present value random variable for this insurance.
+\vspace{4mm}
+
+Calculate the variance of $Z$. \vspace{4mm}
+
+\(A) 0.080 \hspace{0.2in} (B) 0.085 \hspace{0.2in} (C) 0.090
+\hspace{0.2in} (D) 0.095 \hspace{0.2in} (E) 0.100 \vspace{10mm}
+
+\newpage
+16.24. For a three-year term insurance policy of 10,000 on independent
+lives (50) and (55): \vspace{4mm}
+
+\(i) The death benefit is payable at the end of the year of the first
+death of (50) and (55). \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) Forward interest rates at the date of issue of the policy,
+expressed as annual rates, are as follows: \vspace{4mm}
+
+$\begin{array}{c|c|c}
+\hline
+\textbf{Start Time} & \textbf{End Time} & \textbf{Annual Forward Rate} \\
+\hline
+0 & 1 & 0.060 \\
+1 & 2 & 0.058 \\
+2 & 3 & 0.056 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Calculate the expected present value of this policy. \vspace{4mm}
+
+\(A) 400 \hspace{0.2in} (B) 420 \hspace{0.2in} (C) 440 \hspace{0.2in} (D)
+460 \hspace{0.2in} (E) 480 \vspace{10mm}
+
+16.25. You are given a portfolio of 100 identical one-year term
+insurance policies on (60) issued at the same time. For each policy,
+100,000 is payable at the end of the year of death. You are given:
+\vspace{4mm}
+
+\(i) $i$ = 0.05 \vspace{2mm}
+
+\(ii) $q_{60}$ is a random variable that equals 0.020 with probability
+0.30, equals 0.025 with probability 0.50, and equals 0.030 with
+probability 0.20. \vspace{2mm}
+
+\(iii) The value of $q_{60}$ is the same for all policies in the
+portfolio, and given this value, the policies are independent with
+respect to mortality. \vspace{4mm}
+
+Calculate the expected value of the present value of the death benefits
+for the whole portfolio. \vspace{4mm}
+
+\(A) 232,700 \hspace{0.2in} (B) 233,000 \hspace{0.2in} (C) 233,300
+\hspace{0.2in} (D) 233,600 \hspace{0.2in} (E) 224,000 \vspace{10mm}
+
+\newpage
+16.26. Consider a fully discrete 5-year term insurance of 20,000 on
+(40). The level annual gross premium is 300. \vspace{2mm}
+
+You are given the following profit test assumptions: \vspace{4mm}
+
+\(i) There are initial expenses of 10% of the gross premium plus 100.
+\vspace{2mm}
+
+\(ii) There are renewal expenses of 5% of the gross premium plus 20.
+\vspace{2mm}
+
+\(iii) All expenses are paid at the beginning of the year. \vspace{2mm}
+
+\(iv) Mortality is the only decrement, and follows the Illustrative Life
+Table. \vspace{2mm}
+
+\(v) Cash flows are accumulated at an effective annual interest rate of
+6%. \vspace{4mm}
+
+For the reserve basis: the reserve is set equal to the benefit reserve
+calculated using mortality rates ($q_x$) that are 110% of the
+Illustrative Life Table’s mortality rates and an effective annual
+interest rate of 5%. \vspace{2mm}
+
+Calculate the expected profit per issued policy for the fifth policy
+year. \vspace{4mm}
+
+\(A) 206 \hspace{0.2in} (B) 209 \hspace{0.2in} (C) 212 \hspace{0.2in} (D)
+215 \hspace{0.2in} (E) 218 \vspace{20mm}
+
+16.27. A special fully discrete 5-year endowment insurance on (50) has
+the profit signature: \vspace{4mm}
+
+$(-1000.00, 197.37, 288.81, 352.48, 499.64, 541.48)^{\prime}$.
+\vspace{4mm}
+
+Calculate the internal rate of return. \vspace{4mm}
+
+\(A) 0.20 \hspace{0.2in} (B) 0.21 \hspace{0.2in} (C) 0.22 \hspace{0.2in}
+(D) 0.23 \hspace{0.2in} (E) 0.24
+
+\newpage
+16.28. Consider a special 2-year term insurance on a select life aged
+50. The profit test assumptions are: \vspace{4mm}
+
+\(i) The level gross premium is 100 and is payable at the beginning of
+each year. \vspace{2mm}
+
+\(ii) There are two decrements: mortality (d) and lapse (w). \vspace{2mm}
+
+\(iii) The death benefit is 10,000 and is payable at the end of the year
+of death. \vspace{2mm}
+
+\(iv) The lapse benefit is $\frac{1}{4}$ of all gross premiums previously
+paid without interest, and is payable at the end of the year of lapse.
+\vspace{2mm}
+
+\(v) There is an acquisition expense of 100 that was incurred prior to
+issue; this expense is paid at issue. \vspace{2mm}
+
+\(vi) There are expenses of 8% of the gross premium that are paid
+immediately after the receipt of the premium. \vspace{2mm}
+
+\(vii) $q^{(d)}_{[50]}$ = 0.0010 and $q^{(d)}_{[50] + 1}$ = 0.0013
+\vspace{2mm}
+
+\(viii) $q^{(w)}_{[50]}$ = $q^{(w)}_{[50] + 1}$ = 0.04 \vspace{2mm}
+
+\(ix) $i$ = 0.05 \vspace{2mm}
+
+\(x) The reserve at the end of year 1 is equal to 60. \vspace{2mm}
+
+\(xi) Profits are discounted at an effective annual interest rate of
+0.10. \vspace{4mm}
+
+Calculate the expected present value of the future profits. \vspace{4mm}
+
+\(A) 35 \hspace{0.2in} (B) 40 \hspace{0.2in} (C) 45 \hspace{0.2in} (D) 50
+\hspace{0.2in} (E) 55 \vspace{10mm}
+
+\newpage
+16.29. Consider a special insurance on Heath, aged x. A profit test is
+carried out on this insurance using the following assumptions:
+\vspace{4mm}
+
+\(i) The insurance is based on a 3-state model on Heath: \vspace{2mm}
+
+Healthy (0), Disabled (1), and Dead (2). \vspace{4mm}
+
+\(ii) Transition probabilities include: \vspace{2mm}
+
+$p^{00}_{x + 8}$ = 0.85, $p^{01}_{x + 8}$ = 0.13, $p^{10}_{x + 8}$ =
+0.22, and $p^{11}_{x + 8}$ = 0.71. \vspace{4mm}
+
+\(iii) A benefit of 8000 is payable at the end of the year of death.
+\vspace{2mm}
+
+\(iv) A benefit of 1000 is payable at the end of the year if Heath is
+disabled at that time. \vspace{2mm}
+
+\(v) The reserve at the end of the eighth year is 1520 if Heath is
+healthy and is 2550 if Heath is disabled. \vspace{2mm}
+
+\(vi) The reserve at the end of the ninth year is 1790 if Heath is
+healthy and is 2733 if Heath is disabled. \vspace{2mm}
+
+\(vii) The level gross premium is 600 and is paid at the beginning of the
+year if Heath is healthy. \vspace{2mm}
+
+\(viii) There are expenses of 3% of the gross premium that are paid
+immediately upon receipt of the premium. \vspace{2mm}
+
+\(ix) $i$ = 0.07 \vspace{4mm}
+
+Calculate the expected profit at the end of the ninth year assuming
+Heath is healthy at the start of the ninth year. \vspace{4mm}
+
+\(A) 70 \hspace{0.2in} (B) 74 \hspace{0.2in} (C) 78 \hspace{0.2in} (D) 82
+\hspace{0.2in} (E) 86
+
+\newpage
+16.30. For a special 3-year term insurance on (60), the following
+assumptions are used to analyze the emerging surplus: \vspace{4mm}
+
+\(i) There are two decrements: death (d) and lapse (w). \vspace{2mm}
+
+\(ii) Death is uniformly distributed within each year of age in its
+associated single decrement table. Lapse is assumed to occur at the end
+of the year. \vspace{2mm}
+
+\(iii) \vspace{4mm}
+
+$\begin{array}{r|r|r}
+\hline
+\mathbf{x} & \mathbf{q^{\prime(d)}_{x}} & \mathbf{q^{\prime(w)}_{x}} \\
+\hline
+60 & 0.011   & 0.03 \\
+61 & 0.013   & 0.03 \\
+62 & 0.015   & 0.03  \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+\(iv) The level annual gross premium is 1400 per year payable at the
+beginning of the year. \vspace{2mm}
+
+\(v) 100,000 is payable at the end of the year of death. \vspace{2mm}
+
+\(vi) No benefit is payable if (60) lapses. \vspace{2mm}
+
+\(vii) The earned interest rate is 7%. \vspace{2mm}
+
+\(viii) Pre-contract expenses are 150. \vspace{2mm}
+
+\(ix) There is an annual commission expense that is 6% of gross premium
+payable at the beginning of the year, including the first year.
+\vspace{2mm}
+
+\(x) The gross premium reserves for this policy at times 0, 1, and 2 are:
+\vspace{1mm}
+
+${}_{0}V$ = 100, ${}_{1}V$ = 300, and ${}_{2}V$ = 400. \vspace{2mm}
+
+\(xi) The hurdle rate is 10%. \vspace{4mm}
+
+Calculate the net present value (NPV). \vspace{4mm}
+
+\(A) 120 \hspace{0.2in} (B) 125 \hspace{0.2in} (C) 130 \hspace{0.2in} (D)
+135 \hspace{0.2in} (E) 140
+
+\newpage
+16.31. Consider a fully discrete 20-year endowment insurance of 250,000
+on (45). The profit test assumptions are: \vspace{4mm}
+
+\(i) The level annual gross premium is 8400. \vspace{2mm}
+
+\(ii) $i$ = 0.05 \vspace{2mm}
+
+\(iii) $q_{45 + k}$ = 0.0015 + 0.0001$k$ for $k$ = 0, 1, 2, ..., 19.
+\vspace{2mm}
+
+\(iv) Pre-contract expenses are equal to 20% of the first gross premium.
+\vspace{2mm}
+
+\(v) Renewal expenses are equal to 2.5% of each second and subsequent
+gross premium. \vspace{2mm}
+
+\(vi) A claims settlement expense of 40 is payable at the same time as
+the 250,000 benefit. \vspace{4mm}
+
+Determine the zeroized reserve at the end of the 17th year. \vspace{4mm}
+
+\(A) 192,000 \hspace{0.2in} (B) 192,800 \hspace{0.2in} (C) 193,600
+\hspace{0.2in} (D) 194,400 \hspace{0.2in} (E) 195,200 \vspace{10mm}
+
+\newpage
+16.32. An insurer has just issued a special 3-year term insurance on
+Biggs and Wedge, each age 60. The death benefit of the insurance is
+250,000, and is payable at the end of the year of the first death of
+Biggs and Wedge. The annual gross premium is 8000, and is payable at the
+beginning of the year while both Biggs and Wedge are alive. \vspace{2mm}
+
+A profit test is carried out on this insurance using the following
+assumptions: \vspace{4mm}
+
+\(i) Biggs and Wedge have independent future lifetimes, and each has
+mortality that follows the Illustrative Life Table. \vspace{2mm}
+
+\(ii) $i$ = 0.06 \vspace{2mm}
+
+\(iii) There are pre-contract expenses equal to 300, payable immediately
+before the first premium. \vspace{2mm}
+
+\(iv) There are renewal expenses equal to 160 payable on each premium
+date, including the first. \vspace{2mm}
+
+\(v) There is a claims settlement expense of 50 payable at the same time
+as the death benefit. \vspace{4mm}
+
+Furthermore, let ${}_{t}V$ denote the gross premium reserve for this
+insurance at time $t$. The insurer has opted to use level gross premium
+reserves, such that: ${}_{0}V$ = ${}_{1}V$ = ${}_{2}V$ = 1600.
+\vspace{4mm}
+
+Calculate the net present value, using a risk discount rate of 10% per
+year. \vspace{4mm}
+
+\(A) 1700 \hspace{0.2in} (B) 1710 \hspace{0.2in} (C) 1720 \hspace{0.2in}
+(D) 1730 \hspace{0.2in} (E) 1740 \vspace{10mm}
+
+\newpage
+16.33. Consider a fully discrete 3-year term insurance policy of 50,000
+on (50). The profit test assumptions are: \vspace{4mm}
+
+\(i) Reserves equal net premium reserves calculated assuming an effective
+annual interest rate of 0.06, mortality follows the Illustrative Life
+Table, and a level annual net premium of 302.55. \vspace{4mm}
+
+\(ii) The level annual gross premium is 350.\vspace{4mm}
+
+\(iii) There is a pre-contract expense of 30% of the first gross premium.
+\vspace{4mm}
+
+\(iv) There is an expense of 2% of gross premium payable at the beginning
+of the second and subsequent policy years. \vspace{4mm}
+
+\(v) There is a claims settlement expense of 80 payable at the end of the
+year of death. \vspace{4mm}
+
+\(vi) $q_{50 + k}$ = 0.004 + 0.001$k$ for $k$ = 0, 1, 2 \vspace{4mm}
+
+\(vii) The annual effective interest rate used to accumulate cash flows
+is 0.07. \vspace{4mm}
+
+Calculate the expected profit per issued policy for the third policy
+year. \vspace{4mm}
+
+\(A) 92 \hspace{0.2in} (B) 94 \hspace{0.2in} (C) 96 \hspace{0.2in} (D) 98
+\hspace{0.2in} (E) 100 \vspace{10mm}
+
+\newpage
+16.34. For a Type A universal life insurance on (40): \vspace{4mm}
+
+\(i) A fixed death benefit of 150,000 is payable at the end of the year
+of death. \vspace{2mm}
+
+\(ii) The credited interest rate is 5% for each year. \vspace{2mm}
+
+\(iii) Mortality rates ($q_x$) for calculating the cost of insurance
+follow 120% of the mortality rates in the Illustrative Life Table.
+\vspace{2mm}
+
+\(iv) The interest rate used to calculate the cost of insurance is 5% for
+each year. \vspace{2mm}
+
+\(v) Expenses are paid at the beginning of the year, and are 10% of the
+premium in the first year and 6% of the premium in each renewal year.
+\vspace{2mm}
+
+\(vi) The policyholder pays a premium of 3600 at the start of the fifth
+year. \vspace{2mm}
+
+\(vii) The account value at the beginning of the fifth year is 19,220.
+\vspace{2mm}
+
+\(viii) The surrender charge for the fifth year is 3000, payable at the
+end of the year. \vspace{4mm}
+
+Calculate the cash value at the end of the fifth year. \vspace{4mm}
+
+\(A) 20,000 \hspace{0.2in} (B) 20,500 \hspace{0.2in} (C) 21,000
+\hspace{0.2in} (D) 21,500 \hspace{0.2in} (E) 22,000
+
+\newpage
+16.35. A profit test is conducted on the universal life insurance in
+Exercise 16.34. In addition to the information provided in that
+exercise, you are given the following profit test assumptions:
+\vspace{4mm}
+
+\(i) Expenses are paid at the beginning of the year; and are 8% of the
+premium in the first year and 5% of the premium in each renewal year.
+\vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) An effective annual interest rate of 5.5% is used to accumulate
+cash flows. \vspace{2mm}
+
+\(iv) The surrender rate is 8% for the first year and 4% in renewal
+years. It is assumed that surrender can only occur at the end of the
+year. \vspace{2mm}
+
+\(v) There is a claims settlement expense of 300 associated with payment
+of the death benefit. \vspace{2mm}
+
+\(vi) There is an additional expense of 100 associated with payment of
+the cash value. \vspace{4mm}
+
+Calculate the expected profit for the fifth year per policy issued.
+\vspace{4mm}
+
+\(A) 270 \hspace{0.2in} (B) 290 \hspace{0.2in} (C) 315 \hspace{0.2in} (D)
+340 \hspace{0.2in} (E) 360
+
+\newpage
+16.36. Consider a universal life insurance on a select life aged 48:
+\vspace{4mm}
+
+\(i) There is a fixed death benefit of 100,000 payable at the end of the
+month of death. \vspace{2mm}
+
+\(ii) The account value at the end of the 96th month is 68,500.
+\vspace{2mm}
+
+\(iii) A premium of 800 is paid at the beginning of the 97th month.
+\vspace{2mm}
+
+\(iv) A per policy expense of 40 is paid at the beginning of the 97th
+month. \vspace{2mm}
+
+\(v) The credited interest rate is 0.5% for the 97th month. \vspace{2mm}
+
+\(vi) The interest rate used to calculate the cost of insurance is 0.4%
+for the 97th month. \vspace{2mm}
+
+\(vii) Mortality rates ($q_x$) for calculating the cost of insurance
+follow 110% of the mortality rates in the Standard Select Survival
+Model. It is assumed that deaths are uniformly distributed over each
+year of age. \vspace{2mm}
+
+\(viii) During the 97th month, there is a corridor factor of 1.46. That
+is, the death benefit will actually be the greater of 100,000 and the
+account value at the end of the 97th month times the corridor factor. If
+the corridor factor provision would increase the death benefit, the cost
+of insurance calculation should utilize the increased death benefit.
+\vspace{4mm}
+
+Calculate the cost of insurance for the 97th month. \vspace{4mm}
+
+\(A) 5.00 \hspace{0.2in} (B) 5.50 \hspace{0.2in} (C) 6.00 \hspace{0.2in}
+(D) 6.50 \hspace{0.2in} (E) 7.00 \vspace{10mm}
+
+\newpage
+16.37. For a Type A universal life policy issued to (45), you are given:
+\vspace{4mm}
+
+\(i) The death benefit is 100,000 payable at the end of the year of
+death. \vspace{2mm}
+
+\(ii) The account value at the beginning of the fifteenth year is
+48,990.87. \vspace{2mm}
+
+\(iii) The premium payable at the beginning of the fifteenth year is
+4000. \vspace{2mm}
+
+\(iv) The expense charge is 3% of premium for the fifteenth year, payable
+at the beginning of the year. \vspace{2mm}
+
+\(v) The cost of insurance for the fifteenth year is calculated based on
+120% of the mortality in the Illustrative Life Table; the interest rate
+for discounting the additional death benefit is 0.03. \vspace{2mm}
+
+\(vi) The credited interest rate is 4% for the fifteenth year.
+\vspace{2mm}
+
+\(vii) The corridor factor is 1.95 for the fifteenth year. \vspace{4mm}
+
+Calculate the cost of insurance for the fifteenth year. \vspace{4mm}
+
+\(A) 600 \hspace{0.2in} (B) 650 \hspace{0.2in} (C) 700 \hspace{0.2in} (D)
+750 \hspace{0.2in} (E) 800 \vspace{10mm}
+
+\newpage
+### Answers to Exercises
+
+\Large16.1. B \hspace{2in} 16.26. D \vspace{2mm}
+
+16.2. E \hspace{2in} 16.27. B \vspace{2mm}
+
+16.3. D \hspace{2in} 16.28. B \vspace{2mm}
+
+16.4. C \hspace{2in} 16.29. D \vspace{2mm}
+
+16.5. C \hspace{2in} 16.30. D \vspace{2mm}
+
+16.6. D \hspace{2in} 16.31. B \vspace{2mm}
+
+16.7. A \hspace{2in} 16.32. B \vspace{2mm}
+
+16.8. E \hspace{2in} 16.33. B \vspace{2mm}
+
+16.9. C \hspace{2in} 16.34. A \vspace{2mm}
+
+16.10. C \hspace{1.88in} 16.35. B \vspace{2mm}
+
+16.11. E \hspace{1.88in} 16.36. D \vspace{2mm}
+
+16.12. D \hspace{1.88in} 16.37. D \vspace{2mm}
+
+16.13. B \vspace{2mm}
+
+16.14. C \vspace{2mm}
+
+16.15. E \vspace{2mm}
+
+16.16. D \vspace{2mm}
+
+16.17. A \vspace{2mm}
+
+16.18. C \vspace{2mm}
+
+16.19. B \vspace{2mm}
+
+16.20. D \vspace{2mm}
+
+16.21. A \vspace{2mm}
+
+16.22. D \vspace{2mm}
+
+16.23. C \vspace{2mm}
+
+16.24. B \vspace{2mm}
+
+16.25. C \vspace{2mm}
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#12, 13, 17, 18, 19, 20 \vspace{2mm}
+
+-   Exam MLC, Spring 2015: \#15, 16, 19, 20 \vspace{2mm}
+
+-   Exam MLC, Fall 2014: \#17, 18, 19 \vspace{2mm}
+
+-   Exam MLC, Spring 2014: \#4, 15, 17, 18, 19 \vspace{2mm}
+
+-   Exam MLC, Fall 2013: \#11, 20, 22, 23 \vspace{2mm}
+
+-   Exam MLC, Spring 2013: \#8, 12, 14, 17, 23 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#7, 8, 9, 10, 11 \vspace{2mm}
+
+-   Exam MLC, Spring 2012: \#10, 11, 18, 20, 23, 24, 27 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#289, 290, 291, 292, 293, 294, 295,
+    296, 297, 298, 301, 310, 311, 315, 316, 317, 318, 319, 320, 321, 322

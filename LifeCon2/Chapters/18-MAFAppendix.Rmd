@@ -1,0 +1,29 @@
+---
+title: "Appendix"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Appendix
+
+## Appendix A: Exam Syllabi, Exam Tables, and Past Exam Questions
+
+All relevant materials regarding SOA Exam MLC can be found at:
+
+[http://www.soa.org/education/exam-req/edu-exam-m-detail.aspx](http://www.soa.org/education/exam-req/edu-exam-m-detail.aspx).
+\vspace{5mm}
+
+All relevant materials regarding the former CAS Exam LC can be found at:
+
+[http://www.casact.org/admissions/syllabus/index.cfm?fa=LCsyllabi&parentID=332](http://www.casact.org/admissions/syllabus/index.cfm?fa=LCsyllabi&parentID=332).
+\vspace{10mm}
+
+## Appendix B: Multi-State Model Examples
+
+![](Figures/Appendix_MSM.pdf) 
+<!-- don't know how to get all 4 to show -->

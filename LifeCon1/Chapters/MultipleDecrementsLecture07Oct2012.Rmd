@@ -1,0 +1,554 @@
+---
+title: "Multiple Decrement Models"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Multiple Decrement Models
+## Examples of Multiple Decrement Models
+
+Multiple decrement models can be formulated as a special case of
+multiple state models. As with a multiple state model, we consider a
+life aged $x$ who, at time point $t$ (age $x+t$) is in one of $n+1$
+potential outcomes, $0,1, \ldots, n$. Specifically, we let $Y(t)$
+(sometimes denoted as $Y(x+t)$) be a categorical random variable with
+potential outcomes $0,1, \ldots, n$.
+
+In a multiple decrement model, we start in state 0 but all other states
+are *absorbing states*, where it is not possible to leave.
+
+![Multidecrement Model as a MultiState
+Representation.](Figures\MDM_MultipleDecrement.pdf){width=".35\textwidth"}
+
+Both the “Alive-Dead” and the “Accidental Death” Models are special
+cases of multiple decrement models. For some other special cases,
+consider the following.
+
+**Special Case 1. Cause-Specific Death Model.** In this special case, we
+might let
+
+-   0 means alive
+
+-   1 means Ischaemic heart disease (12.6%)
+
+-   2 means Cerebrovascular disease (9.7%)
+
+-   3 means Lower respiratory infections (6.8%)
+
+-   4 means HIV/AIDS (4.9%)
+
+-   5 means Chronic obstructive pulmonary disease (4.8%)
+
+-   6 means Diarrhoeal diseases (3.2%)
+
+-   7 means Tuberculosis (2.7%)
+
+-   8 means Trachea/bronchus/lung cancers (2.2%)
+
+-   9 means Malaria (2.2%)
+
+-   10 means Road traffic accidents (2.1%)
+
+-   11 means Death to other causes
+
+To give you a sense of their relative importance, the numbers in the
+parens ($\cdot$) represent the percentage of deaths according to the
+World Health Organization in 2002. (*Source*: Wikipedia,
+http://en.wikipedia.org/wiki/Mortality\_rate.)
+
+**Special Case 2. Pension Plan Termination and Retirement Model.** In
+this special case, we might let
+
+-   0 means Active
+
+-   1 means Retired
+
+-   2 means Disabled
+
+-   3 means Death
+
+-   4 means Termination
+
+-   5 means Withdraw for Other Reasons
+
+This model is relevant for certain retirement systems where benefit
+amounts vary by the reason for leaving employment.
+
+Source: 2003 *Society of Actuaries Pension Plan Turnover Study*.
+
+http://www.soa.org/research/experience-study/
+pension/research-2003-soa-pension-plan-turnover-study.aspx
+
+![Aggregate Turnover – Termination and Retirement. Termination estimated
+probabilities are smoothed via Whittaker-Henderson Type B whereas
+retirement estimated probabilities are unsmoothed. Estimated
+probabilities are in
+percent.](Figures\MDM_RetirementSystemTurnoverL.pdf){width=".5\textwidth"}
+
+![Aggregate Turnover – Death, Disability and Other. All estimated
+probabilities are smoothed. The vertical scale indicates that
+probabilities of turnover from these sources are much smaller than
+retirement and termination. Estimated probabilities are in
+percent.](Figures\MDM_RetirementSystemTurnoverR.pdf){width=".5\textwidth"}
+
+## Multiple Decrement Probabilities
+
+How do the general multiple state probability properties reduce to the
+multiple decrement case?
+
+1\. Just to reinforce the fundamentals, in a multiple decrement
+probability model, we have $$\begin{aligned}
+ ~_t p_x^{j0}=0, ~ j=1,\ldots,n ~~~~ \text{and} ~~~~  _t p_x^{jj}=1, ~ j=1,\ldots,n.\end{aligned}$$
+
+2\. For state $i=0$ (alive or active), transition probabilities are equal
+to occupancy probabilities. That is, $$\begin{aligned}
+ ~_t p_x^{00} = ~_t p_x^{\overline{00}} .\end{aligned}$$ This is
+because it is not possible to return to state 0 after having left it
+(all other states are absorbing).
+
+As a consequence, we may express $$\begin{aligned}
+ ~_t p_x^{00} &=  \exp \left\{- \int_0^t \sum_{j=1}^n  \mu_{x+s}^{0j} ~ds
+  \right\}
+  =   \exp \left\{- \int_0^t  \mu_{x+s}^{0\bullet} ~ds   \right\},\end{aligned}$$
+where $\mu_{x}^{0\bullet}= \sum_{j=1}^n \mu_{x}^{0j}$ is the total
+force of transition out of state 0 at age $x$.
+
+3\. The Chapman-Kolmogorov equations reduce to $$\begin{aligned}
+  _{m+n} p_x^{0j} &=  \sum_{k=0}^n ~ _m p_x^{0k} \times  ~_n p_{m+x}^{kj}
+= ~ _m p_x^{00} \times ~ _n p_{x+m}^{0j} + ~ _m p_x^{0j}   .\end{aligned}$$
+
+4\. Kolmogorov’s forward equation reduces to $$\begin{aligned}
+\frac{\partial}{\partial t} ~ _t p_x^{0j}=
+ \sum_{k=0, k \ne j}^n
+ \left(
+ _t p_x^{0k} \mu_{x+t}^{kj}
+- ~  _t p_x^{0j} \mu_{x+t}^{jk}
+  \right)
+  = ~ _t p_x^{00} \mu_{x+t}^{0j}.\end{aligned}$$ Thus, we may write
+$$\begin{aligned}
+ _t p_x^{0j}=
+ \int_0^t  ~  _s p_x^{00} \mu_{x+s}^{0j} ~ ds .\end{aligned}$$
+
+**Example.** For a double-decrement model, you are given
+
+-   $\mu_{x+t}^{01} = \frac{r_1}{c} t$
+
+-   $\mu_{x+t}^{02} = \frac{r_2}{c} t$
+
+Determine the probability of eventually exiting due to cause 1.
+
+*Solution.* The probability of eventually exiting due to cause 1 may be
+expressed as $$\begin{aligned}
+ _{\infty} p_x^{01}=
+ \int_0^{\infty}  ~  _s p_x^{00} \mu_{x+s}^{01} ~ ds = \frac{r_1}{c} \int_0^{\infty}  ~  _s p_x^{00} s ~ ds .\end{aligned}$$
+The probability of surviving is $$\begin{aligned}
+ ~ _t p_x^{00}   &=   \exp \left\{- \int_0^t  \mu_{x+s}^{0\bullet} ~ds   \right\} \\
+ &=  \exp \left\{- \int_0^t
+ \frac{r_1+r_2}{c} s ~ds   \right\} =
+ \exp \left\{-\frac{r_1+r_2}{2c} t^2  \right\} .\end{aligned}$$ With
+this, the probability of eventually exiting due to cause 1 is
+$$\begin{aligned}
+ _{\infty} p_x^{01} &= \frac{r_1}{c} \int_0^{\infty}  ~   \exp \left\{-\frac{r_1+r_2}{c} \frac{s^2}{2}  \right\} s ~ ds \\
+&= \left. -\frac{r_1}{c} \frac{1}{\frac{r_1+r_2}{c}}\exp \left\{-\frac{r_1+r_2}{c}
+\frac{t^2}{2}  \right\} \right|_0^{\infty} = \frac{r_1}{r_1+r_2} .\end{aligned}$$
+
+### Exercises
+
+**Example.** For a double-decrement model, you are given
+
+-   $\mu_{x+t}^{01} = \frac{t}{100}$
+
+-   $\mu_{x+t}^{02} = \frac{1}{100}$
+
+a\) Find the probability of eventually exiting due to cause 2.
+
+b\) Given that an individual has failed due to the second cause, what is
+the expected time of failure?
+
+*Solution:* The probability of surviving is $$\begin{aligned}
+ ~_t p_x^{00}   &=   \exp \left\{- \int_0^t  \mu_{x+s}^{0\bullet} ~ds   \right\} \\
+ &=  \exp \left\{- \int_0^t
+ \frac{1+s}{100} ~ds   \right\} =
+ \exp \left\{-\frac{t^2+2t}{200}  \right\} .\end{aligned}$$ With this,
+the probability of eventually exiting due to cause 2 is
+$$\begin{aligned}
+ _{\infty} p_x^{02} &=
+ \int_0^{\infty}  ~  _s p_x^{00} \mu_{x+s}^{02} ~ ds = \frac{1}{100} \int_0^{\infty}   \exp \left\{-\frac{s^2+2s}{200}  \right\} ~ ds \\
+ &= \frac{1}{100}  \exp \left\{\frac{1}{200}  \right\} \int_0^{\infty}   \exp \left\{-\frac{s^2+2s+1}{200}  \right\} ~ ds \\
+  &= \frac{1}{100}  \exp \left\{\frac{1}{200}  \right\} \int_0^{\infty}   \exp \left\{-\frac{(s+1)^2}{200}  \right\} ~ ds \\
+    &= \frac{10}{100}  \exp \left\{\frac{1}{200}  \right\} \int_{0.1}^{\infty}   \exp \left\{-u^2/2  \right\} ~ du \\
+    &= \frac{10 \sqrt{2 \pi}}{100}  \exp \left\{\frac{1}{200}\right\} (1 - \Phi(0.1))  = 0.1159 ,\end{aligned}$$
+where we use the change of integral $u = (s+1)/\sqrt{100}=(s+1)/10$ and
+the cumulative normal distribution function
+$\Phi(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^x
+e^{-u^2/2} du$.
+
+For part (b), we have $$\begin{aligned}
+\frac{1}{ _{\infty} p_x^{02}} & & \int_0^{\infty} t \times ~ _t p_x^{00} \mu_{x+t}^{02}  dt \\
+&= \frac{1}{0.1159} \int_0^{\infty} t \times  \exp \left\{-\frac{t^2+2t}{200}  \right\} \frac{1}{100}  dt \\
+&= \frac{1}{11.59}\exp \left\{\frac{1}{200}  \right\}  \int_0^{\infty} t \times  \exp \left\{-\frac{(t+1)^2}{200}  \right\}  dt \\
+&= \frac{10}{11.59} \exp \left\{\frac{1}{200}  \right\} \int_{0.1}^{\infty} (10u-1) \exp \left\{-u^2/2 \right\}  dt \\
+&= \frac{10}{11.59}\exp \left\{\frac{1}{200}\right\}   10\left. \exp \left\{-u^2/2 \right\}\right|_{0.1}^{\infty}  \\
+&~ & ~~~~~~~~ - \frac{10\sqrt{2 \pi}}{11.59}\exp \left\{\frac{1}{200}\right\} (1 -
+\Phi(0.1))
+  =7.63, \\\end{aligned}$$ where we use the change of integral
+$u =(t+1)/10$.
+
+### Multiple Decrement Tables
+
+Tables of multiple decrement transition probabilities can be useful,
+particularly in discrete models. Because of the importance of
+multi-decrement applications, special notation is sometimes used. Here
+is common notation used in the US and Canada.
+
+  ------------------------------ -------------------------- -------------------------------------------
+
+  Concept                              Multiple State                     Multi-Decrement
+  Transition Probability               $_t p_x^{0j}$                      $_t q_x^{(j)}$
+  Total Transition Probability      $_t p_x^{0\bullet}$                 $_t q_x^{(\tau)}$
+  Survival Probability                 $_t p_x^{00}$                    $_t p_x^{(\tau)}$
+  Transition Forces                  $\mu_{x+t}^{0j}$           $\mu_{x+t}^{(j)}=\mu_{x}^{(j)}(t)$
+  Total Transition Forces         $\mu_{x+t}^{0\bullet}$     $\mu_{x+t}^{(\tau)}=\mu_{x}^{(\tau)}(t)$
+  ------------------------------ -------------------------- -------------------------------------------
+
+**Example - Students Writing Actuarial Exams.** Let
+
+$\bullet$ $p_x^{01}$ be the probability of attaining Fellowship
+
+$\bullet$ $p_x^{02}$ be the probability of exiting the examination
+system due to other causes.
+
+$\bullet$ Decrements occur at the end of the year
+
+[rrr]{}\
+$x$ & $p_x^{01}$& $p_x^{02}$\
+21 & 0.008 & 0.015\
+22 & 0.015 & 0.20\
+23 & 0.025 & 0.25\
+
+After attaining fellowship, the only decrement is mortality with
+constant force $\mu =
+0.04.$
+
+Calculate the probability that a student age 21 will be living and a
+Fellow 3 years later.
+
+*Solution:*
+
+[rrrrrrr]{}\
+$x$ & $p_x^{01}$& $p_x^{02}$ & $p_x^{0\bullet}$ & $p_x^{00}$&
+$_n p_x^{00}$ & $n$\
+21 & 0.008 & 0.015 & 0.158 & 0.842 & 0.842 & 1\
+22 & 0.015 & 0.20 & 0.215 & 0.785 & 0.661 & 2\
+23 & 0.025 & 0.25 & 0.275 & 0.725 & 0.479 & 3\
+
+$$\begin{aligned}
+\text{Desired probability is} &= p_{21}^{01} p_{22} p_{23} + p_{21}^{00} p_{22}^{01} p_{23} + ~_2p_{21}^{00} p_{23}^{01}  \\
+&=(0.008) e^{-0.04} e^{-0.04}+ (0.842)().015) e^{-0.04} + (0.661)(0.025) = 0.036\end{aligned}$$
+
+It is also common to display multi-decrement tables using a “life table”
+format. With the expected number of lives given by each status. To this
+end, let
+
+-   $x_0$ be an initial age
+
+-   $l_{x_0}$ be the expected number in state 0 (.e.g., “alive”) at age
+    $x_0$; this is the *radix* of the table
+
+-   $l_x$ be the expected number in state 0 at age $x$; this is computed
+    as $l_x = l_{x_0} \times ~_{x-x_0} p_{x_0}$
+
+-   $d_x^{(j)}$ number of transitions from state 0 to state $j$ (i.e.,
+    exits due to cause $j$), from ages $x$ to $x+1$.
+
+Here is an example of a quadruple decrement table where
+
+-   $j=0$ means an active policyholder of a life insurance policy,
+
+-   $j=1$ corresponds to death,
+
+-   $j=2$ surrender of a life insurance policy, and
+
+-   $j=3$ diagnosis of a critical illness.
+
+    $x$     $l_x$   $d_x^{(1)}$   $d_x^{(2)}$   $d_x^{(3)}$
+  ----- --------- ------------- ------------- -------------
+     40   100 000            51         4 784            44
+     41    95 121            52         4 526            47
+     42    90 496            53         4 268            50
+     43    86 125            54         4 010            53
+     44    82 008            55         3 753            56
+     45    78 144            56         3 496            59
+     46    74 533            57         3 239            62
+     47    71 175            57         2 983            65
+     48    68 070            58         2 729            67
+     49    65 216            58         2 476            69
+     50    62 613            58         2 226            70
+
+  : Excerpt from a Critical Illness Multiple Decrement Table
+
+**Example.** (a) Calculate (i) $_3 p_{45}^{00}$, (ii) $p_{40}^{01}$ and
+(iii)$_5 p_{41}^{03}$
+
+*Solution*
+
+$$\begin{aligned}
+_3 p_{45}^{00} = \frac{l_{48}}{l_{45}}=\frac{68,070}{78,144}= 0.871084.\end{aligned}$$
+
+$$\begin{aligned}
+p_{40}^{01} &= \frac{d_{40}^{(1)}}{l_{40}}=\frac{51}{100,000}= 0.00051.\end{aligned}$$
+
+$$\begin{aligned}
+_5 p_{41}^{03}&= \frac{d_{41}^{(3)}+d_{42}^{(3)}+d_{43}^{(3)}+d_{44}^{(3)}+d_{45}^{(3)}}{l_{41}} \\
+&= \frac{47+50+53+56+59}{95,121} = \frac{265}{95,121} = 0.002786.\end{aligned}$$
+
+(b) Calculate the probability that a policy issued to a life aged 45
+generates a claim for death or critical illness before age 47.
+
+*Solution*
+
+$$\begin{aligned}
+_2 p_{45}^{01}+ _2 p_{45}^{03}&= \frac{d_{45}^{(1)}+d_{46}^{(1)}+d_{45}^{(3)}+d_{46}^{(3)}}{l_{45}} \\
+&= \frac{56+57+59+62}{78,144} = \frac{234}{78,144} = 0.002994.\end{aligned}$$
+
+(c) Calculate the probability that a policy issued to a life age 40 is
+surrendered between ages 45 and 47.
+
+*Solution*
+
+$$\begin{aligned}
+_5 p_{40}^{00} \times _2 p_{45}^{02}&= \frac{l_{45}}{l_{40}} \times  \frac{d_{45}^{(2)}+d_{46}^{(2)}}{l_{45}}\\
+&=  \frac{d_{45}^{(2)}+d_{46}^{(2)}}{l_{40}} = \frac{3,496+3,239}{100,000} = 0.06735.\end{aligned}$$
+
+## Fractional Age Assumptions
+
+Sometimes, we have available discrete (integer) multi-decrement tables
+and need to evaluate non-integer ages or duration probabilities. To
+accomplish this, there are two main assumptions used in practice.
+
+**Uniform Distributions of Decrements in the Multiple Decrement Table.**
+We use the acronym $UDD$ for “uniform distributions of decrements”. Note
+that this is *within the year*, not over the entire age range. Under
+this assumption, for integer age $x$ and fraction $t$
+($0 \leq t \leq 1$), we have $$\begin{aligned}
+_t p_x^{0j} = t \times  p_x^{0j}\end{aligned}$$ For each decrement,
+exits are uniformly spaced over the year.
+
+Now, if the $UDD$ assumption holds for all decrements, then we may write
+$$\begin{aligned}
+~_t p_x^{00} &= 1 - \sum_{j=1}^n ~ _t p_x^{0j} = 1 - \sum_{j=1}^n t \times p_x^{0j} \\
+ &=  1 - t \times  p_x^{0\bullet} .\end{aligned}$$
+
+With Kolmogorov’s forward equation, we have $$\begin{aligned}
+\frac{\partial}{\partial t} ~ _t p_x^{0j}=  p_x^{0j}
+  = ~_t p_x^{00} \mu_{x+t}^{0j} .\end{aligned}$$
+
+Thus, we may express the transition force as $$\begin{aligned}
+\mu_{x+t}^{0j} = \frac{p_x^{0j}}{1 - t \times   p_x^{0\bullet}} .\end{aligned}$$
+
+**Constant Transition Forces in the Multiple Decrement Table.** Under
+this assumption, transition forces are constant *within the year*,
+$$\begin{aligned}
+\mu_{x+t}^{0j} = \mu_{x}^{0j} , \text{~~~for~~~} 0 \leq t \leq 1 .\end{aligned}$$
+
+Recall that $$\begin{aligned}
+ ~_t p_x^{00} &=  \exp \left\{- \int_0^t \sum_{j=1}^n  \mu_{x+s}^{0j} ~ds
+  \right\}
+  =   \exp \left\{- \int_0^t  \mu_{x+s}^{0\bullet} ~ds   \right\},\end{aligned}$$
+where $\mu_{x}^{0\bullet}= \sum_{j=1}^n \mu_{x}^{0j}$ is the total
+force of transition out of state 0 at age $x$. Thus, under the constant
+force assumption, we have $$\begin{aligned}
+ ~_t p_x^{00} &=  \exp \left\{-t \times \mu_{x}^{0\bullet}\right\},\end{aligned}$$
+and, taking the limit as $t \rightarrow 1$, we have
+$p_x^{00} =  e^{-\mu_{x}^{0\bullet}}$. Thus, we can write $$\begin{aligned}
+ ~_t p_x^{00} &=  \left\{p_x^{00}\right\}^t .\end{aligned}$$ Further,
+$$\begin{aligned}
+ ~_t p_x^{0j} &=  \int_0^t  ~  _s p_x^{00} \mu_{x+s}^{0j} ~ ds  =
+ \mu_{x}^{0j}  \int_0^t  ~  e^{- s \mu_{x}^{0\bullet}}  ~ ds \\
+ &= \mu_{x}^{0j} \frac{1-e^{- t\mu_{x}^{0\bullet}}}{\mu_{x}^{0\bullet}}  \\
+       &= \frac{\mu_{x}^{0j}}{\mu_{x}^{0\bullet}} (1- (p_x^{00})^t)\end{aligned}$$
+Again, taking the limit as $t \rightarrow 1$, we have $$\begin{aligned}
+\frac{ p_x^{0j}}{1- p_x^{00}} = \frac{ p_x^{0j}}{p_x^{0\bullet}}=
+\frac{\mu_{x}^{0j}}{\mu_{x}^{0\bullet}} .\end{aligned}$$ Thus, we may
+write $$\begin{aligned}
+ _t p_x^{0j} =  \frac{ p_x^{0j}}{p_x^{0\bullet}} \left(1- (p_x^{00})^t\right) .\end{aligned}$$
+
+To summarize
+
+  Concept                               Function                                UDD                                                   Constant Force
+  ------------------------------ ---------------------- --------------------------------------------------- ------------------------------------------------------------------
+  Transition Probability             $_t p_x^{0j}$                     $t \times p_x^{0j}$                   $\frac{ p_x^{0j}}{p_x^{0\bullet}} \left(1- (p_x^{00})^t\right)$
+  Total Transition Probability    $_t p_x^{0\bullet}$               $t \times p_x^{0\bullet}$                                      $1- (p_x^{00})^t$
+  Survival Probability               $_t p_x^{00}$                 $1-t \times p_x^{0\bullet}$                                       $(p_x^{00})^t$
+  Transition Forces                $\mu_{x+t}^{0j}$      $\frac{p_x^{0j}}{1 - t \times   p_x^{0\bullet}}$                            $\mu_{x}^{0j}$
+
+  : Fractional Age Assumptions in the Multiple Decrement Table
+
+## Associated Single Decrement Models
+
+Construction of multi-decrement tables can be difficult.
+
+Alternative - construct several single decrement tables and use these to
+build a multi-decrement table. Idea behind the construction of theses
+tables: From a population, take the subset of individuals who eventually
+fail due to cause $j$ and construct a decrement table from this subset.
+
+To begin, we define the single decrement functions $$\begin{aligned}
+~_t q_x^j = 1- \exp \left\{ - \int_0^t \mu_{x+u}^{0j} ~ du \right\}\end{aligned}$$
+with the corresponding survival probabilities,
+$~_t p_x^j=1- ~ _t q_x^j$. Some authors use the alternative notation
+$~_t q_x^{\prime(j)}= ~ _t q_x^j$ and $~ _t
+p_x^{\prime(j)}=1- ~ _t q_x^{\prime(j)}$. Note that this decrement uses
+*only* the transition force $\{\mu_{x}^{0j}\}$. In this sense, it is
+“independent” (or unrelated) to the other transition intensities - it is
+not independent in the usual stochastic sense.
+
+Also known as the “net probability of decrement” and the “net rate of
+decrement” - the later definition emphasizes that the quantities
+$~ _t q_x^j$ are not probabilities in the usual sense.
+
+Because $$\begin{aligned}
+~_t p_x^{00} &= \exp \left\{ - \int_0^t \mu_{x+s}^{0\bullet} ~ ds \right\} \\
+&= \prod_{j=1}^n \exp \left\{ - \int_0^t \mu_{x+s}^{0j} ~ ds \right\} = \prod_{j=1}^n 
+~_t p_x^j ,\end{aligned}$$ we think of these decrements as “competing”
+with one another. In biostatistics, multi-decrement models fall under
+the rubric “the Theory of Competing Risks.”
+
+**Example.** You are given the following extract from a triple-decrement
+table. Calculate $l_{63}$.
+
+   $x$   $p_x^{01}$   $p_x^{02}$   $p_x^{03}$   $p_x^{0\bullet}$   $l_x$    $q_x^1$   $q_x^2$   $q_x^3$
+  ----- ------------ ------------ ------------ ------------------ -------- --------- --------- ---------
+   60      0.010        0.050        0.020             –           10,000
+   61                                                0.076
+   62                                                  –             –       0.023     0.033     0.990
+   63                                                0.098
+
+*Solution*.
+
+For the first row, we have $p_{60}^{0\bullet} = 0.01+0.05+0.02 = 0.08$.
+
+For the second row, we have $l_{61} = 10000(1-0.080) = 9,200$.
+
+For the third row, we have $l_{62} = 9200(1- 0.076) = 8,501$.
+
+For the third row, we also have
+$p_{62}^{0\bullet} = 1- (1-0.023)(1-0.033)(1-0.99) =
+0.06468$.
+
+For the fourth row, we have $l_{63} = 8501(1-0.06468) = 7,951$.
+
+$\Box$
+
+To understand the relationship between multi-decrement and the
+associated single decrement tables, first note that $$\begin{aligned}
+~_t p_x^j = \exp \left\{ - \int_0^t \mu_{x+u}^{0j} ~ du \right\}\end{aligned}$$
+and so $0 \le ~ _t p_x^j  \le 1$. Thus $$\begin{aligned}
+~_s p_x^{00}  = \prod_{k=1}^n ~ _s p_x^k \leq ~
+_s p_x^j ,\end{aligned}$$ for any $j$. Thus, we have $$\begin{aligned}
+~_t p_x^{0j} = \int_0^t ~ _s p_x^{00} \mu_{x+s}^{0j} ~ ds \leq
+\int_0^t ~ _s p_x^j \mu_{x+s}^{0j} ~ ds = ~ _t q_x^j .\end{aligned}$$
+
+That is, the multi-decrement transition probability is less than or
+equal to the associated single decrement function.
+
+## Building Multi-Decrement Tables from Associated Single Decrement Functions
+
+We now introduce several ways to build a multi-decrement table from the
+associated single decrement functions (and vice-versa).
+
+**1. Constant Forces of Transition.** One way to build a multi-decrement
+table from the associated single decrement tables (and vice-versa) is to
+assume constant forces of transition.
+
+Under this assumption, transition forces are constant *within the year*,
+$$\begin{aligned}
+\mu_{x+t}^{0j} = \mu_{x}^{0j} , \text{~~~for~~~} 0 \leq t \leq 1 .\end{aligned}$$
+Thus, $$\begin{aligned}
+~_t q_x^j = 1- \exp \left\{ - t \mu_{x}^{0j}\right\} .\end{aligned}$$
+and, with $t=1$, we have $1- q_x^j = \exp(-\mu_{x}^{0j})$.
+
+Now $$\begin{aligned}
+ ~p_x^{0j} &=  \int_0^1 ~ _t p_x^{00}  \mu_{x+t}^{0j} ~dt \\
+&=  \frac{\mu_x^{0j}}{\mu_x^{0\bullet}}  \int_0^1 ~ _t p_x^{00} \mu_{x+t}^{0\bullet} ~dt
+\\
+&=  \frac{\mu_x^{0j}}{\mu_x^{0\bullet}} ~ p_x^{0\bullet} \\
+&=  \frac{\ln (1- q_x^j)}{\ln (1- p_x^{0\bullet})} ~ p_x^{0\bullet} .\end{aligned}$$
+Thus, we have $$\begin{aligned}
+ 1- q_x^j &= \left( p_x^{00}\right)^{p_x^{0j}/p_x^{0\bullet}} .\end{aligned}$$
+
+From this, we can use multi-decrement probabilities to calculate the
+associated single decrement tables, and vice-versa.
+
+**Example.** In a triple decrement table, suppose that
+$q_{65}^1 = 0.02$, $q_{65}^2 = 0.02$, and $q_{65}^3 = 0.04$. Calculate
+$p_{65}^{01}$.
+
+*Solution.* First,
+$p_{65}^{00} = \prod_{j=1}^3 ~ p_x^j = (1-0.02)(1-0.02)(1-0.04) = 0.921984$
+so that $p_{65}^{0\bullet}= 1-0.921984 = 0.078016$. Then, for $x=65$
+
+$$\begin{aligned}
+ \ln (1- q_{65}^1) = \ln(0.98) &= \frac{p_{65}^{01}}{p_{65}^{0\bullet}}\ln \left( p_{65}^{00}\right) \\
+ &= \frac{p_{65}^{03}}{0.078016}\ln \left( 0.921984\right),\end{aligned}$$
+
+which implies that $p_{65}^{01} = 0.019404$.
+
+$\Box$
+
+**2. UDD in the MDT**. Another way to build a multi-decrement table from
+the associated single decrement tables (and vice-versa) is to assume
+uniform distribution of decrements (UDD) in the multi-decrement table
+(MDT).
+
+Under this assumption, for integer age $x$ and fraction $t$
+($0 \leq t \leq 1$), we have $$\begin{aligned}
+~_t p_x^{0j} = t \times  p_x^{0j}\end{aligned}$$
+
+If the $UDD$ assumption holds for all decrements, then $$\begin{aligned}
+~_t p_x^{00} =  1 - t \times  p_x^{0\bullet} .\end{aligned}$$ Recall
+Kolmogorov’s forward equation $\frac{\partial}{\partial t} ~ _t p_x^{0j}
+  = ~ _t p_x^{00} \mu_{x+t}^{0j}$. Thus, we may express the transition
+force as $$\begin{aligned}
+\mu_{x+t}^{0j} = \frac{p_x^{0j}}{1 - t \times   p_x^{0\bullet}} .\end{aligned}$$
+With
+$q_x^j = 1- \exp \left\{ - \int_0^1 \mu_{x+u}^{0j} ~ du \right\}$, we
+have
+
+$$\begin{aligned}
+- \ln(1-q_x^j) &=  \int_0^1 \mu_{x+t}^{0j} ~ dt  \\
+&=  \int_0^1 \frac{p_x^{0j}}{1 - t \times   p_x^{0\bullet}} ~ dt \\
+&= \frac{p_x^{0j}}{p_x^{0\bullet}} (-ln(1- p_x^{0\bullet})) .\end{aligned}$$
+
+Thus, as with the constant transition force, we have $$\begin{aligned}
+ 1- q_x^j &= \left( p_x^{00}\right)^{p_x^{0j}/p_x^{0\bullet}} .\end{aligned}$$
+
+**3. UDD in the Single Decrement Models**. A third way to build a
+multi-decrement table from the associated single decrement tables (and
+vice-versa) is to assume uniform distribution of decrements (UDD) in
+each of the associated single decrement tables.
+
+Under this assumption, for integer age $x$ and fraction $t$
+($0 \leq t \leq 1$), we have $$\begin{aligned}
+_t p_x^j = 1- _t q_x^j = 1- t \times q_x^j .\end{aligned}$$ Now, recall
+that $~_t p_x^j = \exp \left\{ - \int_0^t \mu_{x+u}^{0j} ~ du
+\right\}$. Taking derivatives of each sides, it is easy to check that
+$$\begin{aligned}
+~_t p_x^j \mu_{x+t}^{0j} =  q_x^j .\end{aligned}$$ Thus,
+$$\begin{aligned}
+~p_x^{01}  &=  \int_0^1 ~ _t p_x^{00}  \mu_{x+t}^{01} ~dt \\
+ &=  \int_0^1 ~ \left(\prod_{j=1}^n ~_t p_x^{0j} \right) \mu_{x+t}^{01} ~dt \\
+ &=  q_x^1  \int_0^1 ~ \left(\prod_{j=2}^n (1- t \times q_x^j) \right)  ~dt .\end{aligned}$$
+So, for example, with $n=2$, we have $$\begin{aligned}
+~ p_x^{01} &=  q_x^1  \left(1- \frac{1}{2} q_x^2 \right) .\end{aligned}$$
+and, by symmetry, $$\begin{aligned}
+~ p_x^{02} &=  q_x^2  \left(1- \frac{1}{2} q_x^1 \right) .\end{aligned}$$
+
+With $n=3$, we have $$\begin{aligned}
+~p_x^{01} &=  q_x^1  \left(1- \frac{1}{2} (q_x^2+q_x^3) + \frac{1}{3} q_x^2 \times
+q_x^3 \right) ,\end{aligned}$$ and similarly for $p_x^{02}$ and
+$p_x^{03}$.

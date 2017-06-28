@@ -1,0 +1,995 @@
+---
+title: "Multiple Decrements II"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Multiple Decrements II
+
+## Markov Representation
+
+**For an $n$-decrement model**: Let State 0 denote the starting state,
+and let each of States $j$ = 1, 2, ..., $n$ denote an exit or decrement
+state. There is only one transition that can actually occur: a
+transition from State 0 to exactly one of State 1, State 2, ..., State
+$n$. Once in exactly one of State 1, State 2, ..., State $n$, the
+individual remains in that state forever. Refer to the Multiple
+Decrement Model in Examples of Multiple State Models for a diagram.
+\vspace{10mm}
+
+-   $\mu^{0j}_x$ = $\mu^{(j)}_x$ \vspace{5mm}
+
+-   $\mu^{0\bullet}_x$ = $\sum^n_{j = 1} \mu^{0j}_x$ \vspace{5mm}
+
+-   ${}_{t}p^{00}_x$ = ${}_{t}p^{\overline{00}}_x$ =
+    $\exp[-\int^t_0 \mu^{0\bullet}_{x + s} ds]$ = ${}_{t}p^{(\tau)}_x$
+    \vspace{5mm}
+
+-   ${}_{t}p^{0\bullet}_x$ = 1 - ${}_{t}p^{00}_x$ = ${}_{t}q^{(\tau)}_x$
+    \vspace{5mm}
+
+-   ${}_{t}p^{0j}_x$ = $\int^t_0 {}_{s}p^{00}_x \mu^{0j}_{x + s} ds$ =
+    ${}_{t}q^{(j)}_x$ \vspace{5mm}
+
+-   Note for $i$ = 0, 1, ..., $n$ and $i$ $\neq$ $j$: ${}_{t}p^{jj}_x$ =
+    1, and ${}_{t}p^{ji}_x$ = 0
+
+\newpage
+## Associated Single Decrements
+
+\Large
+
+-   Consider cause of decrement $j$. If we assume that $j$ is the only
+    decrement operating against an individual, we can construct the
+
+    **associated single decrement model for $j$**. \vspace{4mm}
+
+-   Primes on probabilities will indicate that $j$ is the only cause of
+    decrement; *i.e.* the **single decrement** or **independent
+    decrement**. \vspace{4mm}
+
+-   The single decrement probability that (x) remains in State 0 for at
+    least $t$ years (survives decrement $j$ for at least $t$ years):
+    \vspace{2mm}
+
+    ${}_{t}p^{\prime(j)}_x$ = $exp[-\int^t_0\mu^{(j)}_x(s)ds]$
+    \vspace{2mm}
+
+    Note: ${}_{t}p^{(\tau)}_x$ = $\Pi^n_{j = 1}{}_{t}p^{\prime(j)}_x$ =
+    ${}_{t}p^{\prime(1)}_x$${}_{t}p^{\prime(2)}_x$$\cdots$${}_{t}p^{\prime(n)}_x$.
+    \vspace{4mm}
+
+-   The single decrement probability that (x) transitions from State 0
+    to State $j$ within $t$ years (decrements due to cause $j$ within
+    $t$ years): \vspace{2mm}
+
+    ${}_{t}q^{\prime(j)}_x$ = 1 - ${}_{t}p^{\prime(j)}_x$ \vspace{2mm}
+
+    Note: ${}_{t}q^{\prime(j)}_x$ =
+    $\int^t_0{}_{s}p^{\prime(j)}_x\mu^{(j)}_x(s)ds$. \vspace{4mm}
+
+-   It is useful to note that: ${}_{t}p^{(\tau)}_x$ $\le$
+    ${}_{t}p^{\prime(j)}_x$. \vspace{2mm}
+
+    This makes sense: the probability of surviving just one decrement is
+    higher than the probability of surviving all decrements.
+    \vspace{4mm}
+
+-   It is useful to note that: ${}_{t}q^{(j)}_x$ $\le$
+    ${}_{t}q^{\prime(j)}_x$. \vspace{2mm}
+
+    This makes sense: the probability of decrement $j$ “striking” the
+    individual will be higher when there are no other decrements
+    competing to “strike” the individual.
+
+\newpage
+## Relationships between Multiple and Single Decrements
+
+\Large
+
+### UDD in the Multiple Decrement Model
+
+-   Assume that the cause of decrement $j$ and the total decrement
+    $\tau$ are uniformly distributed within each year of age in a
+    multiple decrement table (the latter is satisfied automatically if
+    all causes of decrement are uniformly distributed within each year
+    of age in a multiple decrement table). Then, for 0 $\le$ $s$ $\le$
+    1: \vspace{4mm}
+
+    -   ${}_{s}q^{(j)}_x$ = $sq^{(j)}_x$ \vspace{2mm}
+
+    -   ${}_{s}q^{(\tau)}_x$ = $sq^{(\tau)}_x$ \vspace{2mm}
+
+    -   ${}_{s}p^{\prime(j)}_x$ = $[1 -
+        sq^{(\tau)}_x]^{q^{(j)}_x/q^{(\tau)}_x}$ . \vspace{10mm}
+
+    ### UDD in All of the Associated Single Decrement Models
+
+-   Assume that **all** causes of decrement are uniformly distributed
+    within each year of age in the associated single decrement models.
+    Then, for cause of decrement $j$ and 0 $\le$ $s$ $\le$ 1:
+    \vspace{4mm}
+
+-   ${}_{s}q^{\prime(j)}_x$ = $sq^{\prime(j)}_x$ \vspace{2mm}
+
+-   ${}_{s}p^{\prime(j)}_x\mu^{(j)}_{x + s}$ = $q^{\prime(j)}_x$
+    \vspace{2mm}
+
+    -   If there are two causes of decrement ($j$ = 1, 2): \vspace{2mm}
+
+        ${}_{s}q^{(1)}_x$ = $q^{\prime(1)}_x$$(s -
+        \frac{s^2}{2}q^{\prime(2)}_x)$ and \vspace{2mm}
+
+        ${}_{s}q^{(2)}_x$ = $q^{\prime(2)}_x$$(s -
+        \frac{s^2}{2}q^{\prime(1)}_x)$. \vspace{2mm}
+
+        It is still true that: ${}_{s}q^{(1)}_x$ + ${}_{s}q^{(2)}_x$ =
+        ${}_{s}q^{(\tau)}_x$. \vspace{4mm}
+
+    -   If there are three causes of decrement ($j$ = 1, 2, 3):
+        \vspace{2mm}
+
+        ${}_{s}q^{(1)}_x$ = $q^{\prime(1)}_x$$(s -
+        \frac{s^2}{2}q^{\prime(2)}_x - \frac{s^2}{2}q^{\prime(3)}_x +
+        \frac{s^3}{3}q^{\prime(2)}_xq^{\prime(3)}_x)$, \vspace{2mm}
+
+        ${}_{s}q^{(2)}_x$ = $q^{\prime(2)}_x$$(s -
+        \frac{s^2}{2}q^{\prime(1)}_x - \frac{s^2}{2}q^{\prime(3)}_x +
+        \frac{s^3}{3}q^{\prime(1)}_xq^{\prime(3)}_x)$, and \vspace{2mm}
+
+        ${}_{s}q^{(3)}_x$ = $q^{\prime(3)}_x$$(s -
+        \frac{s^2}{2}q^{\prime(1)}_x - \frac{s^2}{2}q^{\prime(2)}_x +
+        \frac{s^3}{3}q^{\prime(1)}_xq^{\prime(2)}_x)$. \vspace{2mm}
+
+        It is still true that: ${}_{s}q^{(1)}_x$ + ${}_{s}q^{(2)}_x$ +
+        ${}_{s}q^{(3)}_x$ = ${}_{s}q^{(\tau)}_x$.
+
+\vspace{10mm}
+
+### UDD in Some of the Associated Single Decrement Models
+
+There really are no general formulas, these have to be handled on a
+case-by-case basis. Here are a couple of examples, each of which
+considers a triple decrement model on (x): \vspace{4mm}
+
+-   Suppose decrements 1 and 2 are uniformly distributed over each year
+    of age in the associated single decrement tables, and decrement 3
+    can only occur at the end of the year. \vspace{5mm}
+
+    Then: $q^{(1)}_x$ = $q^{\prime(1)}_x$$(1 -
+    \frac{1}{2}q^{\prime(2)}_x)$ and $q^{(2)}_x$ = $q^{\prime(2)}_x$$(1
+    - \frac{1}{2}q^{\prime(1)}_x)$. \vspace{5mm}
+
+    “These make sense because decrement 3 can only occur at the end of
+    the year, meaning that during the year, we effectively have a double
+    decrement model with only decrements 1 and 2 in effect. Therefore,
+    the double decrement equations in **UDD in All of the Associated
+    Single Decrement Models** with $s$ = 1 apply.” \vspace{10mm}
+
+    Also: $q^{(3)}_x$ =
+    $p^{\prime(1)}_x$$p^{\prime(2)}_x$$q^{\prime(3)}_x$. \vspace{5mm}
+
+    “This makes sense because the only decrements in effect during the
+    year are decrements 1 and 2. Therefore, to decrement due to 3 during
+    the year, (x) has to survive both decrements 1 and 2 in order to
+    make it to the end of the year, and then decrement due to 3.”
+
+\newpage
+-   Suppose decrements 1 and 2 are uniformly distributed over each year
+    of age in the associated single decrement tables, and decrement 3
+    can only occur at the beginning of the year. \vspace{5mm}
+
+    Then: $q^{(1)}_x$ = $p^{\prime(3)}_x$$q^{\prime(1)}_x$$(1 -
+    \frac{1}{2}q^{\prime(2)}_x)$ and $q^{(2)}_x$ =
+    $p^{\prime(3)}_x$$q^{\prime(2)}_x$$(1 -
+    \frac{1}{2}q^{\prime(1)}_x)$. \vspace{5mm}
+
+    “These make sense because decrement 3 can only occur at the
+    beginning of the year, meaning that during the year, we effectively
+    have a double decrement model with only decrements 1 and 2 in
+    effect. Therefore, the double decrement equations in **UDD in All of
+    the Associated Single Decrement Models** with $s$ = 1 apply, after
+    first surviving decrement 3 at the beginning of the year.”
+    \vspace{10mm}
+
+    Also: $q^{(3)}_x$ = $q^{\prime(3)}_x$. \vspace{5mm}
+
+    “This makes sense because decrement 3 occurs at the beginning of the
+    year. As decrements 1 and 2 are in effect during the year, they do
+    not impact the probability of decrement due to 3 at the very start
+    of the year.” \vspace{20mm}
+
+    For more complicated situations, appeal to the formula:
+
+    ${}_{t}q^{(j)}_x$ = $\int^t_0{}_{s}p^{(\tau)}_x\mu^{(j)}_x(s)ds$.
+    \vspace{5mm}
+
+    In fact, each of the results in both **UDD in All of the Associated
+    Single Decrement Models** and **UDD in Some of the Associated Single
+    Decrement Models** were obtained from this particular relation,
+    applying the appropriate assumptions regarding the distribution of
+    each decrement throughout the year.
+
+\newpage
+## Moments for Life Insurance in a Multiple Decrement Model
+
+-   Consider a whole life insurance on (x) which pays a benefit at the
+    moment of transition from State 0 to a decrement state. Upon
+    transition to State 1 at time $t$ the benefit is $b^{(1)}_t$, upon
+    transition to State 2 at time $t$ the benefit is $b^{(2)}_t$, ...,
+    upon transition to State $n$ at time $t$ the benefit is $b^{(n)}_t$.
+    Let $Z$ denote the present value random variable for this insurance.
+    \vspace{2mm}
+
+    -   $E[Z^k]$ =
+        $\sum^n_{j = 1}\int^{\infty}_0[v^tb^{(j)}_{t}]^k{}_{t}p^{(\tau)}_x\mu^{(j)}_x(t)dt$
+        for $k$ = 1, 2, ... \vspace{2mm}
+
+    -   The expected present value of the whole life insurance would be
+        $E[Z]$. \vspace{4mm}
+
+-   Consider a whole life insurance on (x) which pays a benefit at the
+    end of the year of transition from State 0 to a decrement state. Let
+    $i$ = 0, 1, ... Upon transition to State 1 in year $i$ + 1 the
+    benefit is $b^{(1)}_{i + 1}$, upon transition to State 2 in year
+    $i$ + 1 the benefit is $b^{(2)}_{i + 1}$, ..., upon transition to
+    State $n$ in year $i$ + 1 the benefit is $b^{(n)}_{i + 1}$. Let $Z$
+    denote the present value random variable for this insurance.
+    \vspace{1mm}
+
+    -   $E[Z^k]$ =
+        $\sum^n_{j = 1}\sum^{\infty}_{i = 0}[v^{i + 1}b^{(j)}_{i + 1}]^k{}_{i}p^{(\tau)}_xq^{(j)}_{x + i}$
+        for $k$ = 1, 2, ... \vspace{2mm}
+
+    -   The expected present value of the whole life insurance would be
+        $E[Z]$. \vspace{4mm}
+
+-   If all forces of decrement are constant, then for a whole life
+    insurance that pays 1 at the moment of transition from State 0 to
+    State $j$: \vspace{1mm}
+
+    -   $\bar{A}^{(j)}_x$ = $\frac{\mu^{(j)}}{\mu^{(\tau)} +
+        \delta}$ \vspace{4mm}
+
+-   If all forces of decrement are constant, then for a whole life
+    insurance that pays 1 at the moment of transition out of State 0 to
+    any other State: \vspace{1mm}
+
+    -   $\bar{A}^{(\tau)}_x$ = $\frac{\mu^{(\tau)}}{\mu^{(\tau)} +
+        \delta}$ \vspace{4mm}
+
+\newpage
+-   The above can easily be modified for an insurance with a finite
+    term. As an example, if all forces of decrement are constant, then
+    for an $n$-year term life insurance that pays 1 at the moment of
+    transition from State 0 to State $j$: \vspace{1mm}
+
+    -   $\lcterm{\bar{A}^{(j)}}{x}{n}$ =
+        $\frac{\mu^{(j)}}{\mu^{(\tau)} +
+        \delta}(1 - \exp[-(\mu^{(\tau)} + \delta)n])$ \vspace{4mm}
+
+-   A common type of multiple decrement life insurance is a **double
+    indemnity insurance**, where there are two causes of decrement:
+    accidental death and non-accidental death. The benefit for
+    accidental death is double the benefit for non-accidental death.
+    \vspace{2mm}
+
+    For example, consider a whole life insurance on (x) with a double
+    indemnity provision that pays 1 at the moment of non-accidental
+    death (N) and 2 at the moment of accidental death (A). Then the
+    expected present value can be calculated as either: \vspace{2mm}
+
+    $\bar{A}^{(\tau)}_x$ + $\bar{A}^{(A)}_x$ = 2$\bar{A}^{(A)}_x$ +
+    $\bar{A}^{(N)}_x$. \vspace{4mm}
+
+-   Level annual benefit premiums can be calculated using the
+    equivalence principle: \vspace{2mm}
+
+    $E[PVFB@0]$ = $E[PVFP@0]$.
+
+    \vspace{2mm} $E[PVFB@0]$ will consider all of the decrements in the
+    model, and will be calculated as discussed earlier in this section
+    for a life insurance. \vspace{4mm}
+
+-   The benefit reserve at time $t$ can be calculated using:
+    \vspace{2mm}
+
+    ${}_{t}V$ = $E[PVFB@t]$ - $E[PVFP@t]$.
+
+    \vspace{2mm} $E[PVFB@t]$ will consider all of the decrements in the
+    model, and will be calculated as discussed earlier in this section
+    for a life insurance.
+
+\newpage
+## Asset Shares
+
+\Large
+
+-   An **asset share** is the amount of a company’s assets that are
+    allocated to support a policy or a block of similar policies.
+    \vspace{6mm}
+
+-   Consider a fully discrete life insurance on (x). For $k$ = 0, 1, 2,
+    ...: \vspace{4mm}
+
+    -   $AS_k$ = ${}_{k}AS$ = asset share at time $k$ \vspace{4mm}
+
+    -   $G$ = level annual gross premium \vspace{4mm}
+
+    -   $c_k$ = fraction of premium used to determine the percent of
+        premium expense at time $k$ \vspace{4mm}
+
+    -   $e_k$ = per policy expense at time $k$ \vspace{4mm}
+
+    -   The effective annual interest rate is $i_{k + 1}$ for year $k$ +
+        1; $v_{k + 1}$ = $\frac{1}{1 + i_{k + 1}}$ \vspace{4mm}
+
+    -   Assume there are two causes of decrement for (x): death (d) and
+        withdrawal (w). The respective probabilities of death and
+        withdrawal between ages x + k and x + k + 1 are
+        $q^{(d)}_{x + k}$ and $q^{(w)}_{x + k}$. \vspace{4mm}
+
+    -   $b_{k + 1}$ = death benefit paid at time $k$ + 1 if (x) dies in
+        year $k$ + 1. \vspace{4mm}
+
+    -   $CV_{k + 1}$ = ${}_{k + 1}CV$ = withdrawal benefit/cash value
+        paid at time $k$ + 1 if (x) withdraws in year $k$ + 1.
+        \vspace{6mm}
+
+-   The **asset share recursion**; for $k$ = 0, 1, ...; is: \vspace{2mm}
+
+    $v_{k + 1}p^{(\tau)}_{x + k}AS_{k + 1}$ = $AS_k$ + $G$ - $Gc_{k}$ -
+    $e_{k}$ - $v_{k + 1}q^{(d)}_{x + k}b_{k + 1}$ - $v_{k + 1}q^{(w)}_{x
+    + k}CV_{k + 1}$ \vspace{6mm}
+
+    $\implies$ ($AS_k$ + $G$ - $Gc_{k}$ - $e_{k}$)(1 + $i_{k + 1}$) =
+    $q^{(d)}_{x + k}b_{k + 1}$ + $q^{(w)}_{x + k}CV_{k + 1}$ +
+    $p^{(\tau)}_{x + k}AS_{k + 1}$
+
+    \newpage
+-   This second asset share recursion has a similar interpretation as
+    the reserve recursions, as it should. An asset share is essentially
+    a reserve calculated using actual experienced interest rates,
+    mortality rates, expenses, etc. We are also allowing for a benefit
+    payable upon withdrawal of $CV_{k + 1}$ payable between ages x + k
+    and x + k + 1 at rate $q^{(w)}_{x + k}$. \vspace{6mm}
+
+-   Unless otherwise stated, assume $AS_0$ = 0.
+
+\newpage
+## Exercises
+
+\Large
+
+13.1. Consider a double decrement model on (40): \vspace{4mm}
+
+\(i) The decrements are mortality and lapse. \vspace{2mm}
+
+\(ii) The force of mortality is given by: \vspace{2mm}
+
+$\mu_x$ = 0.001 + $c$($x$ - 40) for $c$ $>$ 0, $x$ $\ge$ 40.
+\vspace{2mm}
+
+\(iii) The transition intensity for lapses is a constant equal to 0.03.
+\vspace{2mm}
+
+\(iv) ${}_{5}q^{(\tau)}_{40}$ = 0.14572 \vspace{4mm}
+
+Calculate: 1000$q^{\prime(1)}_{40}$. \vspace{4mm}
+
+\(A) 1.1 \hspace{0.2in} (B) 1.4 \hspace{0.2in} (C) 1.7 \hspace{0.2in} (D)
+2.0 \hspace{0.2in} (E) 2.3 \vspace{10mm}
+
+13.2. Consider a 3-state model on (x) with States 0, 1, and 2:
+\vspace{4mm}
+
+\(i) $\mu^{01}_x(t)$ = 0.01$t$ for $t$ $>$ 0 \vspace{2mm}
+
+\(ii) $\mu^{02}_x(t)$ = 0.02$t$ for $t$ $>$ 0 \vspace{2mm}
+
+\(iii) $\mu^{1i}_x(t)$ = $\mu^{2i}_x(t)$ = 0 for $i$ = 0, 1, 2
+\vspace{4mm}
+
+Calculate: ${}_{5}p^{01}_x$. \vspace{4mm}
+
+\(A) 0.096 \hspace{0.2in} (B) 0.100 \hspace{0.2in} (C) 0.104
+\hspace{0.2in} (D) 0.108 \hspace{0.2in} (E) 0.112 \vspace{10mm}
+
+13.3. You are given: \vspace{4mm}
+
+\(i) There are two causes of decrement. \vspace{2mm}
+
+\(ii) $\mu^{(1)}_{40}(t)$ = $\frac{1}{50 - t}$ for 0 $\le$ $t$ $<$ 50
+\vspace{2mm}
+
+\(iii) $\mu^{(\tau)}_{40}(t)$ = $\frac{95 - 2t}{2250 - 95t + t^2}$ for 0
+$\le$ $t$ $<$ 45 \vspace{4mm}
+
+Calculate: ${}_{4}q^{\prime(2)}_{40}$. \vspace{4mm}
+
+\(A) 0.08 \hspace{0.2in} (B) 0.09 \hspace{0.2in} (C) 0.10 \hspace{0.2in}
+(D) 0.11 \hspace{0.2in} (E) 0.12
+
+\newpage
+13.4. In a triple decrement table, lives are subject to decrement by
+death (d), disability (i), and withdrawal (w): \vspace{4mm}
+
+\(i) Each decrement is uniformly distributed in the triple decrement
+table over each year of age. \vspace{2mm}
+
+\(ii) $l^{(\tau)}_x$ = 25,000 and $l^{(\tau)}_{x + 1}$ = 23,000
+\vspace{2mm}
+
+\(iii) $d^{(d)}_x$ = 50 and $d^{(i)}_x$ = 750 \vspace{4mm}
+
+Calculate: ${}_{0.6}q^{\prime(w)}_x$. \vspace{4mm}
+
+\(A) 0.017 \hspace{0.2in} (B) 0.021 \hspace{0.2in} (C) 0.025
+\hspace{0.2in} (D) 0.029 \hspace{0.2in} (E) 0.033 \vspace{10mm}
+
+13.5. Consider the following triple decrement table, with missing
+entries denoted as "---":
+
+$\begin{array}{r|r|r|r|r}
+\hline
+\mathbf{x} & \mathbf{l^{(\tau)}_x} & \mathbf{d^{(1)}_x} & \mathbf{d^{(2)}_x} & \mathbf{d^{(3)}_x} \\
+\hline
+40 & 1000  & 30    & 56    & 13    \\
+41 & ---   & 35    & 58    & ---   \\
+42 & 789   & ---   & ---   & 22    \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+Each decrement is uniformly distributed within each year of age in the
+triple decrement table. \vspace{4mm}
+
+Calculate the independent probability that (41) decrements within one
+year due to cause 3. \vspace{4mm}
+
+\(A) 0.015 \hspace{0.2in} (B) 0.018 \hspace{0.2in} (C) 0.020
+\hspace{0.2in} (D) 0.022 \hspace{0.2in} (E) 0.25 \vspace{10mm}
+
+13.6. Suppose there are two decrements, (1) and (2): \vspace{4mm}
+
+\(i) $q^{\prime(1)}_{37}$ = 0.1 and $q^{\prime(2)}_{37}$ = 0.2
+\vspace{2mm}
+
+\(ii) Each decrement is uniformly distributed over each year of age in
+the associated single decrement tables. \vspace{4mm}
+
+Calculate: $q^{(2)}_{37}$. \vspace{4mm}
+
+\(A) 0.15 \hspace{0.2in} (B) 0.16 \hspace{0.2in} (C) 0.17 \hspace{0.2in}
+(D) 0.18 \hspace{0.2in} (E) 0.19
+
+\newpage
+13.7. Lex owns a plane that is x years old. You are given: \vspace{4mm}
+
+\(i) The plane faces three decrements: breakdown (1), sale (2), and
+collision (3). \vspace{2mm}
+
+\(ii) All decrements are uniformly distributed within each year of age in
+the associated single decrement tables. \vspace{2mm}
+
+\(iii) $q^{\prime(1)}_x$ = 0.10, $q^{\prime(2)}_x$ = 0.25,
+$q^{\prime(3)}_x$ = 0.05 \vspace{4mm}
+
+Calculate the probability that the plane will be involved in a collision
+within three months. \vspace{4mm}
+
+\(A) 0.012 \hspace{0.2in} (B) 0.016 \hspace{0.2in} (C) 0.019
+\hspace{0.2in} (D) 0.022 \hspace{0.2in} (E) 0.026 \vspace{15mm}
+
+13.8. An actuary has constructed a multiple decrement table using the
+following assumptions: \vspace{4mm}
+
+\(i) There are 3 decrements: mortality (d), disability (i), withdrawal
+(w). \vspace{2mm}
+
+\(ii) $q^{\prime(d)}_{40}$ = 0.02, $q^{\prime(i)}_{40}$ = 0.03, and
+$q^{\prime(w)}_{40}$ = 0.05 \vspace{2mm}
+
+\(iii) All decrements are uniformly distributed over each year of age in
+the associated single decrement tables. \vspace{4mm}
+
+Upon further review, the actuary has determined that assumption (iii) is
+incorrect. The correct assumption (iii) is the following: mortality and
+disability are uniformly distributed over each year of age in the
+associated single decrement tables, and withdrawal can only occur at
+time $t$ = 0.80 each year. \vspace{2mm}
+
+Calculate the percent change in the value of $q^{(w)}_{40}$ when the
+correct assumption (iii) is used relative to when the incorrect
+assumption (iii) is used. \vspace{4mm}
+
+\(A) -1.5 \hspace{0.2in} (B) -0.5 \hspace{0.2in} (C) 0 \hspace{0.2in} (D)
+0.5 \hspace{0.2in} (E) 1.5
+
+\newpage
+13.9. For a triple decrement model: \vspace{4mm}
+
+\(i) Decrement 1 is uniformly distributed over each year of age in the
+associated single decrement table; decrement 2 occurs only at the end of
+the year; decrement 3 occurs only at the beginning of the year.
+\vspace{2mm}
+
+(ii)
+
+$\begin{array}{c|c|c|c|c}
+\hline
+\mathbf{x} & \mathbf{l^{(\tau)}_x} & \mathbf{q^{\prime(1)}_x} & \mathbf{q^{\prime(2)}_x} & \mathbf{q^{\prime(3)}_x} \\
+\hline
+60 & 100,000 & y       & 0.010 & 0.030 \\
+61 & 91,705  & 1.2y    & 0.011 & ---   \\
+62 & 80,622  & ---     & ---   & ---   \\
+\hline
+\end{array}$
+
+Consider a group of 900 lives each aged 61. Calculate the expected
+number from this group that will succumb to decrement 3 prior to age 62.
+\vspace{4mm}
+
+\(A) 48 \hspace{0.2in} (B) 50 \hspace{0.2in} (C) 52 \hspace{0.2in} (D) 54
+\hspace{0.2in} (E) 56 \vspace{10mm}
+
+13.10. Consider the following double decrement table: \vspace{4mm}
+
+$\begin{array}{c|c|c|c}
+\hline
+\mathbf{x} & \mathbf{l^{(\tau)}_x} & \mathbf{d^{(1)}_x} & \mathbf{d^{(2)}_x} \\
+\hline
+55 & 20,000  & 2000    & 600     \\
+56 & 17,400  & 2265    & 910    \\
+57 & 14,225  & 2545    & 1175      \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Two actuaries are trying to calculate ${}_{0.3}q^{(1)}_{56}$. Actuary A
+assumes that each decrement is uniformly distributed within each year of
+age in the double decrement table. Actuary B assumes that each decrement
+has a constant force of decrement within each year of age; that is,
+$\mu^{(j)}_{x + s}$ = $\mu^{(j)}_{x}$ for $j$ = 1, 2 and 0 $\le$ $s$ $<$
+1. \vspace{4mm}
+
+Calculate the ratio of Actuary A’s value of ${}_{0.3}q^{(1)}_{56}$ to
+Actuary B’s value of ${}_{0.3}q^{(1)}_{56}$. \vspace{4mm}
+
+\(A) 0.86 \hspace{0.2in} (B) 0.93 \hspace{0.2in} (C) 1.00 \hspace{0.2in}
+(D) 1.08 \hspace{0.2in} (E) 1.16
+
+\newpage
+13.11. A special whole life insurance is issued on (x). The
+non-accidental death benefit is 750, and the accidental death benefit is
+1500. Furthermore: \vspace{4mm}
+
+\(i) Benefits are payable at the moment of death. \vspace{2mm}
+
+\(ii) The force of mortality due to accidental death is:
+$\mu^{(ad)}_x(t)$ = 0.005 for $t$ $>$ 0. \vspace{2mm}
+
+\(iii) $\mu^{(\tau)}_x(t)$ = 0.040 for $t$ $>$ 0 \vspace{2mm}
+
+\(iv) $\delta$ = 0.05 \vspace{4mm}
+
+Calculate the actuarial present value of this insurance. \vspace{4mm}
+
+\(A) 333 \hspace{0.2in} (B) 375 \hspace{0.2in} (C) 486 \hspace{0.2in} (D)
+500 \hspace{0.2in} (E) 675 \vspace{20mm}
+
+13.12. For a special 2-year term insurance on (x):
+
+\vspace{4mm} (i) 20,000 is payable at the end of the year of decrement
+due to (1).
+
+\vspace{2mm} (ii) 10,000 is payable at the end of the year of decrement
+due to (2).
+
+\vspace{2mm} (iii) Level benefit premiums are payable at the beginning
+of the year.
+
+\vspace{2mm} (iv)
+
+$\begin{array}{r|r|r}
+\hline
+k & q^{(1)}_{x + k} & q^{(2)}_{x + k} \\
+\hline
+0 & 0.010  & 0.100 \\
+1 & 0.015  & 0.110 \\
+\hline
+\end{array}$
+
+\vspace{2mm} (v) $i$ = 0.05 \vspace{4mm}
+
+Calculate the level annual benefit premium. \vspace{4mm}
+
+\(A) 1210 \hspace{0.2in} (B) 1230 \hspace{0.2in} (C) 1250 \hspace{0.2in}
+(D) 1270 \hspace{0.2in} (E) 1290
+
+\newpage
+13.13. Consider a special fully continuous whole life insurance on (x)
+with a double indemnity provision: \vspace{4mm}
+
+\(i) The benefit for non-accidental death is 25,000 in all years.
+\vspace{2mm}
+
+\(ii) The benefit for accidental death during the first 5 years is
+50,000. \vspace{2mm}
+
+\(iii) The benefit for accidental death after the first 5 years is 0.
+\vspace{2mm}
+
+\(iv) $\mu^{(accidental death)}_x(t)$ = 0.01, $\mu^{(\tau)}_x(t)$ = 0.21,
+and $\delta_t$ = 0.10 for $t$ $\ge$ 0. \vspace{4mm}
+
+Calculate the level annual net premium. \vspace{4mm}
+
+\(A) 5400 \hspace{0.2in} (B) 5700 \hspace{0.2in} (C) 6000 \hspace{0.2in}
+(D) 6300 \hspace{0.2in} (E) 6600 \vspace{10mm}
+
+13.14. For a special fully continuous whole life insurance on (x):
+
+\vspace{4mm} (i) $\delta$ = 0.05
+
+\vspace{2mm} (ii) There are two decrements: (1) = accidental death and
+(2) = non-accidental death.
+
+\vspace{2mm} (iii) The benefit for accidental death is 30,000.
+
+\vspace{2mm} (iv) The benefit for non-accidental death is 10,000.
+
+\vspace{2mm} (v) Premiums are payable for at most the first 10 years.
+
+\vspace{2mm} (vi) $\mu^{(\tau)}_{x}(t)$ = 0.010 for $t$ $>$ 0
+
+\vspace{2mm} (vii) $\mu^{(1)}_{x}(t)$ = 0.003 for $t$ $>$ 0
+
+\vspace{4mm} Determine the benefit reserve at time 5, ${}_{5}V$.
+\vspace{4mm}
+
+\(A) 1090 \hspace{0.2in} (B) 1105 \hspace{0.2in} (C) 1120 \hspace{0.2in}
+(D) 1135 \hspace{0.2in} (E) 1150
+
+\newpage
+13.15. For a special fully discrete 3-year term insurance on (55):
+
+\vspace{4mm} (i) There are two decrements: (1) = accidental death and
+(2) = all other causes of death
+
+\vspace{2mm} (ii) $q^{(1)}_x$ = 0.002 +$0.003(x - 55)$ for $x$ = 55, 56,
+57.
+
+\vspace{2mm} (iii) $q^{(2)}_x$ = 0.020 + $0.020(x - 55)$ for $x$ = 55,
+56, 57.
+
+\vspace{2mm} (iv) $i$ = 0.06
+
+\vspace{2mm} (v) The death benefit is 2000 for accidental death and 1000
+for death from all other causes.
+
+\vspace{4mm} Calculate the net premium reserve at the end of the first
+year. \vspace{4mm}
+
+\(A) 20 \hspace{0.2in} (B) 25 \hspace{0.2in} (C) 30 \hspace{0.2in} (D) 35
+\hspace{0.2in} (E) 40 \vspace{20mm}
+
+13.16. You are given a special whole life insurance on (x): \vspace{4mm}
+
+\(i) There is a triple decrement model on (x) with forces of decrement:
+\vspace{2mm}
+
+$\mu^{(1)}$ = 0.09, $\mu^{(2)}$ = 0.05, $\mu^{(3)}$ = 0.02. \vspace{2mm}
+
+\(ii) The benefit payable at the moment of decrement due to cause 1 is
+300,000; the benefit payable at the moment of decrement due to cause 2
+is 150,000; the benefit payable at the moment of decrement due to cause
+3 is 50,000. \vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{4mm}
+
+Calculate the expected present value of this whole life insurance.
+\vspace{4mm}
+
+\(A) 159,310 \hspace{0.2in} (B) 160,420 \hspace{0.2in} (C) 161,530
+\hspace{0.2in} (D) 162,640 \hspace{0.2in} (E) 163,750
+
+\newpage
+13.17. Consider a special fully discrete 3-year term insurance on (30)
+with level annual benefit premiums: \vspace{4mm}
+
+\(i) (i) There are two decrements: (1) = accidental death and (2) = all
+other causes of death
+
+\(ii) $q^{(1)}_x$ = 0.005 and $q^{(\tau)}_x$ = 0.025 + 0.010($x$ - 30)
+for $x$ = 30, 31, 32. \vspace{2mm}
+
+\(iii) The death benefit for non-accidental death is 50,000; the death
+benefit for accidental death is 100,000. \vspace{2mm}
+
+\(iv) $i$ = 0.05 \vspace{4mm}
+
+Calculate the benefit reserve at the end of the second year.
+\vspace{4mm}
+
+\(A) 400 \hspace{0.2in} (B) 450 \hspace{0.2in} (C) 500 \hspace{0.2in} (D)
+550 \hspace{0.2in} (E) 600 \vspace{20mm}
+
+13.18. For a special single premium whole life insurance on (x):
+
+\vspace{4mm} (i) $\delta$ = 0.05
+
+\vspace{2mm} (ii) Benefits are payable at the moment of death.
+
+\vspace{2mm} (iii) There are two decrements: (1) = accidental death and
+(2) = non-accidental death.
+
+\vspace{2mm} (iv) The benefit for accidental death is 100,000.
+
+\vspace{2mm} (v) There are two possible benefits for non-accidental
+death: (a) the return of half of the single premium without interest if
+non-accidental death occurs in the first 20 years and (b) 50,000 if
+non-accidental death after the first 20 years.
+
+\vspace{2mm} (vi) $\mu^{(\tau)}_{x}(t)$ = 0.008 for $t$ $>$ 0
+
+\vspace{2mm} (vii) $\mu^{(1)}_{x}(t)$ = 0.001 for $t$ $>$ 0
+
+\vspace{4mm} Calculate the single premium using the equivalence
+principle. \vspace{4mm}
+
+\(A) 3700 \hspace{0.2in} (B) 3800 \hspace{0.2in} (C) 3900 \hspace{0.2in}
+(D) 4000 \hspace{0.2in} (E) 4100
+
+\newpage
+13.19. Consider a special 3-year term insurance on Curtis, aged x.
+Curtis is subject to two decrements: Death (1) and Lapse (2). Should
+Curtis lapse, the policy is immediately canceled with no benefit
+payable. \vspace{2mm}
+
+You are given: \vspace{4mm}
+
+\(i) $q^{(1)}_{x + k}$ = 0.010 + 0.005$k$ for $k$ = 0, 1, 2. \vspace{2mm}
+
+\(ii) $q^{(2)}_{x + k}$ = 0.010 for $k$ = 0, 1, 2. \vspace{2mm}
+
+\(iii) The only benefit of the insurance is 2500 payable at the end of
+the year of death. \vspace{2mm}
+
+\(iv) The net premium is 35.49 payable at the beginning of the year.
+\vspace{2mm}
+
+\(v) $v$ = 0.96 \vspace{4mm}
+
+Calculate the net premium reserve at the end of the first year.
+\vspace{4mm}
+
+\(A) 10 \hspace{0.2in} (B) 11 \hspace{0.2in} (C) 12 \hspace{0.2in} (D) 13
+\hspace{0.2in} (E) 14 \vspace{10mm}
+
+13.20. Suppose (60) is subject to a triple decrement model: \vspace{4mm}
+
+\(i) Decrements 1 and 2 are each uniformly distributed within each year
+of age in their associated single decrement tables; Decrement 3 can only
+occur at the end of the year. \vspace{2mm}
+
+(ii)
+
+$\begin{array}{r|r|r|r}
+\hline
+\mathbf{x}     & \mathbf{q^{\prime(1)}_x} & \mathbf{q^{\prime(2)}_x} & \mathbf{q^{\prime(3)}_x}  \\
+\hline
+60      & 0.12   & 0.10 & 0.06 \\
+61      & 0.18   & 0.20 & 0.08 \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+\(iii) $i$ = 0.05 \vspace{2mm}
+
+\(60) is issued a special 2-year term insurance, based on the above
+triple decrement model. This insurance pays 1000 at the end of the year
+of decrement due to Decrement 1 and 2000 at the end of the year of
+decrement due to Decrement 2. Zero benefit is payable at the end of the
+year of decrement due to Decrement 3. Calculate the expected present
+value of this insurance. \vspace{4mm}
+
+\(A) 610 \hspace{0.2in} (B) 620 \hspace{0.2in} (C) 630 \hspace{0.2in} (D)
+640 \hspace{0.2in} (E) 650 \vspace{10mm}
+
+\newpage
+13.21. For a special whole life insurance on (x):
+
+\vspace{4mm} (i) $\delta$ = 0.04
+
+\vspace{2mm} (ii) (x) is subject to a 3-state model: alive (State 0),
+dead by accident (State 1), and dead by other causes (State 2).
+
+\vspace{2mm} (iii) $\mu^{01}_{x + t}$ = 0.006 and $\mu^{02}_{x + t}$ =
+0.014 for $t$ $>$ 0
+
+\vspace{2mm} (iv) 100,000 is payable at the moment of accidental death,
+and 50,000 is payable at the moment of death by other causes.
+
+\vspace{2mm} (v) Level net premiums of $P$ per year are payable
+continuously each year.
+
+\vspace{4mm} Calculate: $P$. \vspace{4mm}
+
+\(A) 1000 \hspace{0.2in} (B) 1100 \hspace{0.2in} (C) 1200 \hspace{0.2in}
+(D) 1300 \hspace{0.2in} (E) 1400 \vspace{5mm}
+
+13.22. Consider a special 2-year term insurance on (50): \vspace{2mm}
+
+\(i) There are two decrements: mortality (d) and lapse (w). 100,000 is
+payable at the end of the year of death. No benefit is payable at the
+end of the year of lapse. \vspace{2mm}
+
+\(ii) $d$ = 0.06 \vspace{2mm}
+
+(iii)
+
+$\begin{array}{c|c|c}
+\hline
+\mathbf{x} & \mathbf{q^{\prime{(d)}}_x} & \mathbf{q^{\prime{(w)}}_x} \\
+\hline
+50 & 0.022 & 0.040 \\
+51 & 0.025 & 0.040 \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+\(iv) Let A denote the expected present value of the insurance assuming
+that mortality and lapse are each uniformly distributed within each year
+of age in their associated single decrement tables. \vspace{2mm}
+
+\(v) Let B denote the expected present value of the insurance assuming
+that mortality is uniformly distributed within each year of age in its
+associated single decrement table, and lapse can only occur at the end
+of each year. \vspace{2mm}
+
+Which of the following is true? \vspace{2mm}
+
+\(A) $A$ $<$ $B$ \hspace{0.2in} (B) $A$ = $B$ \hspace{0.2in} (C) $A$ $>$
+$B$
+
+\(D) No relationship between $A$ and $B$ can be determined from the given
+information. \vspace{10mm}
+
+\newpage
+13.23. For a fully discrete life insurance of 1000 on (x): \vspace{4mm}
+
+\(i) The asset share at the end of year 5 is 710. \vspace{2mm}
+
+\(ii) The level annual gross premium is 300. \vspace{2mm}
+
+\(iii) $i$ = 0.05 \vspace{2mm}
+
+\(iv) The cash value (withdrawal benefit) at the end of year 5 is one
+quarter of the sum of all gross premiums previously paid without
+interest. \vspace{2mm}
+
+\(v) The percent of the gross premium paid at time 4 for expenses is 10%.
+\vspace{2mm}
+
+\(vi) The amount of per policy expenses paid at time 4 is 10.
+\vspace{2mm}
+
+\(vii) The probability that (x + 4) dies prior to age x + 5 is 0.045.
+\vspace{2mm}
+
+\(viii) The probability that (x + 4) withdraws prior to age x + 5 is
+0.250. \vspace{4mm}
+
+Calculate the asset share at the end of year 4. \vspace{4mm}
+
+\(A) 270 \hspace{0.2in} (B) 290 \hspace{0.2in} (C) 310 \hspace{0.2in} (D)
+330 \hspace{0.2in} (E) 350 \vspace{20mm}
+
+13.24. Consider a fully discrete 5-year endowment insurance on (x):
+\vspace{4mm}
+
+\(i) The level annual gross premium is $G$. \vspace{2mm}
+
+\(ii) The endowment insurance has a death (d) benefit of 1000. The pure
+endowment benefit is 1000. \vspace{2mm}
+
+\(iii) The withdrawal (w) benefit payable at the end of year 2 is 100.
+\vspace{2mm}
+
+\(iv) For all years, the percent of premium expense is 5% of $G$ and the
+per policy expense is 30. All expenses are payable at the beginning of
+the year. \vspace{2mm}
+
+\(v) You are given: $q^{(d)}_{x + 1}$ = 0.03 and $q^{(w)}_{x + 1}$ =
+0.20. \vspace{2mm}
+
+\(vi) The effective annual interest rate for the second year is 6%.
+\vspace{2mm}
+
+\(vii) The asset share at the end of the first year is 275.90, and the
+asset share at the end of the second year is 535.10. \vspace{4mm}
+
+Calculate: $G$. \vspace{4mm}
+
+\(A) 200 \hspace{0.2in} (B) 220 \hspace{0.2in} (C) 240 \hspace{0.2in} (D)
+260 \hspace{0.2in} (E) 280
+
+\newpage
+### Answers to Exercises
+
+\Large13.1. A \vspace{2mm}
+
+13.2. C \vspace{2mm}
+
+13.3. B \vspace{2mm}
+
+13.4. D \vspace{2mm}
+
+13.5. D \vspace{2mm}
+
+13.6. E \vspace{2mm}
+
+13.7. A \vspace{2mm}
+
+13.8. A \vspace{2mm}
+
+13.9. D \vspace{2mm}
+
+13.10. B \vspace{2mm}
+
+13.11. B \vspace{2mm}
+
+13.12. B \vspace{2mm}
+
+13.13. A \vspace{2mm}
+
+13.14. D \vspace{2mm}
+
+13.15. B \vspace{2mm}
+
+13.16. D \vspace{2mm}
+
+13.17. C \vspace{2mm}
+
+13.18. B \vspace{2mm}
+
+13.19. C \vspace{2mm}
+
+13.20. D \vspace{2mm}
+
+13.21. D \vspace{2mm}
+
+13.22. A \vspace{2mm}
+
+13.23. E \vspace{2mm}
+
+13.24. A \vspace{2mm}
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Fall 2014: \#2 \vspace{2mm}
+
+-   Exam MLC, Spring 2014: \#20 \vspace{2mm}
+
+-   Exam MLC, Spring 2013: \#2, 11, 24 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#13 \vspace{2mm}
+
+-   Exam MLC, Spring 2012: \#14, 29 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#5, 20, 36, 42, 43, 58, 70, 82, 83, 95,
+    100, 117, 133, 135, 138, 159, 160, 178, 179, 187, 202, 206, 216,
+    224, 232, 234, 235, 236, 242, 244, 283 \vspace{2mm}
+
+-   Exam MLC, Spring 2007: \#9, 12, 20, 23, 28, 30 \vspace{2mm}

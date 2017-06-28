@@ -1,0 +1,975 @@
+---
+title: "Reserves I"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Reserves I
+
+## Key Concepts
+
+The policy value at time $t$ is called the **reserve** at time $t$. The
+**net premium reserve** represents the accumulated fund that the insurer
+needs to have at some future time that in addition to future net
+premiums should, on average, fund the future benefits associated with
+the policy. On Exam LC, and Exam MLC prior to 2014, if premiums are
+calculated using the equivalence principle and ignoring expenses, the
+reserve for the policy is called the **benefit reserve**. Starting in
+2014, the term “net premium reserve” is equivalent to “benefit reserve”
+on Exam MLC; that is, a net premium reserve is a reserve based on
+premiums calculated using the equivalence principle and ignoring
+expenses. Both “net premium reserve” and “benefit reserve” will be used
+interchangeably in this supplement. \vspace{2mm}
+
+To illustrate why a reserve is often necessary, consider a fully
+discrete whole life insurance of $S$ on (x) with net premiums. As $t$
+approaches infinity, the present value of future benefits at time $t$
+$>>>$ the present value of future premiums at time $t$; this is because
+the policyholder is approaching death meaning that the benefit is
+payable sooner and sooner (with increasing $t$) and fewer future
+premiums will be collected. \vspace{2mm}
+
+**Net Future Loss at Time t**:
+
+\Large
+
+-   The first step to determining the net premium or benefit reserve is
+    to determine the appropriate **net future loss at time t random
+    variable** (conditional on survival of the policyholder to time
+    $t$): $L_t$ = ${}_{t}L$ \vspace{2mm}
+
+    = Present value of future benefits at time t - Present value of
+    future premiums at time t = $PVFB@t$ - $PVFP@t$ \vspace{4mm}
+
+-   The **net future loss** **at time t** may be written as $L^n_t$.
+    \vspace{4mm}
+
+-   The basic notation for a net premium or benefit reserve at time $t$
+    is ${}_{t}V$. Superscripts may be included. There is different
+    notation for reserves for policies whom those taking Exam MLC do NOT
+    have to know. \vspace{4mm}
+
+-   We will focus on benefit reserves. \vspace{4mm}
+
+-   There are two main approaches to calculating benefit reserves:
+    \vspace{2mm}
+
+    -   Prospective Approach (looking into the future)
+
+    -   Retrospective Approach (looking into the past)
+
+## Prospective Approach
+
+\Large
+
+-   The general **prospective benefit reserve** formula is: \vspace{2mm}
+
+    ${}_{t}V$ = $E(L^n_t)$ = $E(PVFB@t)$ - $E(PVFP@t)$. \vspace{2mm}
+
+-   This formula emphasizes that the benefit reserve is a balancing item
+    in funding a policy, as: ${}_{t}V$ + $E(PVFP@t)$ = $E(PVFB@t)$.
+    \vspace{2mm}
+
+-   Note: the benefit reserve at time 0, ${}_{0}V$ = $E(L_0)$, must
+    equal zero by the equivalence principle. \vspace{2mm}
+
+-   The prospective benefit reserve formula is very useful for a policy
+    where no premiums are payable after time $t$, as ${}_{t}V$ =
+    $E(PVFB@t)$.
+
+\newpage
+## Prospective Benefit Reserves
+
+\Large
+
+### Fully Continuous Insurance of 1 on (x)
+
+$\begin{array}{l|l|l}
+  \hline
+  \textbf{Continuous}     & \textbf{Benefit Reserve}      & \textbf{Prospective Benefit} \\
+  \textbf{Insurance}      & \textbf{Notation}             & \textbf{Reserve Formula} \\
+  \hline
+  \text{Whole Life}       & {}_{t}\bar{V}(\bar{A}_x)      & \bar{A}_{x + t} - \bar{P}(\bar{A}_x)\bar{a}_{x + t} \\
+  \hline
+  n\text{-year}           &                               & \lcterm{\bar{A}}{x + t}{n - t} - \bar{P}(\lcterm{\bar{A}}{x}{n})\anncon{x + t}{n - t}, t<n \\
+  \text{Term}             &  {}_{t}\bar{V}(\lcterm{\bar{A}}{x}{n}) & 0, t = n \\
+  \hline
+  n\text{-year}         &                               & \pureend{x + t}{n - t} - \bar{P}(\pureend{x}{n})\anncon{x + t}{n - t}, t < n  \\
+  \text{Pure Endowment}   & {}_{t}\bar{V}(\pureend{x}{n}) & 1, t = n \\
+  \hline
+  n\text{-year}         &                               & \insendc{x + t}{n - t} - \bar{P}(\insendc{x}{n})\anncon{x + t}{n - t}, t < n \\
+  \text{Endowment}        & {}_{t}\bar{V}(\insendc{x}{n}) & 1, t = n \\
+  \hline
+  h\text{-Payment}      &                               & \bar{A}_{x +
+t} - {}_{h}\bar{P}(\bar{A}_x)\anncon{x + t}{h - t}, t \le h \\
+  \text{Whole Life}       & {}_{t}^{h}\bar{V}(\bar{A}_x)  & \bar{A}_{x +
+t}, t > h \\
+  \hline
+  h\text{-Payment}      &                               & \insendc{x + t}{n - t} - {}_{h}\bar{P}(\insendc{x}{n})\anncon{x + t}{h - t}, t \le h < n \\
+  n\text{-year}         & {}_{t}^{h}\bar{V}(\insendc{x}{n}) & \insendc{x + t}{n - t}, h < t < n \\
+  \text{Endowment}        &                               & 1, t = n \\
+\hline 
+\end{array}$
+
+
+-   For each fully continuous insurance, $L^n_t$ = $PVFB@t$ - $PVFP@t$.
+    \vspace{2mm}
+
+    This formula can be calculated for a particular policy by
+    appropriately adjusting the formula for $L^n_0$ for a time $t$ years
+    after issue. For example, if we consider a fully continuous whole
+    life insurance of 1 on (x): \vspace{1mm}
+
+    $L^n_t$ = $v^{T_{x + t}}$ -
+    $\bar{P}(\bar{A}_x)$$\bar{a}_{\lcroof{T_{x + t}}}$. \vspace{2mm}
+
+-   In the “Prospective Benefit Reserve Formula” column, the left hand
+    side of the equals sign gives the notation for the benefit reserve.
+    For example, ${}_{t}\bar{V}(\lcterm{\bar{A}}{x}{n})$ denotes the
+    benefit reserve at time $t$ for a fully continuous $n$-year term
+    insurance of 1 that was issued to a life aged x. \vspace{2mm}
+
+    \newpage
+-   Furthermore, if the face amount is $S$, both sides of the equation
+    in the “Prospective Benefit Reserve Formula” column are multiplied
+    by $S$. \vspace{6mm}
+
+-   For each fully continuous insurance, the prospective benefit reserve
+    was determined by $E(L^n_t)$ = $E(PVFB@t)$ - $E(PVFP@t)$.
+    \vspace{6mm}
+
+-   ${}_{t}\bar{V}(\bar{A}_x)$ = $\bar{A}_{x + t}$ -
+    $\bar{P}(\bar{A}_x)$$\bar{a}_{x + t}$ =
+    $\frac{\bar{A}_{x + t} - \bar{A}_x}{1 -
+    \bar{A}_x}$ = 1 - $\frac{\bar{a}_{x + t}}{\bar{a}_x}$ =
+    ($\bar{P}(\bar{A}_{x + t})$ - $\bar{P}(\bar{A}_x)$)$\bar{a}_{x +
+    t}$. \vspace{6mm}
+
+-   ${}_{t}\bar{V}(\insendc{x}{n})$ = $\insendc{x + t}{n - t}$ -
+    $\bar{P}(\insendc{x}{n})$$\anncon{x + t}{n - t}$ =
+    $\frac{\insendc{x + t}{n - t} - \insendc{x}{n}}{1 -
+    \insendc{x}{n}}$ = 1 - $\frac{\anncon{x + t}{n - t}}{\anncon{x}{n}}$
+    = ($\bar{P}(\insendc{x + t}{n - t})$ -
+    $\bar{P}(\insendc{x}{n})$)$\anncon{x + t}{n - t}$ for $t$ $<$ $n$.
+    \vspace{6mm}
+
+-   With a constant force of mortality: ${}_{t}\bar{V}(\bar{A}_x)$ =
+    ${}_{t}\bar{V}(\lcterm{\bar{A}}{x}{n})$ = 0. \vspace{4mm}
+
+\newpage
+
+-   For a couple of the insurances in the table, there are analytic
+    formulas for the variance of the net future loss at time $t$.
+    \vspace{1mm}
+
+    -   For a fully continuous whole life insurance of 1 on (x):
+        \vspace{1mm}
+
+        $Var(L^n_t)$ = $(1 +
+        \frac{\bar{P}(\bar{A}_x)}{\delta})^2$$(^2\bar{A}_{x + t} -
+        [\bar{A}_{x + t}]^2)$. \vspace{4mm}
+
+        -   With a constant force of mortality: $Var(L^n_t)$ =
+            $\frac{\mu}{\mu + 2\delta}$. \vspace{4mm}
+
+    -   For a fully continuous $n$-year endowment insurance of 1 on (x):
+        \vspace{1mm}
+
+        $Var(L^n_t)$ = $(1 +
+        \frac{\bar{P}(\insendc{x}{n})}{\delta})^2$$(^2\insendc{x + t}{n - t}
+        - [\insendc{x + t}{n - t}]^2)$ for $t$ $<$ $n$. \vspace{2mm}
+
+    -   If the benefit is $S$, multiply each of the above $Var(L^n_t)$
+        formulas by $S^2$. \vspace{4mm}
+
+    -   These formulas for $Var(L^n_t)$ are true for any type of
+        premium, not just a benefit premium, **except** for the constant
+        force of mortality formula. Just use the appropriate premium in
+        the formula. \vspace{4mm}
+
+    -   If $t$ = 0, each formula becomes $Var(L^n_0)$ for that life
+        insurance. \vspace{4mm}
+
+    -   For any other type of fully continuous insurance, use:
+        $Var(L^n_t)$ = $E[(L^n_t)^2]$ - $(E[L^n_t])^2$. \vspace{10mm}
+
+-   The prospective benefit reserve formula can be applied to continuous
+    annuities. For example: \vspace{1mm}
+
+    ${}_{t}\bar{V}({}_{n|}\bar{a}_x)$ = ${}_{n - t|}\bar{a}_{x + t}$ -
+    $\bar{P}({}_{n|}\bar{a}_x)$$\anncon{x + t}{n - t}$ for $t$ $\le$
+    $n$; $\bar{a}_{x + t}$ for $t$ $>$ $n$.
+
+\newpage
+### Fully Discrete Insurance of 1 on (x)
+
+$\begin{array}{l|l|l}
+\hline
+\textbf{Annual}         & \textbf{Benefit Reserve}          & \textbf{Prospective Benefit} \\
+\textbf{Insurance}      & \textbf{Notation}                 & \textbf{Reserve Formula} \\
+\hline
+\text{Whole Life}       & {}_{k}V_x                         & A_{x + k} - P_x\ddot{a}_{x + k} \\
+\hline
+n\text{-year}           &                                   & \lcterm{A}{x + k}{n - k} - \lcterm{P}{x}{n}\anndue{x + k}{n - k}, k < n \\
+\text{Term}             & {}_{k}\lcterm{V}{x}{n}            & 0, k = n \\
+\hline
+n\text{-year}           &                                   & \pureend{x + k}{n - k} - \lcend{P}{x}{n}\anndue{x + k}{n - k}, k < n  \\
+\text{Pure Endowment}   & {}_{k}\lcend{V}{x}{n}             & 1, k = n \\
+\hline
+n\text{-year}           &                                   & \insend{x + k}{n - k} - P_{x :\lcroof{n}}\anndue{x + k}{n - k}, k < n \\
+\text{Endowment}        & {}_{k}V_{x :\lcroof{n}}           & 1, k = n \\
+\hline
+h\text{-Payment}        &                                   & A_{x +
+k} - {}_{h}P_x\anndue{x + k}{h - k}, k < h \\
+\text{Whole Life}       & {}_{k}^{h}V_x                     & A_{x +
+k}, k \ge h \\
+\hline
+h\text{-Payment}        &                                   & \insend{x + k}{n - k} - {}_{h}P_{x :\lcroof{n}}\anndue{x + k}{h - k}, k < h < n \\
+n\text{-year}           & {}_{k}^{h}V_{x :\lcroof{n}}       & \insend{x + k}{n - k}, h \le k < n \\
+\text{Endowment}        &                                   & 1, k = n \\
+\hline
+\end{array}$
+
+
+-   For each fully discrete insurance, $L^n_k$ = $PVFB@k$ - $PVFP@k$.
+    \vspace{2mm}
+
+    This formula can be calculated for a particular policy by
+    appropriately adjusting the formula for $L^n_0$ for a time $k$ years
+    after issue. For example, if we consider a fully discrete whole life
+    insurance of 1 on (x): \vspace{1mm}
+
+    $L^n_k$ = $v^{K_{x + k} + 1}$ - $P_x$$\ddot{a}_{\lcroof{K_{x + k} +
+    1}}$. \vspace{2mm}
+
+-   Recall, $k$ can only take on non-negative integer values. So, $k$
+    $<$ $n$ $\implies$ $k$ = 0, 1, ..., $n$ - 1. \vspace{2mm}
+
+    \newpage
+-   In the “Prospective Benefit Reserve Formula” column, the left hand
+    side of the equals sign gives the actuarial notation for the benefit
+    reserve. For example, ${}_{k}\lcterm{V}{x}{n}$ denotes the benefit
+    reserve at time $k$ for a fully discrete $n$-year term insurance of
+    1 that was issued to a life aged x. Those taking Exam MLC do not
+    have to know this notation, and can denote the benefit reserve in
+    each row as ${}_{k}V$ or ${}_{k}V^n$. \vspace{4mm}
+
+-   Furthermore, if the face amount is $S$, both sides of the equation
+    in the “Prospective Benefit Reserve Formula” column are multiplied
+    by $S$. \vspace{4mm}
+
+-   For each fully discrete insurance, the prospective benefit reserve
+    was determined by $E(L^n_k)$ = $E(PVFB@k)$ - $E(PVFP@k)$.
+    \vspace{4mm}
+
+-   ${}_{k}V_x$ = $A_{x + k}$ - $P_x$$\ddot{a}_{x + k}$ =
+    $\frac{A_{x + k} - A_x}{1 -
+    A_x}$ = 1 - $\frac{\ddot{a}_{x + k}}{\ddot{a}_x}$ = ($P_{x + k}$ -
+    $P_x$)$\ddot{a}_{x + k}$. \vspace{4mm}
+
+-   ${}_{k}V_{x :\lcroof{n}}$ = $\insend{x + k}{n - k}$ -
+    $P_{x :\lcroof{n}}$$\anndue{x + k}{n - k}$ =
+    $\frac{\insend{x + k}{n - k} - \insend{x}{n}}{1 -
+    \insend{x}{n}}$ = 1 - $\frac{\anndue{x + k}{n - k}}{\anndue{x}{n}}$
+
+    = ($P_{x + k :\lcroof{n - k}}$ - $P_{x:\lcroof{n}}$)$\anndue{x +
+    k}{n - k}$ for $k$ $<$ $n$. \vspace{4mm}
+
+-   With a constant force of mortality: ${}_{k}V_x$ =
+    ${}_{k}\lcterm{V}{x}{n}$ = 0. \vspace{4mm}
+
+-   Argue that the following reserve equations are valid: \vspace{2mm}
+
+    -   $P_x$ - $\lcterm{P}{x}{n}$ = ${}_{n}V_x$$\lcend{P}{x}{n}$
+        \vspace{2mm}
+
+    -   ${}_{n}^{n}V_x$ - ${}_{n}\lcterm{V}{x}{n}$ = $A_{x +
+        n}$ \vspace{2mm}
+
+    -   ${}_{n}^{n}V_x$ - ${}_{n}V_x$ = $P_x$$\ddot{a}_{x +
+        n}$ \vspace{2mm}
+
+    -   ${}_{n}V_{x :\lcroof{n}}$ - ${}_{n}V_x$ = 1 - ${}_{n}V_x$
+        \vspace{2mm}
+
+    -   ${}_{h}^{h}V_{x :\lcroof{n}}$ - ${}_{h}^{h}V_x$ =
+        $\insend{x + h}{n -
+        h}$ - $A_{x + h}$ \vspace{2mm}
+
+    \newpage
+-   For a couple of the insurances in the table, there are analytic
+    formulas for the variance of the net future loss at time $k$.
+    \vspace{1mm}
+
+    -   For a fully discrete whole life insurance of 1 on (x):
+        \vspace{1mm}
+
+        $Var(L^n_k)$ = $(1 + \frac{P_x}{d})^2$$(^2A_{x + k} - [A_{x +
+        k}]^2)$. \vspace{4mm}
+
+        -   With a constant force of mortality: $Var(L^n_k)$ =
+            $\frac{pq}{q + i^2 + 2i}$. \vspace{4mm}
+
+    -   For a fully discrete $n$-year endowment insurance of 1 on (x):
+        \vspace{1mm}
+
+        $Var(L^n_k)$ =
+        $(1 + \frac{P_{x :\lcroof{n}}}{d})^2$$(^2\insend{x +
+        k}{n - k} - [\insend{x + k}{n - k}]^2)$ for $k$ $<$ $n$.
+        \vspace{4mm}
+
+    -   If the benefit is $S$, multiply each of the above $Var(L^n_k)$
+        formulas by $S^2$. \vspace{4mm}
+
+    -   These formulas for $Var(L^n_k)$ are true for any type of
+        premium, not just a benefit premium, **except** for the constant
+        force of mortality formula. Just use the appropriate premium in
+        the formula. \vspace{4mm}
+
+    -   If $k$ = 0, each formula becomes $Var(L^n_0)$ for that life
+        insurance. \vspace{4mm}
+
+    -   For any other type of fully discrete insurance, use:
+        $Var(L^n_k)$ = $E[(L^n_k)^2]$ - $(E[L^n_k])^2$. \vspace{10mm}
+
+-   The prospective benefit reserve formula can be applied to discrete
+    annuities. For example: \vspace{1mm}
+
+    ${}_{k}V({}_{n|}\ddot{a}_x)$ = ${}_{n - k|}\ddot{a}_{x + k}$ -
+    $P({}_{n|}\ddot{a}_x)$$\anndue{x + k}{n - k}$ for $k$ $<$ $n$;
+    $\ddot{a}_{x + k}$ for $k$ $\ge$ $n$.
+
+\newpage
+### Semi-Continuous Insurance of 1 on (x)
+
+-   You can obtain this table by taking the table for **Fully Continuous
+    Insurance of 1 on (x)** and replacing the continuous premium annuity
+    with an annual annuity-due. \vspace{10mm}
+
+-   For example, a semi-continuous $n$-year term insurance of 1 on (x)
+    is: \vspace{2mm}
+
+    $\begin{array}{l|l|l}
+    \hline
+    \textbf{Semi-Continuous}    & \textbf{Benefit Reserve}      & \textbf{Prospective Benefit} \\
+    \textbf{Insurance}          & \textbf{Notation}             & \textbf{Reserve Formula} \\
+    \hline
+    n\text{-year}               &                               & \lcterm{\bar{A}}{x + k}{n - k} - P(\lcterm{\bar{A}}{x}{n})\anndue{x + k}{n - k}, k < n \\
+    \text{Term}                 & {}_{k}V(\lcterm{\bar{A}}{x}{n}) & 0, k = n \\
+    \hline
+    \end{array}$
+
+    \vspace{10mm}
+
+-   Those taking Exam MLC do NOT have to know the actuarial notation for
+    semi-continuous benefit reserves; ${}_{k}V$ or ${}_{k}V^n$ is
+    sufficient. \vspace{10mm}
+
+-   Exam MLC Only: With UDD within each year of age: \vspace{2mm}
+
+    -   ${}_{k}V(\bar{A}_x)$ = $\frac{i}{\delta}$${}_{k}V_x$
+        \vspace{2mm}
+
+    -   ${}_{k}V(\lcterm{\bar{A}}{x}{n})$ =
+        $\frac{i}{\delta}$${}_{k}\lcterm{V}{x}{n}$ \vspace{2mm}
+
+    -   ${}_{k}V(\insendc{x}{n})$ =
+        $\frac{i}{\delta}$${}_{k}\lcterm{V}{x}{n}$ +
+        ${}_{k}\lcend{V}{x}{n}$
+
+\newpage
+## Retrospective Approach
+
+\Large
+
+-   The general **retrospective benefit reserve** formula is:
+    \vspace{2mm}
+
+    ${}_{t}V$ = $\frac{E[\text{PVFP on [0, t]}]}{{}_{t}E_x}$ -
+    $\frac{E[\text{PVFB on [0, t]}]}{{}_{t}E_x}$. \vspace{10mm}
+
+-   This formula emphasizes that the benefit reserve is the accumulated
+    fund that the insurer needs to have by time $t$ that along with
+    future premiums, on average, will fund the future benefits of a
+    policy. The accumulated fund is the accumulated premiums from issue
+    up to time $t$ ($\frac{E[\text{PVFP on [0, t]}]}{{}_{t}E_x}$) less
+    the accumulated value of any benefits paid from issue up to time $t$
+    ($\frac{E[\text{PVFB on [0, t]}] }{{}_{t}E_x}$). \vspace{10mm}
+
+-   The retrospective benefit reserve formula is very useful for a
+    policy where no benefits are payable before time $t$, as ${}_{t}V$ =
+    $\frac{E[\text{PVFP on [0, t]}]}{{}_{t}E_x}$. \vspace{10mm}
+
+-   The prospective benefit reserve will equal the retrospective benefit
+    reserve for a particular policy at a specific time as long as the
+    same assumptions and basis (interest and mortality) are used.
+    \vspace{10mm}
+
+\newpage
+## Retrospective Benefit Reserves
+
+\large
+
+### Fully Continuous Insurance of 1 on (x)
+
+$\begin{array}{l|l|l}
+\hline
+\textbf{Continuous}       & \textbf{Benefit Reserve}      & \textbf{Retrospective Benefit} \\
+\textbf{Insurance}        & \textbf{Notation}             & \textbf{Reserve Formula} \\
+\hline
+\text{Whole Life}         & {}_{t}\bar{V}(\bar{A}_x)      & \frac{\bar{P}(\bar{A}_x)\anncon{x}{t}}{{}_{t}E_x} - \frac{\lcterm{\bar{A}}{x}{t}}{{}_{t}E_x}  \\
+\hline 
+n\text{-year}             &                               & \frac{\bar{P}(\lcterm{\bar{A}}{x}{n})\anncon{x}{t}}{{}_{t}E_x} - \frac{\lcterm{\bar{A}}{x}{t}}{{}_{t}E_x}, t < n \\
+\text{Term}               & {}_{t}\bar{V}(\lcterm{\bar{A}}{x}{n}) & 0, t = n \\
+\hline
+n\text{-year}             &                               & \frac{\bar{P}(\pureend{x}{n})\anncon{x}{t}}{{}_{t}E_x}, t < n  \\
+\text{Pure Endowment}     & {}_{t}\bar{V}(\pureend{x}{n}) & 1, t = n \\
+\hline
+n\text{-year}             &                               & \frac{\bar{P}(\insendc{x}{n})\anncon{x}{t}}{{}_{t}E_x} - \frac{\lcterm{\bar{A}}{x}{t}}{{}_{t}E_x}, t < n \\
+\text{Endowment}          & {}_{t}\bar{V}(\insendc{x}{n}) & 1, t = n \\
+\hline
+h\text{-Payment}          &                               & \frac{{}_{h}\bar{P}(\bar{A}_x)\anncon{x}{t}}{{}_{t}E_x} -
+\frac{\lcterm{\bar{A}}{x}{t}}{{}_{t}E_x}, t \le h \\
+\text{Whole Life}         & {}_{t}^{h}\bar{V}(\bar{A}_x)  & \frac{{}_{h}\bar{P}(\bar{A}_x)\anncon{x}{h}}{{}_{t}E_x} -
+\frac{\lcterm{\bar{A}}{x}{t}}{{}_{t}E_x}, t > h \\
+\hline
+h\text{-Payment}          &                               & \frac{{}_{h}\bar{P}(\insendc{x}{n})\anncon{x}{t}}{{}_{t}E_x} - \frac{\lcterm{\bar{A}}{x}{t}}{{}_{t}E_x}, t \le h < n \\
+n\text{-year Endowment}   & {}_{t}^{h}\bar{V}(\insendc{x}{n}) & \frac{{}_{h}\bar{P}(\insendc{x}{n})\anncon{x}{h}}{{}_{t}E_x} -
+\frac{\lcterm{\bar{A}}{x}{t}}{{}_{t}E_x}, h < t < n \\
+                          &                               & 1, t = n \\
+\hline
+\end{array}$
+
+\newpage
+### Fully Discrete Insurance of 1 on (x)
+
+$\begin{array}{l|l|l}
+\hline
+\textbf{Annual}           & \textbf{Benefit Reserve}      & \textbf{Retrospective Benefit} \\
+\textbf{Insurance}        & \textbf{Notation}             & \textbf{Reserve Formula} \\
+\hline
+\text{Whole Life}         & {}_{k}V_x                     & \frac{P_x\anndue{x}{k}}{{}_{k}E_x} - \frac{\lcterm{A}{x}{k}}{{}_{k}E_x}  \\
+\hline
+n\text{-year}             &                               & \frac{\lcterm{P}{x}{n}\anndue{x}{k}}{{}_{k}E_x} - \frac{\lcterm{A}{x}{k}}{{}_{k}E_x}, k < n \\
+\text{Term}               & {}_{k}\lcterm{V}{x}{n}        & 0, k = n \\
+\hline
+n\text{-year}             &                               & \frac{\lcend{P}{x}{n}\anndue{x}{k}}{{}_{k}E_x}, k < n  \\
+\text{Pure Endowment}     & {}_{k}\lcend{V}{x}{n}         & 1, k = n \\
+\hline
+n\text{-year}             &                               & \frac{P_{x :\lcroof{n}}\anndue{x}{k}}{{}_{k}E_x} - \frac{\lcterm{A}{x}{k}}{{}_{k}E_x}, k < n \\
+\text{Endowment}          & {}_{k}V_{x :\lcroof{n}}       & 1, k = n \\
+\hline
+h\text{-Payment}          &                               & \frac{{}_{h}P_x\anndue{x}{k}}{{}_{k}E_x} -
+\frac{\lcterm{A}{x}{k}}{{}_{k}E_x}, k < h \\
+\text{Whole Life}         & {}_{k}^{h}V_x                 & \frac{{}_{h}P_x\anndue{x}{h}}{{}_{k}E_x} -
+\frac{\lcterm{A}{x}{k}}{{}_{k}E_x}, k \ge h \\
+\hline
+h\text{-Payment}          &                               & \frac{{}_{h}P_{x:\lcroof{n}}\anndue{x}{k}}{{}_{k}E_x} -
+\frac{\lcterm{A}{x}{k}}{{}_{k}E_x}, k < h < n \\
+n\text{-year Endowment}   & {}_{k}^{h}V_{x :\lcroof{n}}   & \frac{{}_{h}P_{x :\lcroof{n}}\anndue{x}{h}}{{}_{k}E_x} -
+\frac{\lcterm{A}{x}{k}}{{}_{k}E_x}, h \le k < n \\
+                          &                               & 1, k = n \\
+\hline
+\end{array}$
+
+\newpage
+## Exercises
+
+\Large
+
+9.1. For a fully continuous 5-year endowment insurance of 1000 on (x):
+\vspace{4mm}
+
+\(i) $\mu_x(t)$ = 0.01 for $t$ $>$ 0 \vspace{2mm}
+
+\(ii) $\delta$ = 0.05 \vspace{2mm}
+
+\(iii) Level benefit premiums are payable continuously each year.
+\vspace{4mm}
+
+Calculate the future loss at time 2 assuming (x) dies exactly 6.2 years
+after issue. \vspace{4mm}
+
+\(A) 355 \hspace{0.2in} (B) 400 \hspace{0.2in} (C) 445 \hspace{0.2in} (D)
+490 \hspace{0.2in} (E) 535 \vspace{20mm}
+
+9.2. For a fully discrete 3-year term insurance of 1000 on (30):
+\vspace{4mm}
+
+\(i) $i$ = 0.08 \vspace{2mm}
+
+\(ii) Mortality follows: $l_x$ = 50(100 - $x$) for 0 $\le$ $x$ $\le$ 100.
+\vspace{2mm}
+
+\(iii) Premiums are determined by the equivalence principle.
+
+\vspace{4mm} Calculate the future loss at time 1, given (30) dies in the
+second year after policy issue. \vspace{4mm}
+
+\(A) 900 \hspace{0.2in} (B) 910 \hspace{0.2in} (C) 920 \hspace{0.2in} (D)
+930 \hspace{0.2in} (E) 940 \vspace{20mm}
+
+9.3. Suppose: $l_x$ = 100 - $x$ for 0 $\le$ $x$ $\le$ 100, and $i$ =
+0.06. \vspace{4mm}
+
+Calculate the benefit reserve at time 10 for a fully continuous 15-year
+endowment insurance of 1 on (30). \vspace{4mm}
+
+\(A) 0.42 \hspace{0.2in} (B) 0.46 \hspace{0.2in} (C) 0.50 \hspace{0.2in}
+(D) 0.54 \hspace{0.2in} (E) 0.58
+
+\newpage
+9.4. Which of the following is not equal to the benefit reserve for a
+fully discrete whole life insurance of 1 on (35) at the end of policy
+year 6? \vspace{4mm}
+
+\(A) $A_{41}$ - $P_{35}$$\ddot{a}_{41}$ \vspace{4mm}
+
+\(B) 1 - $\frac{\ddot{a}_{41}}{\ddot{a}_{35}}$ \vspace{4mm}
+
+\(C) $[P_{41} - P_{35}]$$\ddot{a}_{41}$ \vspace{4mm}
+
+\(D) $[1 - A_{35}]^{-1}[A_{41} - A_{35}]$ \vspace{4mm}
+
+\(E) $\frac{P_{35}}{{}_{6}E_{35}}$$[\anndue{35}{6} -
+\lcterm{A}{35}{6}]$ \vspace{6mm}
+
+9.5. You are given: \vspace{4mm}
+
+\(i) $\insend{30}{20}$ = 0.41949 \vspace{2mm}
+
+\(ii) ${}_{10}E_{40}$ = 0.63274 \vspace{2mm}
+
+\(iii) ${}_{10}V_{30 :\lcroof{20}}$, the benefit reserve at time 10 for a
+fully discrete 20-year endowment insurance of 1 on (30), equals 0.39040.
+\vspace{4mm}
+
+Calculate: $\lcterm{A}{40}{10}$. \vspace{4mm}
+
+\(A) 0.013 \hspace{0.2in} (B) 0.016 \hspace{0.2in} (C) 0.019
+\hspace{0.2in} (D) 0.022 \hspace{0.2in} (E) 0.025 \vspace{6mm}
+
+9.6. Consider two groups of lives: Group 1 and Group 2. Each group
+consists of 1000 lives aged 25. \vspace{4mm}
+
+\(i) Each life in Group 1 is issued a fully discrete 15-year term
+insurance policy with face amount 10,000 assuming mortality follows the
+Illustrative Life Table. \vspace{2mm}
+
+\(ii) Each life in Group 2 is issued a fully discrete 15-year term
+insurance policy with face amount 10,000 assuming $q_x$ = 0.015 for all
+integer ages x. \vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{4mm}
+
+Calculate the absolute value of the difference between the expected
+aggregate reserves for Group 1 and Group 2, each at time 10.
+\vspace{4mm}
+
+\(A) 24,900 \hspace{0.2in} (B) 25,000 \hspace{0.2in} (C) 25,100
+\hspace{0.2in} (D) 25,200 \hspace{0.2in} (E) 25,300
+
+\newpage
+9.7. For a fully continuous 5-payment 10-year term insurance of 1000 on
+(x): \vspace{4mm}
+
+\(i) $\mu_x(t)$ = 0.03 for $t$ $>$ 0 \vspace{2mm}
+
+\(ii) $\delta$ = 0.05 \vspace{4mm}
+
+Calculate the benefit reserve at time 4. \vspace{4mm}
+
+\(A) 80 \hspace{0.2in} (B) 85 \hspace{0.2in} (C) 90 \hspace{0.2in} (D) 95
+\hspace{0.2in} (E) 100 \vspace{15mm}
+
+9.8. For a 10-year deferred whole life annuity-due of 1 per year on
+(35): \vspace{4mm}
+
+\(i) Level benefit premiums are payable at the beginning of the year
+during the first ten years. \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{4mm}
+
+Calculate the benefit reserve at the end of the fifth year. \vspace{4mm}
+
+\(A) 5.6 \hspace{0.2in} (B) 5.8 \hspace{0.2in} (C) 6.0 \hspace{0.2in} (D)
+6.2 \hspace{0.2in} (E) 6.4 \vspace{15mm}
+
+9.9. For a 10-year deferred whole life insurance of 1 on (35) with
+benefit payable at the moment of death: \vspace{4mm}
+
+\(i) $l_x$ = 500(90 - $x$) for 0 $\le$ $x$ $\le$ 90 \vspace{2mm}
+
+\(ii) $\delta$ = 0.05 \vspace{2mm}
+
+\(iii) Benefit premiums of 0.0274 are payable continuously in each of the
+first 10 years. \vspace{4mm}
+
+Calculate the benefit reserve at time 5. \vspace{4mm}
+
+\(A) 0.12 \hspace{0.2in} (B) 0.16 \hspace{0.2in} (C) 0.20 \hspace{0.2in}
+(D) 0.24 \hspace{0.2in} (E) 0.28
+
+\newpage
+9.10. Consider a special fully discrete whole life insurance on (40):
+\vspace{4mm}
+
+\(i) The death benefit is 1000 if death occurs within 10 years, 2000 if
+death occurs after 10 years and before 20 years, and 3000 if death
+occurs after 20 years. \vspace{2mm}
+
+\(ii) The benefit premium is $P$(1 + $k$) for year $k$ + 1 where $k$ = 0,
+1, ...,9. The benefit premium is zero after the tenth year. \vspace{2mm}
+
+\(iii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iv) $i$ = 0.06 \vspace{4mm}
+
+Calculate the benefit reserve at the end of 10 years. \vspace{4mm}
+
+\(A) 660 \hspace{0.2in} (B) 670 \hspace{0.2in} (C) 680 \hspace{0.2in} (D)
+690 \hspace{0.2in} (E) 700 \vspace{20mm}
+
+9.11. Consider a special fully discrete life insurance on (x):
+\vspace{4mm}
+
+\(i) The death benefit is 1000($k$ + 1) for year $k$ + 1 where $k$ = 0,
+1, ..., 19. The death benefit is 20,000 for year $k$ + 1 where $k$ = 20,
+21, ... \vspace{2mm}
+
+\(ii) There are level annual benefit premiums. \vspace{2mm}
+
+\(iii) ${}_{20}p_x$ = 0.9566 \vspace{2mm}
+
+\(iv) $(IA)_x$ = 5.79 \vspace{2mm}
+
+\(v) $(IA)_{x + 20}$ = 7.43 \vspace{2mm}
+
+\(vi) $A_x$ = 0.1531 \vspace{2mm}
+
+\(vii) $A_{x + 20}$ = 0.3219 \vspace{2mm}
+
+\(viii) $\pureend{x}{20}$ = 0.3966 \vspace{4mm}
+
+Calculate the benefit reserve at the end of 20 years. \vspace{4mm}
+
+\(A) 4160 \hspace{0.2in} (B) 4200 \hspace{0.2in} (C) 4240 \hspace{0.2in}
+(D) 4280 \hspace{0.2in} (E) 4320
+
+\newpage
+9.12. For a fully continuous whole life insurance of 2500 on (x):
+\vspace{4mm}
+
+\(i) $$\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.05 & \quad \text{for 0 $\le$ t $<$ 10}\\
+    0.08 & \quad \text{for t $\ge$ 10}\\
+  \end{array} \right.$$\vspace{2mm}
+
+\(ii) $\delta$ = 0.05 \vspace{2mm}
+
+\vspace{4mm} Calculate the expected value of the future loss random
+variable at time 10. \vspace{4mm}
+
+\(A) 320 \hspace{0.2in} (B) 340 \hspace{0.2in} (C) 360 \hspace{0.2in} (D)
+380 \hspace{0.2in} (E) 400 \vspace{15mm}
+
+9.13. For a 10-payment fully continuous 20-year term insurance of 1000
+on (x): \vspace{4mm}
+
+\(i) $$\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.05 & \quad \text{for 0 $\le$ t $<$ 15}\\
+    0.07 & \quad \text{for 15 $\le$ t $<$ 20}\\
+  \end{array} \right.$$
+
+\(ii) $$\delta_t = \left\{
+  \begin{array}{l l}
+    0.07 & \quad \text{for 0 $\le$ t $<$ 15}\\
+    0.08 & \quad \text{for 15 $\le$ t $<$ 20}\\
+  \end{array} \right.$$
+
+\vspace{4mm} Calculate the benefit reserve at the end of the 14th policy
+year. \vspace{4mm}
+
+\(A) 225 \hspace{0.2in} (B) 245 \hspace{0.2in} (C) 265 \hspace{0.2in} (D)
+285 \hspace{0.2in} (E) 305 \vspace{15mm}
+
+9.14. Suppose mortality follows the Illustrative Life Table, and $i$ =
+0.06. \vspace{2mm}
+
+For a 30-year deferred whole life annuity-due of 1 per year on (35),
+with level benefit premiums payable at the beginning of the year for
+each of the first 30 years, calculate the benefit reserve at time 20.
+\vspace{4mm}
+
+\(A) 3.8 \hspace{0.2in} (B) 3.9 \hspace{0.2in} (C) 4.0 \hspace{0.2in} (D)
+4.1 \hspace{0.2in} (E) 4.2
+
+\newpage
+9.15. You are given: \vspace{4mm}
+
+\(i) ${}_{10}L$ is the prospective loss, at time 10, for a fully discrete
+whole life insurance of 1 on (50). \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{2mm}
+
+\(iv) Annual premiums are calculated using the equivalence principle.
+\vspace{4mm}
+
+Calculate $var[{}_{10}L]$. \vspace{4mm}
+
+\(A) 0.058 \hspace{0.2in} (B) 0.063 \hspace{0.2in} (C) 0.068
+\hspace{0.2in} (D) 0.073 \hspace{0.2in} (E) 0.078 \vspace{10mm}
+
+9.16. Consider a fully discrete 10-year term insurance of 10,000 on
+(40): \vspace{4mm}
+
+\(i) The annual level benefit premium is 35.94. \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{2mm}
+
+\(iv) $L_8$ is the prospective loss for this insurance at time 8.
+\vspace{2mm}
+
+\vspace{4mm} Calculate: $Var[L_8]$. \vspace{4mm}
+
+\(A) 840,000 \hspace{0.2in} (B) 850,000 \hspace{0.2in} (C) 860,000
+\hspace{0.2in} (D) 870,000 \hspace{0.2in} (E) 880,000 \vspace{10mm}
+
+9.17. You are given a fully discrete whole life insurance of 5000 on
+(40): \vspace{4mm}
+
+\(i) The level annual benefit premium is 228.78. \vspace{2mm}
+
+\(ii) Deaths are uniformly distributed over each year of age.
+\vspace{2mm}
+
+\(iii) $\mathring{e}_{40}$ = 20.00 and $\mathring{e}_{41}$ = 19.64
+\vspace{2mm}
+
+\(iv) $A_{40}$ = 0.5214 \vspace{4mm}
+
+Calculate the benefit reserve at the end of the first year. \vspace{4mm}
+
+\(A) 76 \hspace{0.2in} (B) 78 \hspace{0.2in} (C) 80 \hspace{0.2in} (D) 83
+\hspace{0.2in} (E) 85
+
+\newpage
+9.18. You are given: \vspace{4mm}
+
+\(i) The level annual benefit premium for a fully discrete whole life
+insurance of 1 on (40) is 0.03. \vspace{2mm}
+
+\(ii) The expected present value of a whole life annuity-due of 1 per
+year on (40) is 10. \vspace{2mm}
+
+\(iii) The benefit reserve at the end of year 10 for a fully discrete
+whole life insurance of 1 on (30) is 0.10. \vspace{2mm}
+
+\(iv) The benefit reserve at the end of year 20 for a fully discrete
+whole life insurance of 1 on (30) is 0.25. \vspace{4mm}
+
+Calculate the level annual benefit premium for a fully discrete whole
+life insurance of 1 on (50). \vspace{4mm}
+
+\(A) 0.04 \hspace{0.2in} (B) 0.05 \hspace{0.2in} (C) 0.06 \hspace{0.2in}
+(D) 0.07 \hspace{0.2in} (E) 0.08 \vspace{20mm}
+
+9.19. You are given: \vspace{4mm}
+
+\(i) A fully discrete 2-year deferred, 3-year term insurance of 1000 is
+issued to a life aged x. \vspace{2mm}
+
+\(ii) The level annual benefit premium is 209.27, and is only payable
+during the first two years. \vspace{2mm}
+
+\(iii) $v$ = 0.90 \vspace{2mm}
+
+\(iv) ${}_{k|}q_x$ = 0.05(1 + $k$) for $k$ = 0, 1, 2, 3, 4; ${}_{5|}q_x$
+= 0.25 \vspace{4mm}
+
+Calculate the second least likely value of the prospective loss at time
+1. \vspace{4mm}
+
+\(A) 450 \hspace{0.2in} (B) 520 \hspace{0.2in} (C) 600 \hspace{0.2in} (D)
+690 \hspace{0.2in} (E) 740 \vspace{10mm}
+
+\newpage
+9.20. Each of 100 independent lives age 30 are issued a fully discrete
+30-year endowment insurance of 1000 with level annual benefit premiums:
+\vspace{4mm}
+
+\(i) The level annual benefit premium is 13.90. \vspace{2mm}
+
+\(ii) Mortality for each life follows the Illustrative Life Table.
+\vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{2mm}
+
+\(iv) 7 of the 100 lives die during the first ten years. \vspace{4mm}
+
+Using the normal approximation, calculate the fund required at the end
+of the first ten years so that there is a 95% probability of covering
+the total prospective loss for the remaining policies at the end of ten
+years. \vspace{4mm}
+
+\(A) 17,560 \hspace{0.2in} (B) 18,060 \hspace{0.2in} (C) 18,560
+\hspace{0.2in} (D) 19,060 \hspace{0.2in} (E) 19,560 \vspace{10mm}
+
+9.21. An insurer issues a single premium 5-year deferred whole life
+annuity-due of 50,000 per year on (60) payable annually: \vspace{4mm}
+
+\(i) The death benefit during the 5-year deferral period is the return of
+the single premium accumulated with interest at 6% per year effective
+payable at the end of the year of death. \vspace{2mm}
+
+\(ii) The single premium is determined using the equivalence principle.
+\vspace{2mm}
+
+\(iii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iv) $i$ = 0.06 \vspace{2mm}
+
+\(v) There are no expenses. \vspace{4mm}
+
+Calculate the reserve at duration 3. \vspace{4mm}
+
+\(A) 440,000 \hspace{0.2in} (B) 440,200 \hspace{0.2in} (C) 440,400
+\hspace{0.2in} (D) 440,600 \hspace{0.2in} (E) 440,800
+
+\newpage
+9.22. You are given a fully discrete 3-year term insurance of 1000 on
+(x): \vspace{4mm}
+
+\(i) The annual net premium is 129.94. \vspace{2mm}
+
+\(ii) $v$ = 0.97 \vspace{2mm}
+
+\(iii) $q_x$ = 0.11, $q_{x + 1}$ = 0.14, $q_{x + 2}$ = 0.16 \vspace{2mm}
+
+\(iv) $L_2$ denotes the net future loss random variable for this
+insurance at time 2. \vspace{4mm}
+
+Calculate the variance of $L_2$. \vspace{4mm}
+
+\(A) 125,000 \hspace{0.2in} (B) 125,500 \hspace{0.2in} (C) 126,000
+\hspace{0.2in} (D) 126,500 \hspace{0.2in} (E) 127,000 \vspace{10mm}
+
+9.23. For a special fully discrete 10-year deferred whole life insurance
+on (35) payable at the end of the year of death: \vspace{4mm}
+
+\(i) The death benefit is 1000 if (35) dies between ages 45 and 55; the
+death benefit is 2000 if (35) dies after age 55. \vspace{2mm}
+
+\(ii) Benefit premiums of 25.44 are payable at the beginning of each year
+during the first 10 years. \vspace{4mm}
+
+\(iii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iv) $i$ = 0.06 \vspace{4mm}
+
+Calculate the benefit reserve at time 5. \vspace{4mm}
+
+\(A) 150 \hspace{0.2in} (B) 160 \hspace{0.2in} (C) 170 \hspace{0.2in} (D)
+180 \hspace{0.2in} (E) 190 \vspace{10mm}
+
+\newpage
+### Answers to Exercises
+
+\Large9.1. A \vspace{2mm}
+
+9.2. B \vspace{2mm}
+
+9.3. D \vspace{2mm}
+
+9.4. E \vspace{2mm}
+
+9.5. A \vspace{2mm}
+
+9.6. A \vspace{2mm}
+
+9.7. D \vspace{2mm}
+
+9.8. C \vspace{2mm}
+
+9.9. B \vspace{2mm}
+
+9.10. D \vspace{2mm}
+
+9.11. A \vspace{2mm}
+
+9.12. E \vspace{2mm}
+
+9.13. C \vspace{2mm}
+
+9.14. D \vspace{2mm}
+
+9.15. D \vspace{2mm}
+
+9.16. D \vspace{2mm}
+
+9.17. D \vspace{2mm}
+
+9.18. B \vspace{2mm}
+
+9.19. C \vspace{2mm}
+
+9.20. A \vspace{2mm}
+
+9.21. C \vspace{2mm}
+
+9.22. D \vspace{2mm}
+
+9.23. A
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Spring 2015: \#14, 18 \vspace{2mm}
+
+-   Exam MLC, Spring 2014: \#12 \vspace{2mm}
+
+-   Exam MLC, Fall 2013: \#7, 17 \vspace{2mm}
+
+-   Exam 3L, Fall 2013: \#14, 15 \vspace{2mm}
+
+-   Exam 3L, Spring 2013: \#15 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#4 \vspace{2mm}
+
+-   Exam 3L, Fall 2012: \#14, 15 \vspace{2mm}
+
+-   Exam 3L, Spring 2012: \#14, 15 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#10, 27, 68, 77, 78, 115, 132, 169,
+    203, 208, 222, 227, 287 \vspace{2mm}
+
+-   Exam 3L, Fall 2011: \#14, 15 \vspace{2mm}
+
+-   Exam 3L, Spring 2011: \#14, 15 \vspace{2mm}
+
+-   Exam 3L, Fall 2010: \#15, 16 \vspace{2mm}
+
+-   Exam 3L, Spring 2010: \#17 \vspace{2mm}
+
+-   Exam 3L, Fall 2009: \#14 \vspace{2mm}
+
+-   Exam 3L, Spring 2009: \#14, 15 \vspace{2mm}
+
+-   Exam 3L, Fall 2008: \#23, 24 \vspace{2mm}
+
+-   Exam 3L, Spring 2008: \#24 \vspace{2mm}
+
+-   Exam MLC, Spring 2007: \#7 \vspace{2mm}

@@ -1,0 +1,1688 @@
+---
+title: "Reserves II"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Reserves II
+
+## Key Concepts
+
+**Continuous Insurance of 1 on (x) with Premiums Payable on an $m$-thly
+Basis**: \vspace{3mm}
+
+-   You can obtain this table by taking the table for **Fully Continuous
+    Insurance of 1 on (x)** in **RESERVES I: KEY CONCEPTS** and
+    replacing the continuous premium annuity with an $m$-thly
+    annuity-due. \vspace{4mm}
+
+-   For example, a continuous $n$-year term insurance of 1 on (x) with
+    premiums payable on an $m$-thly basis is: \vspace{2mm}
+
+$\begin{array}{l|l|l}
+\hline
+\textbf{Continuous}        & \textbf{Benefit Reserve}       & \textbf{Prospective Benefit} \\
+\textbf{Insurance}        & \textbf{Notation}       & \textbf{Reserve Formula} \\
+\textbf{with m-thly Premiums}        &       &  \\
+\hline
+n\text{-year}     &  & \lcterm{\bar{A}}{x + k}{n - k} - P^{(m)}(\lcterm{\bar{A}}{x}{n})$$\ddot{a}^{(m)}_{x + k :\lcroof{n - k}}, k < n \\
+\text{Term} &  {}_{k}V^{(m)}(\lcterm{\bar{A}}{x}{n}) & 0, k = n \\
+\hline
+\end{array}$
+
+    \vspace{4mm}
+
+-   You do NOT have to know the actuarial notation for $m$-thly benefit
+    reserves; ${}_{k}V$ or ${}_{k}V^n$ is sufficient. \vspace{4mm}
+
+-   $k$ $<$ $n$ means that $k$ = 0, $\frac{1}{m}$, $\frac{2}{m}$, ...,
+    $n$ - $\frac{1}{m}$. \vspace{4mm}
+
+-   The prospective benefit reserve for an annual $n$-year term
+    insurance of 1 on (x) with premiums payable on an $m$-thly basis is:
+    \vspace{2mm}
+
+    ${}_{k}\lcterm{V^{(m)}}{x}{n} = \left\{
+      \begin{array}{ll}
+        \lcterm{A}{x + k}{n - k} - \lcterm{P^{(m)}}{x}{n}\ddot{a}^{(m)}_{x + k :\lcroof{n - k}}   & \quad \text{for $k$ $<$ n}\\
+        0        & \quad \text{for $k$ = n}\\
+      \end{array} \right.$
+
+\newpage
+## Gross Premium Reserves
+
+\Large
+
+-   The first step to determining the gross premium reserve is to
+    determine the appropriate **gross future loss at time t random
+    variable** (conditional on survival of the policyholder to time
+    $t$): $L_t$ = ${}_{t}L$ \vspace{2mm}
+
+    = Present value of future benefits at time t + Present value of
+    future expenses at time t - Present value of future premiums at time
+    t
+
+    = $PVFB@t$ + $PVFE@t$ - $PVFP@t$ \vspace{10mm}
+
+    The **gross future loss at time t** may be written as $L^g_t$.
+    \vspace{4mm}
+
+    If expenses are ignored, the loss is a **net future loss at time
+    t**. \vspace{10mm}
+
+    The policy value at time $t$ is called the **gross premium reserve**
+    at time t. The **gross premium reserve** represents the accumulated
+    fund that the insurer needs to have at some future time that in
+    addition to future gross premiums should, on average, fund the
+    future benefits and expenses associated with the policy.
+    \vspace{10mm}
+
+-   The general **prospective gross premium reserve** formula is:
+    \vspace{2mm}
+
+    ${}_{t}V$ = $E(L^g_t)$ = $E(PVFB@t)$ + $E(PVFE@t)$ - $E(PVFP@t)$.
+    \vspace{4mm}
+
+    The gross premium reserve is a balancing item in funding a policy:
+
+    ${}_{t}V$ + $E(PVFP@t)$ = $E(PVFB@t)$ + $E(PVFE@t)$.
+
+\newpage
+-   The **retrospective gross premium reserve** formula is: \vspace{2mm}
+
+    ${}_{t}V$ = $\frac{E[\text{PVFP on [0, t]}]}{{}_{t}E_x}$ -
+    $\frac{E[\text{PVFB on [0, t]}] + E[\text{PVFE on [0,
+    t]}]}{{}_{t}E_x}$. \vspace{4mm}
+
+    This formula emphasizes that the gross premium reserve is the
+    accumulated fund that the insurer needs to have by time $t$ that
+    along with future premiums, on average, will fund the future
+    benefits and expenses of a policy. The accumulated fund is the
+    accumulated premiums from issue up to time $t$ ($\frac{E[\text{PVFP
+    on [0, t]}]}{{}_{t}E_x}$) less the accumulated value of any benefits
+    and expenses paid from issue up to time $t$ ($\frac{E[\text{PVFB on
+    [0, t]}] + E[\text{PVFE on [0, t]}]}{{}_{t}E_x}$). \vspace{10mm}
+
+-   The prospective gross premium reserve will equal the retrospective
+    gross premium reserve as long as the equivalence principle and the
+    same basis (interest, mortality, expenses) are used. \vspace{10mm}
+
+-   The gross premium reserve helps fund both the future benefits and
+    expenses of a policy. With the equivalence principle used to
+    calculate gross premiums, it makes sense that (${}_{t}V^g$) can be
+    decomposed into the sum of two reserves: a benefit reserve that
+    helps fund just the benefits (${}_{t}V^n$) plus an **expense
+    reserve** that helps fund just the expenses (${}_{t}V^e)$:
+    \vspace{4mm}
+
+    ${}_{t}V^g$ = ${}_{t}V^n$ + ${}_{t}V^e$. \vspace{4mm}
+
+    This decomposition mirrors the gross premium decomposition:
+    \vspace{2mm}
+
+    gross premium = benefit premium + expense premium. \vspace{4mm}
+
+    Prospectively: ${}_{t}V^e$ = $EPVFE@t$ - $EPV(\text{future expense
+    premiums} @t)$.
+
+\newpage
+## Reserve Recursions
+
+\Large
+
+-   Now, let us consider fully discrete **gross premium reserve
+    recursions**. \vspace{10mm}
+
+-   Consider a fully discrete life insurance on (x). For $k$ = 0, 1, 2,
+    ...; let: \vspace{4mm}
+
+    -   $b_{k + 1}$ = death benefit payable at time $k$ + 1.
+        \vspace{2mm}
+
+    -   $G_k$ = gross premium payable at time $k$. \vspace{2mm}
+
+    -   $e_k$ = total premium-related expense payable at time $k$.
+        \vspace{2mm}
+
+    -   $E_{k + 1}$ = claims settlement expense payable at the same time
+        as the death benefit (at time $k$ + 1) \vspace{2mm}
+
+    -   $i_k$ = effective annual interest rate between times $k$ and
+        $k$ + 1. \vspace{2mm}
+
+    -   $q_{x + k}$ = mortality rate during year $k$ + 1. \vspace{2mm}
+
+    -   ${}_{k}V$ = gross premium reserve for a policy in force at time
+        $k$. \vspace{10mm}
+
+-   Then, the fully discrete **gross premium reserve recursion** is:
+    \vspace{2mm}
+
+    $({}_{k}V + G_k - e_k)(1 + i_k)$ = $(q_{x + k})$ $(b_{k + 1} + E_{k + 1})$ + $(p_{x + k})$ $({}_{k + 1}V)$ \vspace{2mm}
+
+-   There is a very logical interpretation of the gross premium reserve
+    recursion: \vspace{1mm}
+
+    “The funds the insurer has at the start of year $k$ + 1 (${}_{k}V +
+    G_k - e_k$) accumulated with interest to the end of the year should
+    be sufficient to provide the average benefit due at time $k$ + 1:
+    the death benefit and the corresponding settlement expense if the
+    policyholder dies during the year ($b_{k + 1}+ E_{k + 1}$ with
+    probability $q_{x + k}$) and the gross premium reserve if the
+    policyholder survives the year (${}_{k + 1}V$ with probability $p_{x
+    + k}$).” \vspace{10mm}
+
+-   If the gross premium is determined using the equivalence principle:
+
+    ${}_{0}V$ = 0.
+
+\newpage
+-   An alternative way of expressing the fully discrete gross premium
+    reserve recursion in terms of the **net amount at risk** for year
+    $k$ + 1, [$b_{k + 1}$ + $E_{k + 1}$ - ${}_{k + 1}V$], is:
+    \vspace{2mm}
+
+    $({}_{k}V + G_k - e_k)(1 + i_k)$ = ${}_{k + 1}V$ +
+    $q_{x + k}$ [$b_{k
+    + 1}$ + $E_{k + 1}$ - ${}_{k + 1}V$] \vspace{2mm}
+
+    “The funds the insurer has at the start of year $k$ + 1 $({}_{k}V +
+    G_k - e_k)$ accumulated with interest to the end of the year should
+    be sufficient to definitely provide the gross premium reserve at
+    time $k$ + 1. If the policyholder dies during the year (with
+    probability $q_{x + k}$), the insurer also needs to fund the net
+    amount at risk ($b_{k + 1}$ + $E_{k + 1}$ - ${}_{k + 1}V$) in order
+    to provide the death benefit $b_{k + 1}$ and settlement expense
+    $E_{k + 1}$ at time $k$ + 1.” \vspace{5mm}
+
+-   If $e_k$ = $E_{k + 1}$ = 0 and $G_k$ = $P_k$ for $k$ = 0, 1, 2, ...,
+    ${}_{k}V$ is interpreted as a net premium reserve and we obtain the
+    fully discrete
+
+    **net premium reserve recursion**: \vspace{2mm}
+
+    $({}_{k}V + P_k)(1 + i_k)$ = $(q_{x + k})$ $(b_{k + 1})$ + $(p_{x + k})$ $({}_{k + 1}V)$ \vspace{2mm}
+
+    $\implies$ $({}_{k}V + P_k)(1 + i_k)$ = ${}_{k + 1}V$ + $q_{x +
+    k}$ [$b_{k + 1}$ - ${}_{k + 1}V$ ]. \vspace{5mm}
+
+-   If $P_k$ = $P$, the equivalence principle is used to determine $P$,
+    and $i_k$ = $i$, the fully discrete benefit reserve recursion can be
+    expressed as: \vspace{2mm}
+
+    ${}_{k}V$ = $P$$\ddot{s}_{\lcroof{k}}$ - $\sum^{k - 1}_{j = 0} v
+    q_{x + j} (b_{j + 1} - {}_{j + 1}V) (1 + i)^{k - j}$ \vspace{6mm}
+
+    Some important special cases:
+
+    -   $b_{j + 1}$ = ${}_{j + 1}V$ $\implies$ ${}_{k}V$ =
+        $P$$\ddot{s}_{\lcroof{k}}$ \vspace{4mm}
+
+    -   $b_{j + 1}$ = $S$ + ${}_{j + 1}V$ $\implies$ ${}_{k}V$ =
+        $P$$\ddot{s}_{\lcroof{k}}$ - $S\sum^{k - 1}_{j = 0} v
+        q_{x + j} (1 + i)^{k - j}$ \vspace{4mm}
+
+    -   $b_{j + 1}$ = $S$ + ${}_{j + 1}V$ and $q_{x + j}$ = $q$
+        $\implies$ ${}_{k}V$ = $(P -
+        Svq)$$\ddot{s}_{\lcroof{k}}$
+
+\newpage
+## Interim Benefit Reserves
+
+-   Consider a fully discrete life insurance on (x).
+
+    Let $k$ = 0, 1, 2, ... and 0 $<$ $s$ $<$ 1. \vspace{10mm}
+
+-   ${}_{k + s}V$ is the **interim benefit reserve**, the policy value
+    at some time between policy anniversaries. \vspace{10mm}
+
+-   The exact “recursion” formula for the interim benefit reserve is:
+    \vspace{1mm}
+
+    ${}_{k + s}V$ = $v^{1 - s}(b_{k + 1}){}_{1 - s}q_{x + k + s}$ +
+    $v^{1 - s}({}_{k + 1}V){}_{1 - s}p_{x + k + s}$. \vspace{5mm}
+
+    Incorporation of expenses is relatively straightforward, for
+    example: \vspace{2mm}
+
+    ${}_{k + s}V$ = $v^{1 - s}(b_{k + 1} + E_{k + 1}){}_{1 - s}q_{x + k
+    + s}$ + $v^{1 - s}({}_{k + 1}V){}_{1 - s}p_{x + k + s}$.
+    \vspace{10mm}
+
+-   If we assume a uniform distribution of deaths within each year of
+    age, the interim benefit reserve formula becomes: \vspace{2mm}
+
+    ${}_{k + s}V$ = $\frac{v^{1 - s}}{1 - s q_{x + k}}[(1 - s)({}_{k}V +
+    \pi_k)(1 + i) + s ({}_{k + 1}V) p_{x + k}]$. \vspace{10mm}
+
+    Furthermore, if $i$ $\approx$ 0 and $q_{x + k}$ $\approx$ 0, the
+    interim benefit reserve formula with a uniform distribution of
+    deaths becomes the traditional actuarial approximation: \vspace{2mm}
+
+    ${}_{k + s}V$ $\approx$ $(1 - s)({}_{k}V + \pi_k)$ + $s ({}_{k +
+    1}V)$. \vspace{10mm}
+
+-   Similar formulas for policies with $m$-thly benefits and/or premiums
+    can be similarly reasoned out when necessary: handle these on a
+    case-by-case basis.
+
+\newpage
+## Thiele’s Differential Equation
+
+-   **Thiele’s Differential Equation** is a continuous version of the
+    gross premium reserve recursion. \vspace{2mm}
+
+-   Consider a fully continuous life insurance on (x). For $t$ $>$ 0;
+    let: \vspace{2mm}
+
+    -   $b_t$ = death benefit payable at time $t$. \vspace{2mm}
+
+    -   $G_t$ = gross premium rate at time $t$. \vspace{2mm}
+
+    -   $e_t$ = total premium-related expense rate at time $t$.
+        \vspace{2mm}
+
+    -   $E_t$ = claims settlement expense payable at the same time as
+        the death benefit (at time $t$) \vspace{2mm}
+
+    -   $\delta_t$ = the force of interest at time $t$. \vspace{2mm}
+
+    -   $\mu_{x + t}$ = the force of mortality at age x + t.
+
+-   Thiele’s Differential Equation for the gross premium reserve
+    ${}_{t}V$ is: \vspace{2mm}
+
+    $\frac{d}{dt}[{}_{t}V]$ = $\delta_t$${}_{t}V$ + $G_t$ - $e_t$ -
+    $(b_t + E_t - {}_{t}V)$$\mu_{x + t}$. \vspace{2mm}
+
+-   There is a very logical interpretation of Thiele’s Differential
+    Equation: \vspace{1mm}
+
+    “The change in the value of the reserve at time $t$ is due to
+    interest earned (positive change), the gross premium rate (positive
+    change), and the benefits and expenses payable (negative change) and
+    the release of the reserve (positive change) accounting for the rate
+    of death ($\mu_{x + t}$) when necessary.” \vspace{5mm}
+
+-   Euler’s forward method provides a discrete approximation:
+    \vspace{1mm}
+
+    ${}_{t + h}V - {}_{t}V$ $\approx$ $h[\delta_t$${}_{t}V$ + $G_t$ -
+    $e_t$ - $(b_t + E_t - {}_{t}V)$$\mu_{x + t}]$. \vspace{2mm}
+
+    By picking small time intervals for $h$ (an $m$-th of a year), we
+    can approximate other reserve values given one reserve value.
+    \vspace{5mm}
+
+-   The benefit reserve version is obtained by letting $e_t$ = $E_t$ = 0
+    and $G_t$ = $P_t$ for all $t$.
+
+\newpage
+## Full Preliminary Term Method
+
+-   The **full preliminary term method** modifies benefit reserves so
+    that they can approximate gross premium reserves. Gross premium
+    reserves tend to be lower than benefit reserves because the expense
+    reserve is often negative. \vspace{2mm}
+
+    The method is such that: a life insurance on (x) with a term of $n$
+    years is decomposed into two separate insurances: (i) a 1-year term
+    insurance on (x) that provides coverage for the first policy year
+    plus (ii) the same type of life insurance as the original except on
+    (x + 1) with a term of $n$ - 1 years. \vspace{5mm}
+
+-   Theoretically, a lower benefit premium could be charged for the
+    first year with higher level benefit premiums charged in the second
+    and subsequent years. In reality, we only care about the **full
+    preliminary term reserves** denoted as ${}_{k}V^{FPT}$: modified
+    benefit reserves that lower the reserve value to approximate gross
+    premium reserves. \vspace{5mm}
+
+-   For example, consider the full preliminary term method on a fully
+    discrete whole life insurance of $S$ on (x). \vspace{2mm}
+
+    -   Under the full preliminary term method, this insurance is
+        conceptualized as a 1-year term insurance of $S$ on (x) plus a
+        whole life insurance of $S$ on (x + 1). Note that $n$ = $\infty$
+        for a whole life insurance. \vspace{2mm}
+
+    -   Based on the decomposition, the benefit premium for the first
+        year is $S\lcterm{P}{x}{1}$ = $Svq_x$, and each benefit premium
+        in second and subsequent years is $SP_{x + 1}$. \vspace{2mm}
+
+    -   ${}_{0}V^{FPT}$ = 0 (via equivalence principle) and
+        ${}_{1}V^{FPT}$ = 0 (1-year term insurance has expired).
+        \vspace{2mm}
+
+    -   ${}_{k}V^{FPT}$ = the benefit reserve at time $k$ - 1 for a
+        fully discrete whole life insurance of $S$ on (x + 1), for $k$ =
+        2, 3, ... Note the offset of one year: under the decomposition,
+        the whole life insurance on (x + 1) takes effect one year after
+        policy issue, so time $k$ years after policy issue corresponds
+        to the whole life insurance on (x + 1) at time $k$ - 1.
+
+\newpage
+## Policy Alterations
+
+-   After a policy has been in force for some time, a policyholder may
+    want to alter the policy terms. For example, the policyholder may
+    want to: \vspace{2mm}
+
+    -   Immediately cancel the policy. This will result in a lump sum
+        payment to the policyholder called the **surrender value** or
+        **cash value** or **cash surrender value**. \vspace{2mm}
+
+    -   Keep the policy but pay no more premiums; the policyholder wants
+        a **paid-up policy**. Typically, the face amount of the paid-up
+        policy will be smaller than the face amount of the original
+        policy. \vspace{2mm}
+
+    -   Convert the policy into a different type; for example, a whole
+        life policy may be converted into an endowment insurance.
+        \vspace{2mm}
+
+    -   Change the amount of benefits and/or premiums. \vspace{6mm}
+
+-   In a general problem involving **policy alterations**, you will need
+    to solve for a parameter (such as changed benefits and premiums) of
+    the altered policy. Suppose the policy is altered $t$ years after
+    issue. The general approach is to: \vspace{2mm}
+
+    -   Determine the surrender value for the original policy, $CV_t$.
+        This will typically be a percentage of the reserve or asset
+        share at time $t$. \vspace{2mm}
+
+    -   If the policy is canceled at time $t$, then $CV_t$ is paid to
+        the policyholder and we are done. If the policy is otherwise
+        altered at time $t$, treat $CV_t$ as an extra-preliminary
+        premium that will help fund the purchase of the altered policy.
+        \vspace{2mm}
+
+    -   Let \* denoted the altered policy. Use the equivalence principle
+        at time $t$ to relate the benefits, expenses, and premiums
+        (including the extra-preliminary premium) for the altered
+        policy: \vspace{2mm}
+
+        $CV_t$ + $E^*[PVFP@t]$ = $E^*[PVFB@t]$ + $E^*[PVFE@t]$.
+        \vspace{2mm}
+
+        You can use this equivalence relation to solve for the required
+        parameter of the altered policy. Handle these problems on a
+        case-by-case basis.
+
+\newpage
+## Gain by Source
+
+This is best considered with an example. The following is an older
+version of Problem 300 from the SOA Exam MLC Sample Questions:
+\vspace{10mm}
+
+**Problem 300)** For a fully discrete 20-year term life insurance on
+(40): \vspace{4mm}
+
+-   The death benefit is 10,000. \vspace{2mm}
+
+-   The death benefit is payable at the end of the year of death.
+    \vspace{2mm}
+
+-   Values in year 4: \vspace{2mm}
+
+    $\begin{array}{r|r|r}
+    \hline
+     & \textbf{Anticipated} & \textbf{Actual} \\
+    \hline
+    \text{Gross annual premium}                       & 90       & 90 \\
+    \text{Expenses as a percent of premium}           & 0.030    & 0.025 \\
+    q_{43}                                   & 0.003    & 0.002 \\
+    \text{Annual effective rate of interest}          & 0.05     & 0.04 \\
+    \hline
+    \end{array}$
+
+    \vspace{2mm}
+
+-   Expected value of the present value of future losses random variable
+    based on assumed values in years 3 and later. \vspace{2mm}
+
+    $\begin{array}{r|r}
+    \hline
+    \textbf{End of Year} & \textbf{Expected Value} \\
+    \hline
+    3          & 100 \\
+    4          & 125 \\
+    \hline
+    \end{array}$
+
+
+    \vspace{2mm}
+
+A company issued the 20-year term life insurance to 1000 lives age 40
+with independent future lifetimes. At the end of the 3rd year 990
+insurances remain in force. \vspace{2mm}
+
+Calculate the total gain from mortality, interest and expenses in year 4
+from the 990 insurances.
+
+\newpage
+**Problem 300) Solution**: \vspace{4mm}
+
+-   For policy year $k$ + 1, the profit per inforce policy at the start
+    of the year can be calculated as: \vspace{2mm}
+
+    $Pr_{k + 1}$ = $({}_{k}V + G_k - e_k)(1 + i_{k})$ - $(q_{x +
+    k})$ $(b_{k + 1} + E_{k + 1})$ - $(p_{x + k})$ $({}_{k + 1}V)$.
+    \vspace{4mm}
+
+-   The total gain from mortality, interest, and expenses in year $k$ +
+    1 per inforce policy is: \vspace{2mm}
+
+    $Pr^{\text{Actual}}_{k + 1}$ - $Pr^{\text{Anticipated}}_{k + 1}$.
+    \vspace{4mm}
+
+-   So, we can calculate the total gain in year 4 per inforce policy as
+    follows: \vspace{4mm}
+
+-   $Pr^{\text{Anticipated}}_{4}$
+
+    = $[100 + 90 - (0.030)(90)](1.05)$ - $(0.003)$$(10,000)$ - $(1 -
+    0.003)$$(125)$
+
+    = 42.04. \vspace{4mm}
+
+-   $Pr^{\text{Actual}}_{4}$
+
+    = $[100 + 90 - (0.025)(90)](1.04)$ - $(0.002)$$(10,000)$ - $(1 -
+    0.002)$$(125)$
+
+    = 50.51. \vspace{4mm}
+
+-   The total gain in year 4 per inforce policy is:
+
+    $Pr^{\text{Actual}}_{4}$ - $Pr^{\text{Anticipated}}_{4}$ = 50.51 -
+    42.04 = 8.47. \vspace{4mm}
+
+-   The total gain in year 4 is: \vspace{4mm}
+
+    (990)(8.47) = **8385.30**.
+
+\newpage
+**Problem 300) Gain By Source**: \vspace{2mm}
+
+The contribution of each of mortality, interest, and expenses to total
+gain in year 4 can be determined. \vspace{2mm}
+
+-   **Gain Due to Mortality in Year 4:** \vspace{2mm}
+
+    The gain due to mortality in year 4 per inforce policy is:
+
+    (0.003 - 0.002)(10,000 - 125) = **9.875**. \vspace{2mm}
+
+    Therefore, the gain due to mortality in year 4 is: (990)(9.875) =
+    **9776.25**. \vspace{4mm}
+
+-   **Gain Due to Interest in Year 4:** \vspace{2mm}
+
+    The gain due to interest in year 4 per inforce policy is:
+
+    (0.04 - 0.05)[100 + 90 - (0.03)(90)] = **-1.873**. \vspace{2mm}
+
+    Therefore, the gain due to interest is: (990)(-1.873) =
+    **-1854.27**. \vspace{2mm}
+
+    Note that as expenses have not been considered yet, you should use
+    the anticipated expense values in this part of the calculation.
+    \vspace{4mm}
+
+-   **Gain Due to Expenses in Year 4:** \vspace{2mm}
+
+    The gain due to expenses in year 4 per inforce policy is:
+
+    [(0.030)(90) - (0.025)(90)](1.04) = **0.468**. \vspace{2mm}
+
+    Therefore, the gain due to expenses in year 4 is: (990)(0.468) =
+    **463.32**. \vspace{2mm}
+
+    Note that as interest has already been considered, you should use
+    the actual interest rate in this part of the calculation.
+    \vspace{4mm}
+
+The total gain in year 4 per inforce policy is: 9.875 - 1.873 + 0.468 =
+**8.47**, and the total gain in year 4 is: 9776.25 - 1854.27 + 463.32 =
+**8385.30**, which both agree with the previously obtained values.
+\vspace{4mm}
+
+If you were to calculate each of the gains in a different order; such as
+interest, mortality, and expenses; you would obtain slightly different
+values.
+
+\newpage
+## Exercises
+
+\Large
+
+10.1. For a whole life insurance of 1000 on (35) payable at the moment
+of death:
+
+\vspace{4mm} (i) Benefit premiums are payable at the beginning of each
+quarter of a year.
+
+\vspace{2mm} (ii) Mortality follows the Illustrative Life Table, and $i$
+= 0.06.
+
+\vspace{2mm} (iii) Deaths are uniformly distributed over each year of
+age.
+
+\vspace{4mm} Calculate the benefit reserve at the end of year 15.
+\vspace{4mm}
+
+\(A) 110 \hspace{0.2in} (B) 120 \hspace{0.2in} (C) 130 \hspace{0.2in} (D)
+140 \hspace{0.2in} (E) 150 \vspace{6mm}
+
+10.2. For a fully discrete two-year term insurance of 5000 on (x):
+\vspace{4mm}
+
+\(i) $i$ = 0.10 \vspace{2mm}
+
+\(ii) $q_{x + 1}$ = 0.25 \vspace{2mm}
+
+\(iii) The level annual net premium is 929.13. \vspace{4mm}
+
+Calculate: $q_x$. \vspace{4mm}
+
+\(A) 0.16 \hspace{0.2in} (B) 0.17 \hspace{0.2in} (C) 0.18 \hspace{0.2in}
+(D) 0.19 \hspace{0.2in} (E) 0.20 \vspace{6mm}
+
+10.3. For a fully discrete whole life insurance of $S$ on (25):
+\vspace{4mm}
+
+\(i) There are level annual benefit premiums. \vspace{2mm}
+
+\(ii) $i$ = 0.045 \vspace{2mm}
+
+(iii)
+
+$\begin{array}{r|r|r}
+\hline
+\textbf{k} & \mathbf{q_{25 + k}} & \textbf{Benefit Reserve at time k} \\
+\hline
+20    & 0.001805 & 1228.42 \\
+21    & 0.001940 & 1316.34 \\
+22    & 0.002080 & 1407.22 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Calculate the level annual benefit premium. \vspace{4mm}
+
+\(A) 38 \hspace{0.2in} (B) 42 \hspace{0.2in} (C) 46 \hspace{0.2in} (D) 50
+\hspace{0.2in} (E) 54
+
+\newpage
+10.4. For a special fully discrete whole life insurance on (40):
+
+\vspace{4mm} (i) The death benefit is 100,000 if death occurs before age
+65, otherwise the death benefit is 200,000.
+
+\vspace{2mm} (ii) The level annual gross premium is determined using the
+equivalence principle.
+
+\vspace{2mm} (iii) Expenses are 20% of the first year’s gross premium,
+and 5% of the second and subsequent year’s gross premium. These expenses
+are payable at the beginning of the year.
+
+\vspace{2mm} (iv) $\ddot{a}_{40}$ = 19.20, $\ddot{a}_{41}$ = 19.00,
+$\ddot{a}_{65}$ = 13.40, ${}_{25|}\ddot{a}_{40}$ = 4.02
+
+\vspace{2mm} (v) $p_{40}$ = 0.99
+
+\vspace{4mm} Calculate the gross premium reserve at the end of the 25th
+year. \vspace{4mm}
+
+\(A) 72,400 \hspace{0.2in} (B) 74,600 \hspace{0.2in} (C) 76,800
+\hspace{0.2in} (D) 78,200 \hspace{0.2in} (E) 80,400 \vspace{12mm}
+
+10.5. For a fully discrete whole life insurance of 100,000 on a select
+life aged 60:
+
+\vspace{4mm} (i) Mortality follows the Standard Select Survival Model.
+
+\vspace{2mm} (ii) $i$ = 0.05.
+
+\vspace{2mm} (iii) The level annual gross premium is determined using
+the equivalence principle.
+
+\vspace{2mm} (iv) Commissions are 50% of the gross premium in the first
+year, and 5% of the gross premium in renewal years. They are paid at the
+same time as the premium.
+
+\vspace{2mm} (v) Settlement expenses are 100, and are paid at the same
+time as the death benefit is paid.
+
+\vspace{2mm} (vi) Other expenses are 200 in the first year, and 10 in
+renewal years. They are all payable at the beginning of the year.
+
+\vspace{4mm} Calculate the gross premium reserve at the end of the tenth
+year. \vspace{4mm}
+
+\(A) 16,600 \hspace{0.2in} (B) 17,100 \hspace{0.2in} (C) 17,600
+\hspace{0.2in} (D) 18,100 \hspace{0.2in} (E) 18,600
+
+\newpage
+10.6. For a fully discrete 3-year term insurance of 10,000 on (x):
+
+\vspace{4mm} (i) The level annual gross premium is calculated using the
+equivalence principle.
+
+\vspace{2mm} (ii) $q_{x + k}$ = 0.10 + 0.01$k$ for $k$ = 0, 1, 2.
+
+\vspace{2mm} (iii) There is a per policy expense of 15.00 at the
+beginning of the first year, and 7.50 at the beginning of each renewal
+year. There is a percent of premium expense of 25% of the gross premium
+at the beginning of the first year, and 5% of the gross premium at the
+beginning of each renewal year.
+
+\vspace{2mm} (iv) $i$ = 0.05
+
+\vspace{4mm} Calculate the difference between the gross premium reserve
+and the benefit reserve at the end of policy year 1. \vspace{4mm}
+
+\(A) - 312 \hspace{0.2in} (B) - 177 \hspace{0.2in} (C) - 27
+\hspace{0.2in} (D) 0 \hspace{0.2in} (E) 119 \vspace{5mm}
+
+10.7. Consider the setup provided in Exercise 10.6. Further assume
+deaths are uniformly distributed over each year of age. Calculate the
+gross premium reserve at time 0.75. \vspace{4mm}
+
+\(A) - 693 \hspace{0.2in} (B) - 78 \hspace{0.2in} (C) 0 \hspace{0.2in}
+(D) 192 \hspace{0.2in} (E) 886 \vspace{5mm}
+
+10.8. Consider a fully discrete 5-year term insurance of 3000 on (x):
+\vspace{4mm}
+
+\(i) Level gross premiums are determined using the equivalence principle.
+\vspace{2mm}
+
+\(ii) $i$ = 0.05 \vspace{2mm}
+
+\(iii) A 20% of gross premium expense is payable at the beginning of the
+first year. A 5% of gross premium expense is payable at the beginning of
+each renewal year. A settlement expense of 20 is payable at the same
+time as the death benefit. \vspace{2mm}
+
+\(iv) $q_{x + 2}$ = 0.051 and $q_{x + 3}$ = 0.054. \vspace{2mm}
+
+\(v) Let ${}_{k}V$ denote the gross premium reserve at time $k$. Then:
+${}_{2}V$ = 8.20 and ${}_{3}V$ = 15.58. \vspace{4mm}
+
+Calculate: ${}_{4}V$. \vspace{4mm}
+
+\(A) 10 \hspace{0.2in} (B) 12 \hspace{0.2in} (C) 14 \hspace{0.2in} (D) 16
+\hspace{0.2in} (E) 18
+
+\newpage
+10.9. Consider a special fully discrete 3-year term insurance on (x):
+\vspace{4mm}
+
+\(i) The death benefit for the first year is 820, the death benefit for
+the second year is 1250, and the death benefit for the third year is
+$b$. \vspace{2mm}
+
+\(ii) The annual net premium is 34.14. \vspace{2mm}
+
+\(iii) The net premium reserve at the end of the first year is 97.54% of
+the net premium reserve at the end of the second year. \vspace{2mm}
+
+\(iv) $i$ = 0.04 \vspace{2mm}
+
+\(v) $q_{x + 1}$ = 0.029, $q_{x + 2}$ = 0.031 \vspace{4mm}
+
+Determine: $b$. \vspace{4mm}
+
+\(A) 1700 \hspace{0.2in} (B) 1720 \hspace{0.2in} (C) 1740 \hspace{0.2in}
+(D) 1760 \hspace{0.2in} (E) 1780 \vspace{10mm}
+
+10.10. Consider a special fully discrete 5-year term insurance on (40):
+\vspace{2mm}
+
+\(i) The death benefit is: $b_{k + 1}$ = 1000($k$ + 1) for $k$ = 0, 1,
+..., 4. \vspace{2mm}
+
+\(ii) Level gross premiums are payable. \vspace{2mm}
+
+\(iii) There is a percent of premium expense of 20% of gross premium for
+the first year. The percent of premium expense is 5% of gross premium in
+renewal years. These expenses are payable at the beginning of the year.
+\vspace{2mm}
+
+\(iv) There is a claims settlement expense of 50 payable at the time the
+death benefit is paid. \vspace{2mm}
+
+\(v) The gross premium reserve at the end of the fourth year is 6.275.
+\vspace{2mm}
+
+\(vi) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+\vspace{4mm}
+
+Calculate the net amount at risk for the third year. \vspace{4mm}
+
+\(A) 3030 \hspace{0.2in} (B) 3040 \hspace{0.2in} (C) 3050 \hspace{0.2in}
+(D) 3060 \hspace{0.2in} (E) 3070 \vspace{20mm}
+
+\newpage
+10.11. Consider a special fully discrete 5-year term insurance on (x):
+\vspace{4mm}
+
+\(i) The death benefit is 2500 plus the net premium reserve at the end of
+the year of death. \vspace{2mm}
+
+\(ii) There are level annual net premiums. \vspace{2mm}
+
+\(iii) $i$ = 0.04 \vspace{2mm}
+
+\(iv) $q_{x + k}$ = 0.01 + 0.005$k$ for $k$ = 0, 1, 2, 3, 4. \vspace{4mm}
+
+Calculate the net premium reserve at the end of the first year.
+\vspace{4mm}
+
+\(A) 21 \hspace{0.2in} (B) 22 \hspace{0.2in} (C) 23 \hspace{0.2in} (D) 24
+\hspace{0.2in} (E) 25 \vspace{10mm}
+
+10.12. For a special fully discrete 3-year endowment insurance on (65):
+\vspace{4mm}
+
+\(i) The death benefit is 5000 plus the benefit reserve at the end of the
+year of death. The pure endowment benefit is 5000. \vspace{2mm}
+
+\(ii) There are level annual benefit premiums. \vspace{2mm}
+
+\(iii) $p_{65 + h}$ = 0.97 for $h$ = 0, 1, 2 \vspace{2mm}
+
+\(iv) $i$ = 0.06 \vspace{4mm}
+
+Calculate the benefit reserve at the end of the first year. \vspace{4mm}
+
+\(A) 1550 \hspace{0.2in} (B) 1570 \hspace{0.2in} (C) 1590 \hspace{0.2in}
+(D) 1610 \hspace{0.2in} (E) 1630 \vspace{8mm}
+
+10.13. For a special fully discrete 3-year term insurance on [45]:
+\vspace{4mm}
+
+\(i) The death benefit is 10,000 plus the benefit reserve at the end of
+the year of death. \vspace{2mm}
+
+\(ii) Mortality follows the Standard Select Survival Model, $i$ = 0.05.
+\vspace{4mm}
+
+Calculate the level annual benefit premium. \vspace{4mm}
+
+\(A) 7 \hspace{0.2in} (B) 10 \hspace{0.2in} (C) 13 \hspace{0.2in} (D) 16
+\hspace{0.2in} (E) 19 \vspace{8mm}
+
+\newpage
+10.14. For a fully discrete 3-year term insurance of 1000 on (x) with
+level annual benefit premiums: \vspace{4mm}
+
+\(i) $v$ = 0.97 \vspace{2mm}
+
+\(ii) $q_x$ = 0.11 and $q_{x + 2}$ = 0.16 \vspace{2mm}
+
+\(iii) The benefit reserve at the end of the first year is 26.92.
+\vspace{4mm}
+
+Calculate the benefit reserve at the end of the second year.
+\vspace{4mm}
+
+\(A) 21 \hspace{0.2in} (B) 22 \hspace{0.2in} (C) 23 \hspace{0.2in} (D) 24
+\hspace{0.2in} (E) 25 \vspace{6mm}
+
+10.15. For a fully discrete 5-year term insurance of 1000 on (40):
+\vspace{4mm}
+
+\(i) $i$ = 0.06 \vspace{2mm}
+
+\(ii) The level annual gross premium is 5.04. \vspace{2mm}
+
+\(iii) The following expenses, paid at the beginning of the year:
+\vspace{2mm}
+
+$\begin{array}{r|r|r}
+\hline
+ & \textbf{First Year} & \textbf{Renewal Years} \\
+\hline
+\text{Percentage of Premium}    & 70\%    & 10\% \\
+\text{Per Policy}               & 2.20    & 0.45 \\
+\hline
+\end{array}$
+
+\vspace{1mm}
+
+\vspace{4mm} Calculate the gross future loss at time 1, given (40) dies
+in the third year after policy issue. \vspace{4mm}
+
+\(A) 850 \hspace{0.2in} (B) 860 \hspace{0.2in} (C) 870 \hspace{0.2in} (D)
+880 \hspace{0.2in} (E) 890 \vspace{6mm}
+
+10.16. Consider a fully discrete 20-year term insurance of 5000 on (45):
+\vspace{4mm}
+
+\(i) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(ii) $i$ = 0.06 \vspace{2mm}
+
+\(iii) Deaths are uniformly distributed within each year of age.
+\vspace{2mm}
+
+\(iv) The level annual net premium is 38.21. \vspace{4mm}
+
+Calculate the net premium reserve at time 9.3. \vspace{4mm}
+
+\(A) 160 \hspace{0.2in} (B) 170 \hspace{0.2in} (C) 180 \hspace{0.2in} (D)
+190 \hspace{0.2in} (E) 200 \vspace{20mm}
+
+\newpage
+10.17. Consider a 10-year term insurance of 500,000 on a select life
+aged 50. \vspace{4mm}
+
+\(i) The death benefit is payable at the end of the month of death.
+\vspace{2mm}
+
+\(ii) Level gross premiums of 460 are payable at the beginning of each
+quarter of a year for at most five years. \vspace{2mm}
+
+\(iii) There is a 10% of gross premium expense payable at the beginning
+of each quarter of a year. \vspace{2mm}
+
+\(iv) Mortality follows the Standard Select Survival Model, $i$ = 0.05
+\vspace{2mm}
+
+\(v) Deaths are uniformly distributed within each year of age.
+\vspace{2mm}
+
+\(vi) The gross premium reserve at time 2.75 is 3091. \vspace{4mm}
+
+Calculate the gross premium reserve at time 2$\frac{5}{6}$. \vspace{4mm}
+
+\(A) 3320 \hspace{0.2in} (B) 3380 \hspace{0.2in} (C) 3340 \hspace{0.2in}
+(D) 3400 \hspace{0.2in} (E) 3460 \vspace{10mm}
+
+10.18. For a fully continuous 5-year term insurance of 50,000 on (35):
+\vspace{4mm}
+
+\(i) The annual rate of gross premium is 100. \vspace{2mm}
+
+\(ii) Expenses are 2.5% of gross premium paid continuously each year plus
+a settlement expense of 80 paid at the same time as the death benefit.
+\vspace{2mm}
+
+\(iii) $\mu_x$ = 0.001$(1.02^x)$ for $x$ $\ge$ 0 \vspace{2mm}
+
+\(iv) $\delta$ = 0.04 \vspace{4mm}
+
+Using Euler’s forward method with step 0.10 to numerically solve
+Thiele’s Differential Equation, approximate ${}_{4.80}V$. \vspace{4mm}
+
+\(A) 2.2 \hspace{0.2in} (B) 2.3 \hspace{0.2in} (C) 2.4 \hspace{0.2in} (D)
+2.5 \hspace{0.2in} (E) 2.6 \vspace{10mm}
+
+\newpage
+10.19. Consider a fully continuous 10-payment 20-year endowment
+insurance of 10,000 on (45): \vspace{4mm}
+
+\(i) The annual premium rate is 488. \vspace{2mm}
+
+\(ii) $\mu_x$ = 0.00022 + 0.0000027$(1.124^x)$ for $x$ $\ge$ 0
+\vspace{2mm}
+
+\(iii) $i$ = 0.05 \vspace{4mm}
+
+Using Euler’s forward method with step 0.2 to numerically solve Thiele’s
+Differential Equation, approximate ${}_{19.8}V$. \vspace{4mm}
+
+\(A) 9900 \hspace{0.2in} (B) 9920 \hspace{0.2in} (C) 9940 \hspace{0.2in}
+(D) 9960 \hspace{0.2in} (E) 9980 \vspace{10mm}
+
+10.20. For a special fully continuous 10-year endowment insurance of
+1000 on a select life aged 30: \vspace{4mm}
+
+\(i) Mortality follows the Standard Select Survival Model, and $i$ =
+0.05. \vspace{2mm}
+
+\(ii) The annual rate of gross premium is 150. \vspace{2mm}
+
+\(iii) The annual rate of per policy expense is 50. \vspace{4mm}
+
+Estimate the gross premium reserve at time 9.8 using Euler’s forward
+method with step size 0.1 to numerically solve Thiele’s Differential
+Equation. \vspace{4mm}
+
+\(A) 950 \hspace{0.2in} (B) 960 \hspace{0.2in} (C) 970 \hspace{0.2in} (D)
+980 \hspace{0.2in} (E) 990 \vspace{10mm}
+
+10.21. You are given a fully discrete 20-year term insurance of 25,000
+on (45): \vspace{4mm}
+
+\(i) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(ii) $i$ = 0.06 \vspace{4mm}
+
+Calculate the net premium payable during the second and subsequent
+policy years using the full preliminary term method. \vspace{4mm}
+
+\(A) 160 \hspace{0.2in} (B) 170 \hspace{0.2in} (C) 180 \hspace{0.2in} (D)
+190 \hspace{0.2in} (E) 200 \vspace{10mm}
+
+\newpage
+10.22. Consider a continuous 10-year deferred 10-year temporary life
+annuity of 2400 per year on a select life aged 30: \vspace{4mm}
+
+\(i) A level net premium of 1465.62 is payable continuously each year
+during the first 10 years. \vspace{2mm}
+
+\(ii) Mortality follows the Standard Select Survival Model, and $i$ =
+0.05. \vspace{2mm}
+
+\(iii) Deaths are uniformly distributed within each year of age.
+\vspace{4mm}
+
+Which of the following gives Thiele’s Differential Equation at $t$ =
+11.4? \vspace{4mm}
+
+\(A) $\frac{d}{dt}[{}_{t}V] |_{t = 11.4}$ = $\ln(1.05)$${}_{11.4}V$ +
+1465.62 + ${}_{11.4}V$$\mu_{41.4}$ \vspace{2mm}
+
+\(B) $\frac{d}{dt}[{}_{t}V] |_{t = 11.4}$ = $\ln(1.05)$${}_{11.4}V$ +
+1465.62 - ${}_{11.4}V$$\mu_{41.4}$ \vspace{2mm}
+
+\(C) $\frac{d}{dt}[{}_{t}V] |_{t = 11.4}$ = $\ln(1.05)$${}_{11.4}V$ -
+2400 + ${}_{11.4}V$$\mu_{41.4}$ \vspace{2mm}
+
+\(D) $\frac{d}{dt}[{}_{t}V] |_{t = 11.4}$ = $\ln(1.05)$${}_{11.4}V$ -
+2400 - ${}_{11.4}V$$\mu_{41.4}$ \vspace{2mm}
+
+\(E) $\frac{d}{dt}[{}_{t}V] |_{t = 11.4}$ = $\ln(1.05)$${}_{11.4}V$ -
+934.38 + ${}_{11.4}V$$\mu_{41.4}$
+
+\vspace{20mm}
+
+10.23. Consider the setup provided in Exercise 10.22. Estimate the
+benefit reserve at time 9.8 using Euler’s forward method with step size
+0.2 to numerically solve Thiele’s Differential Equation. \vspace{4mm}
+
+\(A) 18,000 \hspace{0.2in} (B) 18,500 \hspace{0.2in} (C) 19,000
+\hspace{0.2in} (D) 19,500 \hspace{0.2in} (E) 20,000 \vspace{5mm}
+
+\newpage
+10.24. Consider a special fully continuous 2-year endowment insurance on
+(60): \vspace{4mm}
+
+\(i) The death benefit at time $t$ is equal to ${}_{t}V$, the net premium
+reserve at time $t$, for 0 $\le$ $t$ $<$ 2. \vspace{2mm}
+
+\(ii) The pure endowment benefit is 100,000. \vspace{2mm}
+
+\(iii) The level net premium is $P$. \vspace{2mm}
+
+\(iv) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(v) $i$ = 0.06 \vspace{4mm}
+
+Find $P$ by solving Thiele’s differential equation using Euler’s forward
+method, with a time step of $h$ = 0.5. \vspace{4mm}
+
+\(A) 47,000 \hspace{0.2in} (B) 47,450 \hspace{0.2in} (C) 47,900
+\hspace{0.2in} (D) 48,250 \hspace{0.2in} (E) 48,600 \vspace{20mm}
+
+10.25. Consider a special 10-year term insurance on (40) payable at the
+moment of death: \vspace{4mm}
+
+\(i) There is only one gross premium payment, payable at policy issue.
+\vspace{2mm}
+
+\(ii) ${}_{t}V$ denotes the gross premium reserve at time $t$ for 0 $\le$
+$t$ $\le$ 10. \vspace{2mm}
+
+\(iii) The death benefit payable at time $t$ is ${}_{t}V$ for 0 $\le$ $t$
+$\le$ 10. \vspace{2mm}
+
+\(iv) There is a settlement expense of 100 payable at the same time as
+the death benefit. \vspace{2mm}
+
+\(v) $\delta$ = 0.05 \vspace{2mm}
+
+\(vi) $\mu_{40 + t}$ = 0.03 for 0 $\le$ $t$ $\le$ 10. \vspace{4mm}
+
+Calculate ${}_{9.6}V$, using Euler’s forward method with a step size of
+0.2 to numerically solve Thiele’s Differential Equation. \vspace{4mm}
+
+\(A) 1.1 \hspace{0.2in} (B) 1.2 \hspace{0.2in} (C) 1.3 \hspace{0.2in} (D)
+1.4 \hspace{0.2in} (E) 1.5 \vspace{10mm}
+
+\newpage
+10.26. You are given: \vspace{4mm}
+
+\(i) Mortality follows the Illustrative Life Table and $i$ = 0.06
+\vspace{2mm}
+
+\(ii) $\anndue{71}{29}$ = 8.29634 \vspace{4mm}
+
+Calculate the full preliminary term reserve at the end of year 10 for a
+fully discrete 30-year endowment insurance of 1000 on (70). \vspace{4mm}
+
+\(A) 250 \hspace{0.2in} (B) 260 \hspace{0.2in} (C) 270 \hspace{0.2in} (D)
+280 \hspace{0.2in} (E) 290 \vspace{10mm}
+
+10.27. Consider a fully discrete 10-year term insurance of 1000 on (40).
+Mortality follows the Illustrative Life Table, and $i$ = 0.06. Using the
+full preliminary term method, calculate the benefit premium in renewal
+years. \vspace{4mm}
+
+\(A) 3.68 \hspace{0.2in} (B) 3.74 \hspace{0.2in} (C) 3.80 \hspace{0.2in}
+(D) 3.86 \hspace{0.2in} (E) 3.94 \vspace{10mm}
+
+10.28. For a fully discrete 20-year endowment insurance of 10,000 on
+(35): \vspace{4mm}
+
+\(i) $q_{35}$ = 0.001 \vspace{2mm}
+
+\(ii) ${}_{20}p_{35}$ = 0.960 \vspace{2mm}
+
+\(iii) 10,000$A_{35}$ = 1417; 10,000$A_{36}$ = 1473; 10,000$A_{55}$ =
+3000 \vspace{2mm}
+
+\(iv) $\anndue{44}{11}$ = 8.83 \vspace{4mm}
+
+Calculate the full preliminary term reserve for this insurance at the
+end of year 9. \vspace{4mm}
+
+\(A) 3180 \hspace{0.2in} (B) 3220 \hspace{0.2in} (C) 3260 \hspace{0.2in}
+(D) 3300 \hspace{0.2in} (E) 3340 \vspace{10mm}
+
+10.29. You are given a fully discrete whole life insurance of 5000 on
+(25). Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+\vspace{2mm}
+
+Calculate the difference between the net premium reserve at time 5 and
+the full preliminary term reserve at time 5. \vspace{4mm}
+
+\(A) 16 \hspace{0.2in} (B) 17 \hspace{0.2in} (C) 18 \hspace{0.2in} (D) 19
+\hspace{0.2in} (E) 20 \vspace{10mm}
+
+\newpage
+10.30. For a fully discrete whole life insurance of 2500 on (45):
+\vspace{4mm}
+
+\(i) The full preliminary term reserve at the end of year 2 is 40.98.
+\vspace{2mm}
+
+\(ii) $\ddot{a}_{45}$ = 18.54, $\ddot{a}_{47}$ = 18.00, $q_{45}$ = 0.015
+\vspace{4mm}
+
+Calculate the first year benefit premium using the full preliminary term
+method. \vspace{4mm}
+
+\(A) 32 \hspace{0.2in} (B) 34 \hspace{0.2in} (C) 36 \hspace{0.2in} (D) 38
+\hspace{0.2in} (E) 40 \vspace{5mm}
+
+10.31. Consider a fully continuous 20-year endowment insurance of 7500
+on (45): \vspace{4mm}
+
+\(i) The annual rate of gross premium is 300. \vspace{2mm}
+
+\(ii) Expenses are payable at a rate of 2.5% of gross premium.
+\vspace{2mm}
+
+\(iii) $\delta$ = 0.035 \vspace{2mm}
+
+\(iv) $\mu_x$ = 0.0009$(1.012)^x$ for 45 $\le$ $x$ $\le$ 65 \vspace{4mm}
+
+Using Euler’s forward method with $h$ = 0.2 to numerically solve
+Thiele’s Differential Equation, calculate the gross premium reserve at
+time 19.6. \vspace{4mm}
+
+\(A) 7220 \hspace{0.2in} (B) 7240 \hspace{0.2in} (C) 7260 \hspace{0.2in}
+(D) 7280 \hspace{0.2in} (E) 7300 \vspace{5mm}
+
+10.32. For a fully discrete 20-year term insurance of 100,000 on (45):
+\vspace{4mm}
+
+\(i) The annual gross premium is 1034. \vspace{2mm}
+
+\(ii) An expense of 40% of gross premium plus 160 is payable at the
+beginning of the first year. \vspace{2mm}
+
+\(iii) An expense of 15% of gross premium is payable at the beginning of
+each year after the first year. \vspace{2mm}
+
+\(iv) An expense of 90 is payable at the same time as the death benefit.
+\vspace{2mm}
+
+\(v) Mortality follows the Illustrative Life Table, and $i$ = 0.06
+\vspace{4mm}
+
+Calculate the full preliminary term reserve at the end of the sixteenth
+year. \vspace{4mm}
+
+\(A) 2600 \hspace{0.2in} (B) 2700 \hspace{0.2in} (C) 2800 \hspace{0.2in}
+(D) 2900 \hspace{0.2in} (E) 3000 \vspace{10mm}
+
+\newpage
+10.33. Consider a fully discrete 20-year endowment insurance of 20,000
+on (45) with level annual net premiums that has been in force for 8
+years: \vspace{4mm}
+
+\(i) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+\vspace{2mm}
+
+\(ii) The surrender value is equal to the net premium reserve.
+\vspace{4mm}
+
+The policyholder wants to stop paying premiums after 8 years. In
+exchange, the insurer decides to reduce the benefit of the endowment
+insurance that is payable during the remainder of the 20-year period.
+\vspace{2mm}
+
+Using the equivalence principle at time 8, calculate the reduced benefit
+amount. \vspace{4mm}
+
+\(A) 8240 \hspace{0.2in} (B) 8930 \hspace{0.2in} (C) 9620 \hspace{0.2in}
+(D) 10,310 \hspace{0.2in} (E) 11,000 \vspace{6mm}
+
+10.34. For a whole life insurance of 50,000 on (30) payable at the end
+of the month of death: \vspace{4mm}
+
+\(i) Gross premiums of 53.90, determined using the equivalence principle,
+are payable at the beginning of each month. \vspace{2mm}
+
+\(ii) There is a per-policy expense of 100 payable at the beginning of
+the first month. There is a per-policy expense of 25 payable at the
+beginning of the second and subsequent months. \vspace{2mm}
+
+\(iii) Woolhouse’s formula with two terms is used to determine annuity
+expected present values. \vspace{2mm}
+
+\(iv) The surrender value is the gross premium reserve minus 100.
+\vspace{2mm}
+
+\(v) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+\vspace{4mm}
+
+After 10 years, the policyholder wants to immediately convert the whole
+life insurance into a 10-year term insurance of $S$ payable at the end
+of the month of death. Furthermore, the policyholder wants to pay no
+more premiums; that is, the policyholder wants a paid-up 10-year term
+insurance. \vspace{2mm}
+
+The insurer now anticipates a per-policy expense of 20 will be payable
+at the beginning of each month while the 10-year term insurance is in
+force. \vspace{2mm}
+
+Using the equivalence principle at time 10, calculate: $S$. \vspace{4mm}
+
+\(A) 49,000 \hspace{0.2in} (B) 49,700 \hspace{0.2in} (C) 50,400
+\hspace{0.2in} (D) 51,100 \hspace{0.2in} (E) 51,800
+
+\newpage
+10.35. For a fully discrete 20-year endowment insurance on (35) that has
+been in force for 10 years: \vspace{4mm}
+
+\(i) The death benefit is 5000, and the pure endowment benefit is 7500.
+\vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(iii) $i$ = 0.06 \vspace{2mm}
+
+\(iv) The surrender value is equal to 95% of the benefit reserve.
+\vspace{4mm}
+
+The policyholder decides to stop paying premiums after 10 years. The
+death benefit remains at 5000 but the pure endowment benefit is reduced.
+\vspace{4mm}
+
+Using the equivalence principle at time 10, calculate the reduced pure
+endowment benefit. \vspace{4mm}
+
+\(A) 4400 \hspace{0.2in} (B) 4800 \hspace{0.2in} (C) 5200 \hspace{0.2in}
+(D) 5600 \hspace{0.2in} (E) 6000 \vspace{10mm}
+
+10.36. For a fully discrete whole life insurance of 5000 on [51]:
+\vspace{4mm}
+
+\(i) Mortality follows the Standard Select Survival Model, and $i$ =
+0.05. \vspace{2mm}
+
+\(ii) The level annual gross premium, determined using the equivalence
+principle at issue, is 83.16. \vspace{2mm}
+
+\(iii) Expenses are 40% of gross premium plus 50.00 in the first year,
+and 10% of gross premium plus 12.50 in renewal years. All expenses are
+paid at the beginning of the year. \vspace{2mm}
+
+\(iv) The surrender value is equal to the gross premium reserve.
+\vspace{4mm}
+
+After 12 years, the policyholder wants the face amount of the policy
+doubled. As a result, the level annual gross premium will be increased,
+including the gross premium payable at the beginning of the thirteenth
+year. \vspace{2mm}
+
+Using the equivalence principle (at time 12), calculate the increased
+level annual gross premium. \vspace{4mm}
+
+\(A) 170 \hspace{0.2in} (B) 190 \hspace{0.2in} (C) 210 \hspace{0.2in} (D)
+230 \hspace{0.2in} (E) 250
+
+\newpage
+10.37. Jorge is issued a special whole life insurance at age 35 such
+that: \vspace{4mm}
+
+\(i) The death benefit is 50,000 payable at the end of the year of death.
+\vspace{2mm}
+
+\(ii) The net premium is 46.43 payable at the beginning of each month
+during the first 20 years. \vspace{2mm}
+
+\(iii) Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+\vspace{2mm}
+
+\(iv) Deaths are uniformly distributed over each year of age.
+\vspace{2mm}
+
+\(v) The cash value is equal to 95% of the net premium reserve.
+\vspace{4mm}
+
+After the policy has been in force for 10 years, Jorge wants to change
+his policy to a paid-up whole life insurance that pays a reduced,
+constant death benefit at the end of the year of death. Using the
+equivalence principle at time 10, determine the death benefit for the
+paid-up whole life insurance. \vspace{4mm}
+
+\(A) 26,000 \hspace{0.2in} (B) 27,000 \hspace{0.2in} (C) 28,000
+\hspace{0.2in} (D) 29,000 \hspace{0.2in} (E) 30,000 \vspace{10mm}
+
+10.38. Elias was originally issued a fully discrete 20-year endowment
+insurance of 50,000 at age 45. For this insurance, henceforth referred
+to as the “original endowment insurance”: \vspace{4mm}
+
+\(i) There are level annual net premiums. \vspace{2mm}
+
+\(ii) Mortality follows the Illustrative Life Table, and $i$ = 0.06
+\vspace{2mm}
+
+\(iii) The cash value is equal to the net premium reserve. \vspace{4mm}
+
+At age 56, Elias decides to convert the original endowment insurance
+into a paid-up 9-year endowment insurance. The death benefit of the
+paid-up endowment insurance is equal to the death benefit of the
+original endowment insurance, and is payable at the end of the year of
+death of Elias. The pure endowment benefit of the paid-up endowment
+insurance will be smaller than the pure endowment benefit of the
+original endowment insurance. \vspace{4mm}
+
+Using the equivalence principle at the time the original endowment
+insurance is converted to the paid-up endowment insurance, determine the
+pure endowment benefit of the paid-up endowment insurance. \vspace{4mm}
+
+\(A) 29,500 \hspace{0.2in} (B) 29,750 \hspace{0.2in} (C) 30,000
+\hspace{0.2in} (D) 30,250 \hspace{0.2in} (E) 30,500 \vspace{10mm}
+
+\newpage
+10.39. Paul is currently age 36. Ten years ago, Paul was issued a fully
+discrete whole life insurance of 100,000 with level annual net premiums.
+\vspace{2mm}
+
+Paul now (at age 36) wants the policy to be changed to a fully discrete
+20-year endowment insurance of 50,000, with level annual net premiums
+that are different than the level annual net premiums for the original
+fully discrete whole life insurance policy. \vspace{2mm}
+
+For both the fully discrete whole life insurance policy (the “original
+policy”) and the fully discrete 20-year endowment insurance policy (the
+“new policy”): \vspace{4mm}
+
+\(i) $i$ = 0.045 \vspace{2mm}
+
+\(ii) $A_{26}$ = 0.100595 \vspace{2mm}
+
+\(iii) $A_{36}$ = 0.147295 \vspace{2mm}
+
+\(iv) $A_{56}$ = 0.310862 \vspace{2mm}
+
+\(v) ${}_{20}E_{36}$ = 0.361719 \vspace{4mm}
+
+Using the equivalence principle at the time the original policy is
+changed, and assuming that the surrender value equals the net premium
+reserve for the original policy, calculate the level annual net premium
+for the new policy. \vspace{4mm}
+
+\(A) 1020 \hspace{0.2in} (B) 1040 \hspace{0.2in} (C) 1060 \hspace{0.2in}
+(D) 1080 \hspace{0.2in} (E) 1100 \vspace{10mm}
+
+\newpage
+10.40. Consider a portolio of fully discrete whole life insurances of
+100,000 on 1000 select lives each aged 30. For each policy, the level
+annual gross premium, calculated using the equivalence principle, is
+474.29. \vspace{2mm}
+
+Each policy is issued assuming (i) mortality follows the Standard Select
+Survival Model, (ii) an effective annual interest rate of 0.05, and
+(iii) expenses at the start of each year are 10% of premium plus 30.
+Annual profits are based on gross premium reserves. \vspace{2mm}
+
+Per policy, what is actually experienced during the first year is (i) a
+mortality rate of 0.0001, (ii) an effective annual interest rate of
+0.07, and (iii) expenses at the start of each year of 10% of premium
+plus 50. \vspace{2mm}
+
+Calculate the total gain from mortality, interest, and expenses during
+the first year. \vspace{4mm}
+
+\(A) 3380 \hspace{0.2in} (B) 3400 \hspace{0.2in} (C) 3420 \hspace{0.2in}
+(D) 3440 \hspace{0.2in} (E) 3460 \vspace{20mm}
+
+10.41. Consider the setup provided in Exercise 10.40. \vspace{2mm}
+
+Calculate the gain from interest during the first year, assuming that
+gains by source are calculated in the order of mortality, interest, and
+expenses. \vspace{4mm}
+
+\(A) 7370 \hspace{0.2in} (B) 7480 \hspace{0.2in} (C) 7540 \hspace{0.2in}
+(D) 7940 \hspace{0.2in} (E) 8120 \vspace{10mm}
+
+\newpage
+10.42. For a special fully discrete 10-year deferred whole life
+insurance of 100,000 on (x): \vspace{4mm}
+
+\(i) The level annual gross premium is 3600, and is payable at the
+beginning of the year during the deferral period. \vspace{2mm}
+
+\(ii) It is expected that: (a) $i$ = 0.05, (b) $q_{x + k}$ = 0.005 +
+0.001$k$ for $k$ = 0, 1, 2, ...,19, and (c) there is an expense of 0.80
+per 1000 of insurance at the beginning of the first year, an expense of
+0.20 per 1000 of insurance at the beginning of each renewal year, and a
+settlement expense of 0.25 per 1000 of insurance payable at the same
+time as the death benefit. \vspace{2mm}
+
+\(iii) Based on expected interest and expected mortality: $A_{x + 9}$ =
+0.27. \vspace{2mm}
+
+\(iv) During the eleventh year, actual experience is: (a) $i$ = 0.07, (b)
+$q_{x + 10}$ = 0.015, and (c) there is an expense of 0.25 per 1000 of
+insurance at the beginning of the year and a settlement expense of 0.20
+per 1000 of insurance payable at the same time as the death benefit.
+\vspace{2mm}
+
+\(v) Annual profits are based on prospective gross premium reserves.
+\vspace{4mm}
+
+For this policy, calculate the gain from interest during the eleventh
+year, assuming that gains by source are calculated in the order of
+interest, expenses, and mortality. \vspace{4mm}
+
+\(A) 520 \hspace{0.2in} (B) 550 \hspace{0.2in} (C) 580 \hspace{0.2in} (D)
+610 \hspace{0.2in} (E) 640 \vspace{10mm}
+
+\newpage
+10.43. Your company issues 10-year deferred whole life annuities-due of
+1000 per year, payable annually, to a group of lives each aged 55. For
+each annuity: \vspace{4mm}
+
+\(i) Level gross premiums of 700 are payable at the beginning of the year
+during the first ten years. \vspace{2mm}
+
+\(ii) It is expected that mortality follows the Illustrative Life Table.
+\vspace{2mm}
+
+\(iii) It is expected that $i$ = 0.06. \vspace{2mm}
+
+\(iv) It is expected that there will be a 5% of gross premium expense,
+payable upon receipt of premium. \vspace{2mm}
+
+\(v) Annual profits are based on prospective gross premium reserves.
+\vspace{4mm}
+
+During year 11, the actual experience is as follows: \vspace{4mm}
+
+\(a) There are 480 annuities in force at the beginning of the year.
+\vspace{2mm}
+
+\(b) There are six deaths. \vspace{2mm}
+
+\(c) Interest earned is 0.07. \vspace{4mm}
+
+Calculate the total gain due to interest, mortality, and expenses for
+year 11. \vspace{4mm}
+
+\(A) 1910 \hspace{0.2in} (B) 1930 \hspace{0.2in} (C) 1950 \hspace{0.2in}
+(D) 1970 \hspace{0.2in} (E) 1990 \vspace{20mm}
+
+10.44. Consider the setup provided in Exercise 10.43. \vspace{2mm}
+
+Calculate the gain from mortality in year 11, assuming that gains by
+source are calculated in the order of interest, mortality, and expenses.
+\vspace{4mm}
+
+\(A) -42,000 \hspace{0.2in} (B) -40,800 \hspace{0.2in} (C) -35,560
+\hspace{0.2in} (D) - 33,240 \hspace{0.2in} (E) -31,010
+
+\newpage
+10.45. The PlzDntDie Life Insurance Company issues 5-year term insurance
+policies to a group of 850 lives each age 50. For each policy:
+\vspace{4mm}
+
+\(i) The death benefit for the first year is 10,000. The death benefit
+for year $k$ + 1 is 2% higher than the death benefit for year $k$, where
+$k$ = 1, 2, 3, 4. \vspace{2mm}
+
+\(ii) Death benefits are payable at the end of the year of death.
+\vspace{2mm}
+
+\(iii) The single gross premium is 675.24. \vspace{2mm}
+
+\(iv) Profits are based on gross premium reserves. \vspace{2mm}
+
+\(v) The gross premium reserve at the end of the first year is 596.22.
+\vspace{2mm}
+
+\(vi) A maintenance expense is payable at the beginning of each year, and
+a claims expense is payable at the end of the year of death.
+\vspace{2mm}
+
+845 term insurance policies remain in force at the beginning of the
+second year. During the second year, anticipated and actual experience
+are as follows: \vspace{4mm}
+
+$\begin{array}{c|c|c}
+\hline
+& \textbf{Anticipated} & \textbf{Actual} \\
+\hline
+\text{Mortality}            & q_{51} = 0.01 & 7 \text{ deaths} \\
+\hline
+\text{Interest}             & i = 0.05      & i = 0.05 \\
+\hline
+\text{Maintenance Expense}  & 35 \text{ per policy}   & 40 \text{ per policy} \\
+\hline
+\text{Claims Expense}       & 100 \text{ per policy}  & 95 \text{ per policy} \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+For the second year, calculate the gain due to mortality, assuming gains
+by source are calculated in the following order: gain due to interest,
+gain due to expenses, and gain due to mortality. \vspace{4mm}
+
+\(A) 14,000 \hspace{0.2in} (B) 14,200 \hspace{0.2in} (C) 14,400
+\hspace{0.2in} (D) 14,600 \hspace{0.2in} (E) 14,800
+
+\newpage
+10.46. For a fully discrete whole life insurance of 100,000 on (50):
+\vspace{4mm}
+
+\(i) The level annual gross premium is 1600. \vspace{2mm}
+
+\(ii) Values in year 9: \vspace{2mm}
+
+$\begin{array}{r|r|r}
+\hline
+ & \textbf{Anticipated} & \textbf{Actual} \\
+\hline
+\text{Expenses as a percent of premium}           & 0.060      & 0.040 \\
+\text{(payable upon receipt of premium)} & & \\
+\hline
+\text{Settlement expenses}                 & 100       & 200 \\
+\text{(payable at the end of the year of death)} & & \\
+\hline
+q_{58} & 0.005      & 0.010 \\
+\hline
+\text{Annual effective rate of interest}          & 0.045      & 0.065 \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+\(iii) Reserves are gross premium reserves. The gross premium reserve at
+the end of year 9 is 11,648.77. \vspace{4mm}
+
+A company issued the whole life insurance to 1000 lives age 50 with
+independent future lifetimes. At the end of year 8, 986 insurances
+remain in force. Calculate the gain from interest, assuming gains by
+source are calculated in the order of mortality, expenses, and interest,
+in year 9 from the 986 insurances. \vspace{4mm}
+
+\(A) 228,000 \hspace{0.2in} (B) 228,500 \hspace{0.2in} (C) 229,000
+\hspace{0.2in} (D) 229,500 \hspace{0.2in} (E) 230,000 \vspace{6mm}
+
+10.47. Consider a fully discrete whole life insurance of 250,000 on
+(46): \vspace{4mm}
+
+\(i) The level annual gross premium is 7000 during the first ten years,
+and 3500 thereafter. \vspace{2mm}
+
+\(ii) There is a percent of premium expense of 5% of gross premium,
+payable at the beginning of each year. \vspace{2mm}
+
+\(iii) There is a claims settlement expense of 150 payable at the same
+time as the death benefit. \vspace{2mm}
+
+\(iv) $v$ = 0.96 \vspace{2mm}
+
+\(v) ${}_{t}p_{46}$ = $(0.98)^t$ for $t$ $\ge$ 0 \vspace{4mm}
+
+Calculate the gross premium reserve at the end of the tenth year.
+\vspace{4mm}
+
+\(A) 22,000 \hspace{0.2in} (B) 23,500 \hspace{0.2in} (C) 24,000
+\hspace{0.2in} (D) 24,500 \hspace{0.2in} (E) 25,000 \vspace{10mm}
+
+\newpage
+10.48. Consider the setup provided in Exercise 10.47. Calculate the
+gross premium reserve at the end of the eighth year. \vspace{4mm}
+
+\(A) 18,000 \hspace{0.2in} (B) 18,500 \hspace{0.2in} (C) 19,000
+\hspace{0.2in} (D) 19,500 \hspace{0.2in} (E) 20,000 \vspace{20mm}
+
+10.49. Consider a fully discrete 20-year term insurance of 10,000 on
+(45): \vspace{4mm}
+
+\(i) The level annual gross premium is 150. \vspace{2mm}
+
+\(ii) There is an expense of 20% of gross premium plus 100 payable at the
+beginning of the first year. \vspace{2mm}
+
+\(iii) There is an expense of 4% of gross premium plus 30 payable at the
+beginning of the second and each subsequent year. \vspace{2mm}
+
+\(iv) There is a claims settlement expense of 50 payable at the same time
+as the death benefit. \vspace{2mm}
+
+\(v) Mortality follows the Illustrative Life Table. \vspace{2mm}
+
+\(vi) $i$ = 0.06 \vspace{4mm}
+
+Calculate the expected gross future loss at time 13. \vspace{4mm}
+
+\(A) 150 \hspace{0.2in} (B) 160 \hspace{0.2in} (C) 170 \hspace{0.2in} (D)
+180 \hspace{0.2in} (E) 190 \vspace{10mm}
+
+\newpage
+### Answers to Exercises
+
+\Large10.1. D \hspace{2in} 10.26. E \vspace{2mm}
+
+10.2. B \hspace{2in} 10.27. B \vspace{2mm}
+
+10.3. C \hspace{2in} 10.28. A \vspace{2mm}
+
+10.4. B \hspace{2in} 10.29. E \vspace{2mm}
+
+10.5. E \hspace{2in} 10.30. C \vspace{2mm}
+
+10.6. B \hspace{2in} 10.31. D \vspace{2mm}
+
+10.7. D \hspace{2in} 10.32. D \vspace{2mm}
+
+10.8. C \hspace{2in} 10.33. D \vspace{2mm}
+
+10.9. B \hspace{2in} 10.34. B \vspace{2mm}
+
+10.10. B \hspace{1.88in} 10.35. A \vspace{2mm}
+
+10.11. D \hspace{1.88in} 10.36. C \vspace{2mm}
+
+10.12. B \hspace{1.88in} 10.37. C \vspace{2mm}
+
+10.13. A \hspace{1.88in} 10.38. D \vspace{2mm}
+
+10.14. E \hspace{1.88in} 10.39. B \vspace{2mm}
+
+10.15. D \hspace{1.88in} 10.40. C \vspace{2mm}
+
+10.16. D \hspace{1.88in} 10.41. D \vspace{2mm}
+
+10.17. E \hspace{1.88in} 10.42. B \vspace{2mm}
+
+10.18. D \hspace{1.88in} 10.43. A \vspace{2mm}
+
+10.19. A \hspace{1.88in} 10.44. B \vspace{2mm}
+
+10.20. C \hspace{1.88in} 10.45. B \vspace{2mm}
+
+10.21. E \hspace{1.88in} 10.46. C \vspace{2mm}
+
+10.22. C \hspace{1.88in} 10.47. E \vspace{2mm}
+
+10.23. B \hspace{1.88in} 10.48. B \vspace{2mm}
+
+10.24. C \hspace{1.88in} 10.49. A \vspace{2mm}
+
+10.25. B \vspace{2mm}
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Fall 2015: \#12, 14, 15, 16 \vspace{2mm}
+
+-   Exam MLC, Fall 2014: \#13, 14, 15, 16, 17 \vspace{2mm}
+
+-   Exam MLC, Spring 2014: \#13, 14, 15, 16 \vspace{2mm}
+
+-   Exam MLC, Fall 2013: \#6, 8 \vspace{2mm}
+
+-   Exam MLC, Spring 2013: \#9, 16, 22 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#5, 6, 17, 18, 23 \vspace{2mm}
+
+-   Exam MLC, Spring 2012: \#8, 9, 17, 21 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#16, 23, 30, 41, 50, 61, 62, 85, 93,
+    102, 108, 110, 118, 156, 162, 177, 185, 199, 214, 230, 243, 274,
+    275, 277, 288, 299, 300, 302, 303, 304, 305, 306, 307, 312, 313, 314
+    \vspace{2mm}
+
+-   Exam MLC, Spring 2007: \#3, 19 \vspace{2mm}

@@ -1,0 +1,724 @@
+---
+title: "Multiple Decrements I"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Multiple Decrements I
+
+## Key Concepts
+
+-   A **multiple decrement model** has a total of $n$ + 1 states.
+    \vspace{10mm}
+
+-   There is one starting state, State 0. Often this is interpreted as
+    “alive” or “active.”\vspace{10mm}
+
+-   An individual can only transition from State 0 to **one** of $n$
+    other states (States 1, 2, ..., $n$), called **causes of decrement**
+    or **decrements**. Once a transition is made to one of States 1, 2,
+    ..., $n$, it is **impossible** for the individual to transition from
+    that state to any other state. \vspace{2mm}
+
+    -   Sometimes the model is referred to as an $n$-decrement model.
+        For example, a 2-decrement model is a **double decrement
+        model**. \vspace{2mm}
+
+    -   States 1, 2, ..., $n$ could represent different types of death
+        (such as accidental, non-accidental death), or different states
+        of activity (dead, withdrawal, disability, retirement).
+        \vspace{2mm}
+
+    -   In general, “transitioning to State $j$” can also be replaced
+        with “failing due to cause $j$” or “decrementing due to cause
+        $j$,” for $j$ = 1, 2, ..., $n$. \vspace{10mm}
+
+-   In the multiple decrement model, all $n$ causes of decrement are
+    “competing with each other.” All decrements are assumed to be
+    operating “against” an individual, each one attempting to cause the
+    individual to decrement.
+
+\newpage
+## Probability Functions
+
+\Large
+
+-   Let $j$ = 1, 2, ..., $n$; and $\tau$ denote **total decrement**.
+    \vspace{8mm}
+
+-   The **force of transition/decrement at age x + t due to cause $j$**:
+    \vspace{1mm}
+
+    $\mu^{(j)}_x(t)$ = $\mu^{(j)}_{x + t}$ \vspace{8mm}
+
+-   The **total force of transition/decrement at age x + t**:
+    \vspace{1mm}
+
+    $\mu^{(\tau)}_{x + t}$ = $\sum^n_{j = 1}\mu^{(j)}_{x + t}$
+    \vspace{8mm}
+
+-   The probability that (x) stays in State 0 for at least $t$ years
+    (survives all decrements for at least $t$ years): \vspace{2mm}
+
+    ${}_{t}p^{(\tau)}_x$ = $exp[-\int^t_0\mu^{(\tau)}_{x + s}ds]$.
+    \vspace{1mm}
+
+    Note: In order to survive all decrements between ages x and x + t,
+    one needs to overcome the total force of transition/decrement:
+    $\mu^{(\tau)}_{x + s}$. \vspace{8mm}
+
+-   The probability that (x) transitions out of State 0 within $t$ years
+    (decrements within $t$ years): \vspace{2mm}
+
+    ${}_{t}q^{(\tau)}_x$ = 1 - ${}_{t}p^{(\tau)}_x$
+
+    \newpage
+-   The probability that (x) transitions out of State 0 to State $j$
+    within $t$ years (decrements due to cause $j$ within $t$ years):
+    \vspace{2mm}
+
+    ${}_{t}q^{(j)}_x$ = $\int^t_0{}_{s}p^{(\tau)}_x$$\mu^{(j)}_{x +
+    s}ds$. \vspace{2mm}
+
+    Note: ${}_{t}q^{(j)}_x$ is a **dependent** probability. “In order
+    for (x) to decrement due to cause $j$ within $t$ years, there has to
+    be some time $s$ within $t$ years where (x) survives **all**
+    decrements for $s$ years to age x + s and then immediately
+    decrements due to cause $j$ at age x + s.” \vspace{2mm}
+
+    -   ${}_{t}q^{(\tau)}_x$ = $\sum^n_{j = 1}{}_{t}q^{(j)}_x$
+        \vspace{2mm}
+
+    -   ${}_{t}q^{(\tau)}_x$ =
+        $\int^t_0{}_{s}p^{(\tau)}_x$$\mu^{(\tau)}_{x + s}ds$
+        \vspace{8mm}
+
+-   The probability that (x) transitions out of State 0 to State $j$
+    (decrements due to cause $j$): ${}_{\infty}q^{(j)}_x$. \vspace{1mm}
+
+    Here, there is no specific amount of years in which this should
+    occur - hence the $\infty$. \vspace{8mm}
+
+-   The probability that (x) transitions out of State 0 to State $j$
+    between ages x + u and x + u + t (decrements due to cause $j$
+    between ages x + u and x + u + t): \vspace{2mm}
+
+    ${}_{u|t}q^{(j)}_x$ = $\int^{u +
+    t}_u{}_{s}p^{(\tau)}_x$$\mu^{(j)}_{x + s}ds$ =
+    $({}_{u}p^{(\tau)}_x)$$({}_{t}q^{(j)}_{x + u})$ \vspace{2mm}
+
+    An important special case: ${}_{u|}q^{(j)}_x$ = $\int^{u +
+    1}_u{}_{s}p^{(\tau)}_x$$\mu^{(j)}_{x + s}ds$ =
+    ${}_{u}p^{(\tau)}_x$$q^{(j)}_{x + u}$ \vspace{8mm}
+
+-   The probability that (x) transitions out of State 0 between ages x +
+    u and x + u + t (decrements between ages x + u and x + u + t):
+    \vspace{2mm}
+
+    ${}_{u|t}q^{(\tau)}_x$ = $\int^{u +
+    t}_u{}_{s}p^{(\tau)}_x$$\mu^{(\tau)}_{x + s}ds$ =
+    $({}_{u}p^{(\tau)}_x)$$({}_{t}q^{(\tau)}_{x + u})$ =
+    ${}_{u}p^{(\tau)}_x$ - ${}_{u + t}p^{(\tau)}_x$ = ${}_{u +
+    t}q^{(\tau)}_x$ - ${}_{u}q^{(\tau)}_x$. \vspace{2mm}
+
+    An important special case: \vspace{2mm}
+
+    ${}_{u|}q^{(\tau)}_x$ = $\int^{u +
+    1}_u{}_{s}p^{(\tau)}_x$$\mu^{(\tau)}_{x + s}ds$ =
+    ${}_{u}p^{(\tau)}_x$$q^{(\tau)}_{x + u}$ = ${}_{u}p^{(\tau)}_x$ -
+    ${}_{u + 1}p^{(\tau)}_x$ = ${}_{u + 1}q^{(\tau)}_x$ -
+    ${}_{u}q^{(\tau)}_x$.
+
+\newpage
+## Life Tables
+
+\Large
+
+-   $l^{(\tau)}_{x + t}$ = $l^{(\tau)}_{x}{}_{t}p^{(\tau)}_x$
+    \vspace{2mm}
+
+    “The expected number of survivors of all decrements at age x + t is
+    the expected number of survivors of all decrements at age x times
+    the probability that each life survives all decrements for t years.”
+    \vspace{2mm}
+
+    For $l's$, the $\tau$ is sometimes omitted. \vspace{10mm}
+
+-   ${}_{t}d^{(\tau)}_x$ = $l^{(\tau)}_{x}{}_{t}q^{(\tau)}_x$ =
+    $l^{(\tau)}_{x}$ - $l^{(\tau)}_{x + t}$ \vspace{2mm}
+
+    “The expected number of lives who transition out of State 0 between
+    ages x and x + t is (i) the expected number of survivors of all
+    decrements at age x times the probability that each life transitions
+    out of State 0 within t years and (ii) the expected number of
+    survivors of all decrements at age x less the expected number of
+    survivors of all decrements at age x + t.” \vspace{10mm}
+
+-   ${}_{t}d^{(j)}_x$ = $l^{(\tau)}_{x}{}_{t}q^{(j)}_x$ \vspace{2mm}
+
+    “The expected number of lives who transition out of State 0 to State
+    $j$ between ages x and x + t is the expected number of survivors of
+    all decrements at age x times the probability that each life
+    transitions out of State 0 to State $j$ within t years.”
+    \vspace{2mm}
+
+    Note: ${}_{t}d^{(\tau)}_x$ = $\sum^n_{j = 1}{}_{t}d^{(j)}_x$.
+    \vspace{10mm}
+
+-   ${}_{t}d^{(j)}_{x + u}$ = $l^{(\tau)}_{x}{}_{u|t}q^{(j)}_x$
+    \vspace{10mm}
+
+-   ${}_{t}d^{(\tau)}_{x + u}$ = $l^{(\tau)}_{x}{}_{u|t}q^{(\tau)}_x$
+    \vspace{4mm}
+
+An example of a multiple decrement life table is the **Illustrative
+Service Table**, which is one of many tables provided during Exam MLC
+(refer to Appendix A of this study supplement).
+
+\newpage
+## Exercises
+
+\Large
+
+12.1. For a double decrement model on (40): \vspace{4mm}
+
+\(i) $\mu^{(1)}_{40}(t)$ = $\frac{1}{60 + t}$ for $t$ $\ge$ 0
+\vspace{2mm}
+
+\(ii) $\mu^{(2)}_{40}(t)$ = $\frac{2}{60 + t}$ for $t$ $\ge$ 0
+\vspace{4mm}
+
+Calculate the probability that (40) decrements within 10 years due to
+cause 2. \vspace{4mm}
+
+\(A) 0.21 \hspace{0.2in} (B) 0.23 \hspace{0.2in} (C) 0.25 \hspace{0.2in}
+(D) 0.27 \hspace{0.2in} (E) 0.29 \vspace{20mm}
+
+12.2. Consider a double decrement model on (x): \vspace{4mm}
+
+\(i) $\mu^{(1)}_x(t)$ = 0.10 for $t$ $>$ 0 \vspace{2mm}
+
+\(ii) $\mu^{(2)}_x(t)$ = 0.20 for $t$ $>$ 0 \vspace{4mm}
+
+Calculate the probability (x) decrements in the fifth year. \vspace{4mm}
+
+\(A) 0.08 \hspace{0.2in} (B) 0.09 \hspace{0.2in} (C) 0.10 \hspace{0.2in}
+(D) 0.11 \hspace{0.2in} (E) 0.12 \vspace{20mm}
+
+12.3. For a triple decrement model on (50): \vspace{4mm}
+
+\(i) $\mu^{(1)}_{50}(t)$ = $\frac{1}{50 - t}$ for 0 $\le$ $t$ $<$ 50
+\vspace{2mm}
+
+\(ii) $\mu^{(2)}_{50}(t)$ = $\frac{2}{50 - t}$ for 0 $\le$ $t$ $<$ 50
+\vspace{2mm}
+
+\(iii) $\mu^{(3)}_{50}(t)$ = $\frac{3}{50 - t}$ for 0 $\le$ $t$ $<$ 50
+\vspace{4mm}
+
+Calculate the probability that (50) decrements due to cause 2.
+\vspace{4mm}
+
+\(A) 0.31 \hspace{0.2in} (B) 0.33 \hspace{0.2in} (C) 0.35 \hspace{0.2in}
+(D) 0.37 \hspace{0.2in} (E) 0.39
+
+\newpage
+12.4. Paul, age 33, is an actuarial science professor. His career is
+subject to two decrements: \vspace{4mm}
+
+\(i) Decrement 1 is mortality: $\mu^{(1)}_{33}(t)$ = $\frac{t}{50}$ for
+$t$ $\ge$ 0. \vspace{2mm}
+
+\(ii) Decrement 2 is leaving academic employment: $\mu^{(2)}_{33}(t)$ =
+$\frac{t}{40}$ for $t$ $\ge$ 0. \vspace{4mm}
+
+Calculate the probability that Paul remains an actuarial science
+professor for less than five years. \vspace{4mm}
+
+\(A) 0.41 \hspace{0.2in} (B) 0.43 \hspace{0.2in} (C) 0.45 \hspace{0.2in}
+(D) 0.47 \hspace{0.2in} (E) 0.49 \vspace{20mm}
+
+12.5. For a double decrement model: \vspace{4mm}
+
+\(i) $\mu^{(1)}_{45}(t)$ = $\frac{c}{50 - t}$ for $c$ $>$ 0 and 0 $<$ $t$
+$<$ 50 \vspace{2mm}
+
+\(ii) $\mu^{(2)}_{45}(t)$ = $\frac{1}{50 - t}$ for 0 $<$ $t$ $<$ 50
+\vspace{2mm}
+
+\(iii) The probability that (45) fails due to cause 2 is 0.4.
+\vspace{4mm}
+
+Calculate: $c$. \vspace{4mm}
+
+\(A) 0.75 \hspace{0.2in} (B) 1.00 \hspace{0.2in} (C) 1.25 \hspace{0.2in}
+(D) 1.50 \hspace{0.2in} (E) 1.75 \vspace{20mm}
+
+12.6. Using the Illustrative Service Table, calculate:
+${}_{10}p^{(\tau)}_{52}$. \vspace{4mm}
+
+\(A) 0.60 \hspace{0.2in} (B) 0.61 \hspace{0.2in} (C) 0.62 \hspace{0.2in}
+(D) 0.63 \hspace{0.2in} (E) 0.64 \vspace{20mm}
+
+12.7. Using the Illustrative Service Table, calculate:
+${}_{8}q^{(w)}_{41}$. \vspace{4mm}
+
+\(A) 0.09 \hspace{0.2in} (B) 0.10 \hspace{0.2in} (C) 0.11 \hspace{0.2in}
+(D) 0.12 \hspace{0.2in} (E) 0.13
+
+\newpage
+12.8. Using the Illustrative Service Table, calculate:
+${}_{7|4}q^{(i)}_{46}$. \vspace{4mm}
+
+\(A) 0.010 \hspace{0.2in} (B) 0.013 \hspace{0.2in} (C) 0.016
+\hspace{0.2in} (D) 0.019 \hspace{0.2in} (E) 0.022 \vspace{10mm}
+
+12.9. Consider the following triple decrement table, where “—” denotes a
+missing value::
+
+$\begin{array}{r|r|r|r|r|r|r|r|r}
+\hline
+x & q^{(1)}_x & q^{(2)}_x & q^{(3)}_x & q^{(\tau)}_x$ & $l^{(\tau)}_x & d^{(1)}_x & d^{(2)}_x & d^{(3)}_x \\
+\hline
+30 & 0.005 & ---    & ---    & 0.075  & 2000 & ---   & 120    & ---  \\
+31 & 0.010 & 0.070  & 0.015  & ---    & 1850 & ---   & ---    & ---  \\
+32 & 0.015 & 0.075  & 0.025  & 0.115  & ---  & 25.11 & 125.57 & 41.86 \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+Calculate: $l^{(\tau)}_{32}$. \vspace{4mm}
+
+\(A) 1658 \hspace{0.2in} (B) 1662 \hspace{0.2in} (C) 1666 \hspace{0.2in}
+(D) 1670 \hspace{0.2in} (E) 1674 \vspace{10mm}
+
+12.10. The following double decrement table applies to students entering
+an extremely difficult 4-year college, where “—” denotes a missing
+value: \vspace{2mm}
+
+(i)
+
+$\begin{array}{r|r|r|r}
+\hline
+ &  \multicolumn{3}{c}{\textbf{For a student at the beginning of that academic year:}} \\
+\hline
+\textbf{Academic} & \textbf{Probability of}   & \textbf{Probability of Withdrawal}   & \textbf{Probability of Surviving}   \\
+\textbf{Year}     & \textbf{Academic Failure} & \textbf{for All Other Reasons}       & \textbf{the Academic Year}          \\
+\textbf{}         & \textbf{during the Year}  & \textbf{during the Year}             & \textbf{}          \\
+\hline
+1 & 0.19 & 0.29 & ---   \\
+2 & ---  & ---  & 0.67  \\
+3 & ---  & 0.11 & 0.84  \\
+4 & 0.00 & ---  & 0.92  \\
+\hline
+\end{array}$
+
+\(ii) The probability that a student at the start of their second
+academic year will withdraw for all other reasons during the year is
+twice the probability that a student at the start of their second
+academic year will academically fail during the year. \vspace{4mm}
+
+If there are 2000 entering students, calculate the expected number that
+will academically fail within four years. \vspace{4mm}
+
+\(A) 520 \hspace{0.2in} (B) 530 \hspace{0.2in} (C) 540 \hspace{0.2in} (D)
+550 \hspace{0.2in} (E) 560
+
+\newpage
+12.11. For a triple decrement model on (x): \vspace{4mm}
+
+\(i) $q^{(2)}_x$ = 0.75$q^{(1)}_x$ \vspace{2mm}
+
+\(ii) $q^{(3)}_x$ = 0.75$q^{(2)}_x$ \vspace{2mm}
+
+\(iii) $p^{(\tau)}_x$ = 0.5375 \vspace{4mm}
+
+Out of 1000 lives each aged x, calculate the expected number of lives
+who will decrement due to cause 2 prior to age (x + 1). \vspace{4mm}
+
+\(A) 130 \hspace{0.2in} (B) 140 \hspace{0.2in} (C) 150 \hspace{0.2in} (D)
+160 \hspace{0.2in} (E) 170 \vspace{10mm}
+
+12.12. The Justice League’s home is subject to destruction from one of
+the following four perils: fire, wind, collision, and super villain
+attack. If the Justice League’s home is destroyed, it will not be
+rebuilt. An insurer has just issued a homeowners’ policy to the Justice
+League covering their home from all perils except for super villain
+attack. \vspace{2mm}
+
+The following table provides the probability of each peril in any year:
+\vspace{2mm}
+
+$\begin{array}{r|r|r|r|r}
+\hline
+\textbf{Peril} & \text{Fire} & \text{Wind} & \text{Collision} & \text{Super Villain Attack} \\
+\hline
+\textbf{Probability} & 0.030 & 0.035 & 0.025 & 0.300 \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+Calculate the probability that a covered peril will destroy the Justice
+League’s home after the issue of the homeowners’ policy. \vspace{4mm}
+
+\(A) 0.23 \hspace{0.2in} (B) 0.24 \hspace{0.2in} (C) 0.25 \hspace{0.2in}
+(D) 0.26 \hspace{0.2in} (E) 0.27 \vspace{10mm}
+
+12.13. Consider a double decrement model on (x): \vspace{4mm}
+
+\(i) $\mu^{(1)}_x(t)$ = 0.04 for $t$ $>$ 0
+
+\(ii) $\mu^{(2)}_x(t)$ = 0.07 for $t$ $>$ 0 \vspace{4mm}
+
+Calculate the expected time until decrement for (x) given that the cause
+of decrement is (2). \vspace{4mm}
+
+\(A) 8.1 \hspace{0.2in} (B) 8.6 \hspace{0.2in} (C) 9.1 \hspace{0.2in} (D)
+9.6 \hspace{0.2in} (E) 10.1
+
+\newpage
+12.14. Consider the following triple decrement table, with missing
+entries denoted as “—”: \vspace{4mm}
+
+$\begin{array}{r|r|r|r|r}
+\hline
+x & l^{(\tau)}_x & d^{(1)}_x & d^{(2)}_x & d^{(3)}_x \\
+\hline
+55 & 1000  & ---    & ---    & 11  \\
+56 & ---   & ---    & 37     & ---  \\
+57 & ---   & ---    & 41     & ---  \\
+58 & ---   & ---    & ---    & ---  \\
+59 & 689   & ---    & ---    & ---  \\
+\hline
+\end{array}$
+
+\vspace{4mm}
+
+You are given: \vspace{4mm}
+
+\(i) ${}_{1|}q^{(\tau)}_{55}$ = 0.082 \vspace{2mm}
+
+\(ii) $q^{(1)}_{56}$ = 0.82617$q^{(1)}_{57}$ \vspace{2mm}
+
+\(iii) $d^{(2)}_{55}$ = 1.44$d^{(1)}_{55}$ \vspace{2mm}
+
+\(iv) $p^{(\tau)}_{58}$ = 0.89133 \vspace{2mm}
+
+\(v) $d^{(1)}_{56}$ = 1.16$d^{(1)}_{55}$ \vspace{2mm}
+
+\(vi) $q^{(\tau)}_{55}$ = 0.072 \vspace{2mm}
+
+\(vii) $d^{(2)}_{58}$ = 0.54762$d^{(\tau)}_{58}$ \vspace{2mm}
+
+\(viii) $\mu^{(3)}_x$ = 0 for $x$ $\ge$ 57 \vspace{4mm}
+
+Calculate: ${}_{2}q^{(1)}_{57}$. \vspace{4mm}
+
+\(A) 0.075 \hspace{0.2in} (B) 0.077 \hspace{0.2in} (C) 0.079
+\hspace{0.2in} (D) 0.081 \hspace{0.2in} (E) 0.083
+
+\newpage
+12.15. A multi-national corporation currently has 30,000 employees each
+aged 56. If an employee exits employment from the corporation it can
+only be due to death, withdrawal, or retirement. If an employee exits
+due to withdrawal or retirement, they cannot be re-employed at the
+corporation. No new employees will be hired during the next three years.
+For the above 30,000 employees: \vspace{4mm}
+
+\(i) The probability that an employee aged 56 retires by age 57 is 0.009.
+\vspace{2mm}
+
+\(ii) The expected number of employees aged 56 that withdraw by age 57 is
+70% of the expected number of employees aged 56 that die by age 57.
+\vspace{2mm}
+
+\(iii) The expected number of employees aged 56 that die by age 57 is
+equal to 86.372% of the expected number of employees aged 57 that die by
+age 58. \vspace{2mm}
+
+\(iv) The probability that an employee aged 56 is employed at age 57 is
+0.9655. \vspace{2mm}
+
+\(v) The expected number of employees aged 57 that exit employment by age
+58 due to causes other than death is 608. \vspace{2mm}
+
+\(vi) The probability that an employee aged 56 exits employment between
+ages 58 and 59 is 0.03723. \vspace{4mm}
+
+Calculate the expected number of employees at the corporation three
+years from now. \vspace{4mm}
+
+\(A) 26,120 \hspace{0.2in} (B) 26,720 \hspace{0.2in} (C) 27,320
+\hspace{0.2in} (D) 27,920 \hspace{0.2in} (E) 28,520 \vspace{10mm}
+
+12.16. Consider a double decrement model on (30): \vspace{4mm}
+
+\(i) $\mu^{(1)}_{30}(t)$ = $\frac{1}{60 - t}$ for 0 $\le$ $t$ $<$ 60
+\vspace{2mm}
+
+\(ii) $\mu^{(2)}_{30}(t)$ = 0.02 for $t$ $\ge$ 0 \vspace{4mm}
+
+Calculate the probability that (30) will not decrement due to cause 2
+before age 65. \vspace{4mm}
+
+\(A) 0.54 \hspace{0.2in} (B) 0.57 \hspace{0.2in} (C) 0.60 \hspace{0.2in}
+(D) 0.63 \hspace{0.2in} (E) 0.66
+
+\newpage
+12.17. Consider a triple decrement model on (x): \vspace{4mm}
+
+\(i) $\mu^{(1)}_x(t)$ = 0.02 for $t$ $>$ 0 \vspace{2mm}
+
+\(ii) $\mu^{(2)}_x(t)$ = 0.04 for $t$ $>$ 0 \vspace{2mm}
+
+\(iii) $\mu^{(3)}_x(t)$ = 0.06 for $t$ $>$ 0 \vspace{4mm}
+
+Calculate the expected number of years that (x) will avoid decrement.
+\vspace{4mm}
+
+\(A) 6 \hspace{0.2in} (B) 7 \hspace{0.2in} (C) 8 \hspace{0.2in} (D) 9
+\hspace{0.2in} (E) 10 \vspace{20mm}
+
+12.18. Consider a group of independent policyholders aged 31, each with
+identical life insurance policies. Each of these life insurance policies
+can be terminated due to either death (d) or withdrawal (w) of the
+policyholder. \vspace{2mm}
+
+You are given: \vspace{4mm}
+
+\(i) Each policyholder is subject to the following double decrement
+table, with missing entries denoted as “---”: \vspace{2mm}
+
+$\begin{array}{r|r|r|r}
+\hline
+x     & l^{(\tau)}_x & d^{(d)}_x & d^{(w)}_x  \\
+\hline
+30      & 1000  & 20    & 5   \\
+31      & ---   & 23    & --- \\
+32      & 946   & ---   & 8   \\
+33      & ---   & 29    & 9   \\
+34      & 875   & ---   & ---  \\
+\hline
+\end{array}$
+
+\vspace{2mm}
+
+\(ii) Deaths are uniformly distributed over each year of age.
+\vspace{4mm}
+
+Calculate the probability that (31) dies before age 33.6. \vspace{4mm}
+
+\(A) 0.055 \hspace{0.2in} (B) 0.061 \hspace{0.2in} (C) 0.067
+\hspace{0.2in} (D) 0.073 \hspace{0.2in} (E) 0.079 \vspace{10mm}
+
+\newpage
+12.19. Nick, aged x, is a professional rollerblader whose career is
+subject to the following decrements: \vspace{4mm}
+
+\(i) Decrement 1 is injury, where: $\mu^{(1)}_{x + t}$ = 0.025 for $t$
+$>$ 0. \vspace{2mm}
+
+\(ii) Decrement 2 is retirement, where: \vspace{2mm}
+
+$$\mu^{(2)}_{x + t} = \left\{ 
+  \begin{array}{l l}
+    0.010                      & \quad \text{for } 0 \le t < 10\\
+    0.020                      & \quad \text{for } 10 \le t \\
+  \end{array} \right.$$
+
+  \vspace{2mm}
+
+\(iii) Decrement 3 is all other causes, where:
+
+$$\mu^{(3)}_{x + t} = \left\{
+  \begin{array}{l l}
+    0.035                      & \quad \text{for } 0 \le t < 10 \\
+    0.050                      & \quad \text{for } 10 \le t \\
+  \end{array} \right.$$
+  
+  \vspace{4mm}
+
+Calculate the probability that Nick will retire within 15 years.
+\vspace{4mm}
+
+\(A) 0.11 \hspace{0.2in} (B) 0.12 \hspace{0.2in} (C) 0.13 \hspace{0.2in}
+(D) 0.14 \hspace{0.2in} (E) 0.15 \vspace{20mm}
+
+12.20. For a double decrement model: \vspace{4mm}
+
+\(i) ${}_{2|}q^{(\tau)}_x$ = 0.11 \vspace{2mm}
+
+\(ii) $q^{(1)}_x$ = 0.05 \vspace{2mm}
+
+\(iii) ${}_{1|}q^{(\tau)}_x$ = 0.12 \vspace{2mm}
+
+\(iv) $q^{(2)}_x$ = 0.08 \vspace{4mm}
+
+Calculate: $q^{(\tau)}_{x + 2}$. \vspace{4mm}
+
+\(A) 0.11 \hspace{0.2in} (B) 0.12 \hspace{0.2in} (C) 0.13 \hspace{0.2in}
+(D) 0.14 \hspace{0.2in} (E) 0.15 \vspace{10mm}
+
+\newpage
+12.21. Consider a triple decrement model on (x): \vspace{4mm}
+
+\(i) Decrement 1 is death by car accident, decrement 2 is death by
+accidents that are not car accidents, and decrement 3 is death by
+non-accidents. \vspace{2mm}
+
+\(ii) You are given the following forces of decrement for $t$ $>$ 0:
+\vspace{4mm}
+
+$\mu^{(1)}_{x + t}$ = 0.005, $\mu^{(2)}_{x + t}$ = 0.010,
+$\mu^{(3)}_{x + t}$ = $\mu$. \vspace{4mm}
+
+\(iii) The probability that (x) survives the first year is 0.97239.
+\vspace{4mm}
+
+Calculate the probability that (x) will die due to a car accident
+between ages x + 6 and x + 9. \vspace{4mm}
+
+\(A) 0.010 \hspace{0.2in} (B) 0.012 \hspace{0.2in} (C) 0.014
+\hspace{0.2in} (D) 0.016 \hspace{0.2in} (E) 0.018 \vspace{10mm}
+
+12.22. Suppose Rich, aged 50, has employment that follows the
+Illustrative Service Table. The Illustrative Service Table is a four
+decrement table, with decrements: death in service (d), withdrawal (w),
+retirement due to disability (i), and retirement due to age (r).
+\vspace{2mm}
+
+Calculate the probability that Rich does not retire due to either
+disability or age between ages 58 and 62. \vspace{4mm}
+
+\(A) 0.81 \hspace{0.2in} (B) 0.83 \hspace{0.2in} (C) 0.85 \hspace{0.2in}
+(D) 0.87 \hspace{0.2in} (E) 0.89 \vspace{10mm}
+
+12.23. Consider a triple decrement model on (x): \vspace{4mm}
+
+\(i) Decrement 1 is death by car accident, decrement 2 is death by
+accidents that are not car accidents, and decrement 3 is death by
+non-accidents. \vspace{2mm}
+
+\(ii) You are given the following forces of decrement for $t$ $>$ 0:
+\vspace{2mm}
+
+$\mu^{(1)}_{x + t}$ = 0.005, $\mu^{(2)}_{x + t}$ = 0.010, and
+$\mu^{(3)}_{x + t}$ = 0.040. \vspace{4mm}
+
+Calculate the probability that (x) will die by accidents that are not
+car accidents within ten years. \vspace{4mm}
+
+\(A) 0.06 \hspace{0.2in} (B) 0.07 \hspace{0.2in} (C) 0.08 \hspace{0.2in}
+(D) 0.09 \hspace{0.2in} (E) 0.10 \vspace{10mm}
+
+\newpage
+12.24. Employees at Company XYZ are subject to four decrements: death
+(d), withdrawal (w), disability (i), and retirement (r). Probabilities
+involving these decrements follow the Illustrative Service Table.
+\vspace{2mm}
+
+Calculate the probability that a 55 year old employee at Company XYZ
+does not die or become disabled within 5 years. \vspace{4mm}
+
+\(A) 0.91 \hspace{0.2in} (B) 0.93 \hspace{0.2in} (C) 0.95 \hspace{0.2in}
+(D) 0.97 \hspace{0.2in} (E) 0.99 \vspace{10mm}
+
+12.25. Daniel, aged 35, is subject to a double decrement model, with
+decrements: Death from Accidental Causes (1), and Death from Other
+Causes (2): \vspace{4mm}
+
+\(i) $\mu^{(1)}_x$ = 0.01 for $x$ $\ge$ 0 \vspace{2mm}
+
+\(ii) $\mu^{(2)}_x$ = 0.0002$(1.05)^x$ for $x$ $\ge$ 0 \vspace{4mm}
+
+Estimate the probability that Daniel survives to age 36, using Euler’s
+forward method with a step size of $h$ = 0.5 to numerically solve
+Kolmogorov’s forward equations. \vspace{4mm}
+
+\(A) 0.985 \hspace{0.2in} (B) 0.987 \hspace{0.2in} (C) 0.989
+\hspace{0.2in} (D) 0.991 \hspace{0.2in} (E) 0.993 \vspace{10mm}
+
+\newpage
+### Answers to Exercises
+
+\Large12.1. C \vspace{2mm}
+
+12.2. A \vspace{2mm}
+
+12.3. B \vspace{2mm}
+
+12.4. B \vspace{2mm}
+
+12.5. D \vspace{2mm}
+
+12.6. D \vspace{2mm}
+
+12.7. C \vspace{2mm}
+
+12.8. D \vspace{2mm}
+
+12.9. E \vspace{2mm}
+
+12.10. B \vspace{2mm}
+
+12.11. C \vspace{2mm}
+
+12.12. A \vspace{2mm}
+
+12.13. C \vspace{2mm}
+
+12.14. E \vspace{2mm}
+
+12.15. B \vspace{2mm}
+
+12.16. D \vspace{2mm}
+
+12.17. C \vspace{2mm}
+
+12.18. C \vspace{2mm}
+
+12.19. A \vspace{2mm}
+
+12.20. E \vspace{2mm}
+
+12.21. B \vspace{2mm}
+
+12.22. A \vspace{2mm}
+
+12.23. C \vspace{2mm}
+
+12.24. A \vspace{2mm}
+
+12.25. C \vspace{2mm}
+
+\newpage
+## Past Exam Questions
+
+-   Exam 3L, Fall 2013: \#6, 7 \vspace{2mm}
+
+-   Exam 3L, Spring 2013: \#6 \vspace{2mm}
+
+-   Exam 3L, Fall 2012: \#6, 7 \vspace{2mm}
+
+-   Exam 3L, Spring 2012: \#6, 7 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#33, 103, 105, 144, 167 \vspace{2mm}
+
+-   Exam 3L, Fall 2011: \#6, 7 \vspace{2mm}
+
+-   Exam 3L, Spring 2011: \#6, 7 \vspace{2mm}
+
+-   Exam 3L, Fall 2010: \#6, 7 \vspace{2mm}
+
+-   Exam 3L, Spring 2010: \#8, 9 \vspace{2mm}
+
+-   Exam 3L, Fall 2009: \#7, 8 \vspace{2mm}
+
+-   Exam 3L, Spring 2008: \#19 \vspace{2mm}

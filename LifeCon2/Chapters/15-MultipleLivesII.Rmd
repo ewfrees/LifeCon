@@ -1,0 +1,580 @@
+---
+title: "Multiple Lives II"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Multiple Lives II
+
+## Key Concepts
+
+## Markov Representation
+
+\Large
+
+-   The multiple life model described so far can be expressed as a
+    4-state Markov Chain. Consider two lives, (x) and (y). The following
+    4-state model will hereafter be referred to as the **Multiple Life
+    Model** diagrammed in Examples of Multiple State Models:
+    \vspace{2mm}
+
+    -   State 0: Both (x) and (y) are alive \vspace{2mm}
+
+    -   State 1: (x) is alive and (y) is dead \vspace{2mm}
+
+    -   State 2: (x) is dead and (y) is alive \vspace{2mm}
+
+    -   State 3: Both (x) and (y) are dead \vspace{10mm}
+
+-   The forces of transition are: \vspace{2mm}
+
+    -   $\mu^{13}_{x + t}$ \vspace{2mm}
+
+    -   $\mu^{23}_{y + t}$ \vspace{2mm}
+
+    -   $\mu^{02}_{x + t:y + t}$, with independence (x) and (y), =
+        $\mu^{13}_{x + t}$ = $\mu_x(t)$ \vspace{2mm}
+
+    -   $\mu^{01}_{x + t:y + t}$, with independence of (x) and (y), =
+        $\mu^{23}_{y + t}$ = $\mu_y(t)$
+
+    \vspace{10mm}
+
+-   In the Multiple Life Model, it is assumed that
+    $\mu^{03}_{x + t:y + t}$ = 0. That is, it is impossible for (x)
+    and (y) to die simultaneously. \vspace{2mm}
+
+\newpage
+## Multiple Life Functions
+
+The multiple life functions described in **Multiple Lives I** can be
+expressed using the Multiple Life Model. \vspace{5mm}
+
+-   **Probabilities:** \vspace{2mm}
+
+    -   ${}_{t}p^{00}_{xy}$ = ${}_{t}p_{xy}$ \vspace{4mm}
+
+    -   ${}_{t}p^{01}_{xy}$ + ${}_{t}p^{02}_{xy}$ + ${}_{t}p^{03}_{xy}$
+        = ${}_{t}q_{xy}$ \vspace{4mm}
+
+    -   ${}_{t}p^{00}_{xy}$ + ${}_{t}p^{01}_{xy}$ + ${}_{t}p^{02}_{xy}$
+        = ${}_{t}p_{\overline{xy}}$ \vspace{4mm}
+
+    -   ${}_{t}p^{03}_{xy}$ = ${}_{t}q_{\overline{xy}}$ \vspace{4mm}
+
+    -   $\mu^{01}_{x + t:y + t}$ + $\mu^{02}_{x + t:y + t}$ =
+        $\mu_{xy}(t)$ \vspace{6mm}
+
+<!-- -->
+
+-   **Insurance and Annuity Functions:** \vspace{2mm}
+
+    -   $\bar{A}_x$ =
+        $\int^{\infty}_0 v^t({}_{t}p^{00}_{xy}\mu^{02}_{x + t:y + t} +
+        {}_{t}p^{01}_{xy}\mu^{13}_{x + t}) dt$ \vspace{4mm}
+
+    -   $\bar{A}_y$ =
+        $\int^{\infty}_0 v^t({}_{t}p^{00}_{xy}\mu^{01}_{x + t:y + t} +
+        {}_{t}p^{02}_{xy}\mu^{23}_{y + t}) dt$ \vspace{4mm}
+
+    -   $\bar{A}_{xy}$ =
+        $\int^{\infty}_0 v^t{}_{t}p^{00}_{xy}(\mu^{01}_{x + t:y + t} + \mu^{02}_{x + t:y + t}) dt$
+        \vspace{4mm}
+
+    -   $\bar{A}_{\overline{xy}}$ =
+        $\int^{\infty}_0 v^t({}_{t}p^{01}_{xy}\mu^{13}_{x + t} +
+        {}_{t}p^{02}_{xy}\mu^{23}_{y + t}) dt$ \vspace{4mm}
+
+    -   $\bar{a}_x$ = $\int^{\infty}_0 v^t({}_{t}p^{00}_{xy} +
+        {}_{t}p^{01}_{xy}) dt$ \vspace{4mm}
+
+    -   $\bar{a}_y$ = $\int^{\infty}_0 v^t({}_{t}p^{00}_{xy} +
+        {}_{t}p^{02}_{xy}) dt$ \vspace{4mm}
+
+    -   $\bar{a}_{xy}$ = $\int^{\infty}_0 v^t{}_{t}p^{00}_{xy} dt$
+        \vspace{4mm}
+
+    -   $\bar{a}_{\overline{xy}}$ =
+        $\int^{\infty}_0 v^t({}_{t}p^{00}_{xy} + {}_{t}p^{01}_{xy} +
+        {}_{t}p^{02}_{xy}) dt$ \vspace{4mm}
+
+    -   $\bar{a}_{x|y}$ = $\int^{\infty}_0 v^t{}_{t}p^{02}_{xy} dt$
+        \vspace{4mm}
+
+\newpage
+## Contingent Functions
+
+\Large
+
+-   A **contingent function** is such that the function value depends on
+    the order in which the lives die. Assume the Multiple Life Model.
+    \vspace{4mm}
+
+-   ${}_{t}\lcfirst{q}{x}{y}$ =
+    $\int^{t}_0 {}_{s}p^{00}_{xy}\mu^{02}_{x + s:y + s}
+    ds$ \vspace{4mm}
+
+    “The probability that (x) dies both before (y) and within $t$
+    years.” \vspace{4mm}
+
+    If (x) and (y) are independent $\implies$ ${}_{t}\lcfirst{q}{x}{y}$
+    = $\int^{t}_0({}_{s}p_y){}_{s}p_x\mu_x(s)ds$ \vspace{4mm}
+
+-   ${}_{t}\lcsecond{q}{x}{y}$ =
+    $\int^{t}_0 {}_{s}p^{02}_{xy}\mu^{23}_{y + s}
+    ds$ \vspace{4mm}
+
+    “The probability that (y) dies both after (x) and within $t$ years.”
+    This is different than ${}_{t}\lcfirst{q}{x}{y}$; for
+    ${}_{t}\lcfirst{q}{x}{y}$ the event of interest is (y) dying after
+    (x), but that does not necessarily have to occur within $t$ years.
+    \vspace{4mm}
+
+    If (x) and (y) are independent $\implies$ ${}_{t}\lcsecond{q}{x}{y}$
+    = $\int^{t}_0({}_{s}q_x){}_{s}p_y\mu_y(s) ds$ \vspace{4mm}
+
+-   Furthermore: \vspace{4mm}
+
+    -   ${}_{t}q_x$ = ${}_{t}\lcfirst{q}{x}{y}$ +
+        ${}_{t}\lcsecond{q}{y}{x}$ \vspace{2mm}
+
+    -   ${}_{t}q_{xy}$ = ${}_{t}\lcfirst{q}{x}{y}$ +
+        ${}_{t}\lcfirst{q}{y}{x}$ \vspace{2mm}
+
+    -   ${}_{t}q_{\overline{xy}}$ = ${}_{t}\lcsecond{q}{y}{x}$ +
+        ${}_{t}\lcsecond{q}{x}{y}$ \vspace{2mm}
+
+    -   ${}_{t}\lcfirst{q}{x}{y}$ = ${}_{t}\lcsecond{q}{x}{y}$ +
+        ${}_{t}p^{02}_{xy}$ \vspace{2mm}
+
+    -   ${}_{\infty}\lcfirst{q}{x}{y}$ = ${}_{\infty}\lcsecond{q}{x}{y}$
+        \vspace{2mm}
+
+    -   For independent lives (x) and (y) each with de Moivre’s
+        Law/uniform distribution with limiting age $\omega$:
+        \vspace{2mm}
+
+        -   ${}_{t}\lcfirst{q}{x}{y}$ = $({}_{t}q_x)$$({}_{t/2}p_y)$ and
+            ${}_{t}\lcsecond{q}{y}{x}$ =
+            $\frac{1}{2}$$({}_{t}q_x)$$({}_{t}q_y)$ \vspace{2mm}
+
+    -   For independent lives (x) and (y) with constant forces of
+        mortality $\mu_x$ and $\mu_y$, respectively: \vspace{2mm}
+
+        -   ${}_{t}\lcfirst{q}{x}{y}$ = $\frac{\mu_x}{\mu_x +
+            \mu_y}$$({}_{t}q_{xy})$ and ${}_{\infty}\lcfirst{q}{x}{y}$ =
+            $\frac{\mu_x}{\mu_x + \mu_y}$
+
+\newpage
+-   $\lcfirst{\bar{A}}{x}{y}$ =
+    $\int^{\infty}_0v^s{}_{s}p^{00}_{xy}\mu^{02}_{x + s:y + s}ds$
+    \vspace{4mm}
+
+    “This is the expected present value of a life insurance that pays 1
+    at the moment of death of (x) if (x) is the first to die.”
+    \vspace{4mm}
+
+    If (x) and (y) are independent $\implies$ $\lcfirst{\bar{A}}{x}{y}$
+    = $\int^{\infty}_0 v^s ({}_{s}p_y){}_{s}p_x\mu_x(s)ds$ \vspace{10mm}
+
+-   $\lcsecond{\bar{A}}{x}{y}$ =
+    $\int^{\infty}_0v^s{}_{s}p^{02}_{xy}\mu^{23}_{y + s}ds$ \vspace{4mm}
+
+    “This is the expected present value of a life insurance that pays 1
+    at the moment of death of (y) if (y) is the second to die.”
+    \vspace{4mm}
+
+    If (x) and (y) are independent $\implies$ $\lcsecond{\bar{A}}{x}{y}$
+    = $\int^{\infty}_0 v^s ({}_{s}q_x){}_{s}p_y\mu_y(s) ds$
+    \vspace{10mm}
+
+-   Furthermore: \vspace{4mm}
+
+    -   $\bar{A}_x$ = $\lcfirst{\bar{A}}{x}{y}$ +
+        $\lcsecond{\bar{A}}{y}{x}$ \vspace{4mm}
+
+    -   $\bar{A}_{xy}$ = $\lcfirst{\bar{A}}{x}{y}$ +
+        $\lcfirst{\bar{A}}{y}{x}$ \vspace{4mm}
+
+    -   $\bar{A}_{\overline{xy}}$ = $\lcsecond{\bar{A}}{x}{y}$ +
+        $\lcsecond{\bar{A}}{y}{x}$ \vspace{6mm}
+
+    -   For independent lives (x) and (y) with constant forces of
+        mortality $\mu_x$ and $\mu_y$, respectively: \vspace{2mm}
+
+        -   $\lcfirst{\bar{A}}{x}{y}$ = $\frac{\mu_x}{\mu_x +
+            \mu_y + \delta}$ \vspace{2mm}
+
+        -   $\lcsecond{\bar{A}}{x}{y}$ = $\frac{\mu_y}{\mu_y +
+            \delta}$$\frac{\mu_x}{\mu_x + \mu_y + \delta}$
+
+\newpage
+## Common Shock Model
+
+\Large
+
+-   Under the **Common Shock Model**, is possible to make a direct
+    transition from State 0 to State 3 in the Multiple Life Model, that
+    is, $\mu^{03}_{x + t:y+t}$ $\neq$ 0. \vspace{10mm}
+
+-   It is assumed that there is an event called the **common shock**
+    that could kill both (x) and (y) at the same time, such as a car
+    accident or a natural disaster. \vspace{10mm}
+
+-   ${}_{t}p^{11}_{x + s}$ = $\exp[- \int^t_0 \mu^{13}_{x + s + u} du]$
+    \vspace{2mm}
+
+    “This is the probability that (x + s) survives $t$ years ((y) has
+    previously died).” \vspace{6mm}
+
+-   ${}_{t}p^{22}_{y + s}$ = $\exp[- \int^t_0 \mu^{23}_{y + s + v} dv]$
+    \vspace{2mm}
+
+    “This is the probability that (y + s) survives $t$ years ((x) has
+    previously died).” \vspace{6mm}
+
+-   ${}_{t}p^{00}_{xy}$ =
+    $\exp[- \int^t_0 (\mu^{01}_{x + s:y + s} + \mu^{02}_{x + s:y + s} + \mu^{03}_{x + s:y +
+    s}) ds]$ = ${}_{t}p_{xy}$ \vspace{2mm}
+
+    “This is the probability that both (x) and (y) survive $t$ years.”
+    \vspace{6mm}
+
+-   ${}_{t}p^{01}_{xy}$ =
+    $\int^t_0 {}_{s}p^{00}_{xy}(\mu^{01}_{x + s:y + s}){}_{t - s}p^{11}_{x + s} ds$
+    \vspace{2mm}
+
+    “This is the probability that only (x) survives $t$ years.”
+    \vspace{6mm}
+
+-   ${}_{t}p^{02}_{xy}$ =
+    $\int^t_0 {}_{s}p^{00}_{xy}(\mu^{02}_{x + s:y + s}){}_{t - s}p^{22}_{y + s} ds$
+    \vspace{2mm}
+
+    “This is the probability that only (y) survives $t$ years.”
+    \vspace{6mm}
+
+-   ${}_{t}p^{03}_{xy}$ = 1 - ${}_{t}p^{00}_{xy}$ -
+    ${}_{t}p^{01}_{xy}$ - ${}_{t}p^{02}_{xy}$ =
+    ${}_{t}q_{\overline{xy}}$ \vspace{2mm}
+
+    “This is the probability that (x) and (y) do not survive $t$ years.”
+    \vspace{6mm}
+
+\newpage
+-   Consider a typical **special case** of the common shock model:
+    \vspace{2mm}
+
+    \(i) $\mu^{03}_{x + s:y + s}$ = $\lambda$, a constant \vspace{2mm}
+
+    \(ii) $\mu^{02}_{x + s:y + s}$ + $\mu^{03}_{x + s:y + s}$ =
+    $\mu^{13}_{x + s}$ = $\mu_x$, a constant \vspace{2mm}
+
+    \(iii) $\mu^{01}_{x + s:y + s}$ + $\mu^{03}_{x + s:y + s}$ =
+    $\mu^{23}_{y + s}$ = $\mu_y$, a constant \vspace{2mm}
+
+    Then: \vspace{2mm}
+
+    -   ${}_{t}p_x$ = $\exp[- \mu_x t]$ \vspace{2mm}
+
+    -   ${}_{t}p_y$ = $\exp[- \mu_y t]$ \vspace{2mm}
+
+    -   ${}_{t}p_{xy}$ = $\exp[- (\mu_x + \mu_y - \lambda) t]$
+        \vspace{2mm}
+
+    -   ${}_{t}p_{\overline{xy}}$ = ${}_{t}p_x$ + ${}_{t}p_y$ -
+        ${}_{t}p_{xy}$ \vspace{10mm}
+
+-   The probability that (x) and (y) are killed simultaneously by the
+    common shock is: \vspace{2mm}
+
+    $\int^{\infty}_0 {}_{s}p^{00}_{xy}\mu^{03}_{x + s:y + s} ds$.
+    \vspace{2mm}
+
+    “In order for both (x) and (y) to die at the same time, both have to
+    survive for $s$ years and then immediately die. Integration
+    considers all possible times $s$.” \vspace{4mm}
+
+    -   Consider the typical special case of the common shock model
+        previously described; the probability that (x) and (y) die
+        simultaneously is: \vspace{2mm}
+
+        $\frac{\lambda}{\mu_x + \mu_y - \lambda}$.
+
+\newpage
+## Exercises
+
+\Large
+
+15.1. Consider the Multiple Life Model in Examples of Multiple State
+Models, with a husband aged x and a wife aged y. \vspace{2mm}
+
+You are given the following transition intensities for $t$ $>$ 0:
+\vspace{4mm}
+
+\(i) $\mu^{01}_{x + t:y + t}$ = 0.03 \vspace{2mm}
+
+\(ii) $\mu^{02}_{x + t:y + t}$ = 0.04 \vspace{2mm}
+
+\(iii) $\mu^{13}_{x + t}$ = 0.07 \vspace{2mm}
+
+\(iv) $\mu^{23}_{y + t}$ = 0.06 \vspace{4mm}
+
+Calculate the probability that the wife dies within 10 years.
+\vspace{4mm}
+
+\(A) 0.26 \hspace{0.2in} (B) 0.27 \hspace{0.2in} (C) 0.28 \hspace{0.2in}
+(D) 0.29 \hspace{0.2in} (E) 0.30 \vspace{10mm}
+
+15.2. Consider the setup provided in Exercise 15.1. Calculate the
+probability that the husband dies both before the wife dies and within
+10 years. \vspace{4mm}
+
+\(A) 0.26 \hspace{0.2in} (B) 0.27 \hspace{0.2in} (C) 0.28 \hspace{0.2in}
+(D) 0.29 \hspace{0.2in} (E) 0.30 \vspace{10mm}
+
+15.3. Consider the setup provided in Exercise 15.1. Given $\delta$ =
+0.03, calculate the expected present value of a life annuity that pays
+1000 per year continuously each year while the husband is alive.
+\vspace{4mm}
+
+\(A) 13,000 \hspace{0.2in} (B) 13,500 \hspace{0.2in} (C) 14,000
+\hspace{0.2in} (D) 14,500 \hspace{0.2in} (E) 15,000 \vspace{10mm}
+
+15.4. Consider independent lives (25) and (50). Each life has mortality
+such that: $l_x$ = 100(100 - $x$) for $x$ $\le$ 100. \vspace{2mm}
+
+Calculate the probability that (25) dies after (50) and within 8 years.
+\vspace{4mm}
+
+\(A) 0.007 \hspace{0.2in} (B) 0.009 \hspace{0.2in} (C) 0.011
+\hspace{0.2in} (D) 0.013 \hspace{0.2in} (E) 0.015
+
+\newpage
+15.5. Consider independent lives (25) and (50), each with force of
+mortality $\mu_x$ = $\frac{1}{100 - x}$ for 0 $\le$ $x$ $<$ 100.
+\vspace{2mm}
+
+Calculate the probability that (50) dies before (25) and within 25
+years. \vspace{4mm}
+
+\(A) 0.08 \hspace{0.2in} (B) 0.17 \hspace{0.2in} (C) 0.25 \hspace{0.2in}
+(D) 0.33 \hspace{0.2in} (E) 0.42 \vspace{20mm}
+
+15.6. Consider (40) and (50) with independent future lifetime random
+variables: \vspace{4mm}
+
+\(i) (40) has mortality that follows: $l_x$ = 95 - $x$ for 0 $\le$ $x$
+$\le$ 95. \vspace{2mm}
+
+\(ii) (50) has a constant force of mortality equal to 0.05. \vspace{4mm}
+
+Calculate the probability that (40) dies after (50) and within 10 years.
+\vspace{4mm}
+
+\(A) 0.03 \hspace{0.2in} (B) 0.04 \hspace{0.2in} (C) 0.05 \hspace{0.2in}
+(D) 0.06 \hspace{0.2in} (E) 0.07 \vspace{20mm}
+
+15.7. For independent lives Shane and Britney:
+
+\vspace{4mm} (i) Shane, aged 50, has mortality such that: ${}_{t}q_{50}$
+= 0.030$t$ and ${}_{t}q_{51}$ = 0.031$t$ for 0 $\le$ $t$ $\le$ 1.
+
+\vspace{2mm} (ii) Britney, aged 40, has mortality that follows the
+Illustrative Life Table with the assumption of a uniform distribution of
+deaths within each year of age.
+
+\vspace{4mm} Calculate the probability that Britney dies both within 2
+years and before Shane. \vspace{4mm}
+
+\(A) 0.003 \hspace{0.2in} (B) 0.004 \hspace{0.2in} (C) 0.005
+\hspace{0.2in} (D) 0.006 \hspace{0.2in} (E) 0.007 \vspace{12mm}
+
+\newpage
+15.8. Consider independent lives (25) and (50): \vspace{4mm}
+
+\(i) Each life has mortality such that: $l_x$ = 100(100 - $x$) for 0
+$\le$ $x$ $\le$ 100. \vspace{2mm}
+
+\(ii) $\delta$ = 0.05 \vspace{4mm}
+
+Calculate the actuarial present value of a life insurance that pays 1 at
+the moment of death of (25) if (25) is the second to die. \vspace{4mm}
+
+\(A) 0.07 \hspace{0.2in} (B) 0.08 \hspace{0.2in} (C) 0.09 \hspace{0.2in}
+(D) 0.10 \hspace{0.2in} (E) 0.11 \vspace{10mm}
+
+15.9. Consider the setup provided in Exercise 15.8. Calculate the
+actuarial present value of a life insurance that pays 1 at the moment of
+death of (25) if (25) is the first to die. \vspace{4mm}
+
+\(A) 0.16 \hspace{0.2in} (B) 0.17 \hspace{0.2in} (C) 0.18 \hspace{0.2in}
+(D) 0.19 \hspace{0.2in} (E) 0.20 \vspace{10mm}
+
+15.10. For independent lives (30) and (35):
+
+\vspace{4mm} (i) $\mu_{30}(t)$ = 0.05 for $t$ $>$ 0
+
+\vspace{2mm} (ii) $\mu_{35}(t)$ = $\frac{1}{55 - t}$ for 0 $<$ $t$ $<$
+55
+
+\vspace{4mm} Calculate the probability that (35) dies before (30).
+\vspace{4mm}
+
+\(A) 0.34 \hspace{0.2in} (B) 0.40 \hspace{0.2in} (C) 0.46 \hspace{0.2in}
+(D) 0.54 \hspace{0.2in} (E) 0.60 \vspace{10mm}
+
+15.11. Two lives (x) and (y) have mortality such that: \vspace{4mm}
+
+\(i) The Common Shock Model applies. \vspace{2mm}
+
+\(ii) $\mu^{03}_{x+t:y+t}$ = 0.005 for $t$ $>$ 0 \vspace{2mm}
+
+\(iii) $\mu^{02}_{x+t:y+t}$ + $\mu^{03}_{x+t:y+t}$ = $\mu^{13}_{x+t}$ =
+0.015 for $t$ $>$ 0 \vspace{2mm}
+
+\(iv) $\mu^{01}_{x+t:y+t}$ + $\mu^{03}_{x+t:y+t}$ = $\mu^{23}_{y+t}$ =
+0.015 for $t$ $>$ 0 \vspace{4mm}
+
+Calculate the probability that both (x) and (y) are dead within 10
+years. \vspace{4mm}
+
+\(A) 0.05 \hspace{0.2in} (B) 0.06 \hspace{0.2in} (C) 0.07 \hspace{0.2in}
+(D) 0.08 \hspace{0.2in} (E) 0.09 \vspace{10mm}
+
+\newpage
+15.12. Two lives (x) and (y) have mortality such that: \vspace{4mm}
+
+\(i) The Common Shock Model applies. \vspace{2mm}
+
+\(ii) $\mu^{01}_{x+t:y+t}$ = 0.03 for $t$ $>$ 0 \vspace{2mm}
+
+\(iii) $\mu^{02}_{x+t:y+t}$ = 0.06 for $t$ $>$ 0 \vspace{2mm}
+
+\(iv) $\mu^{03}_{x+t:y+t}$ is a constant for $t$ $>$ 0 \vspace{2mm}
+
+\(v) $\mu^{02}_{x+t:y+t}$ + $\mu^{03}_{x+t:y+t}$ = $\mu^{13}_{x+t}$ for
+$t$ $>$ 0 \vspace{2mm}
+
+\(vi) $\mu^{01}_{x+t:y+t}$ + $\mu^{03}_{x+t:y+t}$ = $\mu^{23}_{y+t}$ for
+$t$ $>$ 0 \vspace{2mm}
+
+\(vii) The probability that (x) survives 5 years is 0.67. \vspace{2mm}
+
+Calculate the probability that (x) and (y) die simultaneously.
+\vspace{4mm}
+
+\(A) 0.12 \hspace{0.2in} (B) 0.14 \hspace{0.2in} (C) 0.16 \hspace{0.2in}
+(D) 0.18 \hspace{0.2in} (E) 0.20 \vspace{8mm}
+
+15.13. Consider the setup in Exercise 15.12. Estimate
+${}_{0.4}p^{03}_{xy}$ using Euler’s forward method with step 0.2 to
+numerically solve Kolmogorov’s forward equations. \vspace{4mm}
+
+\(A) 0.004 \hspace{0.2in} (B) 0.006 \hspace{0.2in} (C) 0.008
+\hspace{0.2in} (D) 0.010 \hspace{0.2in} (E) 0.012 \vspace{8mm}
+
+15.14. For a special last-survivor insurance of 100,000 on (x) and (y):
+\vspace{4mm}
+
+\(i) The death benefit is payable at the moment of the second death.
+\vspace{2mm}
+
+\(ii) Level annual benefit premiums of $\pi$ are payable continuously
+each year only while exactly one of (x) and (y) is alive. \vspace{2mm}
+
+\(iii) The Common Shock Model applies. \vspace{2mm} \vspace{2mm}
+
+\(iv) For $t$ $>$ 0: $\mu^{03}_{x+t:y+t}$ = 0.02,
+
+$\mu^{02}_{x+t:y+t}$ + $\mu^{03}_{x+t:y+t}$ = $\mu^{13}_{x+t}$ = 0.05,
+
+$\mu^{01}_{x+t:y+t}$ + $\mu^{03}_{x+t:y+t}$ = $\mu^{23}_{y+t}$ = 0.07
+\vspace{4mm}
+
+\(v) $\delta$ = 0.06 \vspace{4mm}
+
+Calculate: $\pi$. \vspace{4mm}
+
+\(A) 8400 \hspace{0.2in} (B) 8500 \hspace{0.2in} (C) 8600 \hspace{0.2in}
+(D) 8700 \hspace{0.2in} (E) 8800
+
+\newpage
+15.15. Consider a special last survivor insurance of 1 on (x) and (y):
+\vspace{4mm}
+
+\(i) The Multiple Life Model applies. \vspace{2mm} \vspace{2mm}
+
+\(ii) $\delta$ = 0.08 \vspace{2mm}
+
+\(iii) $\mu^{01}_{x+t:y+t}$ = $\mu^{02}_{x+t:y+t}$ = 0.04 for $t$ $>$ 0
+\vspace{2mm}
+
+\(iv) $\mu^{13}_{x+t}$ = $\mu^{23}_{y+t}$ = 0.06 for $t$ $>$ 0
+\vspace{2mm}
+
+\(v) $\mu^{03}_{x+t:y+t}$ = 0 \vspace{4mm}
+
+Calculate the expected present value of the last survivor insurance.
+\vspace{4mm}
+
+\(A) 0.21 \hspace{0.2in} (B) 0.23 \hspace{0.2in} (C) 0.25 \hspace{0.2in}
+(D) 0.27 \hspace{0.2in} (E) 0.29
+
+\newpage
+### Answers to Exercises
+
+\Large
+
+15.1. D \vspace{2mm}
+
+15.2. D \vspace{2mm}
+
+15.3. A \vspace{2mm}
+
+15.4. B \vspace{2mm}
+
+15.5. E \vspace{2mm}
+
+15.6. B \vspace{2mm}
+
+15.7. D \vspace{2mm}
+
+15.8. C \vspace{2mm}
+
+15.9. B \vspace{2mm}
+
+15.10. A \vspace{2mm}
+
+15.11. B \vspace{2mm}
+
+15.12. D \vspace{2mm}
+
+15.13. C \vspace{2mm}
+
+15.14. C \vspace{2mm}
+
+15.15. A
+
+\newpage
+## Past Exam Questions
+
+-   Exam MLC, Spring 2015: \#3 \vspace{2mm}
+
+-   Exam MLC, Spring 2014: \#7 \vspace{2mm}
+
+-   Exam MLC, Fall 2013: \#2 \vspace{2mm}
+
+-   Exam MLC, Spring 2013: \#5 \vspace{2mm}
+
+-   Exam MLC, Fall 2012: \#21 \vspace{2mm}
+
+-   Exam MLC, Sample Questions: \#53, 122, 194, 225, 249, 261, 262, 263,
+    265, 266, 268, 271, 279 \vspace{2mm}
+
+-   Exam MLC, Spring 2007: \#14 \vspace{2mm}

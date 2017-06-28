@@ -1,0 +1,430 @@
+---
+title: "Emerging Costs"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Emerging Costs
+## Cash Values {#S:CashValue}
+
+Policy values quantify the obligations, or liabilities, of a life
+insurance company.
+
+-   They are used by managers and investors to determine the financial
+    position of the company.
+
+-   They are also used by managers and regulators to determine the
+    likelihood that a company will continue as an ongoing operation to
+    fulfill promises made to policyholders.
+
+Policy values are also used to determine the allocation of investment
+assets needed to fulfill company obligations from issuing policies -
+this is the topic of Section \[S:AssetShares\]. This section is devoted
+to the application of policy values to determine a policy's value to the
+insured upon cancelation of the policy, its *cash value*.
+
+An insurance policy provides a combination of protection against
+unforeseen risks (the insurance element) as well as a savings plan (the
+investment component). When a policyholder decides to terminate the
+contract prematurely (before called for in the plan design), in many
+cases the policyholder will receive an amount known as a cash value,
+*withdrawal benefit*, or *nonforfeiture benefit*. You can think of the
+cash value as the policy value minus a surrender charge, that is,
+$$\begin{aligned}
+_k CV = ~ _k V -~ _k SC.\end{aligned}$$ Because of the difficulty of
+collecting additional funds from a withdrawing policyholder,
+$_k CV \geq 0.$
+
+Determining the cash value (or, equivalently the surrender charge) is
+not straightforward. One needs to think about fairness to the continuing
+policyholders as well as fairness to those that terminate the contract.
+One viewpoint is that those that surrender their policy have not
+fulfilled their contract and therefore are not entitled to any benefits.
+Another viewpoint is that those that surrender their policy should
+receive all of their premiums minus a charge for the insurance
+protection received.
+
+It is also important to recognize the timing and incidence of expenses
+because most insurance contracts are costly to underwrite and incur
+substantial expenses in the early years. In Section \[S:DAExpenses\], we
+discuss an alternative reserving basis that acknowledges high early
+expenses.
+
+## Asset Shares {#S:AssetShares}
+
+The “asset share” of a policy in force is the share of the insurer’s
+assets attributable to that policy. Here, expenses, interest, mortality
+and so forth are calculated based on the insurer’s experience for
+similar policies over the period.
+
+Asset share calculations are similar to those used for policy values
+although the purposes of the two concepts are quite different. The
+policy value represents an amount the insurer *needs to have*, the asset
+share represents the amount that the insurer *actually does have*.
+
+Asset shares are typically calculated recursively, such as using
+relationship similar to those for policy values, e.g., $$\begin{aligned}
+(~_k AS + G_k - e_k)(1+i_k)  &= &
+q_{[x]+k}^{(d)} \left(b_{k+1} + E_{k+1}\right) + q_{[x]+k}^{(w)} ~_{k+1} CV  + p_{[x]+k}^{(\tau)} ~_{k+1} AS\end{aligned}$$
+where
+
+-   at the beginning of the year, $~_k AS$ is the asset share, $G_k$ is
+    the contract premium, $e_k$ are annual expenses per contract
+
+-   at death, $q_{[x]+k}^{(d)}$ is the probability of death, $b_{k+1}$
+    is the insurance benefit, and $E_k$ are settlement expenses per
+    contract
+
+-   at withdrawal, $q_{[x]+k}^{(w)}$ is the probability of withdrawal,
+    $~_{k+1} CV$ is the cash value,
+
+-   at survival to the end of the year,
+    $p_{[x]+k}^{(\tau)} = 1 - (q_{[x]+k}^{(d)}+q_{[x]+k}^{(w)})$ is the
+    probability of survivorship and $~_{k+1} AS$ is the asset share.
+
+Asset shares define the notion of how quickly a policy builds policy
+values (assets) and hence profits.
+
+The main advantage of this recursive approach is that we can examine the
+incidence (timing) of profits.
+
+The recursive relation can be expanded to include other ancillary
+benefits, taxes, more complex expense structures, and so forth.
+
+Asset shares are primarily used to set premiums by defining a profit
+goal. For example,
+
+-   PV(profit) = $x$% PV (premium)
+
+-   A return on investment = $x$%
+
+-   The product breaks even $n$ years or sooner.
+
+Asset shares can easily be used for flexible (variable) plans.
+
+They can also be used to determine reserves, dividend schedules,
+withdrawal benefits or so-called “model offices” (combining asset shares
+over several plans, age at issue, new versus old business, and so on).
+
+**Example (SoA \# 336).**
+
+For a fully discrete insurance of 1000 on ($x$), you are given:
+
+-   $~_4 AS = 396.63$ is the asset share at the end of year 4.
+
+-   $~_5 AS = 694.50$ is the asset share at the end of year 5.
+
+-   $G = 281.77$ is the gross premium.
+
+-   $~_5 CV = 572.12$ is the cash value at the end of year 5.
+
+-   $c_4 = 0.05$ is the fraction of the gross premium paid at time 4 for
+    expenses.
+
+-   $e_4 = 7.0$ is the amount of per policy expenses paid at time 4.
+
+-   $q_{x+4}^{(1)} = 0.09$ is the probability of decrement by death.
+
+-   $q_{x+4}^{(2)}  = 0.26$ is the probability of decrement by
+    withdrawal.
+
+Calculate $i$.
+
+**Solution.**
+
+At the beginning of the year, the asset share plus net income available
+is $$\begin{aligned}
+~_4 AS + G(1-e_4) - e_4 = 396.63 +281.77(1-0.05) - 7 = 657.3115 .\end{aligned}$$
+At the end of the year, funds must be sufficient to pay those who
+survive, die and withdraw: $$\begin{aligned}
+& & p_{x+4}^{(\tau)} ~_5 AS + 1000 q_{x+4}^{(1)} + ~_5 CV q_{x+4}^{(2)} \\
+&~~~~~~~~=& (1 - 0.09 - 0.26) (694.50) + 1000 (0.09) + (572.12) (0.26) = 690.1762 .\end{aligned}$$
+Using the relation $657.3115 (1+i) =690.1762$, we get
+$i = 4.9999\% \approx 5\%$.
+
+**Example (SoA \# 242).**
+
+For a fully discrete whole life insurance of 10,000 on ($x$), you are
+given:
+
+-   $~_{10} AS =1600$ is the asset share at the end of year 10.
+
+-   $G = 200$ is the gross premium.
+
+-   $~_{11} CV =1700$ is the cash value at the end of year 11.
+
+-   $c_{10} = 0.04$ is the fraction of gross premium paid at time 10
+    for expenses.
+
+-   $e_{10} ƒ= 70$ is the amount of per policy expense paid at time 10.
+
+-   Death and withdrawal are the only decrements.
+
+-   $q_{x+10}^{(d)} = 0.02$
+
+-   $q_{x+10}^{(w)} =  0.18$
+
+-   $i = 0.05$
+
+Calculate $~_{11} AS$, the asset share at the end of year 11.
+
+*Solution.*
+
+At the beginning of the year, the asset share plus net income available
+is $$\begin{aligned}
+~_{10} AS + G(1-c_{10}) - e_{10} = 1600 + 200(1-0.04) - 70 = 1722.\end{aligned}$$
+At the end of the year, funds must be sufficient to pay those who
+survive, die and withdraw: $$\begin{aligned}
+& & p_{x+4}^{(\tau)} ~_{11} AS + 10000 q_{x+10}^{(d)} + ~_{11} CV q_{x+10}^{(w)} \\
+&~~~~~~~~=& (1 - 0.02 - 0.18) ~_{11} AS + 10000 (0.02) + (1700) (0.18) = 0.8 ~_{11} AS  +506.\end{aligned}$$
+Thus, with $i = 0.05$, we have $(1.05) 1722  = 0.8 ~_{11} AS  +506$, or
+$~_{11} AS = 1627.625$.
+
+## Emerging Costs {#S:Expenses}
+
+Under “cash accounting,” a person or firm counts income when it is
+received and claims deductions when money is paid. Annual cash flows may
+consist of income items: premium income, interest and dividends on
+assets, maturity proceeds of assets, and reinsurance recoveries in
+respect of claims. The outflows may consist of: claims settle or amounts
+paid on account, reinsurance premiums, expenses, tax, and dividends. In
+cash accounting, the profit, or net income, is simply the excess of
+money received over money paid. Following cash makes life easy - one
+simply has to look at the checkbook to see when money is coming in and
+when it goes out. Projecting annual cash flows as they “emerge,” or
+emerging cash flows, is an important task.
+
+However, firms cannot simply follow cash to determine profitability.
+Consider the case of a savings bank that receives deposits from their
+customers without making any payments. This money received is not a
+“profit” to the bank - rather the bank receives the deposit as money
+coming in but also has an obligation to return the money when demanded
+by the customer. That is, the bank’s obligations have increased with the
+customer deposit.
+
+Under “accrual accounting,” revenues and costs are recognized when they
+are incurred, not necessarily when related payments are received or
+made. In many businesses, the timing of incurral is easy to identify.
+Typically, a company records revenue as incurred when a product or
+service is shipped or billed to a customer, not when payments are
+actually made (they could be much later if you are buying on a payment
+plan). To assess profitability, a company’s costs need to be matched to
+the revenue.
+
+Matching costs to revenue is difficult in life insurance because of the
+potential time lag between premiums (one type of revenue) and benefits.
+To understand the cost of a life insurance product, let us begin by
+considering a net basis, ignoring expenses from doing business as well
+as any profit motivation.
+
+Suppose that we have 1,000 identical policyholders age $x$ who purchase
+a policy with a generic premium payment schedule {$P_h$} and benefit
+schedule {$b_h$}. At some future time point, say $h$ years later, we
+expect there to be $1000 ~_h p_x$ policyholders alive with each policy
+having value $_h V$. Thus, the company’s total obligation is
+$1000 ~_h p_x ~_h V$. One year later, the company’s obligation will be
+$1000 v ~_{h+1} p_x ~_{h+1} V$. The increase in this obligation is a
+cost to the company. Using the recursive reserve formula, this cost may
+be expressed as $$\begin{aligned}
+1000 ~v _{h+1} p_x ~_{h+1} V &-& 1000 ~_h p_x ~_h V  \\ &=
+1000 ~_h p_x \left( v p_{x+h}~_{h+1} V - ~_h V  \right) \\
+&= 1000 ~_h p_x \left( v p_{x+h}~_{h+1} V - \left\{ v q_{x+h}
+b_{h+1} - P_h +v p_{x+h}~_{h+1} V
+\right\}\right) \\
+&= 1000 ~_h p_x \left(  P_h - v q_{x+h} b_{h+1}  \right) ,\end{aligned}$$
+with the relation $~_{h+1} p_x = ~_h p_x ~p_{x+h}$. Thus, the cost is
+simply the expected cash inflow, premiums in excess of benefits. This is
+anticipated as we are working on a net basis which implies zero profits.
+
+## Annual Profits {#S:AnnProfit}
+
+It is important to monitor the actual experience of a block of business.
+To this end, we use carats, or “hats,” to denote actual values. We use
+
+-   $\hat{i}_k$ is the actual rate of return from invested assets,
+
+-   $\hat{e}_k$ is the actual annual expenses per contract,
+
+-   at death, $\hat{q}_{[x]+k}^{(d)}$ is the realized fraction of
+    deaths,
+
+-   at withdrawal, $\hat{q}_{[x]+k}^{(w)}$ is the realized fraction of
+    withdrawals, and
+
+-   at survival to the end of the year,
+    $\hat{p}_{[x]+k}^{(\tau)} = 1 - (\hat{q}_{[x]+k}^{(d)}+\hat{q}_{[x]+k}^{(w)})$
+    is realized fraction that survived.
+
+With these quantities, the profit during the year (at time $k+1$) is
+$$\begin{aligned}
+Profit_{k+1}  &= &
+\left( _k AS + G_k -\hat{e}_k\right) (1+ \hat{i}_k) -
+\hat{q}_{[x]+k}^{(d)} \left(b_{k+1} + E_{k+1}\right) - \hat{q}_{[x]+k}^{(w)} ~_{k+1} CV  - \hat{p}_{[x]+k}^{(\tau)} ~_{k+1} AS .\end{aligned}$$
+For this illustration, we have that assumed premiums $G_k$ and
+settlement expenses $E_k$ are the same as actual values. We also assume
+that $ _k AS$ represents the terminal (year-end) company obligation
+(that does not depend on experience). Recall the recursive asset share
+calculation $$\begin{aligned}
+(~_k AS + G_k - e_k)(1+i_k) =
+q_{[x]+k}^{(d)} \left(b_{k+1} + E_{k+1} - ~_{k+1} AS \right) + q_{[x]+k}^{(w)} ( _{k+1} CV -  ~_{k+1} AS)  +  ~_{k+1} AS\end{aligned}$$
+Substituting for $_{k+1} AS$, we may write the profit during the year is
+$$\begin{aligned}
+Profit_{k+1}  &= &
+\left( _k AS + G_k -\hat{e}_k\right) (1+ \hat{i}_k) -
+\hat{q}_{[x]+k}^{(d)} \left(b_{k+1} + E_{k+1} - ~_{k+1} AS\right) \\
+&~~~~~~~~-& \hat{q}_{[x]+k}^{(w)} (~_{k+1} CV -~_{k+1} AS) -  ~_{k+1} AS \\
+&= &
+\left( _k AS + G_k \right) (\hat{i}_k - i_k) \\
+&~~~~~~~~+& e_k  (1+ \hat{i}_k) - \hat{e}_k  (1+ i_k) \\
+&~~~~~~~~+& \left(b_{k+1} + E_{k+1} - ~_{k+1} AS\right) (q_{[x]+k}^{(d)} - \hat{q}_{[x]+k}^{(d)} ) \\
+&~~~~~~~~+& \left( _{k+1} CV - ~_{k+1} AS\right) (q_{[x]+k}^{(w)} - \hat{q}_{[x]+k}^{(w)} ) .\end{aligned}$$
+This is one way to decompose the profit into identifiable components,
+known as the *analysis of surplus*. Here, we interpret these portions of
+the profit:
+
+-   $\left( _k AS + G_k \right) (\hat{i}_k - i_k)$ - due to favorable
+    investment experience,
+
+-   $e_k  (1+ \hat{i}_k) - \hat{e}_k  (1+ i_k)$ - due to favorable
+    expense experience,
+
+-   $\left(b_{k+1} + E_{k+1} - ~_{k+1} AS\right) (q_{[x]+k}^{(d)} - \hat{q}_{[x]+k}^{(d)} )$ -
+    due to favorable mortality experience, and
+
+-   $\left( _{k+1} CV - ~_{k+1} AS\right) (q_{[x]+k}^{(w)} - \hat{q}_{[x]+k}^{(w)} )$ -
+    due to favorable withdrawal experience.
+
+## Profit Testing {#S:ProfitTest}
+
+In the prior section, we defined profits based on actual experience. It
+is also helpful to define a profit at the plan design stage, before
+experience is realized. Instead of using actual experience, we now
+remove the carats and employ a *profit test basis* which is the set of
+assumptions used to examine the incidence and timing of profits.
+
+The profit during the year (at time $k+1$) is $$\begin{aligned}
+Pr_{k+1}  &= &
+\left( _k AS + G_k -e_k\right) (1+ i_k) -
+q_{[x]+k}^{(d)} \left(b_{k+1} + E_{k+1}\right) - q_{[x]+k}^{(w)} ~_{k+1} CV  - p_{[x]+k}^{(\tau)} ~_{k+1} AS .\end{aligned}$$
+When summarizing profits, it can be helpful to remind ourselves that
+profits are only available for those policies in force at the beginning
+of the year. Thus, we might define a term such as
+$\Pi_{k+1} = ~_k p_{[x]}^{(\tau)} Pr_{k+1}$ for profits discounted for
+survivorship. The term *profit signature* is used for the vector of
+discounted profits
+$\boldsymbol{\Pi} = \left(\Pi_0, \Pi_1 \ldots\right)^{\prime}$.
+
+Profits depend on all the assumptions, including assumed interest. To
+summarize profits, one measure used is the *internal rate of return*
+(*IRR*), defined to be the solution of the equation $$\begin{aligned}
+\sum_k \left(\frac{1}{1+j} \right)^k \Pi_k = \sum_k \left(\frac{1}{1+j} \right)^k ~_{k-1} p_{[x]}^{(\tau)} Pr_k = 0,\end{aligned}$$
+where profits are calculated using interest rate $i_k \equiv j$. The
+*IRR* is the solution of a nonlinear equation and so may not exist or
+may have multiple solutions. For the multiple solution problem, we can
+use the *hurdle rate*, defined to be the smallest *IRR* so that the
+contract is deemed adequately profitable.
+
+We can summarize profits using an assumed discount rate, $r$. Define the
+*net present value*, also known as the *expected present value of future
+profits*, to be $$\begin{aligned}
+NPV = \sum_k \left(\frac{1}{1+r} \right)^k \Pi_k = \sum_k \left(\frac{1}{1+r} \right)^k ~_{k-1} p_{[x]}^{(\tau)} Pr_k,\end{aligned}$$
+where profits are calculated using interest rate $i_k \equiv r$.
+
+Another profit measure is the *discounted payback period*, the first
+time that the sum of discounted profits is non-negative. Here, the
+discounting is for (1) survival and (2) for interest, using risk
+discount rate $r$. That is, the discounted payback period is the
+smallest value of $m$ such that $$\begin{aligned}
+\sum_{k=0}^m \left(\frac{1}{1+r} \right)^k \Pi_k \ge 0.\end{aligned}$$
+
+## Deferred Acquisition Expenses and Modified Premium Reserves {#S:DAExpenses}
+
+In Chapter 7, we introduced the random future net and gross loss
+variables. Taking expectations, we have the corresponding policy values,
+
+$~_t V^n =$ EPV future benefits - EPV future net premiums
+
+and
+
+$~_t V^g =$ EPV future benefits + EPV future expenses - EPV future gross
+premiums.
+
+We interpret the difference, EPV future gross premiums - EPV future net
+premiums, to be the expected present value (EPV) of future expense
+loadings. Thus, we may define the EPV of expenses as
+
+$~_t V^e =~_t V^g - ~_t V^n$ = EPV future expenses - EPV future expense
+loadings.
+
+If we further assume that $~_0 V^g = ~_0 V^n =0 $ as is customary under
+the equivalence principle, then $~_0 V^e  =0$. As we have seen in
+Section \[S:ExpenseAugment\], it is common for expenses to be high
+during early policy durations relative to later durations. It is also
+common for expense loading to be flat, meaning that in general one can
+anticipate a negative expense value in early durations. A negative
+expense value is referred to as a *deferred acquisition cost*, or DAC.
+
+Insurers use policy values for reserves, or liabilities, held against
+future obligations. At least at early durations, an insurer is required
+to hold more capital under a net premium basis than a gross premium
+basis. While it is not common to use gross premium basis in many
+jurisdictions, in the US the net premium valuation basis has been
+preferred, in part because it restricts an insurer’s ability to
+manipulate reserves by making accounting adjustments.
+
+Changes in reserves are expenses to a company and using a larger net
+premium basis can mean large expenses that may penalize smaller,
+fast-growing companies. Thus, a number of modified premium reserve bases
+have been introduced over the years, the most commonly used one being
+the
+
+**Full Preliminary Term Approach.** Let $P^n$ be the valuation net
+premium that we assume level for now. Further, define, for valuation
+purposes,
+
+-   $_1 P_{[x]}^n = b_1 v q_{[x]}$ a modified first year cost of
+    insurance and
+
+-   $P^{FPT}$ a modified premium for subsequent years.
+
+The idea is the $P^n - ~ _1 P_{[x]}^n$ is the additional first year
+expense allowance. Thus, we have
+$0 \leq ~_1 P_{[x]}^n \leq P^n \leq P^{FPT}$.
+
+Let $h$ be the number of premium-payment periods and $j$ ($\leq h$) be
+the number of years that $P^{FPT}>P^n$. Then, $$\begin{aligned}
+_1 P_{[x]}^n + P^{FPT} a_{x:\overline{j-1|}} = P^n \ddot{a}_{x:\overline{j|}} .\end{aligned}$$
+This is equivalent to considering splitting the policy into two
+components, a 1-year term and a separate contract issued to the same
+life one year later, if the life survives.
+
+With this $V_k^{FPT} = V_k^n, k\ge j$, that is, the full preliminary
+term reserve equals the net premium reserve when the premiums are the
+same. For $1 \le k < j$, we have $$\begin{aligned}
+V_k^{FPT} = \textrm{EPV Future Benefits} - P^{FPT} \ddot{a}_{[x]+k:\overline{j-k|}} - P^n ~_{j-k|h-j} \ddot{a}_{[x]+k} .\end{aligned}$$
+Thus, for $1 \le k < j$ we have $V_k^{FPT} < V_k^n$ and
+$$\begin{aligned}
+V_k^n - V_k^{FPT}& =& \left\{\textrm{EPV Future Benefits} - P^{FPT} \ddot{a}_{[x]+k:\overline{k-j|}} - P^n ~_{j-k|h-j} \ddot{a}_{[x]+k} \right\}\\
+& ~~~ -& \left\{\textrm{EPV Future Benefits} - P^n \ddot{a}_{[x]+k:\overline{k-j|}} - P^n ~_{j-k|h-j} \ddot{a}_{[x]+k} \right\} \\
+& = & (P^{FPT}- P^n) \ddot{a}_{[x]+k:\overline{k-j|}} .\end{aligned}$$
+We can think of the modified reserve $V_k^{FPT}$ as the net premium
+reserve minus a reserve for the unamortized excess premium.
+
+**Special Case 1. Ordinary Whole Life.** Here, take $j = \omega - x$ and
+$_1 P_{[x]}^n = v _1 q_{[x]} = A_{[x]:\overline{1|}}^1$. Thus,
+$A_{[x]:\overline{1|}}^1+ P^{FPT} a_x =P_x \ddot{a}_x$ and
+$$\begin{aligned}
+P^{FPT} &= \frac{P_x \ddot{a}_x - A_{[x]:\overline{1|}}^1}{a_x} = \frac{A_x -  A_{[x]:\overline{1|}}^1}{a_x} \\
+&=  \frac{_1 E_x A_{x+1}}{ _1 E_x \ddot{a}_{x+1}} = \frac{A_{x+1}}{\ddot{a}_{x+1}} = P_{x+1} .\end{aligned}$$
+
+**Special Case 2. $n$-pay, $m$-year Endowment.** Here, take $j = n$.
+Then, use the same logic in Special Case 1 to check that
+$P^{FPT} = _{n-1} P_{x+1:\overline{m-1|}}.$ Further, $$\begin{aligned}
+V_k^{FPT} &= A_{x+k:\overline{m-k|}} -  _{n-1} P_{x+1:\overline{m-1|}} \ddot{a}_{x+k:\overline{m-k|}}
+= ~_{k-1}^{n-1} V_{x+1:\overline{m-1|}},\end{aligned}$$ that is, a
+reserve for a life age ($x+1$) at duration $k-1$ for an $n-1$-pay,
+$m-1$-year endowment policy.

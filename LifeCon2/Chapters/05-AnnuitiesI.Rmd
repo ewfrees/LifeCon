@@ -1,0 +1,966 @@
+---
+title: "Annuities I"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+# Annuities I
+
+## Key Concepts
+
+A **life annuity** policy provides payments to an **annuitant** each
+period while that person survives.
+
+Annuities can be described as either (i) **continuous**: the payments
+are made continuously each year while the annuitant survives or (ii)
+**discrete**: the payments are made at the beginning or the end of each
+period while the annuitant survives. If the payments are made at the
+beginning of each period, the policy is an **annuity-due**; if the
+payments are made at the end of each period, the policy is an
+**annuity-immediate**.
+
+**Types of Life Annuities**:
+
+-   **Whole Life Annuity:** Provides payments each period while the
+    annuitant survives.
+
+-   **Temporary Life Annuity:** Provides payments each period while the
+    annuitant survives for at most $n$ years after policy issue. This is
+    also called a **term annuity**.
+
+-   **Deferred Life Annuity:** The annuitant must survive a $u$-year
+    deferral period after policy issue in order for any payments to be
+    made. A **deferred whole life annuity** provides payments each
+    period while the annuitant survives if the annuitant first survives
+    the $u$-year deferral period; that is, payments are made after $u$
+    years while the annuitant survives. A **deferred temporary life
+    annuity** provides payments each period while the annuitant survives
+    for at most $n$ years after first surviving the $u$-year deferral
+    period; that is, payments are made between $u$ years and $u
+    + n$ years after policy issue while the annuitant survives.
+
+-   **Certain and Life Annuity:** Is guaranteed to provide payments for
+    the first $n$ years after policy issue, regardless of whether the
+    annuitant survives or dies within the $n$-year period. If the
+    annuitant survives the first $n$ years, the annuity continues to
+    provide payments each period for as long as the annuitant survives.
+    This is also called a **guaranteed annuity**.
+
+    For each of these annuities, the following will be considered:
+
+    -   The **present value of the annuity**, $Y$, are the payments
+        discounted for interest between policy issue and each payment
+        date. This is a random variable, as the number of payments is a
+        function of the future lifetime of the annuitant.
+
+    -   The **expected present value of the annuity**, $E(Y)$, are the
+        payments discounted for both interest and survival between
+        policy issue and each potential payment date. $E(Y)$ is with
+        respect to the distribution of the annuitant’s future lifetime.
+
+        $E(Y)$ will be written differently for each type of life annuity
+        considered. In addition, $E(Y)$ can also be called the
+        **actuarial present value** **of the annuity**, the **single
+        premium**, the **net single premium**, or the **single benefit
+        premium**.
+
+    -   Secondary characteristics of the distribution of $Y$ that will
+        be of interest include the variance of $Y$ and percentiles of
+        the distribution of $Y$.
+
+## Life Annuity Formulas
+
+This section provides key formulas for different life annuities. Note:
+
+-   Life annuities have continuous and discrete versions. In the
+    continuous case, the payments are made continuously each year up
+    until the moment of death of the annuitant ($T_x$ years after policy
+    issue). The discrete case can be : (i) annual or (ii) $m$-thly (Exam
+    MLC only). In (i), the payments are made at either the beginning of
+    each year (for a total of $K_x$ + 1 payments), or payments are made
+    at the end of each year (for a total of $K_x$ payments).
+
+    It is possible that the number of payments made could be subject to
+    a finite term and/or a deferral period. It is also possible that
+    there may be a guaranteed number of payments.
+
+-   The general formula for the present value of a continuous life
+    annuity on (x) with payment rate $\pi_t$ at time $t$ ($>$ 0) is:
+
+    $Y$ = $\int^{T_x}_0 \pi_t v^{t}dt$ = $\int^{T_x}_0 \pi_t e^{-\delta
+    t}dt$.
+
+    The general formula for the expected present value of a continuous
+    life annuity on (x) with payment rate $\pi_t$ at time $t$ ($>$ 0)
+    is:
+
+    $E(Y)$ = $\int^{\infty}_0 \pi_t v^{t}{}_{t}p_xdt$ = $\int^{\infty}_0
+    \pi_t e^{-\delta t}{}_{t}p_xdt$ = $\int^{\infty}_0 \pi_t
+    ({}_{t}E_x)dt$. Furthermore:
+
+    “Say the payment rate is $\pi_t$ at time $t$. Then the present value
+    of this benefit at time $t$ is $\pi_t v^{t}dt$, and the expected
+    present value of this benefit is $\pi_t v^{t}{}_{t}p_xdt$ ((x) has
+    to survive to time $t$ in order for $\pi_tdt$ to be made at that
+    time). Integrating over all possible payment times provides the
+    overall expected present value. This is the **current payment
+    approach.**”
+
+<!-- -->
+
+-   The general formula for the present value of an annual life
+    annuity-due that pays $\pi_{k}$ at time $k$ ($k$ = 0, 1, 2, ...) is:
+
+    $Y$ = $\sum^{K_x}_{k = 0} \pi_{k} v^{k}$.
+
+    The general formula for the expected present value of an annual life
+    annuity-due that pays $\pi_{k}$ at time $k$ ($k$ = 0, 1, 2, ...) is:
+
+    $E(Y)$ = $\sum^{\infty}_{k = 0} \pi_{k} v^{k}{}_{k}p_x$ =
+    $\sum^{\infty}_{k = 0} \pi_{k} ({}_{k}E_x)$. Furthermore:
+
+    “Say the payment is $\pi_k$ at time $k$. Then the present value of
+    this benefit is $\pi_{k} v^{k}$, and the expected present value of
+    this benefit is $\pi_{k} v^{k}{}_{k}p_x$. Summing over all possible
+    payment times provides the overall expected present value. This is
+    the current payment approach.”
+
+    Note: The general formulas for the present value and expected
+    present value of an annual life annuity-immediate on (x) are
+    similar, expect there would be no payment at $k$ = 0.
+
+-   The International Actuarial Notation for $E(Y)$ often contains an
+    $a$, which indicates that the expected present value is for a life
+    annuity. For example, $\ddot{a}_x$ denotes the expected present
+    value of a whole life annuity-due of 1 per year on (x).
+
+-   $^2a$ is $a$ evaluated at double the force of interest.
+
+-   $^2a$ is NOT equal to $E(Y^2)$. This implies that $Var(Y)$ is NOT
+    equal to $^2a$ - $a^2$ (which will usually be negative).
+
+-   For each annuity, a (total) payment rate of 1 per year is assumed.
+    If the payment rate is $R$, notation and formulas are adjusted. For
+    example, the expected present value of a continuous whole life
+    annuity of $R$ per year on (x) is $E(Y)$ = $R\bar{a}_{x}$ =
+    $\int^{\infty}_0 R({}_{t}E_x)$.
+
+-   Recursion formulas take an expected present value and decomposes it
+    into the sum of two expected present values: the expected present
+    value of the annuity during the first period plus the expected
+    present value of the annuity if the annuitant survives the first
+    period.
+
+    For example: $\ddot{a}_x$ = 1 + $vp_x\ddot{a}_{x + 1}$. “The
+    right-hand side breaks up the expected present value of a whole life
+    annuity-due of 1 per year on (x) into the very first payment of 1 at
+    issue plus the expected present value of all of the remaining
+    payments of 1 at issue.”
+
+-   For many annuities, $Var(Y)$ is too difficult to calculate.
+    Therefore, $Var(Y)$ is omitted for several of the following
+    annuities.
+
+-   The **actuarial accumulated value** is the expected present value of
+    a payment or payments divided by a discount factor. For example:
+
+    $\ddot{s}_{x :\overline{n}|}$ =
+    $\frac{1}{{}_{n}E_x}$$\ddot{a}_{x:\overline{n}|}$
+
+    = the actuarial accumulated value at time $n$ of an $n$-year
+    temporary life annuity-due of 1 per year on (x).
+
+## Level Annuities
+
+### Whole Life Annuity of 1 per Year on (x)
+
+**Continuous Whole Life Annuity**:
+
+-   $Y$ = $\bar{a}_{\overline{T_x}|}$ = $\frac{1 - v^{T_x}}{\delta}$
+
+    So: $Y$ = $\frac{1 - Z}{\delta}$, where $Z$ is the present value
+    random variable for a continuous whole life insurance of 1 on (x).
+
+-   $E(Y)$ = $\bar{a}_x$ = $\int^{\infty}_{0} {}_{t}E_xdt$ =
+    $\frac{1 - \bar{A}_x}{\delta}$
+
+    -   With a constant force of mortality: $\bar{a}_x$ =
+        $\frac{1}{\mu + \delta}$
+
+-   It is also true that: $\bar{a}_x$ =
+    $\int^{\infty}_{0} (\bar{a}_{\overline{t}|}){}_{t}p_x\mu_{x + t} dt$
+
+    “Say the moment of death of (x) occurs at time $t$. Then the present
+    value of the payments is $\bar{a}_{\overline{t}|}$, and the expected
+    present value of the payments is
+    $(\bar{a}_{\overline{t}|}){}_{t}p_x\mu_{x + t} dt$ ((x) has to
+    survive $t$ years and then immediately die for the present value to
+    be $\bar{a}_{\overline{t}|}$). Integrating over all times of death
+    provides the overall expected present value.”
+
+-   $Var(Y)$ = $\frac{^2\bar{A}_x - [\bar{A}_x]^2}{\delta^2}$
+
+-   $F_Y(y)$ = $Pr[Y \le y]$ = $Pr[\bar{a}_{\overline{T_x}|} \le y]$ =
+    ${}_{c}q_x$ where $c$ = -$\frac{\ln(1 - \delta y)}{\delta}$
+
+    -   For de Moivre’s Law (Uniform Distribution):
+
+        $F_Y(y)$ = -$\frac{\ln(1 - \delta y)}{\delta (\omega - x)}$ for
+        0 $\le$ $y$ $\le$ $\bar{a}_{\overline{\omega - x}|}$. If the
+        annual payment is $R$, replace $y$ with $\frac{y}{R}$.
+
+    -   Constant force of mortality: $F_Y(y)$ = 1 -
+        $(1 - \delta y)^\frac{\mu}{\delta}$ for 0 $\le$ $y$ $\le$
+        $\frac{1}{\delta}$. If the annual payment is $R$, replace $y$
+        with $\frac{y}{R}$.
+
+    Note: The 100$\alpha$-th percentile of the distribution of $Y$,
+    $y_{\alpha}$, solves:
+
+    $F_Y(y_{\alpha})$ = $\alpha$ for 0 $\le$ $\alpha$ $\le$ 1.
+
+**Annual Whole Life Annuity**:
+
+**Whole Life Annuity-Due**:
+
+-   $Y_d$ = $\ddot{a}_{\overline{K_x + 1}|}$ =
+    $\frac{1 - v^{K_x + 1}}{d}$
+
+    So: $Y_d$ = $\frac{1 - Z}{d}$, where $Z$ is the present value random
+    variable for an annual whole life insurance of 1 on (x).
+
+-   $E(Y_d)$ = $\ddot{a}_x$ = $\sum^{\infty}_{k = 0} {}_{k}E_x$ =
+    $\frac{1 - A_x}{d}$
+
+    -   With a constant force of mortality: $\ddot{a}_x$ =
+        $\frac{1 + i}{q + i}$
+
+-   It is also true that: $\ddot{a}_x$ =
+    $\sum^{\infty}_{k = 0} (\ddot{a}_{\overline{k+1}|}){}_{k|}q_x$
+
+-   $Var(Y_d)$ = $\frac{^2A_x - [A_x]^2}{d^2}$
+
+-   Recursion: $\ddot{a}_x$ = 1 + $vp_x\ddot{a}_{x + 1}$
+
+**Whole Life Annuity-Immediate**:
+
+-   $Y_i$ = $a_{\overline{K_x}|}$ = $\frac{1 - v^{K_x}}{i}$
+
+    So: $Y_i$ = $\frac{1 - (1 + i)Z}{i}$, where $Z$ is the present value
+    random variable for an annual whole life insurance of 1 on (x).
+
+-   $E(Y_i)$ = $a_x$ = $\sum^{\infty}_{k = 1} {}_{k}E_x$ =
+    $\ddot{a}_x$ - 1
+
+-   $E(Y_i)$ = $a_x$ = $\frac{1 - (1 + i)A_x}{i}$
+
+-   $Var(Y_i)$ = $\frac{^2A_x - [A_x]^2}{d^2}$ (same as an annual whole
+    life annuity-due)
+
+-   Recursion: $a_x$ = $vp_x(1 + a_{x + 1})$
+
+### Temporary Life Annuity of 1 per Year on (x)
+
+**Continuous Temporary Life Annuity**:
+
+-   $$Y = \left\{
+      \begin{array}{l l}
+        \bar{a}_{\overline{T_x}|}   & \quad \text{for $T_x$ $\le$ n}\\
+        \bar{a}_{\overline{n}|}        & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+    = $\frac{1 - Z}{\delta}$,
+
+    where $Z$ is the present value random variable for a continuous
+    n-year endowment insurance of 1 on (x).
+
+-   $E(Y)$ = $\bar{a}_{x:\overline{n}|}$ = $\int^{n}_{0} {}_{t}E_xdt$ =
+    $\frac{1 - \bar{A}_{x:\overline{n}|}}{\delta}$
+
+    -   With a constant force of mortality: $\bar{a}_{x:\overline{n}|}$
+        = $\frac{1}{\mu + \delta}$$[1 - \exp[-(\mu + \delta)n]]$
+
+-   $Var(Y)$ =
+    $\frac{^2\bar{A}_{x:\overline{n}|}  -  [\bar{A}_{x:\overline{n}|}]^2}{\delta^2}$
+
+**Annual Temporary Life Annuity**:
+
+**Temporary Life Annuity-Due**:
+
+-   $$Y_d = \left\{
+      \begin{array}{l l}
+        \ddot{a}_{\overline{K_x + 1}|}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        \ddot{a}_{\overline{n}|}             & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+    = $\frac{1 - Z}{d}$,
+
+    where $Z$ is the present value random variable for an annual n-year
+    endowment insurance of 1 on (x).
+
+-   $E(Y_d)$ = $\ddot{a}_{x:\overline{n}|}$ =
+    $\sum^{n - 1}_{k = 0} {}_{k}E_x$ =
+    $\frac{1 - A_{x:\overline{n}|}}{d}$
+
+-   $Var(Y_d)$ =
+    $\frac{^2 A_{x:\overline{n}|}  -  [A_{x:\overline{n}|}]^2}{d^2}$
+
+-   Recursion: $\ddot{a}_{x:\overline{n}|}$ = 1 +
+    $vp_x\ddot{a}_{x + 1:\overline{n-1}|}$
+
+**Temporary Life Annuity-Immediate**:
+
+-   $$Y_i = \left\{
+      \begin{array}{l l}
+        a_{\overline{K_x}|}   & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        a_{\overline{n}|}             & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_i)$ = $a_{x :\overline{n}|}$ = $\sum^{n}_{k = 1} {}_{k}E_x$ =
+    $\ddot{a}_{x:\overline{n}|}$ - 1 + ${}_{n}E_x$
+
+-   Note: $\ddot{a}_{x:\overline{n}|}$ = 1 + $a_{x :\overline{n - 1}|}$
+
+-   $Var(Y_i)$ =
+    $\frac{^2 A_{x:\overline{n+1}|}  -  [A_{x:\overline{n+1}|}]^2}{d^2}$
+
+-   Recursion: $a_{x :\overline{n}|}$ =
+    $vp_x(1 + a_{x + 1 :\overline{n - 1}|})$
+
+### Deferred Whole Life Annuity of 1 per Year on (x)
+
+**Continuous Deferred Whole Life Annuity**:
+
+-   $$Y = \left\{
+      \begin{array}{l l}
+        0               & \quad \text{for $T_x$ $\le$ u}\\
+        v^u \bar{a}_{\overline{T_x - u}|}         & \quad \text{for $T_x$ $>$ u}\\
+      \end{array} \right.$$
+
+-   $E(Y)$ = ${}_{u|}\bar{a}_x$ = $\int^{\infty}_u {}_{t}E_x$ =
+    $\bar{a}_x$ - $\bar{a}_{x:\overline{u}|}$ =
+    ${}_{u}E_x$$\bar{a}_{x + u}$
+
+**Annual Deferred Whole Life Annuity**:
+
+**Deferred Whole Life Annuity-Due**:
+
+-   $$Y_d = \left\{
+      \begin{array}{l l}
+        0                       & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+        v^u \ddot{a}_{\overline{K_x + 1 - u}|}             & \quad \text{for $K_x$ = u, u + 1, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_d)$ = ${}_{u|}\ddot{a}_x$ = $\sum^{\infty}_{k = u} {}_{k}E_x$ =
+    $\ddot{a}_x$ - $\ddot{a}_{x:\overline{u}|}$ =
+    ${}_{u}E_x$$\ddot{a}_{x + u}$
+
+-   Recursion: ${}_{u|}\ddot{a}_x$ = 0 +
+    $vp_x({}_{u - 1|}\ddot{a}_{x + 1})$
+
+**Deferred Whole Life Annuity-Immediate**:
+
+-   $$Y_i = \left\{
+      \begin{array}{l l}
+        0                       & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+        v^u a_{\overline{K_x - u}|}             & \quad \text{for $K_x$ = u, u + 1, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_i)$ = ${}_{u|}a_x$ = $\sum^{\infty}_{k = u + 1} {}_{k}E_x$ =
+    $a_x$ - $a_{x :\overline{u}|}$ = ${}_{u}E_x$$a_{x + u}$
+
+-   Note: ${}_{u|}\ddot{a}_x$ = ${}_{u|}a_x$ + ${}_{u}E_x$
+
+-   Recursion: ${}_{u|}a_x$ = 0 + $vp_x({}_{u - 1|}a_{x + 1})$
+
+### Deferred Temporary Life Annuity of 1 per Year on (x)
+
+**Continuous Deferred Temporary Life Annuity**:
+
+-   $$Y = \left\{
+      \begin{array}{l l l}
+        0                      & \quad \text{for $T_x$ $\le$ u}\\
+        v^u \bar{a}_{\overline{T_x - u}|}                 & \quad \text{for u $<$ $T_x$ $\le$ u + n}\\
+        v^u \bar{a}_{\overline{n}|}                       & \quad \text{for $T_x$ $>$ u + n}\\
+      \end{array} \right.$$
+
+-   $E(Y)$ = ${}_{u|n}\bar{a}_x$ = ${}_{u|}\bar{a}_{x:\overline{n}|}$ =
+    $\int^{u + n}_u {}_{t}E_x dt$ = $\bar{a}_{x:\overline{u +n}|}$ -
+    $\bar{a}_{x:\overline{u}|}$ =
+    ${}_{u}E_x$$\bar{a}_{x + u:\overline{n}|}$
+
+**Annual Deferred Temporary Life Annuity**:
+
+**Deferred Temporary Life Annuity-Due**:
+
+-   $$Y_d = \left\{
+      \begin{array}{l l l}
+        0                      & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+        v^u \ddot{a}_{\overline{K_x + 1 - u}|}                 & \quad \text{for $K_x$ = u, u + 1, ..., u + n - 1}\\
+        v^u \ddot{a}_{\overline{n}|}                       & \quad \text{for $K_x$ = u + n, u + n + 1, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_d)$ = ${}_{u|n}\ddot{a}_x$ =
+    ${}_{u|}\ddot{a}_{x:\overline{n}|}$ =
+    $\sum^{u + n - 1}_{k = u} {}_{k}E_x$ =
+    $\ddot{a}_{x:\overline{u +n}|}$ - $\ddot{a}_{x:\overline{u}|}$ =
+    ${}_{u}E_x$$\ddot{a}_{x + u:\overline{n}|}$
+
+-   Recursion: ${}_{u|n}\ddot{a}_x$ = 0 +
+    $vp_x({}_{u - 1|n}\ddot{a}_{x + 1})$
+
+**Deferred Temporary Life Annuity-Immediate**:
+
+-   $$Y_i = \left\{
+      \begin{array}{l l l}
+        0                      & \quad \text{for $K_x$ = 0, 1, ..., u - 1}\\
+        v^u a_{\overline{K_x - u}|}                 & \quad \text{for $K_x$ = u, u + 1, ..., u + n - 1}\\
+        v^u a_{\overline{n}|}                       & \quad \text{for $K_x$ = u + n, u + n + 1, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_i)$ = ${}_{u|n}a_x$ = ${}_{u|}a_{x :\overline{n}|}$ =
+    $\sum^{u + n}_{k = u + 1} {}_{k}E_x$ = $a_{x :\overline{u + n}|}$ -
+    $a_{x :\overline{u}|}$ = ${}_{u}E_x$$a_{x + u :\overline{n}|}$
+
+-   Recursion: ${}_{u|n}a_x$ = 0 + $vp_x({}_{u - 1|n}a_{x + 1})$
+
+### Certain and Life Annuity of 1 per Year on (x)
+
+**Continuous Certain and Life Annuity**:
+
+-   $$Y = \left\{
+      \begin{array}{l l}
+        \bar{a}_{\overline{n}|}               & \quad \text{for $T_x$ $\le$ n}\\
+        \bar{a}_{\overline{T_x}|}         & \quad \text{for $T_x$ $>$ n}\\
+      \end{array} \right.$$
+
+-   $E(Y)$ = $\bar{a}_{\overline{x: \overline{n}|}}$ =
+    $\bar{a}_{\overline{n}|}$ + ${}_{n|}\bar{a}_x$
+
+**Annual Certain and Life Annuity**:
+
+**Certain and Life Annuity-Due**:
+
+-   $$Y_d = \left\{
+      \begin{array}{l l}
+        \ddot{a}_{\overline{n}|}               & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        \ddot{a}_{\overline{K_x + 1}|}         & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_d)$ = $\ddot{a}_{\overline{x: \overline{n}|}}$ =
+    $\ddot{a}_{\overline{n}|}$ + ${}_{n|}\ddot{a}_x$
+
+-   Recursion: $\ddot{a}_{\overline{x: \overline{n}|}}$ = 1 +
+    $vq_x\ddot{a}_{\overline{n - 1}|}$ +
+    $vp_x\ddot{a}_{\overline{x + 1: \overline{n - 1}|}}$
+
+**Certain and Life Annuity-Immediate**:
+
+-   $$Y_i = \left\{
+      \begin{array}{l l}
+        a_{\overline{n}|}               & \quad \text{for $K_x$ = 0, 1, ..., n - 1}\\
+        a_{\overline{K_x}|}         & \quad \text{for $K_x$ = n, n + 1, ...}\\
+      \end{array} \right.$$
+
+-   $E(Y_i)$ = $a_{\overline{x: \overline{n}|}}$ = $a_{\overline{n}|}$ +
+    ${}_{n|}a_x$
+
+-   Recursion: $a_{\overline{x: \overline{n}|}}$ = $v$ +
+    $vq_xa_{\overline{n - 1}|}$ +
+    $vp_x a_{\overline{x + 1: \overline{n - 1}|}}$
+
+## Exercises
+
+5.1. Assume: $\mu_x(t)$ = 0.02 for $t$ $>$ 0 and $\delta$ = 0.05.
+
+Calculate: $\bar{a}_{x:\overline{15}|}$.
+
+\(A) 8.70 (B) 8.90 (C) 9.10 (D) 9.30 (E) 9.50
+
+5.2. Assume mortality follows: $l_x$ = 100(110 - $x$) for 0 $\le$ $x$
+$\le$ 110, and $d$ = 0.05.
+
+Calculate: ${}_{15|}\ddot{a}_{45}$.
+
+\(A) 4.40 (B) 4.60 (C) 4.80 (D) 5.00 (E) 5.20
+
+5.3. You are given:
+
+\(i) $\mu$ = $\delta$ = $c$, where $c$ is a positive constant.
+
+\(ii) $^2\bar{a}_x$ = $\frac{25}{3}$
+
+Calculate: $Var(\bar{a}_{\overline{T(x)}|})$.
+
+\(A) 50 (B) 52 (C) 54 (D) 56 (E) 58
+
+5.4. You are given:
+
+\(i) ${}_{k|}q_{35}$ = 0.005($k$ + 1) for $k$ = 0, 1, 2, 3.
+
+\(ii) $i$ = 0.05
+
+Calculate the actuarial present value of a 4-year temporary life
+annuity-due of 100 per year on (35).
+
+\(A) 350 (B) 360 (C) 370 (D) 380 (E) 390
+
+5.5. You are given:
+
+\(i) $\delta$ = 0.05
+
+\(ii) $$\mu_x = \left\{
+  \begin{array}{l l}
+    0.05 & \quad \text{for 0 $\le$ x $<$ 50}\\
+    0.08 & \quad \text{for x $\ge$ 50}\\
+  \end{array} \right.$$
+
+Calculate the actuarial present value of a continuous whole life annuity
+of 1 per year on (30).
+
+\(A) 9.10 (B) 9.30 (C) 9.50 (D) 9.70 (E) 9.90
+
+5.6. You are given:
+
+$$\delta_t = \left\{
+  \begin{array}{l l}
+    0.05 & \quad \text{for 0 $\le$ t $<$ 10}\\
+    0.07 & \quad \text{for t $\ge$ 10}\\
+  \end{array} \right.$$
+
+$$\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.02 & \quad \text{for 0 $\le$ t $<$ 10}\\
+    0.03 & \quad \text{for t $\ge$ 10}\\
+  \end{array} \right.$$
+
+Calculate the expected present value of a continuous 10-year certain and
+life annuity on (x) of 1 per year.
+
+\(A) 11.60 (B) 11.90 (C) 12.20 (D) 12.50 (E) 12.80
+
+5.7. You are given:
+
+\(i) $\mu_x(t)$ = 0.02 for $t$ $>$ 0
+
+\(ii) $\delta$ = 0.06
+
+Calculate: Pr[$\bar{a}_{\overline{T_{x}}|}$ $>$ $\bar{a}_{x}$].
+
+\(A) 0.42 (B) 0.55 (C) 0.63 (D) 0.84 (E) 0.91
+
+5.8. You are given:
+
+\(i) The force of mortality is constant.
+
+\(ii) $\bar{A}_x$ = 0.428571
+
+\(iii) $\bar{A}_{x:\overline{10}|}^{1}$ = 0.215749
+
+\(iv) $Y$ is the present value random variable for a continuous 10-year
+temporary life annuity of 500 per year on (x).
+
+Calculate: $E(Y)$.
+
+\(A) 3550 (B) 3600 (C) 3650 (D) 3700 (E) 3750
+
+5.9. You are given:
+
+\(i) Mortality for a standard life aged 40, denoted as $S$, is such that:
+
+$q^S_x$ = 0.032 for $x$ = 40, 41, 42, ...
+
+\(ii) Mortality for a certain life aged 40, denoted as $C$, is such that:
+
+$q^C_{40}$ = 0.048 and $q^C_x$ = 0.032 for $x$ = 41, 42, 43, ...
+
+\(iii) $d$ = 0.05
+
+Calculate: $\ddot{a}^S_{40}$ - $\ddot{a}^C_{40}$.
+
+\(A) 0.16 (B) 0.17 (C) 0.18 (D) 0.19 (E) 0.20
+
+5.10. You are given:
+
+\(i) $\mu_x(t)$ is the force of mortality associated with the
+Illustrative Life Table.
+
+\(ii) $i$ = 0.05
+
+Calculate the single benefit premium for a 3-year temporary life
+annuity-immediate of 1000 per year on (30) payable annually, assuming
+that the force of mortality used is equal to $\mu_{30}(t)$ + 0.20 for 0
+$\le$ $t$ $\le$ 3.
+
+\(A) 1860 (B) 1900 (C) 1940 (D) 1980 (E) 2020
+
+5.11. A fund is created such that:
+
+\(i) There are 60 lives each age 30.
+
+\(ii) Each life receives payments of 100 per year for life, payable
+annually, beginning immediately.
+
+\(iii) Mortality follows the Illustrative Life Table.
+
+\(iv) The lifetimes are independent.
+
+\(v) $i$ = 0.06
+
+\(vi) The amount of the fund is determined, using the normal
+approximation, such that the probability that the fund is sufficient to
+make all payments is 99%.
+
+Calculate the initial amount of the fund.
+
+\(A) 98,000 (B) 98,500 (C) 99,000 (D) 99,500 (E) 100,000
+
+5.12. For a group of individuals all age x:
+
+\(i) 35% are smokers and 65% are non-smokers.
+
+\(ii) The constant force of mortality for smokers is 0.08.
+
+\(iii) The constant force of mortality for non-smokers is 0.04.
+
+\(iv) $\delta$ = 0.06
+
+Calculate $Var[\bar{a}_{\overline{T(x)}|}]$ for an individual chosen at
+random from this group.
+
+\(A) 25 (B) 26 (C) 27 (D) 28 (E) 29
+
+5.13. Suppose $Z$ is the present value random variable for a 2-year pure
+endowment of 1 on (x). You are given:
+
+\(i) $v$ = 0.95 and $p_x$ = 0.98
+
+\(ii) $A_x$ = 0.45 and $\ddot{a}_{x + 2}$ = 10.68
+
+Calculate: $Var(Z)$.
+
+\(A) 0.045 (B) 0.050 (C) 0.055 (D) 0.060 (E) 0.065
+
+5.14. Cody, age 25, and Ted, age 30, have each won the actuarial
+lottery:
+
+\(i) Cody has decided to collect his winnings via a 20-year temporary
+life annuity-due, which pays 400,000 each year.
+
+\(ii) Ted has decided to collect his winnings via a 20-year certain and
+life annuity-due, which pays $K$ each year.
+
+\(iii) Mortality for both Cody and Ted follows the Illustrative Life
+Table, and $i$ = 0.06.
+
+The expected present values of Cody’s annuity and Ted’s annuity are both
+equal. Calculate: $K$.
+
+\(A) 281,000 (B) 286,000 (C) 291,000 (D) 295,000 (E) 299,000
+
+5.15. Consider a special whole life annuity on (x) which pays $R$ at the
+beginning of the first year, $2R$ at the beginning of the second year,
+and $3R$ at the beginning of each year thereafter. You are also given:
+
+\(i) The actuarial present value of this annuity is 3333.
+
+\(ii) $i$ = 0.05
+
+\(iii) $p_x$ = 0.98 and $p_{x + 1}$ = 0.97
+
+\(iv) $\ddot{a}_{x + 2}$ = 31.105
+
+Calculate: $R$.
+
+\(A) 30 (B) 35 (C) 40 (D) 45 (E) 50
+
+5.16. Let $Y$ denote the present value random variable for a whole life
+annuity on (x) of $R$ per year payable continuously each year:
+
+\(i) $\delta$ = 0.050
+
+\(ii) $\mu_x(t)$ = 0.035 for $t$ $\ge$ 0
+
+\(iii) The expected value of $Y$ is 1.64% of the variance of $Y$.
+
+Calculate: $R$.
+
+\(A) 12 (B) 14 (C) 16 (D) 18 (E) 20
+
+5.17. You are given the following portfolio of mutually independent
+lives:
+
+\(i) 50 lives age 65 purchase a whole life annuity-immediate with an
+annual payment of 30,000.
+
+\(ii) 20 lives age 75 purchase a whole life annuity-immediate with an
+annual payment of 20,000.
+
+Mortality follows the Illustrative Life Table, and $i$ = 0.06.
+
+Let $S$ be the present value for the total payments on the portfolio.
+
+Calculate the 95th percentile of the distribution of $S$, in millions,
+using the normal approximation.
+
+\(A) 16.9 (B) 17.2 (C) 17.5 (D) 17.8 (E) 18.1
+
+5.18. You are given:
+
+\(i) $\mu_x$ = $\frac{1}{90 - x}$ for 0 $\le$ $x$ $<$ 90
+
+\(ii) $i$ = 0
+
+Calculate: $\ddot{a}_{30}$.
+
+\(A) 29.0 (B) 29.5 (C) 30.0 (D) 30.5 (E) 31.0
+
+5.19. Paul, aged 35, has just taken out a home mortgage loan where he
+will pay 12,000 at the end of each year for 25 years.
+
+Paul was also required to purchase a life insurance policy that will pay
+any remaining payments should he die within the 25-year period.
+
+Paul has mortality that follows the Illustrative Life Table. The
+effective annual interest rate is 6%.
+
+Calculate the expected present value of the life insurance policy.
+
+\(A) 5150 (B) 5250 (C) 5350 (D) 5450 (E) 5550
+
+5.20. You are given:
+
+\(i) Mortality follows:
+
+$\begin{array}{r|r|r|r|r|r|r|r|r}
+\hline
+\mathbf{x} & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 \\
+\hline
+\mathbf{q_x} & 0.10 & 0.20 & 0.30 & 0.40 & 0.50 & 0.60 & 0.70 & 0.80 \\
+\hline
+\end{array}$
+
+\(ii) $d$ = 0.03
+
+Calculate the probability that the present value of a 5-year temporary
+life annuity-due of 500 per year on (30) exceeds its actuarial present
+value.
+
+\(A) 0.45 (B) 0.50 (C) 0.55 (D) 0.60 (E) 0.65
+
+5.21. You are given:
+
+\(i) $\delta$ = 0.04
+
+\(ii) $\mu_x$ = 0.0003$(1.05)^x$ for $x$ $\ge$ 0
+
+Calculate the expected present value of a 2-year deferred 2-year
+temporary life annuity-immediate of 100 per year on (34).
+
+\(A) 167 (B) 169 (C) 171 (D) 173 (E) 175
+
+5.22. For a 10-year deferred 10-year continuous temporary life annuity
+of 1000 per year on (x):
+
+\(i) $$\delta_t = \left\{
+  \begin{array}{l l}
+    0.06 & \quad \text{for t $\le$ 6}\\
+    0.07 & \quad \text{for t $>$ 6}\\
+  \end{array} \right.$$
+
+\(ii) $$\mu_x(t) = \left\{
+  \begin{array}{l l}
+    0.025 & \quad \text{for t $\le$ 6}\\
+    0.035 & \quad \text{for t $>$ 6}\\
+  \end{array} \right.$$
+
+Calculate the single benefit premium for this annuity.
+
+\(A) 2320 (B) 2360 (C) 2400 (D) 2440 (E) 2480
+
+5.23. Consider a policy on (40) that provides the following benefits:
+
+\(i) A whole life annuity-due of 500 per year payable annually.
+
+\(ii) A death benefit of 5000 payable at the end of the year of death.
+
+Furthermore:
+
+\(iii) $i$ = 0.06
+
+\(iv) Mortality follows the Illustrative Life Table.
+
+Calculate the standard deviation of the present value random variable
+for this policy.
+
+\(A) 515 (B) 530 (C) 545 (D) 560 (E) 575
+
+5.24. You are given:
+
+(i)
+
+$\begin{array}{r|r|r|r|r|r|r}
+\hline
+\mathbf{x} & 70 & 71 & 72 & 73 & 74 & 75 \\
+\hline
+\mathbf{l_x} & 50 & 45 & 40 & 35 & 30 & 25 \\
+\hline
+\end{array}$
+
+\(ii) $i$ = 0.05
+
+Calculate the actuarial accumulated value at the end of the fifth year
+of a 5-year temporary life annuity-immediate of 100 per year payable
+annually on (70).
+
+\(A) 310 (B) 425 (C) 540 (D) 665 (E) 785
+
+5.25. Consider a whole life annuity-due of 1 per year payable annually
+on (x):
+
+\(i) $v$ = 0.965
+
+\(ii) ${}_{10}p_x$ = 0.920
+
+\(iii) $\ddot{a}_{x + 11}$ = 11.36
+
+Suppose $q_{x + 10}$ is increased to $q_{x + 10}$ + 0.100.
+
+Calculate the change in the expected present value of the annuity.
+
+\(A) - 0.71 (B) - 0.41 (C) - 0.26 (D) 0.26 (E) 0.58
+
+5.26. Consider the following special annuity on (x) payable annually:
+
+\(i) The payment at time $k$, $\pi_k$, is such that:
+
+$$\pi_k = \left\{
+  \begin{array}{l l}
+    1000vq_{x + k} & \quad \text{for $k$ = 0, 1, ..., 19}\\
+    0             & \quad \text{for $k$ = 20, 21, ...}\\
+  \end{array} \right.$$
+
+\(ii) $i$ = 0.045
+
+\(iii) ${}_{20}p_x$ = 0.945
+
+\(iv) $a_x$ = 18.23
+
+\(v) $a_{x + 20}$ = 13.94
+
+Calculate the expected present value of this annuity.
+
+\(A) 30 (B) 32 (C) 34 (D) 36 (E) 38
+
+5.27. Consider a policy on (x) that provides the following benefits:
+
+\(i) 1000 per year payable continuously each year while (x) is alive.
+
+\(ii) $S$ payable at the moment of death of (x).
+
+Furthermore:
+
+\(iii) $\delta$ = 0.05
+
+\(iv) $\mu_x(t)$ = 0.03 for $t$ $>$ 0.
+
+\(v) $W$ denotes the present value random variable for this policy.
+
+Determine the value of $S$ that minimizes the variance of $W$.
+
+\(A) 5000 (B) 10,000 (C) 15,000 (D) 20,000 (E) 25,000
+
+### Answers to Exercises
+
+5.1. D 5.26. B
+
+5.2. B 5.27. D
+
+5.3. B
+
+5.4. C
+
+5.5. D
+
+5.6. E
+
+5.7. C
+
+5.8. B
+
+5.9. D
+
+5.10. A
+
+5.11. C
+
+5.12. A
+
+5.13. A
+
+5.14. E
+
+5.15. C
+
+5.16. E
+
+5.17. B
+
+5.18. D
+
+5.19. C
+
+5.20. B
+
+5.21. D
+
+5.22. D
+
+5.23. E
+
+5.24. E
+
+5.25. A
+
+## Past Exam Questions
+
+-   Exam MLC, Spring 2015: \#7
+
+-   Exam MLC, Fall 2014: \#5
+
+-   Exam MLC, Spring 2014: \#6
+
+-   Exam MLC, Fall 2013: \#1, 5
+
+-   Exam 3L, Fall 2013: \#12, 13
+
+-   Exam MLC, Spring 2013: \#21
+
+-   Exam 3L, Spring 2013: \#12
+
+-   Exam 3L, Fall 2012: \#12
+
+-   Exam MLC, Spring 2012: \#15
+
+-   Exam MLC, Sample Questions: \#11, 25, 35, 45, 55, 63, 67, 79, 86,
+    88, 113, 114, 126, 130, 140, 146, 166, 186, 192, 196, 209, 210, 229,
+    285
+
+-   Exam 3L, Fall 2011: \#12
+
+-   Exam 3L, Spring 2011: \#12
+
+-   Exam 3L, Spring 2010: \#15
+
+-   Exam 3L, Fall 2009: \#12
+
+-   Exam 3L, Spring 2009: \#12, 13
+
+-   Exam 3L, Fall 2008: \#20, 21
+
+-   Exam MLC, Spring 2007: \#2, 17, 24, 29

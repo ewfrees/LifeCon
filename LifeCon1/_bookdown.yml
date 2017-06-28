@@ -1,0 +1,7 @@
+book_filename: "LifeCon1"
+
+rmd_files: ["index.Rmd", "Chapters/JointLife31May2017.Rmd", "Chapters/PolicyValues.Rmd", "Chapters/MultiStateLecture24October2014.Rmd", "Chapters/MultipleDecrementsLecture07Oct2012.Rmd", "Chapters/InterestRateRisk05Nov2012.Rmd", "Chapters/EmergingCosts29Dec2011B_utf8.Rmd", "Chapters/UnivLifeLecture14Nov2012.Rmd", "Chapters/PensionLecture06Nov2014.Rmd", "Bibliography/Bibliography.Rmd"]
+
+language:
+  ui:
+    chapter_name: "Chapter "
