@@ -16,6 +16,6 @@ The folder, *LifeCon1*, contains lecture notes from Edward (Jed) Frees, Universi
 With the source code on this *GitHub* site, you can modify, combine and improve these source codes.  The folders *LifeCon1* and *LifeCon2* allow users to compile output in .pdf, .epub, and .html formats. See our [Getting Started](https://github.com/ewfrees/Loss-Data-Analytics/tree/master/GettingStarted) folder in the **Loss Data Analytics** repository. We are using an *R* package called *bookdown* to produce our books. A major advantage of this approach is that it allows us to automatically produce .html output for interactive use, a .pdf version for offline viewing, and an .epub version for mobile devices. To illustrate the .html output, you can check out our draft of the *Loss Data Analytics* book at [Online Version from R Bookdown](http://instruction.bus.wisc.edu/jfrees/UWCAELearn/LossDataAnalytics/index.html) .
 
 ## Your Help
-As described in our [License]( Loss-Data-Analytics/GettingStarted/LICENSE.md ), anyone can use these files. Especially at this early stage of the project, if you want to help and would like more info, please write Jed Frees <jfrees@bus.wisc.edu>.
+As described in our [License](https://github.com/ewfrees/Loss-Data-Analytics/tree/master/GettingStarted/LICENSE.md), anyone can use these files. Especially at this early stage of the project, if you want to help and would like more info, please write Jed Frees <jfrees@bus.wisc.edu>.
 
 
