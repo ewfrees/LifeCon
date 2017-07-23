@@ -1,0 +1,7 @@
+book_filename: "LifeCon3"
+
+rmd_files: ["index.Rmd", "Chapters/01-SurvivalModelsLifeTables.Rmd", "Chapters/04-NetPremiums.Rmd", "Bibliography/Bibliography.Rmd"]
+
+language:
+  ui:
+    chapter_name: "Chapter "
