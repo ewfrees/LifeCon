@@ -1,0 +1,1367 @@
+---
+title: "Survival Models and Life Tables"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+# Survival Distributions and Life Tables
+
+## Introduction to Probability
+
+### Random Experiment
+
+Any process with several possible outcomes, none of which is known in
+advance with certainty, e.g.: tossing a coin; winning a Lotto number;
+death claims during a year incurred by an insurance company.
+
+### Sample Space
+
+Set of outcomes of a random experiment.
+
+**Example 1.1.1 **
+
+Tossing a coin S = {H, T}
+
+Winning Lotto number S = $\left\{ \begin{pmatrix}
+44 \\
+6 \\
+\end{pmatrix}\text{possible outcomes} \right\}$
+
+Death claims in a year S = {0, 1, 2, ..., N}, where N = total number of
+insured
+
+Life expectancy of a newborn S = [0, $\omega$], where $\omega$ =
+limiting age at death
+
+### Event
+
+Any subset of a sample space
+
+**Example 1.1.2 **
+
+S = Death claims in a year
+
+A = {female deaths}
+
+B = {deaths with face amounts &gt; \$250,000}
+
+**The probability of an event A** is denoted by $\mathbb{P}(A)$ is some
+value in [0, 1] indicating the likelihood of the occurrence of event
+A.
+
+$$\mathbb{P}(A) = 1 \Longrightarrow A \text{ is certain to occur}$$
+
+$$\mathbb{P}(A) = 0 \Longrightarrow A \text{ is certain } \textbf{not } \text{to occur}$$
+
+**Example 1.1.3** Toss a coin 3 times: $A = \{ \leq 3 \text{ heads occur}\}, B = \{4 \text{ heads occur} \}$. Then
+$\Longrightarrow \mathbb{P}(A)$ = 1 and $\mathbb{P}(B)$ = 0.
+
+**Facts:**
+
+1.  S = sample space, then $\mathbb{P}(S)$ = 1
+
+2.  $\varnothing$ = empty set, then $\mathbb{P}(\varnothing)$ = 0.
+
+3.  If A and B are disjoint events, then
+    $\mathbb{P}\left( A \cup B \right) = \mathbb{P}\left( A \right) + \mathbb{P}(B)$
+
+### Finite Sample Spaces
+
+Let $S = \left\{s_1, s_2, \ldots , s_n\right\}, \mathbb{P}\left\{ s_{i} \right\} = \ p_{i}, i = 1, 2, \ldots n$. Then
+
+$$\sum_{i = 1}^{n}p_{i} = \mathbb{P}\left\{ S \right\} = 1 \ \ \text{and if} \ \ A \subseteq S,\ \  \mathbb{P}\left(A \right) = \sum_{s_{i} \in A}^{}{\mathbb{P}\{ s_{i}\}}$$
+
+**Example 1.1.4** Roll a fair die: S = {1, 2, 3, 4, 5, 6}, then
+$\mathbb{P}\left\{ 1 \right\} = \mathbb{P}\left\{ 2 \right\} = \ldots = \mathbb{P}\left\{ 6 \right\} = \frac{1}{6}$
+
+$$A = \{\text{even numbers occurs}\} = \{2, 4, 6 \}$$
+
+$$\mathbb{P}(A) = \mathbb{P}\left\{ 2 \right\} + \mathbb{P}\left\{ 4 \right\} + \mathbb{P}\left\{ 6 \right\} = 1/2$$
+
+### Continuous Sample Spaces
+
+The probability of an event is defined by a probability density function
+(p.d.f.) $f(t)$ such that $0 \leq f(t) \leq 1, \ t \ \epsilon \ S$ and
+$\int_{t \in S}^{\ }{f\left( t \right)\text{dt} = 1}$ . Then
+
+$$\mathbb{P}(A) = \int_{t \in A}^{\ }{f\left( t \right)\text{dt}}$$
+
+**Example 1.1.5** Randomly generate a number in [0, 1];
+
+$$f(t) = 1, \ t \ \epsilon \ [0, 1]$$,
+$$A = \{\text{number} \leq 0.25\} \Longrightarrow \mathbb{P}(A) = \int_{0}^{0.25}{f\left( t \right)dt} = 0.25$$
+
+### Independent Events
+
+Two events A, B are independent if
+$\mathbb{P}(A \cap B) = \mathbb{P}(AB) = \mathbb{P}(A)\mathbb{P}(B)$
+
+**Example 1.1.6** Toss a fair coin twice: $S = \{ \text{HH, HT, TH, TT} \}$ and
+$\mathbb{P}\left\{ \text{HH} \right\} = \frac{1}{4}$.
+
+Using independence:
+
+$$\mathbb{P}\left\{ \text{HH} \right\} = \mathbb{P}\left\{ \text{heads in}\ 1^{\text{st}\ }\text{toss and heads in}\ 2^{\text{nd}}\ \text{toss} \right\} = \ \left( \frac{1}{2} \right)\left( \frac{1}{2} \right)\  = \ \frac{1}{4}$$
+
+### Conditional Probability
+
+The conditional probability of event $A$ give $B$ has occurred is
+
+$$\mathbb{P}(A|B) = \frac{\mathbb{P}(AB)}{\mathbb{P}(B)}$$
+
+**Example 1.1.7** Roll a fair die: $A = \left\{ \text{even number occurs} \right\}, B = \left\{ \text{number } > 2 \text{ occurs} \right\}$
+
+Directly,
+$\mathbb{P}(A|B) = \mathbb{P}\left\{ (2,\ 4,\ 6) | (3,\ 4,\ 5,\ 6) \right\} = \frac{2}{4} = \frac{1}{2}$
+
+By formula,
+$\mathbb{P}\left( A|B  \right) = \frac{\mathbb{P}\left(AB \right)}{\mathbb{P}\left( B \right)} = \frac{\mathbb{P}\left\{ 4,\ 6 \right\}}{\mathbb{P}\left\{ 3,\ 4,\ 5,\ 6 \right\}} = \frac{\frac{2}{6}}{\frac{4}{6}} = \frac{1}{2}\ $
+
+Similarly,
+$\mathbb{P}(B|A) = \frac{\mathbb{P}(AB)}{\mathbb{P}(A)} = \frac{\frac{2}{6}}{\frac{3}{6}} = \frac{2}{3}$
+
+**Facts:**
+
+1.  $\mathbb{P}\left( B|B  \right) = 1$
+
+2.  If $A, B$ are independent, $\mathbb{P}(A|B) = \frac{\mathbb{P}(AB)}{\mathbb{P}(B)} = \frac{\mathbb{P}\left( A \right)\ \mathbb{P}(B)}{\mathbb{P}(B)} = \mathbb{P}(A)$
+    
+    i.e. the occurrence of B has no influence on the occurrence of A.
+    Similarly, $\mathbb{P}\left\{ B| A  \right\} = \mathbb{P}\left\{ B \right\}$.
+
+### Random Variable 
+
+A random variable $X$ is a *real valued* function defined on a sample
+space $S$, i.e. for every outcome $s \in S$, $X$ assigns a real number $X(s)$.
+
+**Example 1.1.8** Toss a coin twice: $S =\{ \text{HH, HT, TH, TT} \}$ Let $X =$ number
+of heads obtained. Then $X\{\text{HH}\} = 2, X\{\text{HT}\} = X\{\text{TH}\} = 1, X\{\text{TT}\} = 0$,. i.e. $X = \{0, 1, 2\}$. If the coin is fair,
+
+$$\mathbb{P}\left\{ X = 0 \right\} = \mathbb{P}\left\{ \text{TT} \right\} = \frac{1}{4}$$
+
+$$\mathbb{P}\left\{ X = 1 \right\} = \mathbb{P}\left\{ \text{HT} \right\} + \mathbb{P}\left\{ \text{TH} \right\} = \frac{1}{2}$$
+
+$$\mathbb{P}\left\{ X = 2 \right\} = \mathbb{P}\left\{ \text{HH} \right\} = \frac{1}{4}$$
+
+**Continuous random variable** is a real valued continuous function
+defined on a sample space $S$.
+
+**Example 1.1.9** Randomly generate a number in $[0, 1], S = \{[0,1]\}$. Let $X(t) = 100t, t \in S$. Then
+$\mathbb{P}\left\{ X\left( t \right) \leq 20 \right\} = \mathbb{P}\left\{ \text{outcome}\  \leq 0.2 \right\} = 0.2$
+
+### Probability Distribution of a Random Variable 
+
+Given a probability distribution on a sample space $S$, this uniquely determines a probability distribution for any random variable X defined on $S$, since $\mathbb{P}\left\{ X \leq t \right\} = \mathbb{P}\left\{ s:X\left( s \right) \leq \ t \right\}$.
+
+### Discrete Distributions 
+
+$X$ takes on a finite set of values and the probability distribution
+$f(x) = \mathbb{P}\left\{ X = x \right\}$
+
+**Example 1.1.10** Roll a fair die, $X =$ outcome. Then
+
+$$f\left( x \right) = \mathbb{P}\left\{ X = x \right\} = \left\{ \begin{matrix}
+\frac{1}{6} \ \ \ \text{for}\ x = 1,\ 2, \ldots,6 \\
+0\ \ \ \ \ \ \ \ \ \ \ \ \text{otherwise} \\
+\end{matrix} \right.$$
+
+**Fact:**
+$f\left( x \right) \geq 0\ \text{and}\ \sum_{x}^{}{f\left( x \right) =}\mathbb{P}\left\{ S \right\} = 1$.
+
+### Continuous Distributions
+
+$X$ is a continuous random variable and there exists a function $f$, s.t.
+$0 \leq f\left( t \right) \leq 1,$ for all $t$,
+
+$$\int_{- \infty}^{\infty}{f\left( x \right)\text{dx} = 1} \text{ and }
+\mathbb{P}\left\{ X \leq t \right\} = \int_{- \infty}^{t}{f\left( x \right)dx},$$
+
+then $f\left( x \right)$ is the probability density function of $x$.
+
+**Example 1.1.11** Generate a random variable from $[0, 1], X =$ outcome. Then
+
+$$f\left( x \right) = \left\{ \begin{matrix}
+1\ \ \ \text{for}\ \ \ 0\  \leq x\  \leq 1 \\
+0\ \ \ \ \ \ \ \ \ \ \ \ \ \text{otherwise} \\
+\end{matrix} \right.$$
+
+**Example 1.1.12** X = standard normal random variable. Then
+
+$$f\left( x \right) = \frac{1}{\sqrt{2\pi}}e^{\frac{{- x}^{2}}{2}}\ \ \ ,\ \  - \infty\  \leq x\  \leq \ \infty$$
+
+### Distribution Function of a Random Variable
+
+$$F\left( x \right) = \mathbb{P}\left\{ X \leq x \right\} = \left\{ \begin{matrix}
+\sum_{t\  \leq \ x}^{}{f\left( t \right) \ \ \ \ \ \text{if}\ x\ \text{is discrete}} \\
+\ \ \ \int_{- \infty}^{x}{f\left( t \right)\ \ \ \ \ \ \ \ \text{if }x\ \text{is continuous}} \\
+\end{matrix} \right.\ $$
+
+By the fundamental Theorem of Calculus:
+$f\left( x \right) = \frac{\partial F(x)}{\partial x}$.
+
+### Expected Value of a Random Variable
+
+$$\mathbb{E}\left( X \right) = \text{Expected value of}\ X = \left\{ \begin{matrix}
+\sum_{x}^{}{x\ \mathbb{P}\left\{ X = x \right\}\ \ \ \ \ \ \ \text{if}\ x\ \text{is discrete}} \\
+\ \ \ \ \int_{- \infty}^{\infty}{t\ f\left( t \right)dt \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \text{if}\ x\ \text{is continuous}} \\
+\end{matrix} \right.\ $$
+
+**Interpretation:** The expected value is the weighted average of the
+values of $X$ where the weights are based on the probability of occurrence
+of these values.
+
+**Example 1.1.13** Consider an insurance policy which pays out \$100,000
+if an individual dies during the year. Let $X =$ payout.
+Suppose $\mathbb{P}\left\{ \text{individual dies} \right\} = 0.01$.
+Then
+
+$$\left\{\begin{matrix} \mathbb{P}\lbrack X = \$ 100,000\rbrack = 0.01 \\
+\mathbb{P}\lbrack X = 0\rbrack\ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 0.99 \\
+\end{matrix} \right.$$
+
+$\mathbb{E}\left( X \right) = 0.01(100,000) + 0.99(0) = 1,000$.
+
+### Variance of a Random Variable
+
+**Discrete Case:**
+
+$$\mathbb{\text{Var}}\left( X \right) = \text{variance of}\ X = \sum_{x}^{\ }{\left( x - \mathbb{E}\left( X \right) \right)^{2}\ \mathbb{P}\left\{ X = x \right\}} \ \ \ \ \ \ \ \ \ \ \ \ $$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \left( \sum_{x}^{}{x^{2}\ \ \mathbb{P}\left\{ X = x \right\}} \right) - \left( \mathbb{E}\left( X \right) \right)^{2}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \mathbb{E}\left( X^{2} \right) - \left( \mathbb{E}\left( X \right) \right)^{2} \ \ \ $$
+
+**Continuous Case:**
+
+$$\mathbb{\text{Var}}\left( X \right) = \int_{- \infty}^{\infty}{\left( x - \mathbb{E}\left( X \right) \right)^{2}\ \ f\left( x \right)dx}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \  = \int_{- \infty}^{\infty}{x^{2}\ f\left( x \right)dx} - \left( \mathbb{E}\left( X \right) \right)^{2}\ \ $$
+
+$$\ \  = \mathbb{E}\left( X^{2} \right) - \left( \mathbb{E}\left( X \right) \right)^{2}$$
+
+**Interpretation:**
+
+$\mathbb{\text{Var}}\left( X \right)$ = probability weighted measure of
+spread of the values of X.
+
+**Example 1.1.14** Same as previous example:
+
+$$\mathbb{\text{Var}}\left( X \right) = \left( 100,000 - 1,000 \right)^{2}\ 0.01 + \left( 0 - 1,000 \right)^{2}\ 0.99$$
+
+$$\ \ \  = 98,010,000 + 990,000 = 99,000,000$$
+
+Alternatively,
+
+$$\ \ \mathbb{\text{Var}}\left( X \right) = \mathbb{E}\left( X^{2} \right) - \left( \mathbb{E}\left( X \right) \right)^{2} = \left( 100,000 \right)^{2}\ 0.01 + \left( 0 \right)^{2}\ 0.99 - 1000^{2}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 100,000,000 - 1,000,000 = 99,000,000$$
+
+**Standard deviation of X**
+$\text{SD}(X) = \sqrt{\mathbb{\text{Var}}\left( X \right)}$
+
+In the previous example, SD(X) = $\sqrt{99,000,000}\  \approx \ 9,950$
+
+### Survival Distribution of a Random Variable
+
+Define the random variable $X =$ age at death of a newborn
+
+$F(x) =$ distribution function of $X$
+
+$\ \ \ \ \ \ \ = \mathbb{P}\left\{ X \leq x \right\}$
+
+$\ \ \ \ \ \ \ = \mathbb{P}\left\{ \text{newborn dies by age}\ x \right\}$
+
+$S(x) = 1 - F(x)$
+
+$\ \ \ \ \ \ \ = \text{survival function of } X$
+
+$\ \ \ \ \ \ \ = \mathbb{P}\left\{ X > x \right\}$
+
+$\ \ \ \ \ \ \ = \mathbb{P}\left\{ \text{newborn dies after age}\ x \right\}\ $
+
+$\ \ \ \ \ \ \ = \mathbb{P}\left\{ \text{newborn survives to age }x \right\}$
+
+***Note***
+
+1.  $S\left( 0 \right) = 1$
+2.  $0\  \leq S\left( x \right) \leq 1,\ \ \ x \geq 0$
+3.  $S\left( x \right) > S\left( y \right),\ \ y > x$
+    i.e. $S\left( x \right)$ is a *strictly decreasing* function of $x$.
+4.  $\lim_{x \rightarrow \omega} {S\left( x \right) = 0\ ,\ \ \text{where}\ \omega = \text{limiting age at death}}$
+
+Any function possessing the above four properties qualifies for a
+survival function.
+
+**Example 1.1.15 **
+
+$$S\left( x \right) = e^{- x},\ \ x \geq 0$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\left( x \right) = 1 - \frac{x}{100}\ ,\ \ 0 \leq x \leq 100$$
+
+Any probability function of interest can be expressed in terms of
+survival functions.
+
+**Example 1.1.16**
+$\mathbb{P}\left\{ \text{newborn dies between}\ 30\ \text{and}\ 40 \right\} = \mathbb{P}\left\{ 30 < X < 40 \right\}$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \mathbb{P}\left\{ X > 30 \right\} - \mathbb{P}\left\{ X > 40 \right\}\ $$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = S\left( 30 \right) - S\left( 40 \right)$$
+
+![image](Figures\Ch1_01_ex1.1.16.JPG)
+
+$\mathbb{P}\left\{ X \leq 30 \right\} = 1 - S\left( 30 \right)\ \ \ \text{etc}.$
+
+**Example 1.1.17**
+$S\left( x \right) = \frac{1}{10}\sqrt{100 - x}\ \ \ ,\ \ \ \ 0 \leq x \leq 100$
+
+Find the probability that a life aged 0 will die between age 19 and age
+36.
+
+![image](Figures\Ch1_02_ex_1.1.17.JPG)
+
+Probability $= S\left( 19 \right) - S\left( 36 \right)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{1}{10}\left\lbrack \sqrt{81} - \sqrt{64} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{1}{10}$
+
+## Future Life time of Individual Age x
+
+$T(x) =$ future lifetime of an individual age (x)
+
+$\ \ \ \ \ \ \ =$ time until death for a person age (x)
+
+### Distribution function of $T(x)$
+
+$\mathbb{P}\lbrack T\left( x \right) \leq t\rbrack =_{t}q_{x}$
+
+![image](Figures\Ch1_03_1.2.1.JPG)
+
+$_{t}p_{x}\ \  = \ 1 -_{t}^{\ }\ q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \  = \text{survival function for individual age}\ \left( x \right)$
+
+$$\ \ \ \ \ \ \ \ \ \ = \mathbb{P}\lbrack T\left( x \right) > t\rbrack$$
+
+### Relationship Between T(x) and x
+
+$X =$ time until death of a newborn
+
+$T(x) =$ time until death for a person age x
+
+1.  $X = T\left( 0 \right)$
+2.  $_{t}^{\ }\ q_{x}\  = \mathbb{P}\left\{\left( x \right)\ \text{dies within t years} \right\}$
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \mathbb{P}\left\{ \text{newborn dies between}\ x\ \text{and}\ x + t\ \left| \ \text{newborn survived to age}\ x \right.\  \right\}$
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\mathbb{P}\left\{ \text{newborn dies between}\ x\ \text{and}\ x + t \right\}}{\mathbb{P}\left\{ \text{newborn survived to age}\ x \right\}}$
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{S\left( x \right) - S(x + t)}{s(x)}$
+3.  $_{t}^{\ }p_{x}\  = \ 1 -_{t}^{\ }q_{x}$
+    $\ \ \ \ \ \ \ \ \  =\frac{S\left( x + t \right)}{S\left( x \right)}$
+    $\ \ \ \ \ \ \ \ \  = \mathbb{P}\left\{ \text{newborn survives to}\ x + t\ \left| \ \text{newborn survived to age}\ x \right.\right\}$
+
+### Other Probability Functions of T(x)
+
+$_{1}^{\ }\ q_{x}\  = q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \  = \mathbb{P}\left\{ \left( x \right)\ \text{dies within a year} \right\}$
+
+$\ \ \ \ \ \ \ \ \  = \frac{S\left( x \right) - S(x + 1)}{S(x)}$
+
+![image](Figures\Ch1_04_1.2.3a.JPG)
+
+$_{1}^{\ }p_{x} = p_{x}$
+
+$\ \ \ \ \ \ \ \ \ = \ 1 - q_{x}$
+
+$\ \ \ \ \ \ \ \ \  = \frac{S(x + 1)}{S(x)}$
+
+$_{t| u}^{\ }q_{x} = \mathbb{P}\left\{ \left( x \right)\ \text{dies between}\ x + t\ \text{and}\ x + t + u \right\}$
+
+$\ \ \ \ \ \ \ \ \ \ \  = \frac{S\left( x + t \right) - S(x + t + u)}{S(x)}$
+
+$\ \ \ \ \ \ \ \ \ \ \  =_{t}^{\ }\ p_{x} -_{t + u}^{\ }\ p_{x} =_{t}^{\ }\ p_{x}\ _{u}^{\ }\ q_{x + t}$
+
+![image](Figures\Ch1_05_1.2.3b.JPG)
+
+$_{t| 1}^{\ }q_{x} =_{t|}^{\ }q_{x} = \mathbb{P}\lbrack\left( x \right)\ \text{dies between}\ x + t\ \text{and}\ x + t + 1\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{S\left( x + t \right) - S(x + t + 1)}{S(x)}$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =_{t}^{\ }p_{x} -_{t + 1}^{\ }p_{x} =_{t}^{\ }p_{x}\ q_{x + t}$$
+
+### Curtate Future Lifetime of x
+
+$K(x) =$ curtate future lifetime of (x)
+
+$\mathbb{P}\lbrack K\left( x \right) = k\rbrack\  = \ \mathbb{P}\lbrack k < T\left( x \right) \leq k + 1\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \mathbb{P}\left\{ \ \left( x \right)\ \text{dies between}\ x + k\ \text{and}\ x + k + 1 \right\}\ $
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  =_{k|}^{\ }q_{x}$
+
+***Note***
+
+$$\sum_{k = 0}^{\infty}{\mathbb{P}\lbrack K\left( x \right) = k\rbrack}= \sum_{k = 0}^{\infty}{_{k|}^{\ }q_{x}}\  = 1$$
+
+where $\ _{0|}^{\ }\ q_{x} = q_{x}$.
+
+i.e. $_{k|}^{\ }q_{x}\ \text{is the probability distribution for the discrete random variable }K\left( x \right).$
+
+If $\omega =$ limiting age at death, then $\sum_{k = 0}^{\omega - x - 1}{\mathbb{P}\left\{ K\left( x \right) = k \right\}}= \sum_{k = 0}^{\omega - x - 1}{_{k|}^{\ }q_{x}} = 1$
+
+**Example 1.2.1**
+$S\left( x \right) = \frac{1}{10}\sqrt{100 - x}\ ,\ \ \ 0 \leq x \leq 100$
+
+a)  Find the probability that a life age 19 will die before age 36.
+b)  Find the probability that a life age 19 dies between ages 36 and 75.
+
+**Answer:**
+
+a)
+
+![image](Figures\Ch1_06_ex_1.2.1a.JPG)
+
+$$\text{Probability}\ = _{17}q_{19} = \frac{S\left( 19 \right) - S(36)}{S(19)}\  = \ \frac{\frac{1}{10}\left\lbrack \sqrt{81} - \sqrt{64} \right\rbrack}{\frac{1}{10}\sqrt{81}}\  = \ \frac{1}{9}$$
+
+b)
+
+![image](Figures\Ch1_07_ex_1.2.1b.JPG)
+
+$$\text{Probability}\  = _{17|39}q_{19} = \frac{S\left( 36 \right) - S\left( 75 \right)}{S\left( 19 \right)}\ $$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \ \frac{\frac{1}{10}\left\lbrack \sqrt{64} - \sqrt{25} \right\rbrack}{\frac{1}{10}\sqrt{81}}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \  =\frac{1}{3}$$
+
+Alternatively,
+$\text{Probability}\  =_{17|39}q_{19}= _{17}p_{19}\cdot _{39}q_{36}$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \ \frac{S\left( 36 \right)}{S(19)}\cdot \frac{S\left( 36 \right) - S(75)}{S(36)}\  = \ \ \frac{1}{3}$$
+
+### Force of Mortality
+
+$$\mu_{x} = \text{Force of Mortality at age}\ x$$
+
+$$= \frac{- \frac{\partial}{\partial x}S\left( x \right)}{S\left( x \right)}$$
+
+$$\ \ \ \ \ \ \ \ = \frac{- \frac{\partial}{\partial x}\left\lbrack 1 - F\left( x \right) \right\rbrack}{1 - F\left( x \right)}$$
+
+$$ = \frac{f(x)}{1 - F(x)}$$
+
+Where $F(x) =$ distribution function of X, and X = age of a newborn, $f(x)=$ probability density function of X.
+
+**Interpretation:** Since
+$\frac{\partial}{\partial x}g\left( x \right) = \lim_{\Delta x \rightarrow 0} \frac{g\left( x + \Delta x \right) - g(x)}{\Delta x}$,
+
+$$\mu_{x} = \lim_{\Delta x \rightarrow 0} \frac{S\left( x \right) - S\left( x + \Delta x \right)}{\Delta x\ S\left( x \right)}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \lim_{\Delta x \rightarrow 0} \frac{\mathbb{P}\{ x\ \text{dies between}\ x\ \text{and }x + \Delta x\}}{\Delta x}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \text{instataneous rate of death of}\ x.$$
+
+### Relationship to Other Mortality Functions
+
+Since
+$\frac{\partial}{\partial x}{\log}\left\lbrack g\left( x \right) \right\rbrack = g^{'}(x)/g(x)$
+$\mu_{x} = - \frac{\partial}{\partial x}\log\left\lbrack S\left( x \right) \right\rbrack$.
+
+i.e.
+$\int_{x}^{x + n}{\mu_{y}dy}\  = \ \int_{x}^{x + n}{- \frac{\partial}{\partial y}\log{\left\lbrack S\left( y \right) \right\rbrack dy}\  = \ \log\left\lbrack S\left( x \right) \right\rbrack - \log\left\lbrack S\left( x + n \right) \right\rbrack}$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \log{\left\lbrack \frac{S\left( x \right)}{S\left( x + n \right)} \right\rbrack =}\log(_{n}^{\ }\ p_{x})$$
+
+$\Longrightarrow \ \ _{n}p_{x}  =\ e^{- \int_{x}^{x + n}{\mu_{y}\ dy}}$
+
+In particular: $\int_{0}^{x}{\mu_{y} dy =  - \log}_{x}p_{0}  = - \log\lbrack S\left( x \right)\rbrack$
+
+${\Longrightarrow S\left( x \right)  =  e}^{- \int_{0}^{x}{\mu_{y}\ dy}}$
+
+$T(x) =$ time until death for a person age x
+
+$_tq_x =$ distribution function of $T(x)$
+
+$\ \ \ \ \ \ = \mathbb{P}\left\{ T\left( x \right) \leq t \right\} = G(t)$
+
+$\frac{\partial}{\partial t}_{t}q_{x} = g(t)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =$ probability density function of T(x)
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{\partial}{\partial t}\frac{S\left( x \right) - S\left( x + t \right)}{S\left( x \right)}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = - \frac{S^{'}\left( x + t \right)}{S\left( x \right)}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = - \frac{S^{'}\left( x + t \right)}{S\left( x + t \right)}*\frac{S\left( x + t \right)}{S\left( x \right)}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =_{t}p_{x}\ \ \mu_{x + t}$
+
+i.e. $_{t}p_{x}\ \mu_{x + t}\ =$ p.d.f. of T(x). Then
+
+$$\int_{0}^{\infty}{_{t}^{\ }\ p_{x}\ \mu_{x + t}\ dt = 1}$$
+
+$$\int_{n}^{n + m}{_{t}^{\ }\ p_{x}\ \mu_{x + t}\ dt =_{n| m}q_{x}}$$
+
+$$\int_{0}^{r}{_{t}^{\ }\ p_{x}\ \mu_{x + t}\ dt =_{r}q_{x}}$$
+
+$$\int_{r}^{\infty}{_{t}p_{x}\ \mu_{x + t}\ dt =_{r}p_{x}}$$
+
+In particular, for a newborn,
+$\int_{0}^{\infty}{S(t)}\ \mu_{t}\ dt = \int_{0}^{\infty}{\left\lbrack - \frac{\partial}{\partial t}S(t) \right\rbrack dt} = 1$
+
+$$\int_{x}^{\infty}{S\left( t \right)\ }\mu_{t\ }\ dt\  = S\left( x \right) = \ e^{- \int_{0}^{x}{\mu_{t}\ dt}}$$
+
+### Requirements for a Force of Mortality
+
+For $\mu_{x}$ to be an acceptable force of mortality function,
+$S\left( x \right) = \ e^{- \int_{0}^{x}{\mu_{t}\ dt}}$ must be
+an acceptable survival function. i.e.
+
+$$0\  \leq S(x) \leq 1,\ \ \ \ \ S\left( 0 \right) = 1$$
+
+$$y > x \ \Longrightarrow \ S\left( x \right) > \ S\left( y \right)$$
+
+$$\lim_{x \rightarrow \infty}{S\left( x \right) = }\ 0$$
+
+***Note***
+
+$$\lim_{x \rightarrow \infty}{S\left( x \right)= } 0\ \  \Longrightarrow \ \lim_{x \rightarrow \infty} \int_{0}^{x}{\mu_{y}\ dy} = \infty$$
+
+**Example 1.2.2** Which of the following functions can serve as a force
+of mortality?
+
+1   $BC^x$            $B>0$     $, 0<C<1$         $, x\geq 0$
+--- ----------------- --------- ----------------- ------------
+2   $B(x+1)^{-0.5}$   $B>0$                       $, x \geq 0$
+3   $k(x+1)^n$        $k>0$     $, n \geq 0$      $, x \geq 0$
+
+**Answer:**
+
+1)  $S\left( x \right) = \ e^{- \int_{0}^{x}{\mu_{t}\ dt}}$
+
+    $$\int_{0}^{x}BC^{y}\ dy  = \frac{BC^{y}}{\log\ C}\left| \begin{matrix} x \\ 0 \\ \end{matrix}\ \  = \ \ \  \right.\ \frac{B}{\log\ C}\lbrack C^{x} - 1\rbrack$$
+
+    $$\Longrightarrow \ \ S\left( x \right) = \exp\left\lbrack - \frac{B}{\log\ C}(C^{x} - 1) \right\rbrack$$
+
+    **Check**
+
+    $$S\left( x \right) \geq 0\ ,\ \ S\left( 0 \right) = 1$$
+
+    $$\lim_{x \rightarrow \infty}{S\left( x \right)\  = \frac{\exp\left( B \right)}{\log C} \neq 0,\ \text{since}\ 0 \leq C \leq 1}$$
+
+    Hence $\mu_{x} = BC^{x}$ is **not** a force of mortality function.
+
+2)  $\int_{0}^{x}{B\left( y + 1 \right)^{- 0.5}}\ dy  = \frac{B\sqrt{y + 1}}{0.5} \left| \begin{matrix} x \\ 0 \\ \end{matrix} \right.\ = \ \ 2B\left\lbrack \sqrt{x + 1} - 1 \right\rbrack,$
+
+    $$\text{i.e. } S\left( x \right) = \exp( - 2B\left\lbrack \sqrt{x + 1} - 1 \right\rbrack)$$
+
+    **Check**
+
+    $$S\left( x \right) \geq 0 \ , \ S\left( 0 \right)= 1$$
+
+    $$\lim_{x \rightarrow \infty}{S\left( x \right)} = 0\ ,$$
+
+    $$S\left( x \right) \text{ is strictly decreasing.}$$
+
+    Hence $\mu_{x} = \ B{(x + 1)}^{- 0.5}$ is a legitimate force of mortality function.
+
+3)  $\int_{0}^{x}{k{(y + 1)}^{n}}\ dy = \frac{k{(y + 1)}^{n + 1}}{n + 1}\left| \begin{matrix}
+x \\
+0 \\
+\end{matrix} \right. = \frac{k}{n + 1}\left\lbrack \left( x + 1 \right)^{n + 1} - 1 \right\rbrack$
+
+    $$\Longrightarrow \ S\left( x \right) = \exp\left( - \frac{k}{n + 1}\left\lbrack \left( x + 1 \right)^{n + 1} - 1 \right\rbrack \right)$$
+
+    **Check**
+
+    $$S\left( x \right) \geq 0\ ,\ S\left( 0 \right) = 1$$
+
+    $$\lim_{x \rightarrow \infty}{S\left( x \right)}= 0\ ,$$
+
+    $$S\left( x \right) \text{ is strictly decreasing}$$
+
+    Hence $\mu_{x} = k{(x + 1)}^{n}$ is a legitimate force of mortality function.
+
+**Example 1.2.3** The mortality pattern of a certain population may be
+described as follows: Out of every 98 lives born together, one dies
+annually until there are no survivors.
+
+a)  Find $S(x)$ for this population
+
+    **Answer:**
+
+    Number of survivors out of 98 at the end of x years is $98-x$. i.e.
+
+    $$S\left( x \right) = \frac{98 - x}{98}\ ,\ 0 \leq x \leq 98$$
+
+b)  What is the probability that a life aged 30 will survive to attain age 35?
+
+    **Answer:**
+    
+    ![image](Figures\Ch1_08_ex_1.2.3.JPG)
+
+    Probability $= _{5}p_{30}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{S\left( 35 \right)}{S\left( 30 \right)}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{98 - 35}{98 - 30}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{63}{68}$
+
+c)  What is the force of mortality at 48?
+
+    **Answer:**
+
+    $$\mu_{x}  =   - \frac{S'\left( x \right)}{S\left( x \right)}$$
+
+    $$\ \ \ \ \  = \frac{1}{98 - x}$$
+
+    $$S\left( x \right) = \frac{98 - x}{98}\ \ \ \ \text{and}\ \ \ \ S'(x) = - \frac{1}{98}$$
+
+    $$\Longrightarrow \ \ \ \mu_{48} = \frac{1}{98 - 48}$$
+
+    $$\ \ \ \ \ \ \ \ \ \  = 0.02$$
+
+## Life Tables
+
+**Notations:**
+
+$\mathcal{l}_{0}\ =$ initial group of newborns
+
+$\mathcal{L}(x) =$ number of survivors to age x
+
+Then
+$\mathcal{L}\left( x \right)\sim Bin\left\lbrack \mathcal{l}_{0}\ ,\ S\left( x \right) \right\rbrack\ \text{and }\ \mathbb{E}\left\lbrack \mathcal{L}\left( x \right) \right\rbrack = \mathcal{l}_{0}\ S\left( x \right) = \mathcal{l}_{x}$
+
+$_{n}\mathcal{D}_{x}=$ number of deaths between x and x + n from the $\mathcal{l}_{0}$ lives
+
+Then
+$_{n}\mathcal{D}_{x}\sim Bin\left\lbrack \mathcal{l}_{0},\ S\left( x \right) - S\left( x + n \right) \right\rbrack \ \text{and}\ \mathbb{E}\left\lbrack_{n}\mathcal{D}_{x} \right\rbrack = \mathcal{l}_{0}\left\lbrack S\left( x \right) - S\left( x + n \right) \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \mathcal{l}_{x} - \mathcal{l}_{x + n}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \ _{n}\mathcal{d}_{x}$
+
+Since $S(x)- S(x + n)= \mathbb{P}\lbrack\text{newborn dies between } x \text{ and } x + n\rbrack$
+
+$= \mathbb{P}\lbrack \text{newborn survives to } x \text{ dies between } x \text{ and } x + n\rbrack$
+
+$= \mathbb{P}\lbrack\text{newborn survives to}\ x\rbrack\mathbb{*P}\lbrack\text{newborn dies between}\ x\ \text{and}\ x + n\ \left| \text{survival to}\ x \right.\rbrack$
+
+$= S\left( x \right)\ _{n}q_{x}$
+
+$\Longrightarrow \mathbb{E}\left\lbrack_{n}\mathcal{D}_{x} \right\rbrack = \mathcal{l}_{0}\left\lbrack S\left(x \right)\ _{n}q_{x} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \mathcal{l}_{x}\ _{n}q_{x} = \mathcal{l}_{x} - \mathcal{l}_{x + n}$
+
+$\mathbb{E}\left\lbrack \mathcal{L}(x+n) \right\rbrack = \mathcal{l}_0 \ S(x) \ _np_x = \mathcal{l}_{x} \ _np_x = \mathcal{l}_{x+n}$
+
+**Notation:**
+
+1)  $_{1}\mathcal{D}_{x} = \mathcal{D}_{x}\ \ \text{and} \ \ \mathbb{E}\left\lbrack_{1}\mathcal{D}_{x} \right\rbrack =_{1}\mathcal{d}_{x} = \mathcal{d}_{x} = \mathcal{l}_{x} - \mathcal{l}_{x + 1} = \mathcal{l}_{x}\ q_{x}$
+
+2)  $\mathcal{l}_{x + 1} = \mathcal{l}_{x}\ p_{x}$
+
+### Relationship to Actuarial Functions
+
+$$\mu_{x}\  = - \frac{\frac{\partial}{\partial x}\ S(x)}{S(x)}\ \  = - \frac{\frac{\partial}{\partial x}\ \mathcal{l}_{0}\ S(x)}{\mathcal{l}_{0}\ S(x)}\  = - \frac{\frac{\partial}{\partial x}\ \mathcal{l}_{x}}{\mathcal{l}_{x}}$$
+
+$$\mathcal{l}_{x}\  = \mathcal{l}_{0}\ S\left( x \right) = \mathcal{l}_{0}\ \exp\left\lbrack - \int_{0}^{x}{\mu_{y}\ }dy \right\rbrack = \mathcal{l}_{0}\int_{0}^{x}{S\left( t \right)\ \mu_{t}}\ dt = \int_{x}^{\infty}\mathcal{l}_{t}\ \mu_{t}\ dt$$
+
+$$\mathcal{l}_{x + n} = \mathcal{l}_{x}\ _{n}p_{x} = \mathcal{l}_{x}\exp\left\lbrack - \int_{x}^{x + n}\mu_{y}\ dy \right\rbrack = \mathcal{l}_{x}\int_{n}^{\infty}{_{n}p_{x}}\mu_{x + t}\ dt =\int_{n}^{\infty}\mathcal{l}_{x + t}\mu_{x + t}\ dt$$
+
+$$\mathcal{l}_{x}\ _{n}q_{x}  = \mathcal{l}_{x} - \mathcal{l}_{x + n} = \mathcal{l}_{x}\int_{0}^{n}{_{t}p_{x}}\ \mu_{x + t}\ dt= \int_{0}^{n}{\mathcal{l}_{x + t}\ \mu_{x + t}\ dt}$$
+
+A life table is a table of expected survivors and expected deaths at
+each age starting with an initial cohort of $\mathcal{l}_{0}$ lives
+(called the radix of the table).
+
+**Example 1.3.1** Consider the following life table
+
+  **Age $x$** $$\mathcal{l}_{\mathbf{x}}$$   $$\mathcal{d}_{\mathbf{x}}$$
+  ----------- ------------------------------ ------------------------------
+        0                 100,000                        501
+        1                 99,499                         504
+        2                 98,995                         506
+        3                 98,489                         509
+        4                 97,980                         512
+        5                 97,468                         514
+
+a)  $\mathbb{P}\left\{ \text{newborn survives to age}\ 5 \right\} = S\left( 5 \right) = \frac{\mathcal{l}_{0}\ S\left( 5 \right)}{\mathcal{l}_{0}}= \frac{\mathcal{l}_{5}}{\mathcal{l}_{0}} = 0.97468$
+
+b)  $\mathbb{P}\left\{ \text{newborn dies between}\ 3\ \text{and}\ 5 \right\}\  = S\left( 3 \right) - S\left( 5 \right) = \frac{\left( \mathcal{l}_{3} - \mathcal{l}_{5} \right)}{\mathcal{l}_{0}}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left( \mathcal{l}_{3} - \mathcal{l}_{4} \right) + \left( \mathcal{l}_{4} - \mathcal{l}_{5} \right)}{\mathcal{l}_{0}}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left( \mathcal{d}_{3} - \mathcal{d}_{4} \right)}{\mathcal{l}_{0}}\ $
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  =\frac{\left( 509 - 512 \right)}{100,000}\ $
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 0.01021$
+
+c)  $\mathbb{P}\left\{ 1\ \text{year old dies between}\ 3\ \text{and}\ 5 \right\}\  = \frac{s\left( 2 \right) - s\left( 4 \right)}{s\left( 1 \right)}= \frac{\left( \mathcal{l}_{2} - \mathcal{l}_{4} \right)}{\mathcal{l}_{1}}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left( \mathcal{d}_{2} - \mathcal{d}_{3} \right)}{\mathcal{l}_{1}}\ $
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left( 506 - 509 \right)}{99,499}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 0.01020$
+
+### Moments of T(x)
+
+Recall $T(x) =$ time until death for a person age x, T is continuous with
+p.d.f. $f(t) = _{n}p_{x}\ \mu_{x + t}$ and d.f. $G(t)=\mathbb{P}\left\lbrack T \leq t \right\rbrack =_{t}q_{x}$
+
+Integration by parts:
+
+Given functions $f(x), g(x)$
+
+$$\int_{0}^{t}{f\left( x \right)\left\lbrack \frac{\partial}{\partial x}g(x) \right\rbrack dx}\  = f\left( x \right)\ g\left( x \right)\left| \begin{matrix}
+t \\
+0 \\
+\end{matrix} \right.\  - \int_{0}^{t}{g\left( x \right)\left\lbrack \frac{\partial}{\partial x}f(x) \right\rbrack dx}$$
+
+For time until death r.v $T$, for a given function $z(T)$ s.t. $z\left( T \right)\left\lbrack 1 - G\left( t \right) \right\rbrack \rightarrow 0\ \text{as}\ t \rightarrow \infty.$
+
+$$\mathbb{E}\left\lbrack z\left( T \right) \right\rbrack = \int_{0}^{\infty}{z\left( t \right)}f\left( t \right)\ dt$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \int_{0}^{\infty}{- z\left( t \right)}\frac{\partial}{\partial t}\left\lbrack 1 - G\left( t \right) \right\rbrack dt$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = - z\left( t \right)\left\lbrack 1 - G\left( t \right) \right\rbrack\left| \begin{matrix}
+\infty \\
+0 \\
+\end{matrix} \right. + \int_{0}^{\infty}\left\lbrack \frac{\partial}{\partial t}z\left( t \right) \right\rbrack\left\lbrack 1 - G\left( t \right) \right\rbrack\ dt$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \ \ z\left( 0 \right) + \int_{0}^{\infty}\left\lbrack \frac{\partial}{\partial t}z\left( t \right) \right\rbrack {_{t}p_{x}}\ dt$$
+
+since $G\left( 0 \right) =_{0}q_{x} = 0$
+
+In particular, for $z\left( T \right) = \ T\ ,\ \ \ z\left( 0 \right) = \ 0\ \ \text{and } \ \mathbb{E}\left( T \right) = \int_{0}^{\infty}t _{t}p_{x}\ \mu_{x + t}\ \text{dt}\  = \int_{0}^{\infty}{_{t}p_{x}}\ dt = {\dot{e}}_{x}$
+
+${\dot{e}}_{x} =$ the complete expectation of life at age x
+
+For $z(T) = T^2 , z(0) = 0, z'(T) = 2T$
+
+$$\mathbb{E} \left( T^{2} \right) = \int_{0}^{\infty} t^{2}\  _{t}p_{x}\ dt = 2\int_{0}^{\infty}t\ _{t}{p_{x}\ dt}$$
+
+$$\mathbb{\text{Var}}\left( T \right)  = \mathbb{E}\left( T^{2} \right) - \left\lbrack \mathbb{E}(T) \right\rbrack^{2}\  = 2\int_{0}^{\infty}t \ _{t}p_{x}\ dt - \ \left\lbrack {\dot{e}}_{x} \right\rbrack^{2}$$
+
+**Example 1.3.2** Given the survival function
+
+$$S\left( x \right)\  = \ e^{- 0.05x}\ ,\ \ x \geq 0$$
+
+1)  Calculate $_{5|10}q_{30}$
+
+    **Answer:**
+    
+    ![image](Figures\Ch1_09_ex_1.3.2.JPG)
+
+    $$_{5|10}q_{30} = \frac{S\left( 35 \right) - S(45)}{S(30)} = \frac{e^{- 1.75} - e^{- 2.25}}{e^{- 1.5}} = e^{- 0.25}{- e}^{- 0.75}$$
+
+2)  Calculate $F(30)$
+
+    **Answer:**
+
+    $$F\left( 30 \right) = \ \mathbb{P}\left\{ X \leq 30 \right\}\  = \ 1 - s\left( 30 \right) = \ 1 - e^{- 1.5}$$
+
+3)  Calculate $\dot{e}_{30}$
+
+    **Answer:**
+
+    $${\dot{e}}_{x}  = \int_{0}^{\infty}{_{t}p_{x}}\ dt = \int_{0}^{\infty}\left\lbrack \frac{S\left( x + t \right)}{S\left( x \right)} \right\rbrack\ dt$$
+
+    $${\dot{e}}_{30} = \int_{0}^{\infty}e^{- 0.05}\ dt=  - \left( e^{\frac{- 0.05}{0.05}} \right)\left| \begin{matrix} \infty \\ 0 \\ \end{matrix} \right.$$
+
+    $$\ \ \ \ \ \ \ = \frac{1}{0.05}$$
+
+    $$\ \ \ \ \ \ \  = 20$$
+
+4)  Calculate $\mathbb{\text{Var}}\lbrack T\left( x \right)\rbrack$
+
+    **Answer:**
+
+    $$\mathbb{E}\left\lbrack T^{2} \right\rbrack\  = 2\int_{0}^{\infty}te^{- 0.05t}\ dt = 2\left( \left\lbrack - \frac{te^{- 0.05t}}{0.05} \right\rbrack\left| \begin{matrix} \infty \\ 0 \\ \end{matrix} \right.\  + \ \int_{0}^{\infty}\frac{e^{- 0.05t}}{0.05}\ dt \right)$$
+
+    $$\ \ \ \ \ \ \ \ \ \  = \frac{2}{0.05}\int_{0}^{\infty}e^{- 0.05t}\ dt$$
+
+    $$= 2\left( \frac{1}{0.05} \right)^{2}$$
+
+    $$= 800$$
+
+$$\mathbb{\text{Var}}\left\lbrack T \right\rbrack\mathbb{\  = \ E}\left\lbrack T^{2} \right\rbrack - \left\lbrack \mathbb{E(}T) \right\rbrack^{2} = 800 - 400 = 400$$
+
+$$\text{i.e.: } \mathbb{\text{Var}}\left\lbrack T\left( 30 \right) \right\rbrack = 400$$
+
+### Median Future Lifetime of x
+
+Median of $T(x)$ is $m(x)$ such that $\mathbb{P}\left\lbrack T\  > m \right\rbrack = \ 1/2$
+
+$$\text{i.e.: } \frac{S(x + m)}{S(x)} = 1/2$$
+
+**Example 1.3.3**
+For $S \left( x \right) = e^{- 0.05x},\ m\left( x \right)$ satisfies
+
+$$\frac{e^{- 0.05(x + m)}}{e^{- 0.05x}} = \frac{1}{2}\ \Longleftrightarrow \ \ e^{- 0.05m} = \frac{1}{2}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \Longleftrightarrow  - 0.05m  = \log\left( \frac{1}{2} \right)  = - \log 2$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \Longleftrightarrow m = 20\log 2$$
+
+Recall the discrete curtate future lifetime of (x) random variable K(x)
+where
+
+$\mathbb{P}\left\{ K\left( x \right) = k \right\}\  = \mathbb{P}\left\{ k < T\left( x \right) \leq k + 1 \right\}\  = \ _{k|}q_{x}\ ,\ \ k = 1,\ 2,\ \ldots w - x - 1$
+
+$\mathbb{P}\left\{ K\left( x \right) \leq k \right\} =_{k + 1}q_{x}$
+
+$\mathbb{P}\left\{ K\left( x \right) > k \right\} =_{k + 1}p_{x}$
+
+**Theorem 1.3.1**
+
+For any given function z(K)
+
+$$\mathbb{E}\left\lbrack z\left( K \right) \right\rbrack = \sum_{t = 0}^{w - x - 1}{z(t)}_{t|}q_{x} = \ z\left( 0 \right) + \sum_{t = 0}^{w - x - 2}{\Delta z(t)}_{t + 1}^{\ }p_{x},\ \ \text{where}\ \Delta z\left( t \right) = z\left( t + 1 \right) - z(t)$$
+
+**Proof:**
+
+$\mathbb{E}\left\lbrack z\left( K \right) \right\rbrack = z\left( 0 \right)q_{x} + z\left( 1 \right)_{1|}q_{x} + z\left( 2 \right)_{2|}q_{x} + \ldots + z\left( w - x - 1 \right)_{w - x - 1|}q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = z\left( 0 \right)q_{x} + \left\lbrack z\left( 0 \right) + \Delta z\left( 0 \right) \right\rbrack_{1|}q_{x} + \left\lbrack z\left( 0 \right) + \Delta z\left( 0 \right) + \Delta z\left( 1 \right) \right\rbrack_{2|}q_{x} + \ldots + \left\lbrack z\left( 0 \right) + \Delta z\left( 0 \right) + \ \ldots\  + \Delta z\left( w - x - 2 \right) \right\rbrack_{w - x - 1|}q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = z\left( 0 \right)\left\lbrack q_{x} +_{1|}q_{x} +_{2|}q_{x} + \ldots +_{w - x - 1|}q_{x} \right\rbrack + \Delta z\left( 0 \right)\left\lbrack_{1|}q_{x} +_{2|}q_{x} + \ldots +_{w - x - 1|}q_{x} \right\rbrack + \Delta z\left( 1 \right)\left\lbrack_{2|}q_{x} +_{3|}q_{x} + \ldots +_{w - x - 1|}q_{x} \right\rbrack + \ \ldots + \ \Delta z\left( w - x - 2 \right)_{w - x - 1|}q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = z\left( 0 \right) + \Delta z\left( 0 \right)p_{x} + \Delta z\left( 1 \right) \ _{2}p_{x} + \ \ldots + \ \Delta z\left( w - x - 2 \right) \ _{w - x - 1}p_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = z\left( 0 \right) + \sum_{t = 0}^{w - x - 2}{\Delta z(t)}\ _{t + 1}p_{x}$
+
+In particular, for $z(K) = K, \ z\left( 0 \right) = 0,\ \ z\left( t \right) = 1$
+
+$$\mathbb{E}\left\lbrack K \right\rbrack = \sum_{t = 0}^{w - x - 2}t\ _{t|}q_{x} = \ \sum_{t = 0}^{w - x - 2}{_{t + 1}p_{x}} = e_{x}$$
+
+$e_{x}  =$ the curtate expectation of life at age x.
+
+For $z\left( K \right) = K^{2}, \ \ z\left( 0 \right) = 0,\ \ z\left( t \right) = 1$
+
+$$\mathbb{E}\left\lbrack K^{2} \right\rbrack = \sum_{t = 0}^{w - x - 2} t^{2} \ _{t|}q_{x} = \sum_{t = 0}^{w - x - 2} {(2t + 1)} \ _{t + 1}p_{x}$$
+
+$$\mathbb{\text{Var}}\left( K \right)\mathbb{= E}\left\lbrack K^{2} \right\rbrack - \left\lbrack \mathbb{E(}K) \right\rbrack^{2} = \sum_{t = 0}^{w - x - 2}{(2t + 1)} \ _{t + 1}p_{x} + \left( e_{x} \right)^{2}$$
+
+**Example 1.3.4** Consider the following mortality patter for a cohort of 21 lives age 90:
+
+$$\mathcal{d}_{90} = 6\ ,\ \ \ \mathcal{d}_{91} = \mathcal{d}_{92} = 3,\ \ \ \mathcal{d}_{93} = \mathcal{d}_{94} = \mathcal{d}_{95} = \mathcal{d}_{96} = 2,\ \ \ \mathcal{d}_{97} = 1$$
+
+Calculate $e_{x}\mathbb{= \ E}\left( K \right)$ and $\mathbb{\text{Var}}\left( K \right)$
+
+**Answer:**
+
+  x      $\mathcal{l}_{x}$    $\mathcal{d}_{x}$   $_{t + 1}p_{x}$   $(2t+1)_{t+1}p_{x}$   $t$
+-------- -------------------- ------------------- ----------------- --------------------- ---- 
+  90              21                    6         $\frac{15}{21}$   $\frac{15}{21}$       0
+  91              15                    3         $\frac{12}{21}$   $\frac{36}{21}$       1
+  92              12                    3         $\frac{9}{21}$    $\frac{45}{21}$       2
+  93              9                     2         $\frac{7}{21}$    $\frac{49}{21}$       3
+  94              7                     2         $\frac{5}{21}$    $\frac{45}{21}$       4
+  95              5                     2         $\frac{3}{21}$    $\frac{33}{21}$       5
+  96              3                     2         $\frac{1}{21}$    $\frac{13}{21}$       6
+  97              1                     1         $\frac{0}{21}$    $\frac{0}{21}$        7
+  98              0                     0         --                --                    8
+  Total                                           $\frac{52}{21}$   $\frac{236}{21}$  
+
+$$\mathbb{E}\left( K \right) = e_{x} = \sum_{t = 0}^{6}{_{t + 1}p_{90}} = \ \frac{52}{21} = 2.48$$
+
+$$\mathbb{\text{Var}}\left( K \right)\mathbb{= E}\left\lbrack K^{2} \right\rbrack - \left\lbrack \mathbb{E(}K) \right\rbrack^{2} = \sum_{t = 0}^{6}{(2t + 1)} \ _{t + 1}p_{x} - \ \left( 2.48 \right)^{2}$$
+
+$$= \frac{236}{21} - \left( 2.48 \right)^{2} = 11.24 - 6.15 = 5.09$$
+
+### Total Years Lived Between x and x+1
+
+For an individual age $x$, let $Z =$ number of years lived between $x$ and $x +1$.
+
+$$\mathbb{P}\left\{ Z = 1 \right\} = p_{x}$$
+
+$$\mathbb{P}\left\{ Z \leq z \right\}\  = \int_{0}^{z}{_{t}p_{x}}\ \mu_{x + t}\ dt,\ \ 0 \leq z < 1$$
+
+$$\text{i.e.: }\mathbb{\text{E}}\left( Z \right) = 1.p_{x} + \int_{0}^{1} t \ _{t}p_{x} \ \mu_{x + t}\ dt$$
+
+For $\mathcal{l}_{x}$ lives age $x$, total expected number of years lived between $x$ and $x + 1$ is
+
+$$L_{x} = \ \mathcal{l}_{x}p_{x} + \mathcal{l}_{x}\int_{0}^{1}t \ _{t}p_{x} \ \mu_{x + t}\ dt = \mathcal{l}_{x + 1} + \int_{0}^{1} t \ \mathcal{l}_{x + t} \ \mu_{x + t}\ dt$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ = \mathcal{l}_{x + 1} + \int_{0}^{1}{t\lbrack - \frac{\partial}{\partial t}}\mathcal{l}_{x + t}\rbrack\ dt,\ \ \text{since}\ \mu_{x + t} = \left\lbrack - \frac{\partial}{\partial t}\mathcal{l}_{x + t} \right\rbrack/\mathcal{l}_{x + t}$$
+
+$$ = \mathcal{l}_{x + 1} + t\left( - \mathcal{l}_{x + t} \right)\left| \begin{matrix}
+1 \\
+0 \\
+\end{matrix} \right.\  + \int_{0}^{1}\mathcal{l}_{x + t}\ dt\ \ ,$$
+
+$$= \int_{0}^{1}\mathcal{l}_{x + t}\ dt$$
+
+i.e. $\mathbb{L}_{x}  = \int_{0}^{1}\mathcal{l}_{x + t}\ dt$.
+
+### Central-Death-Rate at age x
+
+$$\mathcal{m}_{x} = \frac{\mathcal{d}_{x}}{\mathbb{L}_{x}} = \frac{\int_{0}^{1}\mathcal{l}_{x + t}\ \mu_{x + t}\ dt}{\int_{0}^{1}\mathcal{l}_{x + t}\ dt}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{\int_{0}^{1}{_{t}p_{x}}\ \mu_{x + t}\ dt}{\int_{0}^{1}{_{t}p_{x}} \ dt}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\text{deaths at age}\ \lbrack x,\ x + 1\rbrack}{\text{exposure at age}\ \lbrack x,\ x + 1\rbrack}$$
+
+### Total Years Lived Beyond x
+
+Recall: ${\dot{e}}_{x} =$ complete expectation of life
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = $ expected number of years lived after $x$ for an individual age $x$
+
+$\mathbb{T}_{x} =$ expected number of years lived beyond $x$ for $\mathcal{l}_x$ lives age $x$.
+
+${\ \ \ \ \ \  = \mathcal{l}}_{x}{\dot{e}}_{x}= \mathcal{l}_{x}\int_{0}^{\infty} t\  _{t}p_{x}\ \mu_{x + t}\ dt = \mathcal{l}_{x}\int_{0}^{\infty}{_{t}p_{x}}\ dt = \int_{0}^{\infty}\mathcal{l}_{x + t}\ dt$
+
+### Average Years Lived After x Amongst Deaths in [x, x+1]
+
+Total deaths between $\left\lbrack x,\ x + 1 \right\rbrack = \mathcal{d}_{x} = \int_{0}^{1}\mathcal{l}_{x + t}\ \mu_{x + t}\ dt$
+
+Expected number of years lived between $\left\lbrack x,\ x + 1 \right\rbrack = \int_{0}^{1}{t \ \mathcal{l}_{x + t}}\ \mu_{x + t} \ dt$
+
+i.e. average number of years lived between $\left\lbrack x, \ x + 1 \right\rbrack$ amongst $\mathcal{d}_{x}$ deaths
+
+$$a\left( x \right) = \frac{\int_{0}^{1}{t\ \mathcal{l}_{x + t}}\ \mu_{x + t}\ dt}{\mathcal{d}_{x}} = \frac{\int_{0}^{1}{t\ \mathcal{l}_{x + t}}\ \mu_{x + t}\ dt}{\int_{0}^{1}\mathcal{l}_{x + t}\ \mu_{x + t}\ dt}  = \frac{\int_{0}^{1}{t\ _{t}p_{x}}\ \mu_{x + t}\ dt}{\int_{0}^{1}{_{t}p_{x}}\ \mu_{x + t}\ dt}$$
+
+**Example 1.3.5** Out of 100 lives age $x$, four die at age $x + 1/4$,
+two die at age $x + 1/2$ and four die at age $x + 3/4$.
+
+$\mathbb{L}_{x}  =$ total years lived between $\left\lbrack x,\ x + 1 \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ = 90 + 4\left( \frac{1}{4} \right) + 2\left( \frac{1}{2} \right) + 4\left( \frac{3}{4} \right)= 95$
+
+$\mathcal{m}_{x}  =$ central death rate at age $x= \frac{10}{95}$
+
+$a(x) =$ average years lived between $\left\lbrack x,\ x + 1 \right\rbrack$ amongst $\mathcal{d}_{x}$ deaths in $\left\lbrack x,\ x + 1 \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \  = \frac{4(\frac{1}{4)} + 2(\frac{1}{2}) + 4(\frac{3}{4})}{10}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \  = \frac{1}{2}$
+
+## Assumptions for Fractional Ages
+
+Given a life table with values for $q_{x}, p_x$ at integer values of $x$, we need to estimate $_tq_x$ and $_tp_x$ for $0 \leq t \leq 1$.
+
+### Uniform Distribution of Deaths
+
+$$_{t}q_{x} = (t)q_{x} \ \ \ \text{for}\ \ \ 0 \leq t \leq 1$$
+
+$$\text{i.e. } \ _{t}p_{x} = 1 -_{t}q_{x} = 1 - (t)q_{x}$$
+
+**Interpretation:** For $0 \leq t + y \leq 1$
+
+$\mathcal{l}_{x + y} - \mathcal{l}_{x + y + t} =$ number of deaths between ages $x + y$ and $x + y + 1$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \mathcal{l}_{x}\ _{y}p_{x} - \mathcal{l}_{x}\ _{y + t}p_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \mathcal{l}_{x} \left\lbrack 1 - \left( y \right)q_{x} \right\rbrack - \mathcal{l}_{x}\ \lbrack 1 - \left( y + t \right)q_{x}\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \mathcal{l}_{x} \ t \ q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = {t \ \mathcal{d}}_{x}$
+
+i.e. number of deaths over any age interval $t$ in $\left\lbrack x,\ x + 1 \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \  = t \left( \text{number of deaths between}\ \left\lbrack x,\ x + 1 \right\rbrack \right)$
+
+i.e. deaths are uniformly distributed over $\lbrack x,\ x + 1\rbrack$
+
+**Other Results**
+
+1)  $\mathcal{l}_{x + t} = \ \mathcal{l}_{x} - {(t)\mathcal{d}}_{x} = \ \mathcal{l}_{x} - t\left\lbrack \mathcal{l}_{x} - \mathcal{l}_{x + 1} \right\rbrack$
+
+2)  $\mu_{x + t} = - \frac{\frac{\partial}{\partial t}\mathcal{l}_{x + t}}{\mathcal{l}_{x + t}}\  = \frac{\mathcal{d}_{x}}{\mathcal{l}_{x + t}}\  = \frac{q_{x}}{_{t}p_{x}}\  = \frac{q_{x}}{\left( 1 - (t)q_{x} \right)}\ $
+
+3)  $_{t}p_{x}\ \mu_{x + t} = q_{x}$
+
+4)  $_{y}q_{x + t} = \frac{\mathcal{l}_{x + t} - \mathcal{l}_{x + t + y}}{\mathcal{l}_{x + t}}\  = \frac{{(y)\mathcal{d}}_{x}}{\mathcal{l}_{x}\ _{t}p_{x}} = \frac{(y)q_{x}}{1 - (t)q_{x}}$
+
+**Note**
+
+$\mu_{x + t}$ is an increasing function of $t$:
+
+$\lim_{t \rightarrow 1} \mu_{x + t}  = \mu_{x + 1} = \frac{q_{x}}{\left( 1 - q_{x} \right)} = \frac{q_{x}}{p_{x}}$
+
+$\lim_{t \rightarrow 1} \mu_{x + t + 1} = \mu_{x + 1} = q_{x + 1}$
+
+i.e. $\mu_{x + t}$ is discontinuous at the end points between successive age intervals.
+
+### Balducci Assumption
+
+$$_{1 - t}q_{x + t} = \left( 1 - t \right)q_{x}$$
+
+**Interpretation:** Based on the assumption that the function
+${1/ \mathcal{l}}_{x}$ function is linear between $x$ and $x+1$.
+
+i.e. $\frac{1}{\mathcal{l}_{x + t}} = \frac{1}{\mathcal{l}_{x}} + t\left( \frac{1}{\mathcal{l}_{x + 1}} - \frac{1}{\mathcal{l}_{x}} \right)$
+
+Check: $\frac{\mathcal{l}_{x + 1}}{\mathcal{l}_{x + t}}\  = \frac{\mathcal{l}_{x + 1}}{\mathcal{l}_{x}} + t\left( 1 - \frac{\mathcal{l}_{x + 1}}{\mathcal{l}_{x}} \right)$
+
+i.e. $1 -_{1 - t}q_{x + t} = 1 - q_{x} + \left( t \right)q_{x}\ \ \Longleftrightarrow  \ \ _{1 - t}q_{x + t} = \left( 1 - t \right)q_{x}$
+
+**Note**
+
+The Uniform Distribution of Deaths assumption assumes that the
+$\mathcal{l}_{x}$ function is linear between $x$ and $x+1$.
+
+i.e.: $\mathcal{l}_{x + t} = \mathcal{l}_{x} - t\left\lbrack \mathcal{l}_{x} - \mathcal{l}_{x + 1} \right\rbrack$
+
+**Other Results**
+
+1)  Using the relationships
+
+    $q_{x} = _{t}q_{x} +_{t}p_{x}\cdot _{1 - t}q_{x + t}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 1 -_{t}p_{x} +_{t}p_{x}\cdot _{1 - t}q_{x + t}$
+
+    i.e. $_{t}p_{x}\left( 1 - _{1 - t}q_{x + t} \right) = p_{x}$
+
+    i.e. $_{t}p_{x}= \frac{p_{x}}{\left( 1 -_{1 - t}q_{x + t} \right)} = \frac{p_{x}}{\left( 1 - t \right)q_{x}}$
+
+2)  $_{t}q_{x} = 1 - _{t}p_{x}$
+
+    $\ \ \ \ \ \ = \frac{1 - \left( 1 - t \right)q_{x} - p_{x}}{1 - \left( 1 - t \right)q_{x}} = t \frac{q_{x}}{1 - \left( 1 - t \right)q_{x}}$
+
+3)  $\mu_{x + t} = - \ \mathcal{l}'_{x + t}/ \mathcal{l}_{x + t}$
+
+    Since $\frac{1}{\mathcal{l}_{x + t}} = \frac{1}{\mathcal{l}_{x}}\  + t \left( \frac{1}{\mathcal{l}_{x + 1}} - \frac{1}{\mathcal{l}_{x}} \right)$, differentiating implicitly we get
+
+    $$- \frac{1}{\left( \mathcal{l}_{x + t} \right)^{2}}\cdot \mathcal{l}'_{x + t}\  = \frac{1}{\mathcal{l}_{x + 1}} - \frac{1}{\mathcal{l}_{x}}$$
+
+    i.e., $- \mathcal{l'}_{x + t}= \left( \mathcal{l}_{x + t} \right)^{2} \left( \frac{1}{\mathcal{l}_{x + 1}} - \frac{1}{\mathcal{l}_{x}} \right)$
+
+    $\mu_{x + t} = - \frac{{\mathcal{l}'}_{x + t}}{\mathcal{l}_{x + t}} = \mathcal{l}_{x + t}\left\lbrack \frac{1}{\mathcal{l}_{x + 1}} - \frac{1}{\mathcal{l}_{x}} \right\rbrack$
+
+    But $\frac{\mathcal{l}_{x + 1}}{\mathcal{l}_{x + t}} = 1 -_{1 - t}q_{x + 1} = 1 - \left( 1 - t \right) \cdot q_{x}$
+
+    and $\frac{\mathcal{l}_{x + t}}{\mathcal{l}_{x}} =_{t}p_{x} = p_{x}/\lbrack 1 - \left( 1 - t \right) \cdot q_{x}\rbrack$
+
+    i.e. $\mu_{x + t}  = \frac{\mathcal{l}_{x + t}}{\mathcal{l}_{x + 1}} - \frac{\mathcal{l}_{x + t}}{\mathcal{l}_{x}}$
+
+    $\ \ \ \ \ \ \ \ \ \ \  = \frac{1}{1 - \left( 1 - t \right) q_{x}} - \frac{p_{x}}{1 - \left( 1 - t \right)\ q_{x}}$
+
+    $\ \ \ \ \ \ \ \ \ \ \  = \frac{q_{x}}{1 - \left( 1 - t \right)\ q_{x}}$
+
+4)  $_{t}p_{x}\ \mu_{x + t} = \left\lbrack \frac{p_{x}}{1 - \left( 1 - t \right)q_{x}} \right\rbrack\left\lbrack \frac{q_{x}}{1 - \left( 1 - t \right)q_{x}} \right\rbrack = \frac{p_{x}\ q_{x}}{\left\lbrack 1 - \left( 1 - t \right)\ q_{x} \right\rbrack^{2}}$
+
+**Note**
+
+a)  $_{1 - t}p_{x + t} \mu_{x + t} = \left( 1 -_{1 - t}q_{x + t} \right)\ \mu_{x + t}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left( 1 - \left\lbrack 1 - t \right\rbrack\ q_{x} \right) \ q_{x}}{1 - \left( 1 - t \right)\ q_{x}}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = q_{x}$
+
+    Recall under UDD assumption, $_{t}p_{x} \mu_{x + t} = q_{x}$
+
+b)  Under Balducci, $\mu_{x + 1 - t} = \frac{q_{x}}{1 - t\ \cdot \ q_{x}}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \mu_{x + t}$ under UDD
+
+5)  Using the relationship
+
+    $$_{1 - t}p_{x + t}=  _{y}q_{x + t} +_{y}p_{x + t} \ \cdot \ _{1 - t - y}q_{x + t + y}$$
+
+    ![image](Figures\Ch1_10_1.4.2.JPG)
+
+    We get $_{1 - t}q_{x} =  _{y}q_{x + t} + \left( 1 - _{y}q_{x + t} \right) + \left( 1 - t - y \right)q_{x}$
+
+    i.e., $_{y}q_{x + t} \left\lbrack 1 - \left( 1 - t - y \right)q_{x} \right\rbrack = \left( 1 - t \right)q_{x} - \left( 1 - t - y \right)q_{x}$
+
+i.e., $_{y}q_{x + t} = \frac{_{y}q_{x}}{1 - \left( 1 - t - y \right)q_{x}}$
+
+### Constant Force of Mortality
+
+$$\mu_{x + t}  = \mu,\ \text{for}\ \ 0 \leq t \leq 1$$
+
+**Other Results**
+
+1)  $_{t}^{\ }p_{x}\  = \ \exp\left\{ - \int_{x}^{x + t}\mu_{y}\ dy \right\}= \exp\left\{ - \mu t \right\}= \left( p_{x} \right)^{t}$
+
+2)  $_{t}q_{x} = 1 - _{t}p_{x} = 1 - \exp\left\{ - \mu t \right\} = 1 - \left( p_{x} \right)^{t}$
+
+3)  $\mathcal{l}_{x + t} = \mathcal{l}_{x}\ _{t}p_{x} = \mathcal{l}_{x} \exp\left\{ - \mu t \right\} = \mathcal{l}_{x}\ \left( p_{x} \right)^{t}$
+
+4)  $_{y}q_{x + t} = 1 -_{y}p_{x + t} = 1 - \exp\left\{ - \int_{x + t}^{x + t + y}\mu_{s}\ ds \right\} = 1 - \exp\left\{ - \mu y \right\} = 1 - \left( p_{x} \right)^{y}$
+
+**Note**
+
+1)  $\log{_{t}p_{x}} = - \mu t\ \ \text{i.e. } \log{_{t}p_{x}}$ is linear 
+
+2)  $_{t}q_{x} = _{t}q_{x + y} = 1 - \exp\left\{ - \mu t \right\} = 1 - \left( p_{x} \right)^{t} \ ,\ \text{for}\ \ \ 0 \leq t + y \leq 1$
+
+    In particular, $_{0.5}q_{x}  = _{0.5}q_{x + 0.5}$
+    
+    Under UDD, $_{0.5}q_{x + 0.5} = \frac{(0.5)\ q_{x}}{1 - (0.5)\ q_{x}} > (0.5\ )q_{x} = _{0.5}^{\ }q_{x}$
+    
+    Under Balducci, $_{0.5}q_{x} = \frac{(0.5)\ q_{x}}{1 - (0.5)\ q_{x}} > (0.5)\ q_{x}$
+
+3)  Since $p_{x} = \exp\left\{ - \mu \right\},\ \ _{t}p_{x} = \exp\left\{ - \mu t \right\} = \left( p_{x} \right)^{t}$
+
+    In general, $_{t}p_{x + y}= \exp\left\{ - \mu t \right\} = \left( p_{x} \right)^{t}$
+
+**Example 1.4.1** There are 100 persons now age 40 of whom 19 are
+expected to die before age 41. Determine $_{0.5}^{\ }q_{40 + 0.375}$
+assuming (a) UDD (b) Balducci and (c) Constant Force.
+
+$q_{40} = 0.19\ , \ \ \ p_{40} = 0.81\ ,\ \ \text{Want} \ \ _{0.5}q_{40 + 0.375}$.
+
+a)  Under UDD $_{y}{q_{x + t} = \frac{(y){q}_{x}}{1 - (t)q_{x}}}$
+
+    i.e. $_{0.5}q_{40 + 0.375} = \frac{\left( 0.5 \right)0.19}{1 - (0.375)0.19}= 0.102$
+    
+    Alternatively, $_{0.5}q_{40 + 0.375} = \frac{\mathcal{l}_{40 + 0.375} - \mathcal{l}_{40 + 0.875}}{\mathcal{l}_{40 + 0.375}}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{(0.5)19}{100 - (0.375)19} = \frac{9.5}{92.875} = 0.102$
+
+b)  Under Balducci $_{y}{q_{x + t} = \frac{(y)q_{x}}{1 - (1 - t - y)q_{x}}}$
+
+    i.e. $_{0.5}q_{40 + 0.375} = \frac{(0.5).19}{1 - (0.125)0.19} = 0.0097$
+
+c)  Under Constant Force $_{y}{q_{x + t} = 1 - _{y}{p_{x + t} = 1 -}}\left( p_{x} \right)^{y}$
+
+    $$\text{i.e. } _{0.5}q_{40 + 0.375}= 1 - {0.81}^{0.5} = 0.1$$
+
+**Example 1.4.2** You are given
+
+i)  Deaths are uniformly distributed over each year of age.
+
+ii) 
+  $x$    $\mathcal{l}_{x}$
+ ----- ---------------------
+  35   100
+  36   99
+  37   96
+  38   92
+  39   87
+
+Which of the following are true?
+
+I)   $_{1| 2}q_{36}=  0.091$
+
+II)  $\mathcal{m}_{37} = 0.043$
+
+III) $_{0.33}q_{38.5} = 0.021$
+
+**Answer:**
+
+I)   $_{1|2}q_{36}= \frac{\mathcal{l}_{37} - \mathcal{l}_{39}}{\mathcal{l}_{36}} = \frac{96 - 87}{99} = 0.091 \ \ \Longrightarrow \ \ \text{I is true}$
+
+II)  $\mathcal{m}_{37}  =\frac{\mathcal{d}_{37}}{\mathbb{L}_{37}}$
+
+     Under UDD $\mathbb{L}_{x} = \int_{0}^{1}\mathcal{l}_{x + t}\ dt = \int_{0}^{1}\ \left( \mathcal{l}_{x} - (t)\mathcal{d}_{x} \right)dt = \mathcal{l}_{x} - (1/2)\mathcal{d}_{x}$
+
+     $\mathcal{m}_{37} = \frac{\mathcal{d}_{37}}{\mathbb{L}_{37}} = \frac{96 - 92}{96 - (1/2)4} = 0.043\ \ \Longrightarrow \ \ \text{II is true}$
+
+III) $_{0.33}q_{38.5} = \frac{\mathcal{l}_{38.5} - \mathcal{l}_{38.83}}{\mathcal{l}_{38.5}} = \frac{0.33(5)}{92 - 0.5(5)}\ ,\ \text{since }\mathcal{l}_{x + t}  = \mathcal{l}_{x} - (t)\mathcal{d}_{x}$
+
+     $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 0.018 \ \ \Longrightarrow \ \ \text{III is false}$
+
+### Analytical Laws of Mortality
+
+**de Moivre**
+
+$$\mu_{x}= \left( \omega - x \right)^{- 1}\ ,\ \ \text{for}\ \ 0 \leq x \leq \omega$$
+
+Then $S\left( x \right) = \exp\left\{ - \int_{0}^{x}{\mu_{y} \ dy} \right\}  = \exp\left\{ - \int_{0}^{x}{\left( \omega - y \right)^{- 1} \ dy} \right\}$
+
+$$= \exp\left\{ \log{\left( \omega - y \right)\left| \begin{matrix}
+x \\
+0 \\
+\end{matrix} \right.\ } \right\}$$
+
+$$=\exp\left\{ \log\left( \frac{\omega - x}{\omega} \right) \right\}$$
+
+$$= \frac{\omega - x}{\omega}$$
+
+$\mathcal{l}_{x} = \mathcal{l}_{0} \ S\left( x \right) = \mathcal{l}_{0} \frac{\omega - x}{\omega} = \mathcal{l}_{0} - x\frac{\mathcal{l}_{0}}{\omega}$
+
+i.e. $\mathcal{d}_{x} = \mathcal{l}_{x} - \mathcal{l}_{x + 1} = \frac{\mathcal{l}_{0}}{\omega}$
+
+i.e.: de Moivre's Law assumes a constant $\frac{\mathcal{l}_0}{\omega}$
+
+Also, density function of $T\left( x \right) = _{t}p_{x} \ \mu_{x + t}$
+
+$$= \frac{s\left( x + t \right)}{s\left( x \right)}\mu_{x + t}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{\omega - x - t}{\omega - x}\cdot \frac{1}{\omega - x - t}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{1}{\omega - x}\ ,\ \ \text{which is constant}$$
+
+**Gompertz**
+
+$$\mu_{x} = Bc^{x}\ ,\ \ B > 0$$
+
+Then $S\left( x \right)  = \exp\left\{ - \int_{0}^{x}{Bc^{y} \ dy} \right\}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \exp\left\{ - \frac{Bc^y}{\log c} \left| \begin{matrix}
+x \\
+0 \\
+\end{matrix} \right.\  \right\}\ $
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \exp\left\{ - \frac{B}{\log c}\left( c^{x} - 1 \right) \right\}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \exp\left\{ - m\left( c^{x} - 1 \right) \right\}\ , \ \ \text{where }\ m = \frac{B}{\log c}$
+
+$S\left( 0 \right) = 1\ \text{and since}\ \lim_{x \rightarrow \infty}{S\left( x \right)}\  = 0\  \Rightarrow c > 1$
+
+When 
+$c = 1, \ \mu_{x} = B =$ constant force of mortality assumption and $S\left( x \right) = \exp\{ - Bx\}$
+
+**Makeham**
+
+$$\mu_{x} = A + Bc^{x}\ , \ \ B > 0 ,\ \ c > 1$$
+
+Then $S\left( x \right) = \exp\left\{ - \int_{0}^{x}{A + Bc^{y} \ dy} \right\}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \exp\left\{ - Ay - \frac{Bc^y}{\log c}\left| \begin{matrix}
+x \\
+0 \\
+\end{matrix} \right. \right\}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \exp\left\{ - Ax - \frac{B\left( c^{x} - 1 \right)}{\log c} \right\}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \exp\left\{ - Ax - m\left( c^{x} - 1 \right) \right\}\ ,\ \ \text{where}\ m = \frac{B}{\log c}$
+
+Since $S\left( x \right)$ is strictly decreasing, $S'\left( x \right) < 0,$
+
+i.e. $\exp \left\{ - Ax - \frac{B\left( c^{x} - 1 \right)}{\log c}\left( - A - Bc^{x} \right) \right\} < 0 \ \  \Longleftrightarrow \ \ A > - Bc^{x}$ which hold if 
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A > - B\ \text{since}\ c > 1$$
+
+Note: When $A=0$, then Makeham = Gompertz
+
+**Weibull**
+
+$$\mu_{x} = kx^{n}$$
+
+Then $S\left( x \right) = \exp\left\{ - \int_{0}^{x}{ky^{n} \ dy} \right\}\  = \exp\left\{ \frac{- kx^{n + 1}}{n + 1} \right\}\ ,\ \ k > 0,\ n > 0.$
+
+**Example 1.4.3** You are given:
+
+i)  Mortality follows de Moivre's Law
+ii) $\mathbb{\text{Var}}\left\lbrack T(15) \right\rbrack = 675$
+
+Calculate ${\dot{e}}_{25}.$
+
+**Answer:**
+
+Under de Moivre's Law $\mu_{x} = \left( \omega - x \right)^{- 1},\ \ S\left( x \right) = \frac{\omega - x}{\omega}$
+
+Then $_{t}p_{x} = \frac{S(x + t)}{S(x)} = \frac{\omega - x - t}{\omega - x}\ ,\ \ \mu_{x + t} = \frac{1}{\omega - x - t}\ \ \text{and}\ \ _{t}p_{x}\ \mu_{x + t} = \frac{1}{\omega - x}$
+
+i.e. p.d.f. of $T\left( x \right)\ \sim U\left( 0,\ \omega - x \right)$
+
+$$\mathbb{E}\left\lbrack T\left( x \right) \right\rbrack = {\dot{e}}_{x} = \int_{0}^{\omega - x}{t \ _{t}p_{x}\ \mu_{x + t}}\ dt$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{1}{\omega - x}\ \frac{t^{2}}{2}\left| \begin{matrix}
+\omega - x \\
+0 \\
+\end{matrix} \right.$$
+
+$$\ \ \ \ \ \ \ \ \  = \frac{\omega - x}{2}$$
+
+$$\mathbb{\text{Var}}\left\lbrack T\left( x \right) \right\rbrack\mathbb{\  = E}\left\lbrack \left( T\left( x \right) \right)^{2} \right\rbrack\ \left( {\dot{e}}_{x} \right)^{2} = \int_{0}^{\omega - x}{t^{2}\ _{t}p_{x}\ \mu_{x + t}}\ dt - \left( \frac{\omega - x}{2} \right)^{2}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{1}{\omega - x} \frac{t^{3}}{3}\left| \begin{matrix}
+\omega - x \\
+0 \\
+\end{matrix} \right. - \frac{\left( \omega - x \right)^{2}}{4}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  =\frac{\left( \omega - x \right)^{2}}{3} \frac{\left( \omega - x \right)^{2}}{4}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left( \omega - x \right)^{2}}{12}$$
+
+Given $\mathbb{\text{Var}}\left\lbrack T(15) \right\rbrack = 675$
+
+$\Longrightarrow \ \ \frac{\left( \omega - 15 \right)^{2}}{12} =  675 \ \ \Longleftrightarrow \ \ \omega - 15 = \sqrt{675\left( 12 \right)}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \Longleftrightarrow \ \ \omega = 105$
+
+Want ${\dot{e}}_{25} = \frac{\omega - 25}{2} = \frac{105 - 25}{2}  = 40$
+
+### Select and ultimate Tables
+
+A select mortality table recognizes the fact that a newly insured age x
+shows better (i.e. lower) mortality than an individual age x insured t
+years ago. This is because of the selection or underwriting process a
+newly insured has to undergo.
+
+i.e., probability of dying in the coming year is a function of one's
+attained age *and* the duration since the issue of the policy.
+
+**Notation:**
+
+$$q_{\left\lbrack x \right\rbrack + t}\mathbb{ = P} \left\{ \text{life age}\ x + t\ \text{and newly insured at age } x \text{ dies in the coming year} \right\}$$
+
+Then 
+
+$$q_{\left\lbrack x \right\rbrack} \leq q_{\left\lbrack x - 1 \right\rbrack + 1} \leq q_{\left\lbrack x - 2 \right\rbrack + 2} \leq  \ldots$$
+
+i.e. for a given attained age x, the closer the duration since issue,
+the better the mortality.
+
+The effect of selection usually wears out after a certain number of
+years, typically 15 for mortality. If the select period is for r
+durations, then
+
+$q_{\left\lbrack x \right\rbrack + r}  = q_{x + r} =  q_{\left\lbrack x - 1 \right\rbrack + r + 1}=  q_{\left\lbrack x - 2 \right\rbrack + r + 2}  = \ldots$
+
+$q_{x + r} =$ ultimate motality at attained age $x + r$
+
+$\ \ \ \ \ \ \ =$ mortality rate at attained age $x + r$ amongst insured's with policies issued *at least* $r$ years ago.
+
+For a select period of 3 years, a select and ultimate mortality table will look as follows:
+
+ Issue Age    Select Duration 1  2             3             Ultimate 4+
+ ------------ ------------------ ------------- ------------- --------------
+  x           $q_{[x]}$          $q_{[x]+1}$   $q_{[x]+2}$   $q_{x + 3}$
+  x+1         $q_{[x+1]}$        $q_{[x+1]+1}$ $q_{[x+1]+2}$ $q_{x + 4}$
+  x+2         $q_{[x+2]}$        $q_{[x+2]+1}$ $q_{[x+2]+2}$ $q_{x + 5}$
+
+*Aggregate mortality* at age x is the mortality rate at attained age x
+without regard to duration since issue, i.e., select and ultimate lives
+of the same attained age are grouped together.
+
+**Note**
+
+$\mathcal{l}_{\left\lbrack x \right\rbrack + k}\  =$ number of survivors at attained age $(x+k)$ amongst $\mathcal{l}_{x}$ lives insured at age $x$.
+
+For a select period of r years,
+
+$$\mathcal{l}_{\left\lbrack x \right\rbrack + r} = \mathcal{l}_{x + r}$$
+
+**Example 1.4.4** Write an expression for
+$_{2|6}q_{\left\lbrack 30 \right\rbrack + 2}$ in
+terms of $\mathcal{l}_{x}$ , assuming a select period of five years.
+
+**Answer:**
+
+![image](Figures\Ch1_11_ex_1.4.4.JPG)
+
+For a five year period, the $\mathcal{l}_{x}$ function is of the form
+
+$$\mathcal{l}_{\left\lbrack 30 \right\rbrack}\ ,\ \mathcal{l}_{\left\lbrack 30 \right\rbrack + 1}\ ,\ \mathcal{l}_{\left\lbrack 30 \right\rbrack + 2}\ ,\ \mathcal{l}_{\left\lbrack 30 \right\rbrack + 3}\ ,\ \mathcal{l}_{\left\lbrack 30 \right\rbrack + 4}\ ,\ \mathcal{l}_{35}\ ,\ \mathcal{l}_{36}\ ,\ \ldots$$
+
+$$\text{Then } _{2|6}q_{\left\lbrack 30 \right\rbrack + 2} = \frac{\mathcal{l}_{\left\lbrack 30 \right\rbrack + 2 + 2} - \mathcal{l}_{\left\lbrack 30 \right\rbrack + 2 + 8}}{\mathcal{l}_{\left\lbrack 30 \right\rbrack + 2}}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \  = \frac{\mathcal{l}_{\left\lbrack 30 \right\rbrack + 4} - \mathcal{l}_{40}}{\mathcal{l}_{\left\lbrack 30 \right\rbrack + 2}}$$
+
+**Example 1.4.5** Express by a single symbol the probability that a life
+now age 50, insured three years ago, will die in his 59^th^ year i.e.,
+between ages 58 and 59 assuming a five year select period.
+
+**Answer:**
+
+![image](Figures\Ch1_12_ex_1.4.5.JPG)
+
+$$\text{Probability} = _{8|}q_{\left\lbrack 47 \right\rbrack + 3}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\mathcal{d}_{\left\lbrack 47 \right\rbrack + 3 + 8}}{\mathcal{l}_{\left\lbrack 47 \right\rbrack + 3}}$$
+
+$$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\mathcal{d}_{58}}{\mathcal{l}_{\left\lbrack 47 \right\rbrack + 3}}$$

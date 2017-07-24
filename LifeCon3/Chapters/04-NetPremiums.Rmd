@@ -1,0 +1,960 @@
+---
+title: "Net Premiums"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+#  pdf_document:
+#    toc: yes
+#    toc_depth: '3'
+---
+
+#Net Premiums
+
+## Net Premiums
+
+Insurance and annuity benefits are more commonly purchased by a *series*
+of periodic premium payments than by a single premium payment (n.s.p.).
+Since premium payments are generally made only while the insured is
+living, these premiums form a life annuity.
+
+### Equivalence Principle
+
+$$\mathbb{E}\left\lbrack \text{present value of benefits}\right\rbrack\ = \ \ \mathbb{E}\left\lbrack 
+\text{present value of net premiums}\ \right\rbrack$$
+
+i.e., n.s.p. for benefits $=$ n.s.p. for net premiums 
+
+Define $L=$ loss-at-issue random variable     
+           
+$=$ (p.v. of benefits) $-$ (p.v. of net premiums)
+
+The **Equivalence Principle** states that $\mathbb{E}=0$
+
+
+### Continuous Premiums, Insurance Payable at the Moment of Death
+
+General:
+
+$Z=$ p.v. of  insurance benefit
+
+$Y=$ p.v.of continuous life annuity following the premium payment pattern
+
+$\bar{P} =$ continuous annual premium
+
+Then $L=Z-\bar{P}Y$ and 
+
+$$\mathbb{E}\left( L \right) = 0 \ \ \Longleftrightarrow \ \ \mathbb{E}\left( Z \right) =
+\bar{P} \mathbb{E}\left( Y \right)$$ 
+
+i.e.: $\bar{P} = \frac{\mathbb{E}\left( Z \right)}{\mathbb{E}\left( Y \right)}$
+
+
+1. **Whole life insurance, level premiums payable for life.**
+
+$$Z=v^{T}$$
+
+$$Y = \bar{a}_{\overline{T|}}$$
+
+Continuous annual premium $= \bar{P}\left( \bar{A}_x \right)=\frac{\mathbb{E}\left( Z \right)}{\mathbb{E}\left( Y \right)} = \frac{\bar{A}_x}{\bar{a}_x}$
+
+$L=v^{t} - \bar{P}\bar{a}_{\overline{T|}}$
+
+$\mathbb{\text{E}}\left( L \right) = 0$
+
+To obtain $\mathbb{\text{Var}}\left( L \right)$
+
+write
+$L = v^{T} - \ \bar{P}\left\lbrack \frac{1 - v^{T}}{\delta} \right\rbrack = v^{T}\left\lbrack 1 + \frac{\ \bar{P}}{\delta} \right\rbrack - \frac{\bar{P}}{\delta}$
+
+Then $\mathbb{\text{Var}} \left( L \right) = \left\lbrack 1 + \frac{\bar{P}}{\delta} \right\rbrack ^2
+\mathbb{\text{Var}} \left( v^{T} \right) = \left\lbrack 1 + \frac{\bar{P}}{\delta} \right\rbrack ^2
+\left\lbrack {\ }^{2}\bar{A}_{x} - \left( \bar{A}_{x} \right)^2 \right\rbrack$
+
+But $\bar{P} = \frac{\bar{A}_{x}}{\bar{a}_{x}} = \frac{1 - \delta \bar{a}_{x}}{\bar{a}_{x}}$
+
+i.e., $1 + \frac{\bar{P}}{\delta} =1 + \frac{1 - \delta{\bar{a}}_{x}}{\delta{\bar{a}}_{x}}= \frac{1}{\delta{\bar{a}}_{x}}$
+
+i.e., $\mathbb{\text{Var}}\left( L \right) = \frac{\left\lbrack {_{\ }^{2}\bar{A}}_{x} - \left( {\bar{A}}_{x} \right)^{2} \right\rbrack}{\left( \delta{\bar{a}}_{x} \right)^{2}}$
+
+2. **n-year term insurance, level premiums payable for n years.**
+
+Continuous annual premium $\bar{P} \left( \bar{A}_{x:\overline{n|}}^{1} \right)$ solves 
+
+$\bar{P} \bar{a}_{x:\overline{n|}} = \bar{A}_{x:\overline{n|}}^{1}$
+
+i.e. $\bar{P}\left( {\bar{A}}_{x:\overline{n|}}^{1} \right) = \frac{{\bar{A}}_{x:\overline{n|}}^{1}}{{\bar{a}}_{x:\overline{n|}}}$
+
+$L = v^{t} - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t \leq n$
+
+$\ \ \ \ = - \bar{P}{\bar{a}}_{\overline{n|}}$ when $T = t > n$
+
+3. **n-year endowment insurance, level premiums payable for n years.**
+
+Continuous annual premium
+$\bar{P}\left( {\bar{A}}_{x:\overline{n|}} \right)$ satisfies
+
+$$\bar{P}\left( {\bar{A}}_{x:\overline{n|}} \right)= \frac{{\bar{A}}_{x:\overline{n|}}}{{\bar{a}}_{x:\overline{n|}}}$$
+
+$L = v^{t} - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t \leq n$
+
+$\ \ \ \ = v^{t} - \bar{P}{\bar{a}}_{\overline{n|}}$ when $T = t > n$
+
+4. **h payment, n-year endowment insurance.**
+
+Continuous annual premium
+$_{h}^{\ }\bar{P}\left( {\bar{A}}_{x:\overline{n|}} \right)$ satisfies
+
+$$\bar{P}{\bar{a}}_{x:\overline{h|}} = \ {\bar{A}}_{x:\overline{n|}}$$
+
+$$i.e.,\ _{h}^{\ }\bar{P}\left( {\bar{A}}_{x:\overline{n|}} \right)= \frac{{\bar{A}}_{x:\overline{n|}}}{{\bar{a}}_{x:\overline{h|}}}$$
+
+$L = v^{t} - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t \leq h$
+
+$\ \ \ \ = v^{t} - \bar{P}{\bar{a}}_{\overline{h|}}$ when $hh < T = t \leq n$
+
+$\ \ \ \ = v^{n} - \bar{P}{\bar{a}}_{\overline{h|}}$ when $hT = t > n$
+
+5. **h payment, whole life insurance.**
+
+$$_{h}\bar{P}\left( {\bar{A}}_{x} \right) = \frac{{\bar{A}}_{x}}{{\bar{a}}_{x:\overline{h|}}}$$
+
+$L = v^{t} - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t \leq h$
+
+$\ \ \ \ = v^{t} - \bar{P}{\bar{a}}_{\overline{h|}}$ when $hT = t > h$
+
+6. **h payment, n-year term insurance.**
+
+$$_{h}\bar{P}\left( {\bar{A}}_{x:\overline{n|}}^{1} \right) = \frac{{\bar{A}}_{x:\overline{n|}}^{1}}{{\bar{a}}_{x:\overline{h|}}}$$
+
+$L = v^{t} - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t \leq h$
+
+$\ \ \ \ = v^{t} - \bar{P}{\bar{a}}_{\overline{h|}}$ when $hh < T = t \leq n$
+
+$\ \ \ \ = - \bar{P}{\bar{a}}_{\overline{h|}}$ when $hT = t > n$
+
+**Example 4.1.1**   $L_{1}$ is the loss-at-issue random variable for a
+fully continuous whole life insurance of 1 on the life of (x) with a net
+level annual premium determined by the equivalence principal.
+
+You are given:
+
+(i) ${\bar{a}}_{x} = 5.0$ 
+(ii) $\delta = 0.08$ 
+(iii) $\mathbb{\text{Var}}\left( L_{1} \right) = 0.5625$
+
+$L_{2}$ is the loss-at-issue random variable for this insurance with a
+premium which is 4/3 times the net level annual premium.
+
+Calculate the sum of the expected value of $L_{2}$ and the standard
+deviation of $L_{2}$.
+
+**Solution**
+
+$L_{1} = v^{T} - \bar{P}{\bar{a}}_{\overline{T|}} = v^{T} - \bar{P}\left\lbrack \frac{1 - v^{T}}{\delta} \right\rbrack$
+
+$\ \ \ \ = v^{T}\left( 1 + \frac{\bar{P}}{\delta} \right) - \frac{\bar{P}}{\delta}$
+
+But $\bar{P} = \frac{{\bar{A}}_{x}}{{\bar{a}}_{x}}\  = \left( 1 - \delta{\bar{a}}_{x} \right)/{\bar{a}}_{x}$
+
+i.e., $\frac{\bar{P}}{\delta} = \frac{1}{(\delta{\bar{a}}_{x})} - 1$
+and $1 + \frac{\bar{P}}{\delta} = \frac{1}{(\delta{\bar{a}}_{x})}$
+
+i.e., $\mathbb{\text{Var}}\left(L_{1} \right) = 0.5625 = \left\lbrack \frac{1}{\left( \delta{\bar{a}}_{x} \right)} \right\rbrack^{2}\left\lbrack {_{\ }^{2}\bar{A}}_{x} - \left( {\bar{A}}_{x} \right)^{2} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \ \left\lbrack \frac{1}{0.08(5)} \right\rbrack^{2}\left\lbrack {_{\ }^{2}\bar{A}}_{x} - \left( {\bar{A}}_{x} \right)^{2} \right\rbrack\ $
+
+i.e., ${_{\ }^{2}\bar{A}}_{x} - \left( {\bar{A}}_{x} \right)^{2} = 0.5625\left( 0.16 \right) = 0.09$
+
+$L_{2} = v^{T} - \frac{4}{3}\bar{P}{\bar{a}}_{\overline{T|}} = L_{1} - \frac{1}{3}\bar{P}{\bar{a}}_{\overline{T|}}$
+
+$\mathbb{E}\left( L_{2} \right) = \mathbb{E}\left( L_{1} \right) - \ \frac{1}{3}\bar{P}{\bar{a}}_{x} = - \frac{1}{3}\bar{P}{\bar{a}}_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ = - \frac{1}{3 {\bar{A}}_{x}}$
+
+$\ \ \ \ \ \ \ \ \ \ = - \frac{1}{3 \left( 1 - \delta{\bar{a}}_{x} \right)}$
+
+$\ \ \ \ \ \ \ \ \ \ = - \frac{1}{3}\left( 1 - 5(0.08) \right) = - 0.2$
+
+$L_{2} = v^{T} - \frac{4}{3}\bar{P}\left\lbrack \frac{1 - v^{T}}{\delta} \right\rbrack$
+
+$\ \ \ \ = v^{T}\left\lbrack 1 + \frac{\left( \frac{4}{3}\bar{P} \right)}{\delta} \right\rbrack - \frac{\frac{4}{3}\bar{P}}{\delta}$
+
+$\ \ \ \ = v^{T}\left\lbrack 1 + \frac{4}{3}(\left( \frac{1}{\delta{\bar{a}}_{x}} \right) - 1) \right\rbrack - \frac{\frac{4}{3}\bar{P}}{\delta}$
+
+$\ \ \ \ = v^{T}\left\lbrack \frac{4}{3}\left( \frac{1}{\delta{\bar{a}}_{x}} \right) - \frac{1}{3}) \right\rbrack - \frac{\frac{4}{3}\bar{P}}{\delta}$
+
+i.e., $\mathbb{\text{Var}}\left( L_{2} \right) = \ \left\lbrack {_{\ }^{2}\bar{A}}_{x} - \left( {\bar{A}}_{x} \right)^{2} \right\rbrack\left\lbrack \frac{4}{3}\left( \frac{1}{0.08(5)} \right) - \frac{1}{3}) \right\rbrack^{2}\  = 0.09(9) =0.81$
+
+i.e., $\text{SD}\left( L_{2} \right) = 0.9$ and $\mathbb{E}\left( L_{2} \right) + \text{SD}\left( L_{2} \right) = - 0.2 + 0.9 = 0.7$
+
+**Example 4.1.2**    L is the loss-at-issue random variable for a fully
+continuous whole life insurance of 1 with premiums based on the
+equivalence principle.
+
+You are given:
+
+(i) $\mathbb{E}\left( v^{2T} \right) = 0.34$ 
+(ii) $\mathbb{E}\left( v^{T} \right) = 0.40$
+
+Calculate $\mathbb{\text{Var}}\left( L \right)$
+
+**Solution**
+
+$L = v^{T} - \bar{P}{\bar{a}}_{x}$
+
+$\ \  = v^{T}\frac{1}{(\delta{\bar{a}}_{x})} - \ \frac{\bar{P}}{\delta}$
+
+$\mathbb{\text{Var}}\left( L \right) = {\left( \frac{1}{\delta{\bar{a}}_{x}} \right)\ }^{2}\left\lbrack {_{\ }^{2}\bar{A}}_{x} - \left( {\bar{A}}_{x} \right)^{2} \right\rbrack$
+
+${_{\ }^{2}\bar{A}}_{x} = \mathbb{E}\left( v^{2T} \right) = 0.34$ ;
+
+${\bar{A}}_{x} = \mathbb{E}\left( v^{T} \right) = 0.40$
+
+$\delta{\bar{a}}_{x} = 1 - {\bar{A}}_{x} = 0.6$
+
+i.e., $\mathbb{\text{Var}}\left( L \right) = {\left( \frac{1}{0.6} \right)\ }^{2}\left\lbrack 0.34 - 0.16 \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{0.18}{0.36}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 0.5$
+
+### Continuous Premiums, Life Annuities Payable Continuously
+
+1. **n payment, n year pure premium**
+
+Continuous annual premium $\bar{P}\left( {A\ }_{x:\overline{n|}}^{\ \ \ \ \ 1} \right)$ satisfies
+$\bar{P}{\bar{a}}_{x:overline{n|}} = {A}_{x:\overline{n|}}^{\ \ \ \ \ 1}$
+
+$$\text{i.e., } \bar{P}\left( {A\ }_{x:\overline{n|}}^{\ \ \ \ \ 1} \right)\  = \frac{{A}_{x:\overline{n|}}^{\ \ \ \ \ 1}}{{\bar{a}}_{x:\overline{n|}}}$$
+
+$L = - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t < n$
+
+$\ \ \ = v^{n} - \bar{P}{\bar{a}}_{\overline{n|}}$ when $T = t \geq n$
+
+2. **h payment, n-year endowment insurance.**
+
+$$_{h}\bar{P}\left( {A}_{x:\overline{n|}}^{\ \ \ \ \ 1} \right) = \frac{{A}_{x:\overline{n|}}^{\ \ \ \ \ 1}}{{\bar{a}}_{x:\overline{h|}}}$$
+
+$L = - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t < h$
+
+$\ \ \ = - \bar{P}{\bar{a}}_{\overline{h|}}$ when $hh \leq T = t < n$
+
+$\ \ \ = v^{n} - \bar{P}{\bar{a}}_{\overline{h|}}$ when $hT \geq n$
+
+3. **n payment, n year deferred whole life insurance.**
+
+$$\bar{P} \left(_{\left. \ n \right|}^{\ }{\bar{a}}_{x} \right) = \frac{_{\left. \ n \right|}^{\ }{\bar{a}}_{x}}{{\bar{a}}_{x:\overline{n|}}}$$
+
+$L = - \bar{P}{\bar{a}}_{\overline{t|}}$ when $T = t < n$
+
+$\ \ \ = v^{n}{\bar{a}}_{\overline{t - n|}} - \bar{P}{\bar{a}}_{\overline{n|}}$ when $hT = t \geq n$
+
+### Relationships between Net Premiums, Insurances and Annuities
+
+1. **Whole life insurance, premiums payable for life**
+
+$$\bar{P}\left( {\bar{A}}_{x} \right) = \frac{{\bar{A}}_{x}}{{\bar{a}}_{x}} = \frac{1 - \delta{\bar{a}}_{x}}{{\bar{a}}_{x}} = \frac{\delta{\bar{A}}_{x}}{1 - {\bar{A}}_{x}}$$
+
+2.  **n year endowment insurance, premiums payable for n years**
+
+$$\bar{P}\left( {\bar{A}}_{x:\overline{n|}} \right) = \frac{{\bar{A}}_{x:\overline{n|}}}{{\bar{a}}_{x:\overline{n|}}} = \frac{1 - \delta{\bar{a}}_{x:\overline{n|}}}{{\bar{a}}_{x:\overline{n|}}} = \frac{\delta{\bar{A}}_{x:\overline{n|}}}{1 - {\bar{A}}_{x:\overline{n|}}}$$
+
+3.  **n year term insurance, premiums payable for n years**
+
+$$\bar{P}\left( \bar{A}_{x:\overline{n|}}^{1} \right) = \frac{\bar{A}_{x:\overline{n|}}^{1}}{\bar{a}_{x:\overline{n|}}} = \frac{1-\delta \bar{a}_{x:\overline{n|}} - _{n}E_{x}}{\bar{a}_{x:\overline{n|}}} = \frac{\delta \bar{A}_{x:\overline{n|}}^{1}}{1-\bar{A}_{x:\overline{n|}}}$$
+
+**Example 4.1.3** Simplify
+$1 - \frac{\left\lbrack \bar{P}\left( {\bar{A}}_{30:\overline{15|}} \right) - _{15}\bar{P}\left( {\bar{A}}_{30} \right) \right\rbrack\left( {\bar{a}}_{30:\overline{15|}} \right)}{\left\lbrack v^{15}(1 - _{15}q_{30}) \right\rbrack}$
+
+**Solution**
+
+$\bar{P}\left( {\bar{A}}_{30:\overline{15|}} \right) = \frac{{\bar{A}}_{30:\overline{15|}}}{{\bar{a}}_{30:\overline{15|}}}$
+
+$_{15}\bar{P}\left( {\bar{A}}_{30} \right) = \frac{{\bar{A}}_{30}}{{\bar{a}}_{30:\overline{15|}}}$
+
+i.e.,
+$\left\lbrack \bar{P}\left( {\bar{A}}_{30:\overline{15|}} \right) -_{15}\bar{P}\left( {\bar{A}}_{30} \right) \right\rbrack\left( {\bar{a}}_{30:\overline{15|}} \right) = {\bar{A}}_{30:\overline{15|}}{\bar{A}}_{30}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = {\bar{A}}_{30:\overline{15|}}^{1} +_{15}E_{30} - \left( {\bar{A}}_{30:\overline{15|}}^{1} + {_{15|}\bar{A}}_{30} \right)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \ _{15}E_{30} -_{15}{E_{30}{\bar{A}}_{45}}$
+
+$v^{15}\left( 1 -_{15}q_{30} \right) = v^{15}\left(_{15}p_{30} \right) = _{15}E_{30}$
+
+i.e., expression 
+$=\frac{1 - \left\lbrack_{15}E_{30} -_{15}E_{30}{\bar{A}}_{45} \right\rbrack}{_{15}E_{30}}$
+ 
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = {\bar{A}}_{45}$ 
+
+**Example 4.1.4** A fully continuous whole life insurance of 1 is issued
+to (x). You are given the following:
+
+$L = v^{T} - \bar{P}\left( {\bar{A}}_{x} \right){\bar{a}}_{\overline{T|}}$
+under the assumption that the force of mortality $\mu_{45}$ equals $\mu$
+for all $x$ and the force of interest equals $\delta$.
+
+Calculate $\mathbb{\text{Var}}\left( L \right)$
+
+**Solution**
+
+$L = v^{T} - \bar{P}\left( {\bar{A}}_{x} \right){\bar{a}}_{\overline{T|}} = v^{T} - \frac{\bar{P}\left(1 - v^{T} \right)}{\delta}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = v^{T}\left\lbrack 1 + \frac{\bar{P}}{\delta} \right\rbrack - \frac{\bar{P}}{\delta}$
+
+$\mathbb{\text{Var}}\left( L \right) = \left\lbrack 1 + \frac{\bar{P}}{\delta} \right\rbrack^{2}\left\lbrack {{\ }^{2}\bar{A}}_{x} - \left( {\bar{A}}_{x} \right)^{2} \right\rbrack$
+
+$\bar{A}_{x} = \int_{0}^{\infty} v^t \  _{t}p_{x} \mu_{x+t} dt$
+
+$_{t}p_{x} = \exp\left\{ - \int_{x}^{x + t}\mu_{y} dy \right\} = e^{{- \mu}_{t}}$
+
+i.e.,
+${\bar{A}}_{x} = \mu\int_{0}^{\infty}v^{t}e^{{- \mu}_{t}} dt = \mu\int_{0}^{\infty}e^{- \delta t}e^{{- \mu}_{t}} dt$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \mu\int_{0}^{\infty}e^{- \left( \delta + \mu \right)t} dt$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = - \left\lbrack \frac{\mu}{\mu + \delta}\ e^{- \left( \delta + \mu \right)t} \right\rbrack\left| \begin{matrix}\infty \\0 \\\end{matrix}\right.$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \left\lbrack \frac{\mu}{\mu + \delta} \right\rbrack\ $
+
+${_{\ }^{2}\bar{A}}_{x} = \int_{0}^{\infty} v^{2t} _{t}p_{x} \mu_{x + t} dt = \mu\int_{0}^{\infty}e^{- \left( 2\delta + \mu \right)t} dt$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \left\lbrack \frac{\mu}{\mu + 2\delta} \right\rbrack$
+
+$1 + \frac{\bar{P}}{\delta} = 1 + \frac{{\bar{A}}_{x}}{{\delta\bar{a}}_{x}} = 1 + \frac{{\bar{A}}_{x}}{1 - {\bar{A}}_{x}} = \frac{1}{1 - {\bar{A}}_{x}} = \frac{1}{\left\lbrack 1 - \frac{\mu}{\mu + \delta} \right\rbrack}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\mu + \delta}{\delta}$
+
+i.e.,
+$\mathbb{\text{Var}}\left( L \right) = \left\lbrack \frac{\left( \mu + \delta \right)}{\delta} \right\rbrack^{2}\left\lbrack \frac{\mu}{\left( \mu + 2\delta \right)} - \left( \frac{\mu}{\left( \mu + \delta \right)} \right)^{2} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left( \mu + \delta \right)^{2}}{\delta^{2}} \frac{\left\lbrack \mu\left( \mu + \delta \right)^{2} - \mu^{2}\left( \mu + 2\delta \right) \right\rbrack}{\left\lbrack \left( \mu + 2\delta \right)\left( \mu + \delta \right)^{2} \right\rbrack}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left\lbrack \mu\left( \mu^{2} + 2\mu\delta + \delta^{2} \right) - \mu^{2}\left( \mu + 2\delta \right) \right\rbrack}{\delta^{2}\left\lbrack \mu + 2\delta \right\rbrack}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\mu\delta^{2}}{\delta^{2}\left\lbrack \mu + 2\delta \right\rbrack}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\mu}{\left\lbrack \mu + 2\delta \right\rbrack}$
+
+## Fully Discrete Premiums
+
+Recall $T=$ future years lived by (x)
+
+$K=$ future complete years lived by (x)
+
+$\mathbb{P}\left\lbrack K = k \right\rbrack = \ \mathbb{P}\left\lbrack k < T \leq k + 1 \right\rbrack, \ k = 0,1,2,\ldots$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =_{k |}q_{x}$
+
+1.  **Whole life insurance, benefits payable at the *end* of the year of death, level annual premiums payable for life**
+
+Annual Premium $P_{x}$ satisfies $P_{x}{\ddot{a}}_{x} = A_{x}$. i.e.,
+$P_{x} = \frac{A_{x}}{{\ddot{a}}_{x}}$
+
+Define $L =$ loss-at-issue random variable
+
+When $K = k, L = v^{K + 1} - P_{x}{\ddot{a}}_{\overline{k + 1|}}$
+
+![image](Figures\Ch4_01_4.2.JPG)
+
+$L = v^{K + 1} - P_{x}{\ddot{a}}_{\overline{k + 1|}} = v^{K + 1} - P_{x}\left\lbrack \frac{\left( 1 - v^{K + 1} \right)}{d} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = v^{K + 1}\left\lbrack 1 + \frac{P_{x}}{d} \right\rbrack - \frac{P_{x}}{d}$
+
+$\mathbb{E}\left( L \right) = {A_{x} - P}_{x}{\ddot{a}}_{x} = 0$
+
+$\mathbb{\text{Var}}\left( L \right) = \left\lbrack 1 + (\frac{P_{x}}{d)} \right\rbrack^{2}\ \left\lbrack ^{2}{A}_{x} - \left( {A}_{x} \right)^{2} \right\rbrack$
+
+But $1 + (\frac{P_{x}}{d)} = 1 + \left( \frac{{A}_{x}}{d{\ddot{a}}_{x}} \right) = \frac{\left\lbrack 1 + (1 - d{\ddot{a}}_{x}) \right\rbrack}{d{\ddot{a}}_{x} = \frac{1}{d{\ddot{a}}_{x}}}$
+
+$\mathbb{\text{Var}}\left( L \right) = \frac{\left\lbrack ^{2}{A}_{x} - \left( {A}_{x} \right)^{2} \right\rbrack}{\left( d{\ddot{a}}_{x} \right)^{2}}$
+
+$\ \ \ \ \ \ \ \ \ \ \  = \frac{\left\lbrack ^{2}{A}_{x} - \left( {A}_{x} \right)^{2} \right\rbrack}{\left\lbrack 1 - \left( {A}_{x} \right)^{2} \right\rbrack}$
+
+2. **h payment, whole life insurance**
+
+Annual premium $_{h}P_{x}$ satisfies
+$_{h}P_{x} {\ddot{a}}_{x:\overline{h|}} = A_{x}$
+
+$$\text{i.e.,  } _{h}P_{x} = \frac{A_{x}}{{\ddot{a}}_{x:\overline{h|}}}$$
+
+$L = v^{K + 1} - _{h}P_{x}{\ddot{a}}_{\overline{k + 1|}}$ when $K = k < h$
+
+$\ \ \  = v^{K + 1} - _{h}P_{x}{\ddot{a}}_{\overline{h|}}$ when $K = k \geq h$
+
+3.  **n-year term insurance, level premiums payable for n years**
+
+Annual premium $P_{x:\overline{n|}}^{1}$ satisfies $P_{x:\overline{n|}}^{1} {\ddot{a}}_{x:\overline{n|}} = A_{x:\overline{n|}}^{1}$
+
+$$\text{i.e.,  } P_{x:\overline{n|}}^{1} = \frac{A_{x:\overline{n|}}^{1}}{{\ddot{a}}_{x:\overline{n|}}}$$
+
+$L = v^{K + 1} - \left( P_{x:\overline{n|}}^{1} \right)\ {\ddot{a}}_{\overline{k + 1|}}$ when $K = k < n$
+
+$\ \ \ = - \left( P_{x:\overline{n|}}^{1} \right) {\ddot{a}}_{\overline{h|}}$ when $K = k \geq n$
+
+4. **h payment, n year term insurance**
+
+$$_{h}P_{x:\overline{n|}}^{1} = \frac{A_{x:\overline{n|}}^{1}}{{\ddot{a}}_{x:\overline{h|}}}$$
+
+$L = v^{K + 1} - \left(_{h}{P_{x:\overline{n|}}^{1}} \right)\ {\ddot{a}}_{\overline{k + 1|}}$ when $K = k < h$
+
+$\ \ \  = v^{K + 1} - \left(_{h}{P_{x:\overline{n|}}^{1}} \right) {\ddot{a}}_{\overline{h|}}$ when $h \leq K = k < n$
+
+$\ \ \  = - \left(_{h}{P_{x:\overline{n|}}^{1}} \right) {\ddot{a}}_{\overline{h|}}$ when $K = k \geq n$
+
+5. **n payment, n year pure endowment**
+
+$$P_{x:\overline{n|}}^{\ \ \ \ \ \ 1} = \frac{A_{x:\overline{n|}}^{\ \ \ \ \ \ 1}}{{\ddot{a}}_{x:\overline{n|}}}$$
+
+$L = - \left( P_{x:\overline{n|}}^{\ \ \ \ \ \ 1} \right) {\ddot{a}}_{\overline{k + 1|}}$ when $K = k < n$
+
+$\ \ \ = v^{n} - \left( P_{x:\overline{n|}}^{\ \ \ \ \ \ 1} \right) {\ddot{a}}_{\overline{n|}}$ when $K = k \geq n$
+
+6. **h payment, n year pure endowment**
+
+$$_{h}{P_{x:\overline{n|}}^{\ \ \ \ \ \ 1} = }\frac{A_{x:\overline{n|}}^{\ \ \ \ \ 1}}{{\ddot{a}}_{x:\overline{h|}}}$$
+
+$L = - \left(_{h}{P_{x:\overline{n|}}^{\ \ \ \ \ \ 1}} \right){\ddot{a}}_{\overline{k + 1|}}$ when $K = k < h$
+
+$\ \ \  = - \left(_{h}{P_{x:\overline{n|}}^{\ \ \ \ \ \ 1}} \right) {\ddot{a}}_{\overline{h|}}$ when $h \leq K = k < n$
+
+$\ \ \  = v^{n} - \left(_{h}{P_{x:\overline{n|}}^{\ \ \ \ \ \ 1}} \right){\ddot{a}}_{\overline{h|}}$ when $K = k \geq n$
+
+7. **n payment, n year endowment insurance**
+
+$$P_{x:\overline{n|}} = \frac{A_{x:\overline{n|}}}{{\ddot{a}}_{x:\overline{n|}}}$$
+
+$L = v^{K + 1} - \left( P_{x:\overline{n|}} \right) {\ddot{a}}_{\overline{k + 1|}}$ when $K = k < n$
+
+$\ \ \ = v^{n} - \left( P_{x:\overline{n|}} \right) {\ddot{a}}_{\overline{n|}}$ when $K = k \geq n$
+
+8. **h payment, n year endowment insurance**
+
+$$_{h}{P_{x:\overline{n|}} = }\frac{A_{x:\overline{n|}}}{{\ddot{a}}_{x:\overline{h|}}}$$
+
+$L = v^{K + 1} - \left(_{h}{P_{x:\overline{n|}}} \right) {\ddot{a}}_{\overline{k + 1|}}$ when $K = k < h$
+
+$\ \ \ = v^{K + 1} - \left(_{h}{P_{x:\overline{n|}}} \right) {\ddot{a}}_{\overline{h|}}$ when $h \leq K = k < n$
+
+$\ \ \ = v^{n} - \left(_{h}{P_{x:\overline{n|}}} \right) {\ddot{a}}_{\overline{h|}}$ when $K = k \geq n$
+
+**Note**
+
+When the insurance benefit is any amount other than \$1, the resultant
+annual premium is multiplied by this amount.
+
+e.g., whole life insurance of \$1000, level annual premiums payable for
+life.
+
+${P_{x}}^{*} = 1000\frac{A_{x}}{{\ddot{a}}_{x}} = 1000 P_{x}$
+
+$L^{*} = 1000v^{K + 1} - {P_{x}}^{*} {\ddot{a}}_{\overline{k + 1|}}$
+
+$\ \ \  = 1000\left( v^{K + 1} - P_{x} {\ddot{a}}_{\overline{k + 1|}} \right)$
+
+$\ \ \  = 1000 L$
+
+$\mathbb{\text{Var}}\left( L^{*} \right) = \left( 1000 \right)^{2}\ \mathbb{\text{Var}}\left( L \right)$
+
+9. **n payment , n year deferred whole life annuity due**
+
+$$P(_{n|}{\ddot{a}}_{x}) = \frac{_{n|}{\ddot{a}}_{x}}{{\ddot{a}}_{x:\overline{n|}}}$$
+
+$L = - P(_{n|}{\ddot{a}}_{x}) {\ddot{a}}_{\overline{k + 1|}}$ when $K = k < n$
+
+$\ \ \  = v^{n}{\ddot{a}}_{\overline{k + 1 - n|}} - \left( P(_{n|}{\ddot{a}}_{x}) \right){\ddot{a}}_{\overline{n|}}$ when $K = k \geq n$
+
+10. **h payment, n year deferred whole life annuity due**
+
+$$_{h}{P(_{n|}{\ddot{a}}_{x}) = }\frac{_{n|}{\ddot{a}}_{x}}{{\ddot{a}}_{x:\overline{h|}}}$$
+
+$L = - \left(_{h}{P(_{n|}{\ddot{a}}_{x})} \right) {\ddot{a}}_{\overline{k + 1|}}$ when $K = k < h$
+
+$\ \ \  = - \left(_{h}{P(_{n|}{\ddot{a}}_{x})} \right){\ddot{a}}_{\overline{h|}}$ when $h \leq K = k < n$
+
+$\ \ \  = v^{n}{\ddot{a}}_{\overline{k + 1 - n|}} - \left(_{h}{P(_{n|}{\ddot{a}}_{x})} \right){\ddot{a}}_{\overline{hh|}}$ when $K = k \geq n$
+
+**Example 4.2.1** Given $P_{x:\overline{n|}} = 0.042, _{20}P_{35} = 0.0299, A_{55} = 0.6099,$ find the value of
+$P_{35:\overline{20|}}^{1}$
+
+**Solution**
+
+$P_{35:\overline{20|}}^{1} = \frac{A_{35:\overline{20|}}^{1}}{{\ddot{a}}_{35:\overline{20|}}}$ 
+
+$\ \ \ \ \ \ \ \ \ \ = \frac{\left\lbrack A_{35:\overline{20|}} -_{20}E_{35} \right\rbrack}{{\ddot{a}}_{35:\overline{20|}}}$
+
+$\ \ \ \ \ \ \ \ \ \ =  P_{35:\overline{20|}} - \frac{_{20}E_{35}}{{\ddot{a}}_{35:\overline{20|}}} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)$
+
+But $\ _{20}{E_{35}{A}_{55} = {A}_{35} - A_{35:\overline{20|}}^{1}}$
+
+i.e., $\frac{_{20}E_{35}}{{\ddot{a}}_{35:\overline{20|}}} = \frac{1}{{A}_{55}}\left\lbrack \left( \frac{{\ A}_{35}}{{\ddot{a}}_{35:\overline{20|}}} \right) - \left( \frac{A_{35:\overline{20|}}^{1}}{{\ddot{a}}_{35:\overline{20|}}} \right) \right\rbrack = \frac{1}{{\ A}_{55}}\left\lbrack_{20}P_{35} - P_{35:\overline{20|}}^{1} \right\rbrack$
+
+Substituting into $(1)$,
+
+$$P_{35:\overline{20|}}^{1} = 0.042 - \left( \frac{1}{0.6099} \right)\left\lbrack 0.0299 - P_{35:\overline{20|}}^{1} \right\rbrack$$
+
+i.e., $P_{35:\overline{20|}}^{1}(0.6099) = 0.042(0.6099) - \left\lbrack 0.0299 - P_{35:\overline{20|}}^{1} \right\rbrack$
+
+i.e., $P_{35:\overline{20|}}^{1} = \frac{\left\lbrack 0.0299 - 0.042\left( 0.6099 \right) \right\rbrack}{\left\lbrack 1 - 0.6099 \right\rbrack}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 0.011$
+
+**Example 4.2.2** A fully discrete whole life insurance of 1 with a
+level annual premium is issued to (x). You are given:
+
+(i) $L$ is the loss-at-issue random variable if the premium is based on the Equivalence Principle.
+
+(ii) $\mathbb{\text{Var}}\left( L \right) = 0.75$
+
+(iii) $L^{*}$ is the loss-at-issue random variable if the premium is determined such that $\mathbb{E}\left( L^{*} \right) = - 0.5$
+
+Calculate $\mathbb{\text{Var}}\left( L^{*} \right)$
+
+**Solution**
+
+$L = v^{K + 1} - P_{x} {\ddot{a}}_{\overline{k + 1|}}$; $\ \ \ \ \ \ \ L^{*} = v^{K + 1} - {P_{x}}^{*}{\ddot{a}}_{\overline{k + 1|}}$
+
+$\mathbb{E}\left( L^{*} \right) = A_{x} - {P_{x}}^{*}{\ddot{a}}_{x} = - 0.5$
+
+i.e., ${P_{x}}^{*} = \frac{(A_{x} + 0.5)}{{\ddot{a}}_{x}} = P_{x} + (\frac{0.5}{{\ddot{a}}_{x}})$
+
+$\mathbb{\text{Var}}\left( L^{*} \right) = \left\lbrack 1 + \left( \frac{{P_{x}}^{*}}{d} \right) \right\rbrack^{2}\left\lbrack ^{2}{A}_{x} - \left( {A}_{x} \right)^{2} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ = \left\lbrack 1 + \left( \frac{P_{x}}{d} \right) + \left( \frac{0.5}{d{\ddot{a}}_{x}} \right) \right\rbrack^{2}\left\lbrack ^{2}{A}_{x} - \left( {A}_{x} \right)^{2} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ = \left\lbrack \left( \frac{1}{d{\ddot{a}}_{x}} \right) + \left( \frac{0.5}{d{\ddot{a}}_{x}} \right) \right\rbrack^{2}\left\lbrack ^{2}{A}_{x} - \left( {A}_{x} \right)^{2} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ = 2.25\left( \frac{1}{d{\ddot{a}}_{x}} \right)^{2}\left\lbrack ^{2}{A}_{x} - \left( {A}_{x} \right)^{2} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ = 2.25 \mathbb{\text{Var}}\left( L \right)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ = 2.25\left( 0.75 \right) = 1.6875$
+
+**Example 4.2.3** You are given:
+
+(i) Deaths are uniformly distributed over each year of age.
+(ii) $i = 0.04$ and $\delta = 0.0392$
+(iii) $_{n}E_{x} = 0.6$
+(iv) ${\bar{A}}_{x:\overline{n|}} = 0.804$
+
+Calculate $1000P({\bar{A}}_{x:\overline{n|}})$
+
+**Solution**
+
+$1000P\left( {\bar{A}}_{x:\overline{n|}} \right) = 1000 \frac{{\bar{A}}_{x:\overline{n|}}}{{\ddot{a}}_{x:\overline{n|}}}$
+
+${\ddot{a}}_{x:\overline{n|}} = \frac{1 - A_{x:\overline{n|}}}{d}$
+
+$A_{x:\overline{n|}} = A_{x:\overline{n|}}^{1} + _{n}E_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \  = \left( \frac{\delta}{i} \right){\bar{A}}_{x:\overline{n|}}^{1} + _{n}E_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \  = \left( \frac{\delta}{i} \right)\left\lbrack {\bar{A}}_{x:\overline{n|}} -_{n}E_{x} \right\rbrack + _{n}E_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \  = \left( \frac{0.0392}{0.04} \right)\left\lbrack 0.804 - 0.6 \right\rbrack + 0.6$
+
+$\ \ \ \ \ \ \ \ \ \ \ \  = 0.8$
+
+$d = \frac{i}{(1 + i)} = \frac{0.04}{1.04}$
+
+i.e.,
+${\ddot{a}}_{x:\overline{n|}} = \frac{\left( 1 - 0.08 \right)(1.04)}{0.04} = 5.2$
+
+i.e.,
+$1000P\left( {\bar{A}}_{x:\overline{n|}} \right) = \frac{1000\left( 0.804 \right)}{5.2}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = 154.6$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \approx 155$
+
+**Example 4.2.4** For a special fully discrete whole life insurance of
+1000 issued on the life of (75), increasing premiums $\pi_{k}$ are
+payable at time $k$, for $k=0,1,2,\ldots $
+
+You are given
+
+(i) $\pi_{k} = \pi_{0}{(1 + i)}^{k}$
+(ii) Mortality follows de Moivre's law with $\omega = 105$
+(iii) $i = 0.05$; $\ \ \ \ a_{\overline{30|}} = 15.4$ at $i = 0.05$
+(iv) Premiums are calculated in accordance with the equivalence principle.
+
+Calculate $\pi_{0}$
+
+**Solution**
+
+$$\mathbb{E}\left( \text{p.v. of premiums} \right) = \mathbb{E}\left( \text{p.v. of benefits} \right)$$
+
+$$\sum_{t=0}^{29} \pi_k v^t \ _{t}p_{75} = 1000 \sum_{t=0}^{29} v^{t+1} \ _{t|}q_{75}$$
+
+$$\pi_{0} \sum_{t = 0}^{29} \ _{t}p_{75} = 1000 \sum_{t=0}^{29} v^{t+1} \ _{t|}q_{75}$$
+
+De Moivre: $_{t}p_{75} \ \mu_{75 + t} = \frac{1}{(\omega - 75)} = \frac{1}{\left( 105 - 75 \right)} = \frac{1}{30}$
+
+$_{t|}q_{75} = \int_{0}^{1}{_{k}p_{75}} \ \mu_{75 + k}\ dk = \frac{1}{30}$
+
+$_{t}p_{75} = 1 - \ _{t}q_{75} = 1 - \frac{t}{30}$
+
+$\sum_{t = 0}^{29}{_{t}p_{75}} = \sum_{t = 0}^{29}{1 - \left( \frac{t}{30} \right)} = 30 - \left( \frac{1}{30} \right)\left\lbrack \frac{29(30)}{2} \right\rbrack = 15.5$
+
+$\sum_{t = 0}^{29}v^{t + 1} \ _{t|}q_{75} = \left( \frac{1}{30} \right)\ a_{\overline{30|}} = 15.4/30$
+
+i.e., $\pi_{0} = \frac{\left\lbrack 1000\left( 15.4 \right) \right\rbrack}{\left\lbrack 15.5\left( 30 \right) \right\rbrack}$
+
+$\ \ \ \ \ \ \ \ \ \ = 33.1$
+
+## Annual Premiums, Immediate Payment of Benefits
+
+1. **Whole life insurance, premiums payable for life.**
+
+    $P\left( {\bar{A}}_{x} \right) = \frac{{\bar{A}}_{x}}{{\ddot{a}}_{x}} \frac{(\frac{i}{\delta})A_{x}}{{\ddot{a}}_{x}} = \frac{(i}{\delta})P_{x}$ under UDD
+
+2. **h payment, whole life insurance.**
+
+    $_{h}{P({\bar{A}}_{x})} = \frac{{\bar{A}}_{x}}{{\ddot{a}}_{x:\overline{h|}}} = \frac{(i}{\delta}) _{h}P_{x}$ under UDD
+
+3. **n year term insurance, premiums payable for n years.**
+
+    $P\left( {\bar{A}}_{x:\overline{n|}}^{1} \right) = \frac{{\bar{A}}_{x:\overline{n|}}^{1}}{{\ddot{a}}_{x:\overline{n|}}} = (\frac{i}{\delta})P_{x:\overline{n|}}^{1}$ under UDD
+
+4. **h payment, n year term insurance.**
+
+    $_{h}{P({\bar{A}}_{x:\overline{n|}}^{1})} = \frac{{\bar{A}}_{x:\overline{n|}}^{1}}{{\ddot{a}}_{x:\overline{h|}}} = \frac{i}{\delta} \ _{h}P_{x:\overline{n|}}^{1}$ under UDD
+
+5. **n year endowment insurance, premiums payable for n years.**
+
+    $P \left( \bar{A}_{x:\overline{n|}} \right) = \frac{ \bar{A}_{x:\overline{n|}}^{1} - \bar{A}_{x:\overline{n|}}^{\ \ \ \ \ 1} }{\ddot{a}_{x:\overline{n|}}} = \frac{i}{\delta} P_{x:\overline{n|}}^1 + P_{x:\overline{n|}}^{\ \ \ \ \ 1}$ under UDD
+
+6. **h payment, n year endowment insurance.**
+
+    $_{h}{P({\bar{A}}_{x:\overline{n|}})} = \frac{({\bar{A}}_{x:\overline{n|}}^{1} + {\bar{A}}_{x:\overline{n|}}^{\ \ \ \ \ 1})}{{\ddot{a}}_{x:\overline{h|}}} = \frac{i}{\delta} \ _{h}P_{x:\overline{n|}}^{1} +_{h}P_{x:\overline{n|}}^{\ \ \ \ \ 1}$ under UDD
+
+**Example 4.3.1** Simplify
+$\frac{\left\lbrack P\left( {\bar{A}}_{x:\overline{n|}} \right) - _{n}{P({\bar{A}}_{x})} \right\rbrack}{P_{x:\overline{n|}}^{\ \ \ \ \ 1}}$
+
+**Solution**
+
+Expression 
+$= \left\lbrack \left( \bar{A}_{x:\overline{n|}} / \ddot{a}_{x:\overline{n|}} \right) - \left( \bar{A}_x / \ddot{a}_{x:\overline{n|}} \right) \right\rbrack / \left( A_{x:\overline{n|}}^{\ \ \ \ \ 1} / \ddot{a}_{x:\overline{n|}} \right)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \left\lbrack \left( {\bar{A}}_{x:\overline{n|}}^{1} + A_{x:\overline{n|}}^{\ \ \ \ \ 1} \right) - \left( {\bar{A}}_{x:\overline{n|}}^{1} + A_{x:\overline{n|}}^{\ \ \ \ \ 1} \cdot {\bar{A}}_{x + n} \right) \right\rbrack / \left(A_{\ x:\overset{\overline{}}{\left. \ \text{ n} \right|}}^{\ \ \ \ \ \ \ 1} / {\ddot{a}}_{x:\overline{n|}} \right)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \   = 1 - {\bar{A}}_{x + n}$
+
+### Monthly Payment Premiums
+
+$P_{x}^{(m)} =$ net level premium, payable in m^th^ly installments of
+$(\frac{1}{m})P_{x}^{(m)}$ at the **beginning** of each m^th^ of a year,
+for \$1 of insurance payable at the **end** of the year death.
+
+1. **Whole life insurance, m^th^ly premiums payable for life.**
+
+    $P_{x}^{(m)} = \frac{A_{x}}{{\ddot{a}}_{x}^{(m)}} = \frac{d^{(m)}A_{x}}{1 - A_{x}^{(m)}} = \frac{d^{(m)}A_{x}}{1 - (\frac{i}{i^{(m)}})A_{x} }$ under UDD
+
+2. **Whole life insurance, m^th^ly premiums payable for h years.**
+
+    $_{h}P_{x}^{(m)} = \frac{A_{x}}{{\ddot{a}}_{x:\overline{h|}}^{(m)}} = \frac{A_{x}}{\left( {\ddot{a}}_{x}^{\left( m \right)} - _{h}{E_{x}{\ddot{a}}_{x + h}^{(m)}} \right)}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{\left( d^{(m)}A_{x} \right)}{\left\lbrack \left( 1 - A_{x}^{(m)} \right) - _{h}{E_{x}\left( 1 - A_{x + hh}^{(m)} \right)} \right\rbrack}$
+
+    $\ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{\left( d^{(m)}A_{x} \right)}{\left\lbrack \left( 1 - _{h}E_{x} \right) - (\frac{i}{i^{(m)}})A_{x:\overline{h|}}^{1} \right\rbrack}$ under UDD
+
+3. **n year term insurance, m^th^ly premiums payable for n years.**
+
+    ${P_{x:\overline{n|}}^{1}}^{(m)} = \frac{A_{x:\overline{n|}}^{1}}{{\ddot{a}}_{x:\overline{h|}}^{(m)}} = \frac{\left( d^{(m)}A_{x:\overline{n|}}^{1} \right)}{\left\lbrack \left( 1 - _{n}E_{x} \right) - (\frac{i}{i^{(m)}})A_{x:\overline{n|}}^{1} \right\rbrack}$ under UDD
+
+4. **n year term insurance, m^th^ly premiums payable for h years.**
+
+    $_{h}{P_{x:\overline{n|}}^{1}}^{(m)} = \ \frac{A_{x:\overline{n|}}^{1}}{{\ddot{a}}_{x:\overline{h|}}^{(m)}} = \frac{\left( d^{(m)}A_{x:\overline{n|}}^{1} \right)}{\left\lbrack \left( 1 -_{h}E_{x} \right) - (\frac{i}{i^{(m)}})A_{x:\overline{h|}}^{1} \right\rbrack}$ under UDD
+
+5. **n year endowment, m^th^ly premiums payable for n years.**
+
+    $P_{x:\overline{n|}}^{(m)} = \frac{A_{x:\overline{n|}}}{{\ddot{a}}_{x:\overline{n|}}^{(m)}} = \frac{\left( d^{(m)}A_{x:\overline{n|}} \right)}{\left\lbrack \left( 1 -_{n}E_{x} \right) - (\frac{i}{i^{(m)}})A_{x:\overline{n|}}^{1} \right\rbrack}$ under UDD
+
+6. **n year endowment, m^th^ly premiums payable for n years.**
+
+    $_{h}P_{x:\overline{n|}}^{(m)} = \frac{A_{x:\overline{n|}}}{{\ddot{a}}_{x:\overline{h|}}^{(m)}} = \frac{\left( d^{(m)}A_{x:\overline{n|}} \right)}{\left\lbrack \left( 1 -_{h}E_{x} \right) - (\frac{i}{i^{(m)}})A_{x:\overline{h|}}^{1} \right\rbrack}$ under UDD
+
+The formulas are similar when the insurance is payable at the **moment** of death.
+
+e.g., 
+$P_{x}^{(m)}\left( {\bar{A}}_{x} \right)\ =$ net level annual premium, payable in m^th^ly installments of $(\frac{1}{m})P_{x}^{(m)}$ at the **beginning** of each m^th^ of a
+year, for \$1 of insurance payable at the **moment** of death.
+
+**Example 4.3.1** Find the net annual premium payable semi-annually for
+a whole life insurance of \$100,000 to (30), based on the Illustrative
+Life Table at $i = 6\%,\frac{i}{i^{(2)}} = 1.01, d^{(2)} = 0.057$. 
+Assume the Uniform distribution of Deaths within each age.
+
+**Solution**
+
+Want $100,000P_{30}^{(2)} = 100,000 \frac{A_{30}}{{\ddot{a}}_{30}^{(2)}}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 100,000 \frac{d^{(2)}A_{30}}{\left\lbrack 1 - \left( \frac{i}{i^{(2)}} \right)A_{30\ } \right\rbrack}$ under UDD
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \frac{\left\lbrack 100\left( 102.48 \right)\left( 0.057 \right) \right\rbrack}{\left\lbrack 1 - 1.01\left( 0.10248 \right) \right\rbrack}$ from table
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \$ 652$
+
+i.e., semi-annual premium is \$326.
+
+### Apportionable Premiums
+
+Here, premiums are paid m^th^ly, the death benefit is
+payable at the moment of death and a refund of premium is made based on
+the time of death and the time of the next premium payment.
+
+Recall ${\ddot{a}}_{x}^{\{ m\}} =$ n.s.p. for an
+m^th^ly paying life annuity of (1/m) at the
+*beginning* of each m^th^ of a year with a refund of the "unearned" premium at death.
+
+$P_{x}^{\{ m\}}\left( {\bar{A}}_{x} \right) =$
+apportionable whole life premium paid m^th^ly based on
+the same refund feature as ${\ddot{a}}_{x}^{\{ m\}}$
+
+i.e., $P_{x}^{\{ m\}}\left( {\bar{A}}_{x} \right)$ satisfies
+$P_{x}^{\{ m\}}\left( {\bar{A}}_{x} \right){\ddot{a}}_{x}^{\{ m\}} = \ {\bar{A}}_{x}$
+
+i.e.,
+$P_{x}^{\left\{ m \right\}}\left( {\bar{A}}_{x} \right) = \frac{{\bar{A}}_{x}}{{\ddot{a}}_{x}^{\left\{ m \right\}}}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \ \frac{{\bar{A}}_{x}}{\left\lbrack \left( \frac{\delta}{d^{\left( m \right)}} \right){\bar{a}}_{x} \right\rbrack}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \ \left( \frac{\delta}{d^{\left( m \right)}} \right)\left( \frac{{\bar{A}}_{x}}{{\bar{a}}_{x}} \right)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = \ \left( \frac{d^{\left( m \right)}}{\delta} \right)\bar{P}\left( {\bar{A}}_{x} \right)\ $
+
+i.e.,
+$\frac{1}{m}P_{x}^{\left\{ m \right\}}\left( {\bar{A}}_{x} \right) = \ \left( \frac{d^{\left( m \right)}}{\delta} \right)\bar{P}\left( {\bar{A}}_{x} \right)$ is payable at the *beginning* of each m^th^ of a year.
+
+In particular for $m =1, P_{x}^{\left\{ 1 \right\}}\left( {\bar{A}}_{x} \right) =$ apportionable whole life premium payable at the *beginning* of the year for an insurance benefit of \$1 payable at the *moment* of death,
+together with a premium refund feature.
+
+Since $P_{x}\left( {\bar{A}}_{x} \right) =$ annual premium for a similar benefit *without* the refund feature, it follows that
+$P_{x}^{\left\{ 1 \right\}}\left( {\bar{A}}_{x} \right) - P_{x}\left( {\bar{A}}_{x} \right) =$
+net level annual premium for the refund-of-premium feature.
+
+$P\left( {\bar{A}}_{x} \right)^{\text{PR}} = \ \left( \frac{d}{\delta} \right)\left( \frac{{\bar{A}}_{x}}{{\bar{a}}_{x}} \right) - \left( \frac{{\bar{A}}_{x}}{{\ddot{a}}_{x\ }} \right)$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \left( \frac{{\bar{A}}_{x}}{{\bar{a}}_{x}} \right)\left\lbrack \frac{d}{\delta} - \left( \frac{{\bar{a}}_{x}}{{\ddot{a}}_{x}} \right) \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \left( \frac{{\bar{A}}_{x}}{{\bar{a}}_{x}} \right)\left\lbrack \frac{\left( d{\ddot{a}}_{x}\delta\ {\bar{a}}_{x} \right)}{\delta}\cdot {{\ddot{a}}_{x\ }} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \left( \frac{{\bar{A}}_{x}}{{\bar{a}}_{x}} \right)\left\lbrack \frac{\left( \left( 1 - A_{x} \right)\left( 1 - {\bar{A}}_{x} \right) \right)}{\delta} \cdot {{\ddot{a}}_{x\ }} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{{\bar{A}}_{x}\left( {\bar{A}}_{x} - A_{x} \right)}{\delta} {{\bar{a}}_{x}\ {\ddot{a}}_{x\ }}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = \frac{{\bar{A}}_{x}\left( {\bar{A}}_{x} - A_{x} \right)}{\left( 1 - {\bar{A}}_{x} \right){\ddot{a}}_{x}}$
+
+**Note**
+
+The formula for apportionable premiums for other types of insurance
+benefits can be similarly obtained.
+
+e.g.,
+$_{h}{P^{\left\{ m \right\}}({\bar{A}}_{x:\overline{n|}}^{1})} = \frac{{\bar{A}}_{x:\overline{n|}}^{1}}{{\ddot{a}}_{x:\overline{h|}}^{\{ m\}}} = \ \left( \frac{{\bar{A}}_{x:\overline{n|}}^{1}}{{\bar{a}}_{x:\overline{h|}}} \right)\frac{d^{(m)}}{\delta} =$ apportionable premium for an h-pay m^th^ly paying n year continuous term insurance on (x)
+
+**Example 4.3.2** You are given
+
+(i) $A_{x} = 0.2$ 
+(ii) $i = 0.05$ 
+(iii) $\frac{i}{i^{(\infty)}} = 1.0248$
+
+Assume deaths are uniformly distributed over each year of age. Calculate
+$10,000 P^{\left\{ 1 \right\}}\left( {\bar{A}}_{x} \right) - 10,000P({\bar{A}}_{x})$
+
+**Solution**
+
+Expression =
+$10,000 P\left( {\bar{A}}_{x} \right)^{\text{PR}} = 10,000\left\lbrack \frac{{\bar{A}}_{x}\left( {\bar{A}}_{x} - A_{x} \right)}{\left( 1 - {\bar{A}}_{x} \right)\ {\ddot{a}}_{x}} \right\rbrack$
+
+${\bar{A}}_{x} = \left( \frac{i}{\delta} \right) A_{x} = \frac{i}{i^{(\infty)}}A_{x} = 0.2\left( 1.0248 \right) = 0.20469$
+
+${\ddot{a}}_{x} = \frac{\left( 1 - A_{x} \right)}{d} = \frac{\left( 1 - A_{x} \right)(1 + i)}{i} = \ \frac{\left( 1 - 0.2 \right)(1.05)}{0.05} = 16.8$
+
+$10,000\ P\left( {\bar{A}}_{x} \right)^{\text{PR}} = 10,000\left\lbrack \frac{0.20496\left( 0.20496 - 0.2 \right)}{\left( 1 - 0.20496 \right)\ 16.8} \right\rbrack$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 0.76$
+
+### Illustration of Net Level Premium Calculations
+
+**Example 4.3.4 **
+
+A)  Determine the net annual premium for a whole life insurance of \$1000 issued to (x) using $i = 0.25$ and the following mortality rates:
+
+$$q_{x} = 0.5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q_{x + 1} = 0.9\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ q_{x + 2} = 1$$
+
+**Solution**
+
+Net annual premium = $1000P_{x}$ where $P_{x}$ satisfies
+
+$$P_x \sum_{t=0}^2 v^t \ _tp_x = \sum_{t=0}^2 v^{t+1} \ _{t|}q_x$$
+
+$v = \frac{1}{1 + i} = \frac{1}{1.25} = 0.8$
+
+  Age    q     p     $_tp$   $_{t|}q$   $v^{t}$   $v^t \ _{t}p$     $v^{t+1}\ _{t|}q$
+------ ----- ----- -------- ---------- --------- ----------------- -------------------
+  x    0.5   0.5    0.5       0.5       0.8             1                 0.4
+  x+1  0.9   0.1    0.05      0.45      0.64            0.4               0.288
+  x+2  1     1      0         0.05      0.512           0.032             0.0256
+                                                        1.432             0.7136
+
+i.e.,
+$P_{x}\left( 1.432 \right) = 0.7136 \  \Longrightarrow \ P_{x} = 0.49832$
+
+i.e., net annual premium ${1000P}_{x} = \$ 498.32$
+
+B)  Verify that $\mathbb{E}\left( L \right) = 0$ where $L =$ loss-at-issue random variable
+
+$$L = v^{K + 1} - P{\ddot{a}}_{\overline{k + 1|}}$$
+
+  K   $1000(v^{K + 1})$   ${\ddot{a}}_{\overline{k + 1|}}$   $P{\ddot{a}}_{\overline{k + 1|}}$    $L$      Prob.
+----- ------------------- --------------------------------- ----------------------------------- -------- --------- 
+  0       800                     1                                   498.3                       301.7    0.5
+  1       640                     1.8                                 897.0                       -257.0   0.45
+  2       512                     2.44                                1215.9                      -703.9   0.05
+
+$$\mathbb{E}\left( L \right) = 301.7\left( 0.5 \right) - 257.0\left( 0.45 \right) - 703.9\left( 0.05 \right) = 0$$
+
+C)  If 100 such policies are sold, show that the premiums collected, with interest, will be sufficient to pay all death benefits, if actual mortality equals expected mortality assumed in pricing.
+
+ 
+  Duration    Beginning   Premiums   Interest   Benefits   Ending Fund                                         
+ ----------- ----------- ---------- ---------- ---------- -------------- 
+    1          0           49,832     12,458     50,000     12,291
+    2          12,291      24,916     9,302      45,000     1,508
+    3          1,508       2,492      1,000      5,000      0
+
+i.e., if premiums are calculated in accordance with the Equivalence
+Principle, then if everyone dies in accordance with the mortality used
+in determining in premiums, the collected premiums with interest will be
+just sufficient to pay off all death benefits, leaving a balance of zero
+when the last policyholder dies.
+
+## Commutation Functions
+
+**General formula:**
+
+(net annual premium) $\times$ (expected p.v. of annuity based on premium paying pattern)
+
+= (expected p.v. of insurance benefit)
+
+Can express annuity and insurance pieces in commutation form and hence
+solve for the net annual premium in commutation symbols.
+
+**Example 4.4.1**
+
+a.  Obtain a formula in commutation symbols for the net annual premium,
+    payable for five years for a ten year deferred, 20 year temporary
+    immediate annuity of 1 to (30)
+
+**Solution**
+
+$\mathbb{E}$ (p.v. of premium payments)
+
+  X:   30   31   32   33   34   35   ...
+  ---- ---- ---- ---- ---- ---- ---- -----
+  D:   P    P    P    P    P    0    ...
+  N:   P    0    0    0    0    -P   ...
+
+i.e., $\mathbb{E}$ (p.v. of premium payments) $= \frac{P(N_{30} - N_{35})}{D_{30}}$
+
+$\mathbb{E}$ (p.v. of deferred annuity)
+
+  X:   30   31   ...  39   40   41   42   ...  59   60   61   ...
+  ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- -----
+  D:   0    0    ...  0    0    1    1    ...  1    1    0    ...
+  N:   0    0    ...  0    0    1    0    ...  0    0    -1   ...
+
+$\mathbb{E}$ (p.v. of deferred annuity) $= \frac{(N_{41} - \ N_{61})}{D_{30}}$
+
+i.e.,
+$\frac{P(N_{30} - N_{35})}{D_{30}} = \frac{(N_{41} - N_{61})}{D_{30}}$
+
+i.e., $P = \frac{(N_{41} - N_{61})}{(N_{30} - N_{35})}$
+
+b.  Find the net annual premium if the annuity in (a) has the additional
+    provision that the net premiums paid will be returned in the event
+    of death within the 10 year period.
+
+**Solution**
+
+$\mathbb{E}$ (p.v. of return of premium benefit)
+
+  X:   30   31   32   33   34   35   ...  38   39   40    41   ...
+  ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----- ---- ----
+  C:   P    2P   3P   4P   5P   5P   ...  5P   5P   0     0    ...
+  M:   P    P    P    P    P    0    ...  0    0    -5P   0    ...
+  R:   P    0    0    0    0    -P   ...  0    0    -5P   5P   ...
+
+i.e., $\mathbb{E}$ (p.v. of return of premium benefit) $= P\frac{\left( R_{30} - R_{35} - 5R_{40} + 5R_{41} \right)}{D_{30}}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  = P\frac{(R_{30} - R_{35} - 5R_{40})}{D_{30}}$
+
+i.e.,
+$\frac{P(N_{30} - N_{35})}{D_{30}} = \left\lbrack \frac{(N_{41} - N_{61})}{D_{30}} \right\rbrack + \left\lbrack P\frac{(R_{30} - R_{35} - 5R_{40})}{D_{30}} \right\rbrack$
+
+i.e.,
+$P = \frac{(N_{41} - N_{61})}{\left\lbrack \left( N_{30} - N_{35} \right) - (R_{30} - R_{35} - 5R_{40}) \right\rbrack}$
+
+## Accumulation Type Benefits
+
+Arises when in the event of death within a prescribed period, we have
+the additional benefit of either
+
+a.  Return of net premiums without interest, or 
+b.  Return of net premiums with interest
+
+When the interest rate in (b) is the same as that used in determining
+the net premiums, explicit formulas for the net annual premium can be
+obtained.
+
+**Example 4.5.1** Find the net annual premium for a \$5,000, 20 year
+term insurance on (x) which provides in case of death within the first
+10 years, the additional benefit of net annual premiums paid.
+
+a.  without interest
+b.  with interest same as that used in determining premiums.
+
+**Solution**
+
+a.  Net annual premium P solves
+
+$P{\ddot{a}}_{x:\overline{20|}} = 5000A_{x:\overline{20|}}^{1} + P\sum_{t = 0}^{9}{\left( t + 1 \right)v^{t + 1}} _{t}q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \  = 5000A_{x:\overline{20|}}^{1} + P{(IA)}_{x:\overline{10|}}^{1}$
+
+i.e.,
+$P = \frac{5000A_{x:\overline{20|}}^{1}}{\left\lbrack {\ddot{a}}_{x:\overline{20|}} - {(IA)}_{x:\overline{10|}}^{1} \right\rbrack}$
+
+b.  Now $P{\ddot{a}}_{x:\overline{20|}} = 5000A_{x:\overline{20|}}^{1} + P\sum_{t = 0}^{9}{{\ddot{s}}_{\overline{t + 1 |}}v^{t + 1}} _{t|}q_{x}$
+
+
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 5000A_{x:\overline{20|}}^{1} + P \sum_{t=0}^{9} \ddot{a}_{\overline{t + 1|}} \ _{t|}q_{x}$
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 5000A_{x:\overline{20|}}^{1} + P\left\lbrack {\ddot{a}}_{x:\overline{10|}} - {\ddot{a}}_{\overline{10|}}\ _{10}p_{x} \right\rbrack$
+
+i.e.,
+$P = \frac{5000A_{x:\overline{20|}}^{1}}{\left\lbrack {\ddot{a}}_{x:\overline{20|}} - {\ddot{a}}_{x:\overline{10|}} + {\ddot{a}}_{\overline{10|}}\ _{10}p_{x} \right\rbrack}$
+
+**Example 4.5.2** Find the net annual for a special 20 year insurance on
+(x) which provides a death benefit of \$5000 if death occurs after two
+years and the return of the net annual premium paid
+
+a.  without interest
+b.  with interest(same as that used in calculating premiums) if death
+    occurs within the first two years.
+
+**Solution**
+
+a. $P{\ddot{a}}_{x:\overline{20|}} = 5000(A_{x:\overline{20|}}^{1} - A_{x:\overline{2|}}^{1}) + P{(IA)}_{x:\overline{2|}}^{1}$
+
+i.e.,
+$P = \frac{5000\left\lbrack A_{x:\overline{20|}}^{1} - A_{x:\overline{2}}^{1} \right\rbrack}{{(IA)}_{x:\overline{2|}}^{1}}$
+
+b.  $P{\ddot{a}}_{x:\overline{20|}} = 5000\left\lbrack A_{x:\overline{20|}}^{1} - A_{x:\overline{2|}}^{1} \right\rbrack + P\left\lbrack {\ddot{a}}_{x:\overline{2|}} - {\ddot{a}}_{\overline{2|}}\ _{2}p_{x} \right\rbrack$
+
+i.e.,
+$P = \frac{5000\left\lbrack A_{x:\overline{20|}}^{1} - A_{x:\overline{2|}}^{1} \right\rbrack}{\left\lbrack {\ddot{a}}_{x:\overline{20|}} - {\ddot{a}}_{\ x:\overline{2|}} + {\ddot{a}}_{\overline{2|}}\ _{2}p_{x} \right\rbrack}$
+
+
